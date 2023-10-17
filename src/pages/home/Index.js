@@ -83,7 +83,7 @@ const HomePage = () => {
 
                 <Nav>
                     {navData.map((item) => (
-                        (isCurrent('/' + item.name)) && (
+                        (isCurrent('/main/' + item.name)) && (
                             (item.id===0) ? (
                                 <Title key={item.id}>Onlog <p>&nbsp; 는 지금...</p></Title>
                             ) : (
@@ -96,14 +96,14 @@ const HomePage = () => {
                     {/* <Back/> */}
                     {/* <Back2/> */}
                     <LinkWrap>
-                        <NavL to={'/'} $active={isCurrent("/")} hovername="전체 게시물" onClick={() => setCategory('')}><p><img src={Home}/></p></NavL>
-                        <NavL to={'/lifestyle'} $active={isCurrent("/lifestyle")} hovername="일상" onClick={() => setCategory('lifestyle')}><p>#lifestyle</p></NavL>
-                        <NavL to={'/travel'} $active={isCurrent("/travel")} hovername="여행" onClick={() => setCategory('travel')}><p>#travel</p></NavL>
-                        <NavL to={'/foodie'} $active={isCurrent("/foodie")} hovername="맛집" onClick={() => setCategory('foodie')}><p>#foodie</p></NavL>
-                        <NavL to={'/entertainment'} $active={isCurrent("/entertainment")} hovername="엔터테인먼트" onClick={() => setCategory('entertainment')}><p>#entertainment</p></NavL>
-                        <NavL to={'/tech'} $active={isCurrent("/tech")} hovername="IT기술"onClick={() => setCategory('tech')}><p>#tech</p></NavL>
-                        <NavL to={'/sports'} $active={isCurrent("/sports")} hovername="스포츠" onClick={() => setCategory('sports')}><p>#sports</p></NavL>
-                        <NavL to={'/news'} $active={isCurrent("/news")} hovername="뉴스/시사" onClick={() => setCategory('news')}><p>#news</p></NavL>
+                        <NavL to={'/main/'} $active={isCurrent("/main")} hovername="전체 게시물" onClick={() => setCategory('')}><p><img src={Home}/></p></NavL>
+                        <NavL to={'/main/lifestyle'} $active={isCurrent("/main/lifestyle")} hovername="일상" onClick={() => setCategory('lifestyle')}><p>#lifestyle</p></NavL>
+                        <NavL to={'/main/travel'} $active={isCurrent("/main/travel")} hovername="여행" onClick={() => setCategory('travel')}><p>#travel</p></NavL>
+                        <NavL to={'/main/foodie'} $active={isCurrent("/main/foodie")} hovername="맛집" onClick={() => setCategory('foodie')}><p>#foodie</p></NavL>
+                        <NavL to={'/main/entertainment'} $active={isCurrent("/main/entertainment")} hovername="엔터테인먼트" onClick={() => setCategory('entertainment')}><p>#entertainment</p></NavL>
+                        <NavL to={'/main/tech'} $active={isCurrent("/main/tech")} hovername="IT기술"onClick={() => setCategory('tech')}><p>#tech</p></NavL>
+                        <NavL to={'/main/sports'} $active={isCurrent("/main/sports")} hovername="스포츠" onClick={() => setCategory('sports')}><p>#sports</p></NavL>
+                        <NavL to={'/main/news'} $active={isCurrent("/main/news")} hovername="뉴스/시사" onClick={() => setCategory('news')}><p>#news</p></NavL>
                     </LinkWrap>
                 </Nav>
 

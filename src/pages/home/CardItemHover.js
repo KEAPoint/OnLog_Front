@@ -6,7 +6,6 @@ import { S_regular_30 } from '../../components/style/Styled';
 
 
 const CardItemHover = ({info}) => {
-    console.log(info);
     return (
         <HoverWrap>
             <Wrap>
