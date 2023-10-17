@@ -4,12 +4,15 @@ import Logo from '../../assets/images/Logo.png';
 import Profile from '../../assets/images/Profile.jpeg';
 import { S_bold_25, XS_bold_13 } from '../style/Styled';
 import UserProfile from './UserProfile';
+import { Link } from 'react-router-dom';
 
 
 const Header = () => {
     return (
         <Wrap>
-            <img src={Logo} style={{width:'6.875rem', height:'3.375rem'}}/>
+            <LogoL to={'/'}>
+                <img src={Logo} style={{width:'6.875rem', height:'3.375rem'}}/>
+            </LogoL>
             {/* 로그인 O */}
             <MenuWrap>
                 <Menu>
@@ -47,6 +50,7 @@ const Wrap = styled.div`
 
     }
 `;
+const LogoL = styled(Link)``;
 const MenuWrap = styled.div`
     display: flex;
     gap: 3.62rem;

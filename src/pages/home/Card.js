@@ -5,6 +5,7 @@ import { cardData } from '../../assets/datas/cardData';
 import styled from 'styled-components';
 import {ReactComponent as Vector} from '../../assets/images/background/Vector.svg';
 import {ReactComponent as RVector} from '../../assets/images/background/RVector.svg';
+import { InfiniteScroll } from '../../components/common/InfiniteScroll';
 
 const Card = ({category}) => {
 
@@ -12,13 +13,19 @@ const Card = ({category}) => {
         <Wrap>
             {/* <Back/> */}
             {/* <Back2/>  */}
-            <CardWrap>
-                {cardData.map((item) => (
-                    (item.category === category) && (
-                        <CardItem key={item.id} info={item}/>
-                    )
-                ))}
-            </CardWrap>
+
+
+            {/* {isLoading && <div>Loading...</div>} */}
+            {/* 아래 코드 */}
+            {/* {!isLoading && <div ref={setObservationTarget}> */}
+                <CardWrap>
+                    {cardData.map((item) => (
+                        (item.category === category) && (
+                            <CardItem key={item.id} info={item}/>
+                        )
+                    ))}
+                </CardWrap>
+            {/* </div>} */}
         </Wrap>
     );
 };
