@@ -4,25 +4,11 @@ import Profile from '../../assets/images/Profile.jpeg';
 
 import { S_bold_25 } from '../style/Styled';
 
-const UserProfile = ({info}) => {
-    return (
-        <Wrap>
-            <ProfileImg imgurl={info.profile}></ProfileImg>
-            <TitleWrap>
-                <Title>{info.blogName}</Title>
-                <Name>{info.nickName}</Name>
-            </TitleWrap>
-        </Wrap>
-    );
-};
-
-export default UserProfile;
-
-const Wrap = styled(S_bold_25)`
+export const Profile_Wrap = styled(S_bold_25)`
     display: flex;
     align-items: center;
 `;
-const ProfileImg = styled.div`
+export const Profile_ProfileImg = styled.div`
     width: 3.375rem;
     height: 3.375rem;
     border-radius: 2.5rem;
@@ -35,12 +21,12 @@ const ProfileImg = styled.div`
 `;
 
 
-const TitleWrap = styled.div`
+export const Profile_TitleWrap = styled.div`
 `;
-const Title = styled.div`
+export const Profile_Title = styled.div`
     text-align: justify;
 `;
-const Name = styled.div`
+export const Profile_Name = styled.div`
     color: var(--gray_bold, #4A4A4A);
     text-align: justify;
     font-family: Pretendard;
@@ -50,3 +36,17 @@ const Name = styled.div`
     line-height: normal;
     letter-spacing: 0.03375rem;
 `;
+
+const UserProfile = ({info}) => {
+    return (
+        <Profile_Wrap>
+        <Profile_ProfileImg imgurl={info.profile}></Profile_ProfileImg>
+        <Profile_TitleWrap>
+            <Profile_Title>{info.blogName}</Profile_Title>
+            <Profile_Name>{info.nickName}</Profile_Name>
+        </Profile_TitleWrap>
+        </Profile_Wrap>
+    );
+};
+
+export default UserProfile;
