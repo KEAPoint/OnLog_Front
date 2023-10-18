@@ -16,7 +16,7 @@ const Header = () => {
             {/* 로그인 O */}
             <MenuWrap>
                 <Menu>
-                    Subscribed
+                    <MenuL to={'/mypage/post'}>Subscribed</MenuL>
                     <Alarm>21</Alarm>
                 </Menu>
                 <Menu>
@@ -59,6 +59,10 @@ const MenuWrap = styled.div`
 const Menu = styled(S_bold_25)`
     display: flex;
     align-items: center;
+`;
+const MenuL = styled(Link)`
+    text-decoration: none;
+    color: var(--black);
 `;
 const ProfileImg = styled.div`
     width: 3.375rem;
