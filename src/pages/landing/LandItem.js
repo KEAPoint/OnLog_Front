@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import LandItemHover from './LandItemHover';
-import Travel from '../../assets/images/catogories/Travel.png';
 import { M_regular_38, XL_semibold_80 } from '../../components/style/Styled';
 
 const LandItem = ({info}) =>  {

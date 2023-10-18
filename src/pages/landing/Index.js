@@ -8,7 +8,7 @@ import LifeStyle from '../../assets/images/catogories/LifeStyle.png';
 import News from '../../assets/images/catogories/News.png';
 import Sports from '../../assets/images/catogories/Sports.png';
 import Tech from '../../assets/images/catogories/Tech.png';
-import Travel from '../../assets/images/catogories/Travel.png';
+import {ReactComponent as LogoText} from '../../assets/images/LogoText.svg';
 import { landingData } from '../../assets/datas/categoryData';
 import LandItem from './LandItem';
 
@@ -18,7 +18,7 @@ const LandingPage = () => {
     return (
         <div>
             <Header />
-
+            <LogoFix/>
             <Wrap>
                 {landingData.map(item => (
                     <LandItem key={item.id} info={item}/>
@@ -30,6 +30,16 @@ const LandingPage = () => {
 
 export default LandingPage;
 
+const LogoFix = styled(LogoText)`
+
+    /* width: 45.06225rem; */
+    /* height: 14.08725rem; */
+    /* background-attachment: fixed; */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+`;
 const Wrap = styled.div`
     padding: 7.125rem 6.25rem 0rem 6.25rem;
     display: grid;
