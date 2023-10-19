@@ -6,6 +6,7 @@ import PostviewPage from "./pages/post/Index";
 import LoginPage from "./pages/login/index";
 // import KakaoLogin from "./pages/login/KakaoLogin";
 import SignUp from "./pages/login/SignUp";
+import MyPage from "./pages/myPage/Index";
 
 function App() {
   return (
@@ -28,7 +29,8 @@ function App() {
             <Route path="/mypage/post/login" element={<KakaoLogin/>}/>
             <Route path="/mypage/post/signUp" element={<SignUp/>}/>
           </Route> */}
-          <Route path="/mypage/post" element={<LoginPage/>}/>
+          {/* <Route path="/mypage/post" element={<LoginPage/>}/> */}
+          <Route path="/mypage/post" element={<MyPage/>}/>
 
 
 
