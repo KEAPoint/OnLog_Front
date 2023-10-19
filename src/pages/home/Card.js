@@ -33,25 +33,14 @@ const Card = ({category}) => {
 export default Card;
 
 const Wrap = styled.div`
-    /* padding: 1.875rem 14.4rem; */
     padding: 1.875rem 6.25rem;
-    /* background-color: red; */
-    /* position: relative; */
-    
+    display: flex;
+    justify-content: center;
 `;
 const CardWrap = styled.div`
-    /* display:flex; */
-    /* justify-content: space-between; */
-    /* flex-wrap: wrap; */
     display: grid;
-    gap:1.25rem;
-
-    place-items: center;
-    grid-template-columns: 1fr 1fr 1fr;
-
-    /* position: relative; */
-    /* z-index: 1; */
-    /* background-color: red; */
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
 `;
 
 
