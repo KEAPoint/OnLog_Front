@@ -8,7 +8,7 @@ const Comment = () => {
             <Profile>
                 <UserProfile info={cardData}/>
             </Profile>
-            <Context> 그런데 나는 캡틴아메리카보다 아이언맨이 더 좋던데? 의리남이잖아 ㅎㅎ</Context>
+            <Context> 그런데 나는 캡틴아메리카보다 아이언맨이 더 좋던데??? 의리남이잖아 ㅎㅎ</Context>
             <CommentFooter>
                 <CommentDate>2023.10.18</CommentDate>
                 
