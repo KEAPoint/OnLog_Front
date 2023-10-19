@@ -7,6 +7,7 @@ import LoginPage from "./pages/login/index";
 // import KakaoLogin from "./pages/login/KakaoLogin";
 import SignUp from "./pages/login/SignUp";
 import MyPage from "./pages/myPage/Index";
+import KakaoLogin from "./pages/login/KakaoLogin";
 
 function App() {
   return (
@@ -23,17 +24,7 @@ function App() {
           <Route path="/main/sports" element={<HomePage/>}/>
           <Route path="/main/news" element={<HomePage/>}/>
 
-          {/* <Route path="/mypage/post" element={<PostWrite/>}/> */}
-          {/* <Route path="/mypage/post" element={<PostviewPage/>}/> */}
-          {/* <Route path="/mypage/post" element={<LoginPage/>}>
-            <Route path="/mypage/post/login" element={<KakaoLogin/>}/>
-            <Route path="/mypage/post/signUp" element={<SignUp/>}/>
-          </Route> */}
-          {/* <Route path="/mypage/post" element={<LoginPage/>}/> */}
-          <Route path="/mypage/post" element={<MyPage/>}/>
-
-
-
+          <Route path="/mypage/post" element={<SignUp/>}/>
           
       </Routes>
     </BrowserRouter>
