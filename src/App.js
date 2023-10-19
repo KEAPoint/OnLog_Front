@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/home/Index";
 import LandingPage from "./pages/landing/Index";
 import PostWrite from "./pages/PostWrite/Index";
-import PostviewPage from "./pages/post/Index";
+import PostviewPage from "./pages/postView/Index";
 import LoginPage from "./pages/login/index";
 // import KakaoLogin from "./pages/login/KakaoLogin";
 import SignUp from "./pages/login/SignUp";
