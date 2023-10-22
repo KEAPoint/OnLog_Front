@@ -107,6 +107,24 @@ const Wrap = styled.div`
     background: rgba(255, 255, 255, 0.70);
     /* background-color: red; */
     box-shadow: 6px 7px 7px 0px rgba(0, 0, 0, 0.50);
+
+
+    // display: flex;
+    // flex-direction: column;
+    // // justify-content: space-between;
+    // /* align-items: center; */
+
+
+    // width: 329px;
+    // height: 511px;
+    // padding: 60px 20px;
+
+    // // box style
+    // border-radius: 1.875rem;
+    // border: 0.5px solid var(--gray_bold, #4A4A4A);
+    // background: rgba(255, 255, 255, 0.70);
+    // /* background-color: red; */
+    // box-shadow: 6px 7px 7px 0px rgba(0, 0, 0, 0.50);
 `;
 
 const Main = styled.div`

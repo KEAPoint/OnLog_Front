@@ -11,7 +11,7 @@ const Header = () => {
     return (
         <Wrap>
             <LogoL to={'/'}>
-                <img src={Logo} style={{width:'6.875rem', height:'3.375rem'}}/>
+                <img src={Logo}/>
             </LogoL>
             {/* 로그인 O */}
             <MenuWrap>
@@ -28,7 +28,7 @@ const Header = () => {
                 {/* <UserProfile/> */}
                 <Menu>
                     <ProfileImg></ProfileImg>
-                    <TitleWrap>
+                    <TitleWrap to={'/mypage'}>
                         <Title>Hani Tech World</Title>
                         <Name>@hanitech</Name>
                     </TitleWrap>
@@ -75,7 +75,9 @@ const Alarm = styled(XS_bold_13)`
     color: #F00;
     align-self: flex-start;
 `;
-const TitleWrap = styled.div`
+const TitleWrap = styled(Link)`
+text-decoration: none;
+color: var(--black);
 `;
 const Title = styled.div`
     text-align: justify;
