@@ -13,6 +13,11 @@ import {ReactComponent as Vector} from '../../assets/images/background/Vector.sv
 import {ReactComponent as RVector} from '../../assets/images/background/RVector.svg';
 import Profile from '../../assets/images/Profile.jpeg';
 
+import SearchPage from '../search/Index';
+import { useNavigate } from 'react-router-dom';
+import SearchBox from '../search/SearchBox';
+
+
 const navData = [
     {
         id:0,
@@ -65,9 +70,11 @@ const HomePage = () => {
     //     setCategory(window.location.pathname);
     //     console.log(category);
     // },isCurrent());
+    const navigate = useNavigate();
 
     const handleSearch = (e) => {
         // console.log(e.target.value);
+        // history.push('/result', { term: searchTerm });
     }
 
 
@@ -75,10 +82,7 @@ const HomePage = () => {
         <div>
                 <Header/>
                 <Wrap>
-                    <SearchWrap>
-                        <img src={Search} />
-                        <input type="text" placeholder="검색하기" onChange={handleSearch}/>
-                    </SearchWrap>
+                    <SearchBox/>
                 </Wrap>
 
                 <Nav>

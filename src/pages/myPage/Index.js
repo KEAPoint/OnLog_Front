@@ -13,6 +13,7 @@ const MyPage = () => {
         //     <MypagePost style={{width: "1920px", marginLeft:"auto", marginRight:"auto"}}/>
         // </div>
         <div>
+        <Header/>
         {/* <UserProfile/> */}
         <MypageTop/>
         <MypagePost/>
