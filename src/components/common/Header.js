@@ -16,7 +16,7 @@ const Header = () => {
             {/* 로그인 O */}
             <MenuWrap>
                 <Menu>
-                    <MenuL to={'/mypage/post'}>Subscribed</MenuL>
+                    <MenuL to={'/subscribed'}>Subscribed</MenuL>
                     <Alarm>21</Alarm>
                 </Menu>
                 <Menu>

@@ -10,6 +10,7 @@ import MyPage from "./pages/myPage/Index";
 import KakaoLogin from "./pages/login/KakaoLogin";
 import ProfileEditPage from "./pages/profileEdit/Index";
 import SearchPage from "./pages/search/Index";
+import SubscribePage from "./pages/subscribe/Index";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/mypage/postwrite" element={<PostWrite/>}/>
           <Route path="/mypage/post" element={<PostviewPage/>}/>
           <Route path="/search" element={<SearchPage/>}/>
+          <Route path="/subscribed" element={<SubscribePage/>}/>
           
       </Routes>
     </BrowserRouter>

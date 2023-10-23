@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useState, useRef, useEffect, useCallback } from "react";
 import React from "react";
 import TextareaAutosize from 'react-textarea-autosize'; // npm install react-textarea-autosize
+import Header from '../../components/common/Header';
 
 
 const ProfileEditPage = () =>{
@@ -31,6 +32,7 @@ const ProfileEditPage = () =>{
 
     return(
         <div>
+            <Header/>
             <PageName>My Profile</PageName>
             <Wrap>
                 <ProfileImageWrap>
