@@ -1,22 +1,55 @@
-import styled from "styled-components";
-import UserProfile from "../../components/common/UserProfile";
+import styled, {keyframes} from "styled-components";
+import UserProfile from '../../components/common/UserProfile';
 import { cardData } from "../../assets/datas/cardData";
 import { S_bold_25 } from '../style/Styled';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 
 const BlogItem = () => {
 
     const [isSubscribed, setSubscribed] = useState(false); // 구독 상태를 저장하는 state
     const [isHovered, setHovered] = useState(false); // Hover 상태를 저장하는 state
+    const [isLoading, setLoading] = useState(true); // 데이터 로딩 상태를 저장하는 state (skeleton)
+
+    // skeleton
+    // useEffect(() => {
+    //     // 외부 데이터 로딩 시뮬레이션
+    //     setTimeout(() => {
+    //         setLoading(false);
+    //     }, 2000);
+    // }, []);
+    setTimeout(() => {
+        setLoading(false);
+    }, 2000);
 
 
     const handleSubscribe = (e) => {
         setSubscribed(!isSubscribed); // 현재의 반대 값으로 설정
         alert(isSubscribed ? "구독 취소" : "구독 완료");
     }
+
     return(
         <Wrap>
+            {isLoading ? (
+                // Loading중이면 skeleton 효과
+                <> 
+                    <LeftWrap>
+                        <Menu>
+                            <ProfileImg style={{background:"none"}}>
+                                <SkeletonItem width="3.2rem" height="3.2rem" borderRadius="2.5rem"/>
+                            </ProfileImg>
+                            <TitleWrap>
+                                <Title><SkeletonItem width="12rem" height="2rem"/></Title>
+                                <Name><SkeletonItem width="5.5rem" height="1rem"/></Name>
+                            </TitleWrap>
+                        </Menu>
+                        <BlogInfo><SkeletonItem width="15rem" height="1.5rem"/> </BlogInfo>
+                    </LeftWrap>
+                    <SkeletonItem width="13rem" height="4rem"/>
+                </>
+            ) : (
+                // loading중 아니라면 제대로 보여주기
+                <>
             <LeftWrap>
                 {/* <Profile> 
                     <UserProfile info={cardData}/>
@@ -40,6 +73,8 @@ const BlogItem = () => {
             >
             {isHovered ? (isSubscribed ? "구독 취소" : "구독하기") : (isSubscribed ? "구독 중" : "구독하기")}
             </SubscribeWrap>
+            </>
+            )}
         </Wrap>
     );
 };
@@ -146,3 +181,38 @@ const SubscribeWrap = styled.button`
         transition: 0.5s;
     }
 `
+
+// Skeleton loading animation keyframes
+const skeletonAnimation = keyframes`
+    0% {
+        background-color: rgba(0, 0, 0, 0.05);
+        // transform: translateX(-150%);
+
+    }
+  
+    50% {
+        background-color: rgba(0, 0, 0, 0.15);
+        // transform: translateX(-60%);
+
+    }
+  
+  	100% {
+    	background-color: rgba(255,255 ,255 , .7);
+        // transform: translate(150%);
+
+  	}
+`;
+
+// Skeleton item component for loading animation
+const SkeletonItem = styled.div`
+  	width: ${({ width }) => width || '100%'};
+	height: ${({ height }) => height || '1rem'};
+	border-radius: ${({ borderRadius }) => borderRadius || '4px'};
+	background-color: var(--gray_bold); /* Or any desired color */
+	animation-duration: ${({ duration }) => duration || '1s'};
+	animation-fill-mode: ${({ fillMode }) => fillMode || 'forwards'};
+	animation-iteration-count: infinite;
+	animation-name: ${skeletonAnimation};
+	animation-timing-function: linear;
+	margin-bottom:${({ marginBottom })=>marginBottom||'10px'}
+`;
