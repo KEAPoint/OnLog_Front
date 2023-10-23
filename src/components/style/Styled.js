@@ -70,3 +70,20 @@ export const XL_semibold_80 = styled.div`
     font-weight: 600;
     line-height: 4.375rem; /* 87.5% */
 `;
+export const S_bold_28 = styled.div`
+    /* S-bold-28 */
+    font-family: Pretendard;
+    font-size: 1.75rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+`;
+export const XS_regular_18 = styled.div`
+/* XS-regular-18 */
+    font-family: Pretendard;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.03375rem;
+`;

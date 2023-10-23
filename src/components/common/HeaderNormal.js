@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import Logo from '../../assets/images/Logo.png';
+import {ReactComponent as Logo} from '../../assets/images/Logo.svg';
 
 
 const HeaderNormal = () => {
     return (
         <Wrap>
-            <img src={Logo} style={{width:'6.875rem', height:'3.375rem'}}/>
+            <Logo/>
             {/* 로그인 O */}
         </Wrap>
     );

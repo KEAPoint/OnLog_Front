@@ -17,4 +17,14 @@ export const GlobalStyle = createGlobalStyle`
         --color-red: #ff0000;
 
     }    
+    body {
+
+        /* padding: 20px; 원하는 패딩 값을 입력하세요 */
+        /* padding: 0rem 20rem; */
+        width: 100%;
+        /* margin: 0rem 6.25rem; */
+        /* background-color: red; */
+        /* display: flex;
+        justify-content: center; */
+    }
 `;

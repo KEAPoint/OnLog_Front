@@ -53,7 +53,6 @@ const navData = [
     },
 ]
 
-
 function isCurrent(to) {
     // console.log(to);
     // console.log(window.location.pathname.includes(to).toString());
@@ -77,14 +76,14 @@ const HomePage = () => {
         // history.push('/result', { term: searchTerm });
     }
 
-
     return (
-        <div>
-                <Header/>
-                <Wrap>
-                    <SearchBox/>
-                </Wrap>
+        <PageWrap>
+           <Header/>
+           <Wrap>
+                 <SearchBox/>
+            </Wrap>
 
+             <Wrap2>
                 <Nav>
                     {navData.map((item) => (
                         (isCurrent('/main/' + item.name)) && (
@@ -97,8 +96,6 @@ const HomePage = () => {
 
                     ))}
                     
-                    {/* <Back/> */}
-                    {/* <Back2/> */}
                     <LinkWrap>
                         <NavL to={'/main/'} $active={isCurrent("/main")} hovername="전체 게시물" onClick={() => setCategory('')}><p><img src={Home}/></p></NavL>
                         <NavL to={'/main/lifestyle'} $active={isCurrent("/main/lifestyle")} hovername="일상" onClick={() => setCategory('lifestyle')}><p>#lifestyle</p></NavL>
@@ -110,22 +107,36 @@ const HomePage = () => {
                         <NavL to={'/main/news'} $active={isCurrent("/main/news")} hovername="뉴스/시사" onClick={() => setCategory('news')}><p>#news</p></NavL>
                     </LinkWrap>
                 </Nav>
-
-                <CardWrap>
-                    {/* <Back/> */}
+                    
+            </Wrap2>
+                {/* <CardWrap> */}
                     <Card category={category}/>
-                </CardWrap>
-        </div>
+            {/* </CardWrap> */}
+        </PageWrap>
     );
 };
 
 export default HomePage;
 
+const PageWrap = styled.div`
+    margin: 0rem 6.25rem;
+
+/* 
+    @media ${({ theme }) => theme.windowSize.test} {
+        background-color: pink;
+    } */
+`
 const Wrap = styled.div`
     display: flex;
     justify-content: flex-end;
     padding-right: 6.25rem;
-    /* position: relative; */
+`;
+const Wrap2 = styled.div`
+    /* width: 100%; */
+    /* display: flex; */
+    /* justify-content: center; */
+    padding: 3.12rem 10.75rem;
+    /* width: 100%; */
 `;
 const SearchWrap = styled.div`
     display: flex;
@@ -151,15 +162,14 @@ const SearchWrap = styled.div`
     }
 `;
 
-
 const Nav = styled.div`
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 6.25rem 6.25rem 3.125rem 6.25rem;
-    gap: 0.625rem;
+    /* padding: 6.25rem 6.25rem 3.125rem 6.25rem; */
+    /* gap: 0.625rem; */
 
-    /* background-color: yellow; */
     /* position: relative; */
     /* z-index: -1; */
 
@@ -197,8 +207,10 @@ const LinkWrap = styled(L_semibold_40)`
 
     /* position: sticky; */
     /* top: 0px; */
-    /* background-color: red; */
 
+    /*  */
+    /* flex-wrap: wrap; */
+    /*  */
 `;
 const NavL = styled(Link)`
     text-decoration: none;
@@ -223,28 +235,12 @@ const NavL = styled(Link)`
         background-color: var(--black);
         color: var(--white);
         padding: 0rem 2rem;
+        white-space: nowrap; /* 추가된 부분 */
     }
 `;
 
 const CardWrap = styled.div`
     /* background-color: red; */
-    position: relative;
-`;
-
-
-// 뒷배경
-const Back = styled(Vector)`
-    position: absolute;
-    /* top: -15rem; */
-    left: 40rem;
-    /* z-index: 10; */
-    /* background-color: red; */
-`;
-
-const Back2 = styled(RVector)`
-    position: absolute;
-    top: 60rem;
-    left: 0rem;
-    /* z-index: 10; */
-
+    /* position: relative; */
+    /* width: 100%; */
 `;

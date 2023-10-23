@@ -16,96 +16,72 @@ const CardItem = ({info}) => {
     }, 2000);
 
     return (
-        <Wrap
+        <PageWrap
             onMouseOver={() => setIsHovering(1)}
-            onMouseOut={() => setIsHovering(0)}
+            onMouseOut={() => setIsHovering(0)} 
         >
-            {!isLoading ? (
-                <>
-                    {isHovering ? (
-                        <CardItemHover info={info}/>
-                    ) : (
-                        <>
-                            <Main>
-                                <UserProfile info={info}/>
-
-                                <TextWrap>
-                                    <Title>{info.title}</Title>
-                                    <Date>{info.date}</Date>
-                                    <Category>#{info.category}</Category>
-                                </TextWrap>
-                            </Main>
-
-                            <Second>
-                                <Icon>
-                                    <IconWrap><Heart/></IconWrap>
-                                    <p>999</p>
-                                </Icon>
-                                <Icon>
-                                    <IconWrap><Comment/></IconWrap>
-                                    <p>100</p>
-                                </Icon>
-                            </Second>    
-                        </>
-                    )}
-                </>
+            
+            {!isHovering ? (
+                <Wrap>
+    
+                    {/* <Main> */}
+                        <UserProfile info={info}/>
+    
+                        <TextWrap>
+                            <Title>{info.title}</Title>
+                            <Date>{info.date}</Date>
+                            <Category>#{info.category}</Category>
+                        </TextWrap>
+                    {/* </Main> */}
+    
+                    <Second>
+                        <Icon>
+                            <IconWrap><Heart/></IconWrap>
+                            <p>999</p>
+                        </Icon>
+                        <Icon>
+                            <IconWrap><Comment/></IconWrap>
+                            <p>100</p>
+                        </Icon>
+                    </Second>    
+                </Wrap>
             ) : (
-                
-                // <SkeletonItem width="29.0625rem" height="45.1875rem"/>
-                <>
-                <Main>
-                    {/* <UserProfile info={info}/> */}
-                    <Profile_Wrap>
-                        <Profile_ProfileImg2>
-                            <SkeletonItem width="3rem" height="3rem" borderRadius="2.5rem"/>
-                        </Profile_ProfileImg2>
-                        <Profile_TitleWrap>
-                            <Profile_Title><SkeletonItem width="12rem" height="2rem"/></Profile_Title>
-                            <Profile_Name><SkeletonItem width="5.5rem" height="1rem"/></Profile_Name>
-                        </Profile_TitleWrap>
-                    </Profile_Wrap>
-
-
-                    <TextWrap>
-                        <Title><SkeletonItem width="22rem" height="6rem"/></Title>
-                        <Date><SkeletonItem width="7rem" height="3rem"/></Date>
-                        <Category><SkeletonItem width="10rem" height="3rem"/></Category>
-                    </TextWrap>
-                </Main>
-
-                <Second>
-                    <Icon>
-                        <SkeletonItem width="6.5rem" height="2rem"/>
-                    </Icon>
-                    <Icon>
-                        <SkeletonItem width="6.5rem" height="2rem"/>
-                    </Icon>
-                </Second>    
-            </>
+                // <Test></Test>
+                // <>seojin</>
+                <CardItemHover info={info}/>
             )}
-        </Wrap>
+
+        </PageWrap>
 
         
     );
 };
 
 export default CardItem;
+
+const Test = styled.div`
+    width: 100px;
+    height: 100px;
+`
+const PageWrap = styled.div`
+
+`;
 const Wrap = styled.div`
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* align-items: center; */
 
+    width: 23.0625rem;
+    height: 37.5625rem;
 
-    width: 29.1rem;
-    height: 33.1rem;
-    padding: 5.625rem 0rem;
-
+    padding: 1.875rem 1.25rem 3.75rem 1.25rem;
+    box-sizing: border-box;
+    
     // box style
     border-radius: 1.875rem;
     border: 0.5px solid var(--gray_bold, #4A4A4A);
     background: rgba(255, 255, 255, 0.70);
-    /* background-color: red; */
     box-shadow: 6px 7px 7px 0px rgba(0, 0, 0, 0.50);
 
 
@@ -128,6 +104,8 @@ const Wrap = styled.div`
 `;
 
 const Main = styled.div`
+    background-color: pink;
+
     display: flex;
     flex-direction: column;
     gap: 9.125rem;
@@ -142,6 +120,13 @@ const TextWrap = styled.div`
 `;
 const Title = styled(M_regular_38)`
     color: var(--black);
+    word-break: break-all;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* 원하는 라인 수 */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+
 `;
 const Date = styled(S_regular_30)`
     color: var(--gray_bold, #4A4A4A);
@@ -151,7 +136,6 @@ const Category = styled(L_semibold_40)`
     color: var(--gray_bold, #4A4A4A);
 `;
 const Second = styled.div`
-
     display: flex;
     align-items: center;
     justify-content: center;

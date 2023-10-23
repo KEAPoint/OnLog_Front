@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Logo from '../../assets/images/Logo.png';
+import {ReactComponent as Logo} from '../../assets/images/Logo.svg';
 import Profile from '../../assets/images/Profile.jpeg';
 import { S_bold_25, XS_bold_13 } from '../style/Styled';
 import UserProfile from './UserProfile';
@@ -11,7 +11,8 @@ const Header = () => {
     return (
         <Wrap>
             <LogoL to={'/'}>
-                <img src={Logo}/>
+                {/* <img src={Logo} style={{width:'6.875rem', height:'3.375rem'}}/> */}
+                <Logo/>
             </LogoL>
             {/* 로그인 O */}
             <MenuWrap>
