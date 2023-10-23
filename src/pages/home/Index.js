@@ -109,8 +109,9 @@ const HomePage = () => {
                 </Nav>
                     
             </Wrap2>
-                {/* <CardWrap> */}
-                    <Card category={category}/>
+
+            {/* <CardWrap> */}
+            <Card category={category}/>
             {/* </CardWrap> */}
         </PageWrap>
     );
@@ -120,6 +121,7 @@ export default HomePage;
 
 const PageWrap = styled.div`
     margin: 0rem 6.25rem;
+    /* box-sizing: border-box; */
 
 /* 
     @media ${({ theme }) => theme.windowSize.test} {

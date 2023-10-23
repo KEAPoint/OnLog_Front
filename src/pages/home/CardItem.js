@@ -59,12 +59,8 @@ const CardItem = ({info}) => {
 
 export default CardItem;
 
-const Test = styled.div`
-    width: 100px;
-    height: 100px;
-`
 const PageWrap = styled.div`
-
+    
 `;
 const Wrap = styled.div`
 

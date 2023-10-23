@@ -9,7 +9,7 @@ const KakaoLogin = () => {
     const navigate = useNavigate();
 
     const onKakaoClick = useCallback(() => {
-    navigate("/SignUp");
+    navigate("/login");
     }, [navigate]);
 
     return(

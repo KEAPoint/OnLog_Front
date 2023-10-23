@@ -11,13 +11,15 @@ import Tech from '../../assets/images/catogories/Tech.png';
 import {ReactComponent as LogoText} from '../../assets/images/LogoText.svg';
 import { landingData } from '../../assets/datas/categoryData';
 import LandItem from './LandItem';
+import HeaderNormal from '../../components/common/HeaderNormal';
 
 const LandingPage = () => {
     
 
     return (
         <div>
-            <Header />
+            {/* <Header /> */}
+            <HeaderNormal/>
             <LogoFix/>
             <Wrap>
                 {landingData.map(item => (

@@ -27,25 +27,15 @@ const Card = ({category}) => {
 export default Card;
 
 const Wrap = styled.div`
-    padding: 1.875rem 6.25rem;
+
     /* display: flex; */
     /* justify-content: center; */
-    /* width: 100%; */
-    /* background-color: whitesmoke; */
-    
 `;
 const CardWrap = styled.div`
-    /* width: 100%; */
     display: grid;
     /* grid-template-columns: repeat(4, 1fr); */
-    /* grid-template-columns: repeat(auto-fill, minmax(20.5625rem, 1fr)); */
-    grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
-
+    grid-template-columns: repeat(auto-fill, minmax(23.063rem, 1fr));
     place-items: center;
-    gap: 1.25rem;
-    /* align-items: center; */
-    /* justify-content: center; */
+    /* gap: 1.25rem; */
 
-    /* display: flex; */
-    /* flex-wrap: wrap; */
 `;

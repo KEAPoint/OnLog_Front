@@ -4,7 +4,6 @@ import LandingPage from "./pages/landing/Index";
 import PostWrite from "./pages/PostWrite/Index";
 import PostviewPage from "./pages/postView/Index";
 import LoginPage from "./pages/login/index";
-// import KakaoLogin from "./pages/login/KakaoLogin";
 import SignUp from "./pages/login/SignUp";
 import MyPage from "./pages/myPage/Index";
 import KakaoLogin from "./pages/login/KakaoLogin";
@@ -18,6 +17,9 @@ function App() {
       <Routes>
           <Route path="/" element={<LandingPage/>}/>
           
+          <Route path="/login" element={<LoginPage/>}/>
+
+
           <Route path="/main" element={<HomePage/>}/>
           <Route path="/main/lifestyle" element={<HomePage/>}/>
           <Route path="/main/travel" element={<HomePage/>}/>

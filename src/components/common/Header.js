@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import {ReactComponent as Logo} from '../../assets/images/Logo.svg';
 import Profile from '../../assets/images/Profile.jpeg';
 import { S_bold_25, XS_bold_13 } from '../style/Styled';
-import UserProfile from './UserProfile';
 import { Link } from 'react-router-dom';
 
 
