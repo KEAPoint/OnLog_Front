@@ -1,5 +1,6 @@
 import Header from '../../components/common/HeaderNormal';
 import styled from 'styled-components';
+import { S_bold_25 } from '../../components/style/Styled';
 import React, { useState } from 'react';
 
 import "./Login.css";
@@ -81,7 +82,7 @@ export const Parent = styled.div`
   justify-content: flex-start;
   gap: var(--gap-4xs);
 `;
-const FieldName = styled.div`
+const FieldName = styled(S_bold_25)`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -89,12 +90,7 @@ const FieldName = styled.div`
     gap: 0.5625rem;
     align-self: stretch;
     color: var(--gray_bold, #4A4A4A);
-    /* S-bold-25 */
-    font-family: Pretendard;
-    font-size: 1.5625rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
+
 `
 const StyledButton = styled.button`
     width: 15.375rem;

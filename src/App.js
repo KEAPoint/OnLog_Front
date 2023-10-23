@@ -8,6 +8,9 @@ import LoginPage from "./pages/login/index";
 import SignUp from "./pages/login/SignUp";
 import MyPage from "./pages/myPage/Index";
 import KakaoLogin from "./pages/login/KakaoLogin";
+import ProfileEditPage from "./pages/profileEdit/Index";
+import SearchPage from "./pages/search/Index";
+import SubscribePage from "./pages/subscribe/Index";
 
 function App() {
   return (
@@ -24,7 +27,13 @@ function App() {
           <Route path="/main/sports" element={<HomePage/>}/>
           <Route path="/main/news" element={<HomePage/>}/>
 
-          <Route path="/mypage/post" element={<SignUp/>}/>
+          {/* <Route path="/mypage/post" element={<SignUp/>}/> */}
+          <Route path="/mypage" element={<MyPage/>}/>
+          <Route path="/mypage/edit" element={<ProfileEditPage/>}/>
+          <Route path="/mypage/postwrite" element={<PostWrite/>}/>
+          <Route path="/mypage/post" element={<PostviewPage/>}/>
+          <Route path="/search" element={<SearchPage/>}/>
+          <Route path="/subscribed" element={<SubscribePage/>}/>
           
       </Routes>
     </BrowserRouter>

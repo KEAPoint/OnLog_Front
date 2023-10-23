@@ -17,7 +17,7 @@ const Header = () => {
             {/* 로그인 O */}
             <MenuWrap>
                 <Menu>
-                    <MenuL to={'/mypage/post'}>Subscribed</MenuL>
+                    <MenuL to={'/subscribed'}>Subscribed</MenuL>
                     <Alarm>21</Alarm>
                 </Menu>
                 <Menu>
@@ -29,7 +29,7 @@ const Header = () => {
                 {/* <UserProfile/> */}
                 <Menu>
                     <ProfileImg></ProfileImg>
-                    <TitleWrap>
+                    <TitleWrap to={'/mypage'}>
                         <Title>Hani Tech World</Title>
                         <Name>@hanitech</Name>
                     </TitleWrap>
@@ -76,7 +76,9 @@ const Alarm = styled(XS_bold_13)`
     color: #F00;
     align-self: flex-start;
 `;
-const TitleWrap = styled.div`
+const TitleWrap = styled(Link)`
+text-decoration: none;
+color: var(--black);
 `;
 const Title = styled.div`
     text-align: justify;
