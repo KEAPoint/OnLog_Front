@@ -87,3 +87,11 @@ export const XS_regular_18 = styled.div`
     line-height: normal;
     letter-spacing: 0.03375rem;
 `;
+export const S_medium_34 = styled.div`
+    /* S-medium-34 */
+    font-family: Pretendard;
+    font-size: 1.875rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 158.023%; /* 2.96294rem */
+`;

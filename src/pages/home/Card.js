@@ -36,6 +36,6 @@ const CardWrap = styled.div`
     /* grid-template-columns: repeat(4, 1fr); */
     grid-template-columns: repeat(auto-fill, minmax(23.063rem, 1fr));
     place-items: center;
-    /* gap: 1.25rem; */
+    gap: 0.5rem;
 
 `;
