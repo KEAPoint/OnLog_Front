@@ -16,6 +16,7 @@ import Profile from '../../assets/images/Profile.jpeg';
 import SearchPage from '../search/Index';
 import { useNavigate } from 'react-router-dom';
 import SearchBox from '../search/SearchBox';
+import { CardList } from '../../apis/API_Card';
 
 
 const navData = [
@@ -69,6 +70,19 @@ const HomePage = () => {
     //     setCategory(window.location.pathname);
     //     console.log(category);
     // },isCurrent());
+
+    useEffect(async () => {
+        try{
+        const localData = window.localStorage.getItem("jwt");
+
+        // 자동로그인 성공 시(jwt 인증 성공 시)
+        const data = await CardList(localData);
+        } catch (error) {
+            console.log(error)
+        }
+
+    },[])
+
     const navigate = useNavigate();
 
     const handleSearch = (e) => {

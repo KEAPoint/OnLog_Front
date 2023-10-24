@@ -15,11 +15,15 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+          {/* 랜딩 */}
           <Route path="/" element={<LandingPage/>}/>
           
+          {/* 로그인 */}
           <Route path="/login" element={<LoginPage/>}/>
+          {/* <Route path="/auth" element={<LoginPage/>}/> */}
+          {/* <Route path="" element={}/> */}
 
-
+          {/* 메인 */}
           <Route path="/main" element={<HomePage/>}/>
           <Route path="/main/lifestyle" element={<HomePage/>}/>
           <Route path="/main/travel" element={<HomePage/>}/>
@@ -29,6 +33,7 @@ function App() {
           <Route path="/main/sports" element={<HomePage/>}/>
           <Route path="/main/news" element={<HomePage/>}/>
 
+          {/* 마이페이지 */}
           {/* <Route path="/mypage/post" element={<SignUp/>}/> */}
           <Route path="/mypage" element={<MyPage/>}/>
           <Route path="/mypage/edit" element={<ProfileEditPage/>}/>

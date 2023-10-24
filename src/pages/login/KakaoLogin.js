@@ -2,19 +2,30 @@ import styled from 'styled-components';
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/common/HeaderNormal';
+import { Kakao_Auth_url } from './OAuth';
 
 
 const KakaoLogin = () => {
 
-    const navigate = useNavigate();
+    const handleLogin = () => {
+        // 카카오 로그인 페이지로 이동
+        window.location.href = Kakao_Auth_url; // 현재 주소창의 주소값 불러오기
+        const code = new URL(window.location.href).searchParams.get("code"); // 현재 url의 파라미터 가져오기 + 파라미터 안에서 'code'값 가져오기
 
-    const onKakaoClick = useCallback(() => {
-    navigate("/login");
-    }, [navigate]);
+        console.log(code);
+        
+        // code(인가코드)는 서버로 보내기
+    }
+
+    // const navigate = useNavigate();
+
+    // const onKakaoClick = useCallback(() => {
+    // navigate("/login");
+    // }, [navigate]);
 
     return(
         <Wrap>
-            <ButtonWrap onClick={(onKakaoClick)}>
+            <ButtonWrap onClick={(handleLogin)}>
                 <LogoText>
                     <Icon>
                         <svg xmlns="http://www.w3.org/2000/svg" width="33" height="30" viewBox="0 0 33 30" fill="none">
@@ -37,6 +48,8 @@ const Wrap = styled.div`
     align-items: center;
 `;
 const ButtonWrap = styled.button`
+    cursor: pointer;
+
     display: flex;
     width: 29.1875rem;
     height: 5.625rem;
