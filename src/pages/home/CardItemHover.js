@@ -1,15 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useNavigate } from "react-router-dom";
 import { S_bold_28, S_regular_30, XS_regular_18 } from '../../components/style/Styled';
 import Arrow from '../../assets/images/Icons/Arrow.png';
 
 const CardItemHover = ({info}) => {
+    const movePage = useNavigate();
+
+    const handleReadButtonClick = (e) => {
+        e.preventDefault();
+        movePage('/mypage/post');
+
+    };
+    
     return (
         <HoverWrap>
             <Wrap>
                 <Photo imgurl = {info.img}></Photo>
                 <Contents>{info.contents}</Contents>
-                <ReadWrap>
+                <ReadWrap onClick={handleReadButtonClick}>
                    <p>Read</p> 
                    <img src={Arrow} alt="arrow" /> 
                 </ReadWrap>
@@ -59,9 +68,16 @@ const Contents = styled(XS_regular_18)`
     line-height: 1.5;
 
 `;
-const ReadWrap = styled(S_bold_28)`
+const ReadWrap = styled.button`
+    font-family: Pretendard;
+    font-size: 1.75rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
     color: var(--white, #FFF);
-
+    border: none;
+    background: none;
+    cursor: pointer;
     display: flex;
     gap: 0.62rem;
     align-items: center;

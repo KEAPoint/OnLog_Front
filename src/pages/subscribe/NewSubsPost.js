@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import BlogItem from "../../components/common/BlogItem";
 import Card from "../home/Card";
+import { Link } from "react-router-dom";
 
 const NewSubsPost = () => {
     return(
