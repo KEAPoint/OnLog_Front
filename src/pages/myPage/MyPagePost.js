@@ -3,11 +3,11 @@ import Card from "../home/Card";
 
 const MypagePost = () => {
     return(
-        <Wrap>
+        // <Wrap>
             <CardWrap>
                 <Card category="lifestyle"/>
             </CardWrap>
-        </Wrap>
+        // </Wrap>
     );
 };
 

@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { S_bold_25 } from '../../components/style/Styled';
+
 
 
 const MypageTop = () => {
@@ -19,7 +21,13 @@ const MypageTop = () => {
         <div>
             <Wrap1>
                 <Left>
-                    프로필 자리
+                    <Menu>
+                        <ProfileImg></ProfileImg>
+                        <TitleWrap>
+                            <BlogTitle>Hani Tech World</BlogTitle>
+                            <Name>@hanitech</Name>
+                        </TitleWrap>
+                    </Menu>
                 </Left>
                 <Right>
                     <Box>
@@ -56,7 +64,7 @@ const Wrap1 = styled.div`
     padding: 3.75rem 13.75rem;
     justify-content: center;
     align-items: center;
-    align-content: center;
+    align-content: flex-start;
     align-self: stretch;
     flex-wrap: wrap;
 `
@@ -66,8 +74,54 @@ const Left = styled.div`
     align-items: center;
     gap: 1.25rem;
     width: 35.5rem;
+    padding-bottom: 2rem;
 `
+const Menu = styled(S_bold_25)`
+    display: flex;
+    align-items: center;
+`;
+const Profile = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.875rem;
+    display: flex;
+    padding: 2rem 0rem 0rem 18.8125rem;
+    gap: 0.625rem;
+    align-self: stretch;
+`
+const ProfileImg = styled.div`
+    width: 12.6875rem;
+    height: 12.6875rem;
+    border-radius: 6.875rem;
+    background: url(${Profile}) lightgray 50% / cover no-repeat;
+    margin-right: 0.94rem;
+`;
+const TitleWrap = styled.div`
+    display: flex; 
+    flex-direction: column;
+`;
+const BlogTitle = styled.div`
+    color: var(--black, #000);
 
+    /* L-bold-45 */
+    font-family: Pretendard;
+    font-size: 2.8125rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+`;
+const Name = styled.div`
+    color: var(--gray_bold, #4A4A4A);
+    text-align: justify;
+
+    /* S-regular_30 */
+    font-family: Pretendard;
+    font-size: 1.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+`;
 const Right = styled.div`
     display: flex;
     padding-left: 0px;

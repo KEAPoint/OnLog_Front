@@ -9,11 +9,11 @@ const PostSearch = () => {
                 <Right><Num>6</Num>건</Right>
                 
             </Wrap>
-            <PostWrap>
-                <CardWrap>
+            {/* <PostWrap> */}
+                <CardWrap style={{paddingLeft:'1rem', paddingRight:'1rem'}}>
                     <Card category="lifestyle"/>
                 </CardWrap>
-            </PostWrap>
+            {/* </PostWrap> */}
 
         </div>
     );
