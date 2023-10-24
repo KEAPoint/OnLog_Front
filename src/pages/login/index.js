@@ -1,32 +1,56 @@
 import React from 'react';
 import Header from '../../components/common/HeaderNormal';
 import styled from 'styled-components';
+import logoKakao from '../../assets/images/Icons/logo-kakao.svg';
 import KakaoLogin from './KakaoLogin';
-import SignUp from './SignUp';
+import Footer from '../../components/common/Footer';
 
 const LoginPage = () => {
-
     return (
-        <div>
+        <PageWrap>
+            <Header/>
             <Wrap>
+                <Text>#lifestyle #travel #foodie #entertainment #tech #sports #news</Text>
                 <KakaoLogin/>
+                <Footer/>
             </Wrap>
-        </div>
+
+        </PageWrap>
     );
 };
 
 export default LoginPage;
 
-const Wrap = styled.div`
-    padding: 7.125rem 6.25rem 0rem 6.25rem;
-    display: grid;
+const PageWrap = styled.div`
+    height: 100vh;
 
-    grid-template-columns: repeat(3, 29.0625rem);
-    /* grid-template-rows: repeat(3, 45.1875rem); */
-    /* grid-template-columns: 1fr 1fr 1fr; */
-
-
-    justify-content: center;
-    gap: 0.62rem;
+    display: flex;
+    flex-direction: column;
 `;
+const Wrap = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
+    flex-grow: 1;
+`;
+const Text = styled.div`
+    padding: 6.25rem 28.75rem;
+
+    color: var(--gray_bold, #4A4A4A);
+    font-family: Pretendard;
+    font-size: 3.4375rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+&::after {
+    content: " ...Onlog";
+    color: var(--black, #000);
+    font-family: Audiowide;
+    font-size: 3.4375rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+`;
