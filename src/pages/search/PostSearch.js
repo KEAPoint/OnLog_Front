@@ -6,12 +6,12 @@ const PostSearch = () => {
         <div>
             <Wrap>
                 <Left> 게시물 검색 결과 </Left>
-                <Right><Num>6</Num>건</Right>
+                <Right><Num>4</Num>건</Right>
                 
             </Wrap>
             {/* <PostWrap> */}
                 <CardWrap style={{paddingLeft:'1rem', paddingRight:'1rem'}}>
-                    <Card category="lifestyle"/>
+                    <Card category="news"/>
                 </CardWrap>
             {/* </PostWrap> */}
 

@@ -3,6 +3,8 @@ import UserProfile from '../../components/common/UserProfile';
 import { cardData } from "../../assets/datas/cardData";
 import { S_bold_25 } from '../style/Styled';
 import { useState, useEffect } from "react";
+import Profile from "../../assets/images/Profile.jpeg"
+import Swal from "sweetalert2";
 
 
 const BlogItem = () => {
@@ -25,7 +27,12 @@ const BlogItem = () => {
 
     const handleSubscribe = (e) => {
         setSubscribed(!isSubscribed); // 현재의 반대 값으로 설정
-        alert(isSubscribed ? "구독 취소" : "구독 완료");
+
+        Swal.fire({
+            title: isSubscribed ? "구독 취소" : "구독 완료",
+            html: isSubscribed ? "구독이 취소되었습니다!" : "구독이 완료되었습니다!",
+            icon: 'success'
+        });
     }
 
     return(
@@ -99,16 +106,16 @@ const LeftWrap = styled.div`
     // flex: 1;
 
 `
-const Profile = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1.875rem;
-    display: flex;
-    padding: 2rem 0rem 0rem 18.8125rem;
-    gap: 0.625rem;
-    align-self: stretch;
-`
+// const Profile = styled.div`
+//     display: flex;
+//     flex-direction: column;
+//     align-items: flex-start;
+//     gap: 1.875rem;
+//     display: flex;
+//     padding: 2rem 0rem 0rem 18.8125rem;
+//     gap: 0.625rem;
+//     align-self: stretch;
+// `
 const Menu = styled(S_bold_25)`
     display: flex;
     align-items: center;

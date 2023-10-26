@@ -3,6 +3,7 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import React from "react";
 import TextareaAutosize from 'react-textarea-autosize'; // npm install react-textarea-autosize
 import Header from '../../components/common/Header';
+import Profile from "../../assets/images/Profile.jpeg"
 
 
 const ProfileEditPage = () =>{
@@ -36,9 +37,7 @@ const ProfileEditPage = () =>{
             <PageName>My Profile</PageName>
             <Wrap>
                 <ProfileImageWrap>
-                    <Image>
-
-                    </Image>
+                    <Image></Image>
                 </ProfileImageWrap>
 
                 <InfoWrap>
@@ -117,8 +116,9 @@ const ProfileImageWrap = styled.div`
 const Image = styled.img`
     width: 28.125rem;
     height: 28.125rem;
-    border-radius: 23.125rem;
-    background: url(<path-to-image>), lightgray 50% / cover no-repeat;
+    border-radius: 25rem;
+    background: url(${Profile}) lightgray 50% / cover no-repeat;
+    margin-right: 0.94rem;
 `
 
 const InfoWrap = styled.div`

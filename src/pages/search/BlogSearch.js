@@ -6,10 +6,10 @@ const BlogSearch = () => {
         <div>
             <Wrap>
                 <Left> 블로그 검색 결과 </Left>
-                <Right><Num>4</Num>건</Right>
+                <Right><Num>1</Num>건</Right>
             </Wrap>
             <BlogItemWrap>
-            {[...Array(4)].map((_, index) => (
+            {[...Array(1)].map((_, index) => (
                     <BlogItem key={index} />
                 ))}
             </BlogItemWrap>

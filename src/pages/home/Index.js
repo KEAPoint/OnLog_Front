@@ -112,6 +112,7 @@ const HomePage = () => {
 
             {/* <CardWrap> */}
             <Card category={category}/>
+            {/* <Card category="news"/> */}
             {/* </CardWrap> */}
         </PageWrap>
     );
