@@ -8,13 +8,13 @@ import { Kakao_Auth_url } from './OAuth';
 const KakaoLogin = () => {
 
     const handleLogin = () => {
+        // 여기서 jwt유무 혹은 jwt만료로 회원가입/로그인 분류하기!!
+        
+
         // 카카오 로그인 페이지로 이동
         window.location.href = Kakao_Auth_url; // 현재 주소창의 주소값 불러오기
-        const code = new URL(window.location.href).searchParams.get("code"); // 현재 url의 파라미터 가져오기 + 파라미터 안에서 'code'값 가져오기
 
-        console.log(code);
-        
-        // code(인가코드)는 서버로 보내기
+   
     }
 
     // const navigate = useNavigate();

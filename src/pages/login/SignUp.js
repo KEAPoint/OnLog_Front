@@ -4,9 +4,14 @@ import { S_bold_25 } from '../../components/style/Styled';
 import React, { useState } from 'react';
 
 import "./Login.css";
+import { useSelector } from 'react-redux';
+import LoginReducer from '../../store/reducers/login';
 
 const SignUp = () => {
-    const [email, setEmail] = useState('');
+    const {user} = useSelector((state) => state.LoginReducer); 
+    console.log(user.email);
+
+    // const [email2, setEmail] = useState('');
     const [nickname, setNickname] = useState('');
     const [blogname, setBlogname] = useState('');
     const [info, setInfo] = useState('');
@@ -17,9 +22,9 @@ const SignUp = () => {
         alert(blogname);
         alert(info);
     };
-    const onEmailHandler = (e) => {
-        setEmail(e.currentTarget.value);
-    }
+    // const onEmailHandler = (e) => {
+    //     setEmail(e.currentTarget.value);
+    // }
     const nicknameHandler = (e) => {
         setNickname(e.currentTarget.value);
     }
@@ -36,7 +41,7 @@ const SignUp = () => {
                 <form>
                     <Parent>
                             <FieldName>이메일</FieldName>
-                                <div className="emailField"><div>이메일값</div></div>
+                                <div className="emailField"><div>{user.email}</div></div>
                             <FieldName>닉네임</FieldName>
                                 <div className="field"><input type='text' value={nickname} onChange={nicknameHandler}/></div>
                             <FieldName>블로그명</FieldName>

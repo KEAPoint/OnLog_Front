@@ -10,6 +10,7 @@ import KakaoLogin from "./pages/login/KakaoLogin";
 import ProfileEditPage from "./pages/profileEdit/Index";
 import SearchPage from "./pages/search/Index";
 import SubscribePage from "./pages/subscribe/Index";
+import KakaoMiddle from "./pages/login/KakaoMiddle";
 
 function App() {
   return (
@@ -20,7 +21,8 @@ function App() {
           
           {/* 로그인 */}
           <Route path="/login" element={<LoginPage/>}/>
-          {/* <Route path="/auth" element={<LoginPage/>}/> */}
+          <Route path="/auth" element={<KakaoMiddle/>}/>
+          <Route path="/signup" element={<SignUp/>}/>
           {/* <Route path="" element={}/> */}
 
           {/* 메인 */}
