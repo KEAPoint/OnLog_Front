@@ -111,8 +111,8 @@ const HomePage = () => {
             </Wrap2>
 
             {/* <CardWrap> */}
-            {/* <Card category={category}/> */}
-            <Card category="news"/>
+            <Card category={category}/>
+            {/* <Card category="news"/> */}
             {/* </CardWrap> */}
         </PageWrap>
     );
