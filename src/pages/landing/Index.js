@@ -43,7 +43,7 @@ const LogoFix = styled(LogoText)`
     transform: translate(-50%, -50%);
 `;
 const Wrap = styled.div`
-    padding: 7.125rem 6.25rem 0rem 6.25rem;
+    /* padding: 7.125rem 6.25rem 0rem 6.25rem; */
     display: grid;
 
     grid-template-columns: repeat(3, 29.0625rem);
