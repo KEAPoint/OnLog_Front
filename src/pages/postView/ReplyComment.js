@@ -1,20 +1,33 @@
 import styled from "styled-components";
 import UserProfile from "../../components/common/UserProfile";
 import { cardData } from "../../assets/datas/cardData";
+import Profile from "../../assets/images/Profile.jpeg";
+import { S_bold_25 } from '../../components/style/Styled';
 
 const ReplyComment = () => {
     return(
         <Wrap>
-            <Profile>
+            {/* <Profile>
             <svg xmlns="http://www.w3.org/2000/svg" width="26" height="22" viewBox="0 0 26 22" fill="none">
   <path d="M20.4678 12.3509H8.40267C5.35749 12.3509 2.88889 9.88227 2.88889 6.83709V0H0V6.83709C0 11.4049 3.70291 15.1078 8.27068 15.1078H20.4678L15.2967 20.0564L17.3333 22L26 13.7293L17.3333 5.45865L15.2967 7.40226L20.4678 12.3509Z" fill="#4A4A4A"/>
 </svg>
                 <UserProfile info={cardData}/>
-            </Profile>
+            </Profile> */}
+
+            <Menu>
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="22" viewBox="0 0 26 22" fill="none">
+  <path d="M20.4678 12.3509H8.40267C5.35749 12.3509 2.88889 9.88227 2.88889 6.83709V0H0V6.83709C0 11.4049 3.70291 15.1078 8.27068 15.1078H20.4678L15.2967 20.0564L17.3333 22L26 13.7293L17.3333 5.45865L15.2967 7.40226L20.4678 12.3509Z" fill="#4A4A4A"/>
+</svg>
+                <ProfileImg style={{marginLeft:"1rem"}}></ProfileImg>
+                <TitleWrap>
+                    <BlogName>Hani Tech World</BlogName>
+                    <NickName>@hanitech</NickName>
+                </TitleWrap>
+            </Menu>
             
-            <Context> 그런데 나는 캡틴아메리카보다 아이언맨이 더 좋던데? 의리남이잖아</Context>
+            <Context style={{marginLeft:"1rem"}}> 그런데 나는 캡틴아메리카보다 아이언맨이 더 좋던데? 의리남이잖아</Context>
             <CommentFooter>
-                <CommentDate>2023.10.18</CommentDate>
+                <CommentDate style={{marginLeft:"1rem"}}>2023.10.18</CommentDate>
                 
                 <HeartReplyWrap>
                     <HeartWrap>
@@ -40,19 +53,48 @@ const Wrap = styled.div`
     // padding: 2.5rem 5rem 2.5rem 3.125rem;
     padding: 2.5rem 5rem 2.5rem 8rem;
     flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-end;
+    justify-content: flex-start;
+    align-items: flex-start;
     align-self: stretch;
     border-bottom: 1px solid var(--gray_lighter, #DCDCDC);
 `
 
-// 댓글 작성자 프로필
-const Profile = styled.div`
+const Menu = styled(S_bold_25)`
     display: flex;
     align-items: center;
-    gap: 0.625rem;
-    align-self: stretch;
-`
+`;
+const ProfileImg = styled.div`
+    width: 3.375rem;
+    height: 3.375rem;
+    border-radius: 2.5rem;
+    background: url(${Profile}) lightgray 50% / cover no-repeat;
+    margin-right: 0.94rem;
+`;
+const TitleWrap = styled.div`
+text-decoration: none;
+color: var(--black);
+`;
+const BlogName = styled.div`
+    text-align: justify;
+`;
+const NickName = styled.div`
+    color: var(--gray_bold, #4A4A4A);
+    text-align: justify;
+    font-family: Pretendard;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.03375rem;
+`;
+
+// 댓글 작성자 프로필
+// const Profile = styled.div`
+//     display: flex;
+//     align-items: center;
+//     gap: 0.625rem;
+//     align-self: stretch;
+// `
 
 // 댓글 내용
 const Context = styled.div`

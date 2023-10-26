@@ -1,6 +1,47 @@
 import styled from "styled-components";
+import { useState, useEffect } from "react";
+import Swal from "sweetalert2";
 
 const PostText = () => {
+    // 관리자 여부 판단
+    const [userId, setUserId] = useState("admin123");
+    const [isAdmin, setIsAdmin] = useState(false);
+    const adminId = "admin123";
+    useEffect(() => {
+        if (userId === adminId) {
+        setIsAdmin(true);
+        } else {
+        setIsAdmin(false);
+        }
+    }, [userId]);
+
+    const editHandler = () => {
+        alert("수정하기");
+    }
+
+    const deleteHandler = () => {
+        Swal.fire({
+            title: '정말로 게시글을 삭제하시겠습니까?',
+            text: '삭제된 게시글을 복구가 불가능합니다.',
+            icon: 'warning',
+            
+            showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+            confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
+            cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
+            confirmButtonText: '삭제', // confirm 버튼 텍스트 지정
+            cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+            
+            reverseButtons: true, // 버튼 순서 거꾸로
+            
+         }).then(result => {
+            // 만약 Promise리턴을 받으면,
+            if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
+            
+               Swal.fire('게시글이 삭제되었습니다', '다른 게시글들을 구경해보세요', 'success');
+            }
+         });
+    }
+
     return(
         <Wrap>
             <Context>
@@ -22,6 +63,14 @@ const PostText = () => {
                     </LikeIconNum>
                 {/* </LikeBox> */}
             </LikeWrap>
+
+            {isAdmin && (
+            <UserWrap>
+                <UserBtn onClick={editHandler}>수정하기</UserBtn>
+                <UserBtn onClick={deleteHandler}>삭제하기</UserBtn>
+            </UserWrap>
+        )}
+
         </Wrap>
     );
 };
@@ -100,6 +149,8 @@ const LikeButton = styled.button`
     align-items: center;
     flex-shrink: 0;
 
+    cursor: pointer;
+
     background-color: transparent;
     border: none;
 `
@@ -113,4 +164,41 @@ const LikeNum = styled.div`
     font-style: normal;
     font-weight: 600;
     line-height: normal;
+`
+
+const UserWrap = styled.div`
+    display: flex;
+    flex-direction: row;
+`
+const UserBtn = styled.button`
+    display: flex;
+    padding: 0.75rem 3.9375rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+
+    border : 4px solid black;
+
+    text-align: justify;
+    /* XS-semibold-20 */
+    font-family: Pretendard;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+
+    cursor: pointer;
+
+    background: black;
+    color: white;
+
+    &:hover {
+        background: white;
+        color: black;
+
+        transition: 0.3s;
+    }
+    // 클릭 액션
+    &:active{
+        transform: scale(0.95);
+    }
 `

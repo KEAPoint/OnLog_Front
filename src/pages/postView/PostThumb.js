@@ -1,5 +1,6 @@
 
 import styled from "styled-components";
+import ThumbImg from "../../assets/images/catogories/Entertainment.png"
 
 const PostThumb = () => {
     return(
@@ -28,7 +29,7 @@ const ImageDiv = styled.div`
     width: 37.5rem;
     height: 37.5rem;
     border-radius: 1.875rem;
-    background: url(<path-to-image>), #FF7575 50% / cover no-repeat;
+    background: url(${ThumbImg}), #FF7575 50% / cover no-repeat;
 
     /* style_shadow */
     box-shadow: 6px 7px 7px 0px rgba(0, 0, 0, 0.50);

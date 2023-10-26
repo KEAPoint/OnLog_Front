@@ -5,15 +5,13 @@ import ReplyComment from "./ReplyComment";
 const PostComment = () => {
     return (
         <div>
-            <Wrap>
-                <CommentDiv>
-                    <CommentTab> Comment </CommentTab>
-                </CommentDiv>
-            </Wrap>
             <CommentWrap>
                 <Comment/>
                 <ReplyComment/>
             </CommentWrap>
+            <Wrap>
+                <CommentBtn> 댓글 달기 </CommentBtn>
+            </Wrap>
         </div>
     );
 };
@@ -28,24 +26,17 @@ const Wrap = styled.div`
     gap: 0.625rem;
     align-self: stretch;
 `
-
-const CommentDiv = styled.div`
-    display: flex;
-    padding: 1.25rem 0rem;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 0.625rem;
-    align-self: stretch;
-    border-bottom: 1px solid var(--black, #000);
-`
-const CommentTab = styled.div`
+const CommentBtn = styled.button`
     display: flex;
     padding: 0.75rem 4.0625rem;
+    margin-Top: 1.25rem;
     align-items: center;
     gap: 0.9375rem;
     background: var(--black, #000);
     color: var(--white, #FFF);
     text-align: justify;
+    border : 4px solid black;
+    cursor: pointer;
     
     /* S-bold-25 */
     font-family: Pretendard;
@@ -53,6 +44,17 @@ const CommentTab = styled.div`
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+
+    &:hover {
+        background: white;
+        color: black;
+
+        transition: 0.3s;
+    }
+    // 클릭 액션
+    &:active{
+        transform: scale(0.95);
+    }
 `
 
 const CommentWrap = styled.div`
