@@ -64,7 +64,7 @@ export const S_regular_30 = styled.div`
 `;
 export const XL_semibold_80 = styled.div`
     /* XL-semibold-80 */
-    font-family: Pretendard;
+    /* font-family: Pretendard; */
     font-size: 5rem;
     font-style: normal;
     font-weight: 600;
@@ -86,4 +86,12 @@ export const XS_regular_18 = styled.div`
     font-weight: 400;
     line-height: normal;
     letter-spacing: 0.03375rem;
+`;
+export const S_medium_34 = styled.div`
+    /* S-medium-34 */
+    font-family: Pretendard;
+    font-size: 1.875rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 158.023%; /* 2.96294rem */
 `;

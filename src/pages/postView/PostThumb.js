@@ -25,8 +25,8 @@ align-self: stretch;
 flex-wrap: wrap;
 `
 const ImageDiv = styled.div`
-    width: 51.75056rem;
-    height: 31.9375rem;
+    width: 37.5rem;
+    height: 37.5rem;
     border-radius: 1.875rem;
     background: url(<path-to-image>), #FF7575 50% / cover no-repeat;
 

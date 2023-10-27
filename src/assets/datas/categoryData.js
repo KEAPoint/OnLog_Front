@@ -11,7 +11,7 @@ export const landingData = [
     {
         id:0,
         name: "lifestyle",
-        contents: "lifestyle은 일상에 대한 기록을 적는거야",
+        contents: "일상의 아름다움을 찾아내고, 다양한 정보를 공유해보세요",
         img: LifeStyle,
     },
     {
@@ -23,7 +23,7 @@ export const landingData = [
     {
         id:2,
         name: "travel",
-        contents: "travel은 스포츠에 대한 기록을 적는거",
+        contents: "국내에서 해외까지, 여행의 매력을 발견하고 공유하는 모든 이들의 가이드북이 될거에요",
         img: Travel,
     },
     {
@@ -35,25 +35,25 @@ export const landingData = [
     {
         id:4,
         name: "foodie",
-        contents: "foodie는 맛집에 대한 기록을 적는거",
+        contents: "새로운 레시피부터 맛집 추천까지, 맛있는 음식의 세계로 여러분을 초대합니다.",
         img: Foodie,
     },
     {
         id:5,
         name: "entertainment",
-        contents: "entertainment는 맛집에 대한 기록을 적는거ㅊㅇㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅊㅇㅇㅇㅇㅇ",
+        contents: "다양한 예술 형태와 문화의 매력을 탐색하고 공유하는 모든 이들의 창조적인 놀이터로 오세요",
         img: Entertainment,
     },
     {
         id:6,
         name: "tech",
-        contents: "tech는 맛집에 대한 기록을 적는거",
+        contents: "IT와 관련된 지식을 배우고, 공유하는 모든 이들의 학습 공간입니다.",
         img: Tech,
     },
     {
         id:7,
         name: "sports",
-        contents: "sports는 맛집에 대한 기록을 적는거",
+        contents: "스포츠 팬들이 함께 열정을 나누고 토론할 수 있는 커뮤니티를 만들어보세요",
         img: Sports,
     },
     {
@@ -71,7 +71,7 @@ export const landingData = [
     {
         id:10,
         name: "news",
-        contents: "news는 맛집에 대한 기록을 적는거",
+        contents: "국내외의 최신 뉴스와 이슈를 다루는 공간입니다. 정치, 경제, 사회, 문화 등 다양한 분야의 뉴스를 살펴보세요",
         img: News,
     },
     {

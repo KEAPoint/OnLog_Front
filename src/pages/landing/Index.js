@@ -11,13 +11,15 @@ import Tech from '../../assets/images/catogories/Tech.png';
 import {ReactComponent as LogoText} from '../../assets/images/LogoText.svg';
 import { landingData } from '../../assets/datas/categoryData';
 import LandItem from './LandItem';
+import HeaderNormal from '../../components/common/HeaderNormal';
 
 const LandingPage = () => {
     
 
     return (
         <div>
-            <Header />
+            {/* <Header /> */}
+            <HeaderNormal/>
             <LogoFix/>
             <Wrap>
                 {landingData.map(item => (
@@ -41,7 +43,7 @@ const LogoFix = styled(LogoText)`
     transform: translate(-50%, -50%);
 `;
 const Wrap = styled.div`
-    padding: 7.125rem 6.25rem 0rem 6.25rem;
+    /* padding: 7.125rem 6.25rem 0rem 6.25rem; */
     display: grid;
 
     grid-template-columns: repeat(3, 29.0625rem);

@@ -1,13 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
 import {ReactComponent as Logo} from '../../assets/images/Logo.svg';
-
+import { useNavigate } from 'react-router-dom';
+import { S_bold_25 } from '../style/Styled';
 
 const HeaderNormal = () => {
+    const navigate = useNavigate();
+    const handleClick = (e) =>   {
+            switch(e.currentTarget.name) {
+                case "logo" :
+                    navigate('/main');
+                    break;
+                case "signin" :
+                    navigate('/login');
+                    break;
+                default:
+            }
+    }
+
     return (
         <Wrap>
-            <Logo/>
-            {/* 로그인 O */}
+            <LogoBtn name="logo" onClick={handleClick}>
+                <Logo />
+            </LogoBtn>
+            <SignInBtn name="signin" onClick={handleClick}>Sign in</SignInBtn>
         </Wrap>
     );
 };
@@ -20,7 +36,20 @@ const Wrap = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    img {
+`;
 
-    }
+const LogoBtn = styled.button`
+  background-color: transparent;
+  border:none;
+  outline:none;
+  cursor:pointer; // 마우스 커서를 손 모양으로 변경
+  svg {
+      pointer-events:auto; // SVG 내부의 그래픽 요소에만 마우스 이벤트 적용
+   }
+`;
+
+const SignInBtn = styled(S_bold_25).attrs({ as: 'button' })`
+    padding: 0.75rem 5.1875rem;
+    background-color: var(--black);
+    color: var(--white);
 `;

@@ -13,6 +13,12 @@ import {ReactComponent as Vector} from '../../assets/images/background/Vector.sv
 import {ReactComponent as RVector} from '../../assets/images/background/RVector.svg';
 import Profile from '../../assets/images/Profile.jpeg';
 
+import SearchPage from '../search/Index';
+import { useNavigate } from 'react-router-dom';
+import SearchBox from '../search/SearchBox';
+import { CardList } from '../../apis/API_Card';
+
+
 const navData = [
     {
         id:0,
@@ -59,18 +65,36 @@ function isCurrent(to) {
 const HomePage = () => {
     const [category, setCategory] = useState("");
 
+    // useEffect(() => {
+    //     console.log("dd")
+    //     setCategory(window.location.pathname);
+    //     console.log(category);
+    // },isCurrent());
+
+    useEffect(async () => {
+        try{
+        const localData = window.localStorage.getItem("jwt");
+
+        // 자동로그인 성공 시(jwt 인증 성공 시)
+        const data = await CardList(localData);
+        } catch (error) {
+            console.log(error)
+        }
+
+    },[])
+
+    const navigate = useNavigate();
+
     const handleSearch = (e) => {
         // console.log(e.target.value);
+        // history.push('/result', { term: searchTerm });
     }
 
     return (
         <PageWrap>
            <Header/>
            <Wrap>
-                <SearchWrap>
-                    <img src={Search} />
-                    <input type="text" placeholder="검색하기" onChange={handleSearch}/>
-                </SearchWrap>
+                 <SearchBox/>
             </Wrap>
 
              <Wrap2>
@@ -99,8 +123,9 @@ const HomePage = () => {
                 </Nav>
                     
             </Wrap2>
-                {/* <CardWrap> */}
-                    <Card category={category}/>
+
+            {/* <CardWrap> */}
+            <Card category={category}/>
             {/* </CardWrap> */}
         </PageWrap>
     );
@@ -110,6 +135,7 @@ export default HomePage;
 
 const PageWrap = styled.div`
     margin: 0rem 6.25rem;
+    /* box-sizing: border-box; */
 
 /* 
     @media ${({ theme }) => theme.windowSize.test} {
