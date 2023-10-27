@@ -43,14 +43,14 @@ const BlogItem = () => {
                     <LeftWrap>
                         <Menu>
                             <ProfileImg style={{background:"none"}}>
-                                {/* <SkeletonItem width="3.2rem" height="3.2rem" borderRadius="2.5rem"/> */}
+                                <SkeletonItem width="3.2rem" height="3.2rem" $borderRadius="2.5rem"/>
                             </ProfileImg>
                             <TitleWrap>
-                                <Title><SkeletonItem width="12rem" height="2rem"/></Title>
-                                <Name><SkeletonItem width="5.5rem" height="1rem"/></Name>
+                                <Title><SkeletonItem width="12rem" height="2rem" $borderRadius="2.5rem"/></Title>
+                                <Name><SkeletonItem width="5.5rem" height="1rem" $borderRadius="2.5rem"/></Name>
                             </TitleWrap>
                         </Menu>
-                        <BlogInfo><SkeletonItem width="15rem" height="1.5rem"/> </BlogInfo>
+                        <BlogInfo><SkeletonItem width="15rem" height="1.5rem" $borderRadius="2.5rem"/> </BlogInfo>
                     </LeftWrap>
                     <SkeletonItem width="13rem" height="4rem"/>
                 </>

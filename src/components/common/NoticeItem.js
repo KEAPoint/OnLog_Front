@@ -57,7 +57,7 @@ const NoticeItem = (props) => {
                     <LeftWrap>
                         <Top>
                             <ProfileImg style={{background:"none"}}>
-                                <SkeletonItem width="3.2rem" height="3.2rem" borderRadius="2.5rem"/>
+                                <SkeletonItem width="3.2rem" height="3.2rem" $borderRadius="2.5rem"/>
                             </ProfileImg>
                             <TitleWrap>
                                 <NickName><SkeletonItem width="40rem" height="2.3rem"/></NickName>
@@ -84,7 +84,7 @@ const NoticeItem = (props) => {
 
                         <SubscribeWrap 
                             onClick={handleSubscribe} 
-                            isSubscribed={isSubscribed}
+                            $isSubscribed={isSubscribed}
                             onMouseEnter={() => setHovered(true)}
                             onMouseLeave={() => setHovered(false)}
                         >
