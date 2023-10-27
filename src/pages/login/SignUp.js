@@ -7,9 +7,11 @@ import "./Login.css";
 import { useSelector } from 'react-redux';
 import LoginReducer from '../../store/reducers/login';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
     const {user} = useSelector((state) => state.LoginReducer); 
+    const navigate = useNavigate();
     console.log(user.email, user.userId);
 
 
@@ -36,11 +38,17 @@ const SignUp = () => {
                         blogIntro: info 
                     }
                 });
+
+                console.log("signup")
                 console.log(user.userId);
-                console.log("성공");
                 console.log(res.data);
+                if(res.data.success) {
+                    navigate('/main');
+                } else {
+                    console.log("회원가입 서버 에러");
+                }
+
             } catch(error) {
-                console.log("test");
                 console.log(error);
             }
         }
