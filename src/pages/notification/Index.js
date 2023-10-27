@@ -9,10 +9,8 @@ const NoticePage = () => {
             <PageName>Notification</PageName>
 
             <BlogItemWrap>
-            {/* {[...Array(2)].map((_, index) => (
-                    <NoticeItem key={index} />
-                ))} */}
-                {/* isReply=0이면 대댓글(답글)이 아님. isReply=1이면 대댓글(답글)임 */}
+
+                
                 <NoticeItem noticeType='comment'user='hanitech' postTitle='아이언맨이 된 스토리' isReply='0' comment='멋있네요'/>
                 <NoticeItem noticeType='comment'user='skyblue' postTitle='하늘을 나는 사람들' isReply='1' comment='오늘부터 비행연습을 하세요'/>
                 <NoticeItem noticeType='comment'user='wantFly' postTitle='하늘을 나는 사람들' isReply='0' comment='어떻게 하면 저도 하늘을 날 수 있나요?'/>

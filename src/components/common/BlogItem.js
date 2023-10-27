@@ -43,7 +43,7 @@ const BlogItem = () => {
                     <LeftWrap>
                         <Menu>
                             <ProfileImg style={{background:"none"}}>
-                                <SkeletonItem width="3.2rem" height="3.2rem" borderRadius="2.5rem"/>
+                                {/* <SkeletonItem width="3.2rem" height="3.2rem" borderRadius="2.5rem"/> */}
                             </ProfileImg>
                             <TitleWrap>
                                 <Title><SkeletonItem width="12rem" height="2rem"/></Title>
@@ -74,7 +74,7 @@ const BlogItem = () => {
             </LeftWrap>
             <SubscribeWrap 
                 onClick={handleSubscribe} 
-                isSubscribed={isSubscribed}
+                $isSubscribed={isSubscribed}
                 onMouseEnter={() => setHovered(true)}
                 onMouseLeave={() => setHovered(false)}
             >
@@ -177,13 +177,13 @@ const SubscribeWrap = styled.button`
 
     cursor: pointer;
 
-    background: ${props => props.isSubscribed ? 'white' : 'var(--black, #000)'};
-    color: ${props => props.isSubscribed ? 'black' : 'var(--white, #FFF)'};
+    background: ${props => props.$isSubscribed ? 'white' : 'var(--black, #000)'};
+    color: ${props => props.$isSubscribed ? 'black' : 'var(--white, #FFF)'};
 
     &:hover {
-        background: ${props => props.isSubscribed ? 'red' : 'white'};
-        color: ${props => props.isSubscribed ? 'var(--white, #FFF)' : 'black'};
-        border-color: ${props => props.isSubscribed ? 'red' : 'black'};
+        background: ${props => props.$isSubscribed ? 'red' : 'white'};
+        color: ${props => props.$isSubscribed ? 'var(--white, #FFF)' : 'black'};
+        border-color: ${props => props.$isSubscribed ? 'red' : 'black'};
 
         transition: 0.5s;
     }

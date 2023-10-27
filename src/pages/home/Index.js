@@ -71,18 +71,26 @@ const HomePage = () => {
     //     console.log(category);
     // },isCurrent());
 
-    useEffect(async () => {
-        try{
-        const localData = window.localStorage.getItem("jwt");
+    // useEffect(async () => {
+    //     try{
+    //     const localData = window.localStorage.getItem("jwt");
 
-        // 자동로그인 성공 시(jwt 인증 성공 시)
-        const data = await CardList(localData);
-        } catch (error) {
-            console.log(error)
-        }
+    //     // 자동로그인 성공 시(jwt 인증 성공 시)
+    //     const data = await CardList(localData);
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
 
-    },[])
-
+    // },[])
+    // useEffect(() => {
+    //     async function fetchData() {
+    //       const data = await fetchSomeData();
+    //       // ...
+    //     }
+      
+    //     fetchData();
+    //   }, []);
+      
     const navigate = useNavigate();
 
     const handleSearch = (e) => {

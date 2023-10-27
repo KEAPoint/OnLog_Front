@@ -13,7 +13,7 @@ const KakaoLogin = () => {
 
         // 카카오 로그인 페이지로 이동
         window.location.href = Kakao_Auth_url; // 현재 주소창의 주소값 불러오기
-
+        console.log("Test")
    
     }
 

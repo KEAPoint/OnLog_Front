@@ -11,7 +11,7 @@ const SkeletonItem = () => {
                 {/* <UserProfile info={info}/> */}
                 <Profile_Wrap>
                     <Profile_ProfileImg2>
-                        <Skeleton width="3rem" height="3rem" borderRadius="2.5rem"/>
+                        <Skeleton width="3rem" height="3rem" $borderRadius="2.5rem"/>
                     </Profile_ProfileImg2>
                     <Profile_TitleWrap>
                         <Profile_Title><Skeleton width="12rem" height="2rem"/></Profile_Title>
@@ -64,7 +64,7 @@ const skeletonAnimation = keyframes`
 const Skeleton = styled.div`
   	width: ${({ width }) => width || '100%'};
 	height: ${({ height }) => height || '1rem'};
-	border-radius: ${({ borderRadius }) => borderRadius || '4px'};
+	border-radius: ${({ $borderRadius }) => $borderRadius || '4px'};
 	background-color: var(--gray_bold); /* Or any desired color */
 	animation-duration: ${({ duration }) => duration || '1s'};
 	animation-fill-mode: ${({ fillMode }) => fillMode || 'forwards'};

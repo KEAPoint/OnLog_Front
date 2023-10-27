@@ -16,7 +16,7 @@ const CardItemHover = ({info}) => {
     return (
         <HoverWrap>
             <Wrap>
-                <Photo imgurl = {info.img}></Photo>
+                <Photo $imgurl = {info.img}></Photo>
                 <Contents>{info.contents}</Contents>
                 <ReadWrap onClick={handleReadButtonClick}>
                    <p>Read</p> 
@@ -53,7 +53,7 @@ const Wrap = styled.div`
 const Photo = styled.div`
     width: 14.1875rem;
     height: 14.1875rem;
-    background: ${props => `url(${props.imgurl}) lightgray 50% / cover no-repeat`};
+    background: ${props => `url(${props.$imgurl}) lightgray 50% / cover no-repeat`};
 `;
 const Contents = styled(XS_regular_18)`
 
