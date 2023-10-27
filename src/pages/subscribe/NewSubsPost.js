@@ -10,21 +10,30 @@ const NewSubsPost = () => {
                 <Left> 새로운 구독 글 </Left>
                 <Right><Num>5</Num>건</Right>
             </Wrap>
-            <CardWrap>
+            <PageWrap>
                 <Card category="lifestyle"/>
-            </CardWrap>
+            </PageWrap>
         </div>
     );
 };
 
 export default NewSubsPost;
 
+const PageWrap = styled.div`
+    margin: 0rem 6.25rem;
+    /* box-sizing: border-box; */
+
+/* 
+    @media ${({ theme }) => theme.windowSize.test} {
+        background-color: pink;
+    } */
+`
 const Wrap = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
     align-self: stretch;
-    padding: 2.5rem 15rem 0rem 15rem;
+    padding: 2.5rem 7rem 0rem 7rem;
 `
 const Left = styled.div`
     display: flex;

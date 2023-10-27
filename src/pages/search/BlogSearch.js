@@ -8,23 +8,32 @@ const BlogSearch = () => {
                 <Left> 블로그 검색 결과 </Left>
                 <Right><Num>1</Num>건</Right>
             </Wrap>
-            <BlogItemWrap>
+            <PageWrap>
             {[...Array(1)].map((_, index) => (
                     <BlogItem key={index} />
                 ))}
-            </BlogItemWrap>
+            </PageWrap>
         </div>
     );
 };
 
 export default BlogSearch;
 
+const PageWrap = styled.div`
+    margin: 0rem 6.25rem;
+    /* box-sizing: border-box; */
+
+/* 
+    @media ${({ theme }) => theme.windowSize.test} {
+        background-color: pink;
+    } */
+`
 const Wrap = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
     align-self: stretch;
-    padding: 2.5rem 15rem 0rem 15rem;
+    padding: 2.5rem 7rem 0rem 7rem;
 `
 const Left = styled.div`
     display: flex;
