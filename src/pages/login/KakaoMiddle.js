@@ -38,7 +38,7 @@ const KakaoMiddle = () => {
                     console.log("인가코드 서버 전송 에러");
                 }
 
-            } catch (error) {
+            } catch(error) {
                 console.log(error);
             }
         };
