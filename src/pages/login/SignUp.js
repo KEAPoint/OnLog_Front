@@ -6,51 +6,72 @@ import React, { useState } from 'react';
 import "./Login.css";
 import { useSelector } from 'react-redux';
 import LoginReducer from '../../store/reducers/login';
+import axios from 'axios';
 
 const SignUp = () => {
     const {user} = useSelector((state) => state.LoginReducer); 
-    console.log(user.email);
+    console.log(user.email, user.userId);
 
-    // const [email2, setEmail] = useState('');
-    const [nickname, setNickname] = useState('');
-    const [blogname, setBlogname] = useState('');
-    const [info, setInfo] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        alert(nickname);
-        alert(blogname);
-        alert(info);
+        const nickname = e.target.elements.nickname.value;
+        const blogname = e.target.elements.blogname.value;
+        const info = e.target.elements.info.value;
+
+        if(!nickname || !blogname || !info) {
+            alert('빈칸채워라');
+            return;
+        } else {
+
+            try {
+                const url = '/blog';
+                const res = await axios({
+                    method:"post",
+                    url: url,
+                    data: {
+                        blogId: user.userId,
+                        blogName: blogname,
+                        blogNickname: nickname,
+                        blogIntro: info 
+                    }
+                });
+                console.log(user.userId);
+                console.log("성공");
+                console.log(res.data);
+            } catch(error) {
+                console.log("test");
+                console.log(error);
+            }
+        }
+
     };
-    // const onEmailHandler = (e) => {
-    //     setEmail(e.currentTarget.value);
-    // }
-    const nicknameHandler = (e) => {
-        setNickname(e.currentTarget.value);
-    }
-    const blognameHandler = (e) => {
-        setBlogname(e.currentTarget.value);
-    }
-    const infoHandler = (e) => {
-        setInfo(e.currentTarget.value);
-    }
+
     return(
         <div>
             <Header/>
             <LoginInner>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <Parent>
                             <FieldName>이메일</FieldName>
-                                <div className="emailField"><div>{user.email}</div></div>
+                                <div className="emailField">
+                                    <div>{user.email}</div>
+                                </div>
                             <FieldName>닉네임</FieldName>
-                                <div className="field"><input type='text' value={nickname} onChange={nicknameHandler}/></div>
+                                <div className="field">
+                                    <input type='text' name='nickname'/>
+                                </div>
                             <FieldName>블로그명</FieldName>
-                                <div className="field"><input type='text' value={blogname} onChange={blognameHandler}/></div>
+                                <div className="field">
+                                    <input type='text' name='blogname'/>
+                                </div>
                             <FieldName>블로그 소개</FieldName>
-                                <div className="field"><input type='text' value={info} onChange={infoHandler}/></div>
+                                <div className="field">
+                                    <input type='text' name='info'/>
+                                </div>
                     </Parent>
                 
-                    <StyledButton onClick={handleSubmit}> Sign In </StyledButton>
+                    <StyledButton type='submit'> Sign In </StyledButton>
                 </form>
             </LoginInner>
         </div>

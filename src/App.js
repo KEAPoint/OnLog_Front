@@ -21,7 +21,7 @@ function App() {
           
           {/* 로그인 */}
           <Route path="/login" element={<LoginPage/>}/>
-          <Route path="/auth" element={<KakaoMiddle/>}/>
+          <Route path="/authMiddle" element={<KakaoMiddle/>}/>
           <Route path="/signup" element={<SignUp/>}/>
           {/* <Route path="" element={}/> */}
 
