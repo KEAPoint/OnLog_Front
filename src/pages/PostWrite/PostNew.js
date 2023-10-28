@@ -45,7 +45,7 @@ const PostNew = () => {
         Swal.fire(
             {
                 title: "Success",
-                icon: "success",
+                // icon: "success",
                 html: "좀만 기다려주세용 다음 페이지 곧 나옵니당"
             }
         )

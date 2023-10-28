@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../../components/common/HeaderNormal';
+import Header from '../../components/common/HeaderLogoOnly';
 import styled from 'styled-components';
 import logoKakao from '../../assets/images/Icons/logo-kakao.svg';
 import KakaoLogin from './KakaoLogin';

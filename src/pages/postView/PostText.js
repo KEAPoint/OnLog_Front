@@ -23,7 +23,7 @@ const PostText = () => {
         Swal.fire({
             title: '정말로 게시글을 삭제하시겠습니까?',
             text: '삭제된 게시글을 복구가 불가능합니다.',
-            icon: 'warning',
+            // icon: 'warning',
             
             showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
             confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정

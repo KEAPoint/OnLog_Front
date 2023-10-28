@@ -24,11 +24,9 @@ const SearchBox = () => {
                 navigate('/search', { state: { term: e.target.value } }); // 검색 결과 페이지로 이동
             } else {
                 // 입력값이 없는 경우 입력하라고 경고창
-                Swal.fire(
-                    {
-                        icon: "warning",
-                        title: "검색어를 입력해주세요!"
-                    }
+                Swal.fire({
+                    // icon: "warning",
+                    title: "검색어를 입력해주세요!"}
                 )
             }
     }

@@ -31,7 +31,7 @@ const BlogItem = () => {
         Swal.fire({
             title: isSubscribed ? "구독 취소" : "구독 완료",
             html: isSubscribed ? "구독이 취소되었습니다!" : "구독이 완료되었습니다!",
-            icon: 'success'
+            // icon: 'success'
         });
     }
 

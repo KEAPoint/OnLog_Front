@@ -2,9 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import {ReactComponent as Logo} from '../../assets/images/Logo.svg';
 import { useNavigate } from 'react-router-dom';
-import { S_bold_25 } from '../style/Styled';
 
-const HeaderNormal = () => {
+const HeaderLogoOnly = () => {
     const navigate = useNavigate();
     const handleClick = (e) =>   {
             switch(e.currentTarget.name) {
@@ -23,12 +22,11 @@ const HeaderNormal = () => {
             <LogoBtn name="logo" onClick={handleClick}>
                 <Logo />
             </LogoBtn>
-            <SignInBtn name="signin" onClick={handleClick}>Sign in</SignInBtn>
         </Wrap>
     );
 };
 
-export default HeaderNormal;
+export default HeaderLogoOnly;
 
 const Wrap = styled.div`
     background: var(--white);
@@ -46,24 +44,4 @@ const LogoBtn = styled.button`
   svg {
       pointer-events:auto; // SVG 내부의 그래픽 요소에만 마우스 이벤트 적용
    }
-`;
-
-const SignInBtn = styled(S_bold_25).attrs({ as: 'button' })`
-    padding: 0.75rem 5.1875rem;
-    background-color: var(--black);
-    color: var(--white);
-
-    border: 4px solid black;
-
-    cursor: pointer;
-
-    &:hover{
-        background-color: white;
-        color: black;
-        transition: 0.5s;
-    }
-
-    &:active{
-        transform: scale(0.95);
-    }
 `;

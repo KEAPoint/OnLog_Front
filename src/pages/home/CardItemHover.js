@@ -14,11 +14,11 @@ const CardItemHover = ({info}) => {
     };
     
     return (
-        <HoverWrap>
+        <HoverWrap onClick={handleReadButtonClick}>
             <Wrap>
                 <Photo $imgurl = {info.img}></Photo>
                 <Contents>{info.contents}</Contents>
-                <ReadWrap onClick={handleReadButtonClick}>
+                <ReadWrap>
                    <p>Read</p> 
                    <img src={Arrow} alt="arrow" /> 
                 </ReadWrap>
@@ -29,7 +29,7 @@ const CardItemHover = ({info}) => {
 
 export default CardItemHover;
 
-const HoverWrap = styled.div`
+const HoverWrap = styled.button`
     width: 23.0625rem;
     height: 37.5625rem;
     padding: 1.875rem 2.5rem;
@@ -37,6 +37,12 @@ const HoverWrap = styled.div`
 
     background-color: var(--black);
     border-radius: 1.875rem;
+
+    cursor: pointer;
+
+    &:active{
+        transform: scale(0.95);
+    }
 `;
 
 const Wrap = styled.div`
@@ -68,7 +74,7 @@ const Contents = styled(XS_regular_18)`
     line-height: 1.5;
 
 `;
-const ReadWrap = styled.button`
+const ReadWrap = styled.div`
     font-family: Pretendard;
     font-size: 1.75rem;
     font-style: normal;
@@ -85,5 +91,10 @@ const ReadWrap = styled.button`
     padding: 0.625rem 0rem 0.375rem 1.5rem;
     align-self: stretch;
 
-    border-top: 1px solid var(--gray_bold, #4A4A4A);
+    &:hover{
+        color: red;
+    }
+    &:active{
+        transform: scale(0.95);
+    }
 `;
