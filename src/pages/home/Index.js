@@ -56,7 +56,7 @@ const navData = [
 ]
 
 function isCurrent(to) {
-    console.log(to);
+    // console.log(to);
     // console.log(window.location.pathname.includes(to).toString());
     if(to === window.location.pathname){
         return true;
@@ -65,7 +65,14 @@ function isCurrent(to) {
 
 const HomePage = () => {
     const [category, setCategory] = useState("");
+    const location = useLocation();
 
+    useEffect(() => {
+        // 그냥 이 페이지 들어오자마자 DOM링크 가져와서 카테고리가 뭔지 알 수 있도록 -> 해당하는 카드리스트 나오기
+        let path = window.location.pathname.replace('/main/','');
+        console.log(path)
+        setCategory(path);
+    },[]) 
     // useEffect(async () => {
     //     try{
     //     const localData = window.localStorage.getItem("jwt");

@@ -15,7 +15,7 @@ const Card = ({category}) => {
             <CardWrap>
                 
                 {cardData.map((item) => (
-                    (category==="")?(
+                    (category==="/main")?(
                         <CardItem key={item.id} info={item}/>
                     ):(
                         (item.category === category) && (

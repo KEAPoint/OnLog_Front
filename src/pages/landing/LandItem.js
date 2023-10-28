@@ -23,7 +23,11 @@ const LandItem = ({info}) =>  {
                         ))}
                     </Field>
                 ):(
-                    <FieldL to={`/main/${info.name}`}>
+                    // <FieldL to={`/main/${info.name}`}>
+                    <FieldL to={{
+                        pathname: `/main/${info.name}`,
+                        // state: {clickCategory: info.name}
+                    }}>
                         <FieldImg $img={info.img} $hover={isHovering}>
                             {isHovering==1 && (
                                 <Wrap>
