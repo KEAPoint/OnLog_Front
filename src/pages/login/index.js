@@ -4,11 +4,12 @@ import styled from 'styled-components';
 import logoKakao from '../../assets/images/Icons/logo-kakao.svg';
 import KakaoLogin from './KakaoLogin';
 import Footer from '../../components/common/Footer';
+import HeaderNormal from '../../components/common/HeaderNormal';
 
 const LoginPage = () => {
     return (
         <PageWrap>
-            <Header/>
+            <HeaderNormal/>
             <Wrap>
                 <Text>#lifestyle #travel #foodie #entertainment #tech #sports #news</Text>
                 <KakaoLogin/>

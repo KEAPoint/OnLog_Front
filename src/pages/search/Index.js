@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom'; // 검색 입력값 가져오기
 import SearchBox from './SearchBox';
 import BlogSearch from './BlogSearch';
 import PostSearch from './PostSearch';
+import Footer from '../../components/common/Footer';
 
 const SearchPage = () => {
 
@@ -23,6 +24,7 @@ const SearchPage = () => {
             </SearchBoxWrap>
             <BlogSearch/>
             <PostSearch/>
+            <Footer/>
         </div>
     );
 };

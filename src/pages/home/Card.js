@@ -13,9 +13,14 @@ const Card = ({category}) => {
         <Wrap>
 
             <CardWrap>
+                
                 {cardData.map((item) => (
-                    (item.category === category) && (
+                    (category==="")?(
                         <CardItem key={item.id} info={item}/>
+                    ):(
+                        (item.category === category) && (
+                            <CardItem key={item.id} info={item}/>
+                        )
                     )
                 ))}
             </CardWrap>
