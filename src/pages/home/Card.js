@@ -8,8 +8,6 @@ import {ReactComponent as RVector} from '../../assets/images/background/RVector.
 import { InfiniteScroll } from '../../components/common/InfiniteScroll';
 
 const Card = ({category}) => {
-    console.log("test2")
-    console.log(category)
     return (
         <Wrap>
 

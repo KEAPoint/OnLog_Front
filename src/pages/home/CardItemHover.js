@@ -9,8 +9,7 @@ const CardItemHover = ({info}) => {
 
     const handleReadButtonClick = (e) => {
         e.preventDefault();
-        // movePage('/mypage/post');
-        movePage('/login');
+        movePage('/mypage/post');
 
     };
     
