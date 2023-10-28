@@ -11,8 +11,8 @@ const PostHeader = () => {
         <div>
             <Wrap>
                 <Category>#일상</Category>
-                <Title>아무래도 로키가 멋있으니까</Title>
-                <Date>2023.08.30</Date>
+                <Title>새로운 친구랑 놀았다.</Title>
+                <Date>2023.10.03</Date>
             </Wrap>
             <Menu>
                     <ProfileImg></ProfileImg>

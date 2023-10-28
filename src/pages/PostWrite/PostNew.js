@@ -44,9 +44,9 @@ const PostNew = () => {
 
         Swal.fire(
             {
-                title: "Success",
+                title: "...",
                 // icon: "success",
-                html: "좀만 기다려주세용 다음 페이지 곧 나옵니당"
+                text: "AI가 썸네일과 3줄요약을 생성 중입니다! 조금만 기다려주세요"
             }
         )
     }
@@ -97,11 +97,11 @@ const PostNew = () => {
 
         <WrapInner>
             <S_bold_25> 해시태그 입력 </S_bold_25>
-            <Title type='text' value={title} style={{ overflow: 'hidden' }} placeholder="해시태그를 입력해보세요" onChange={TagHandler}/>
+            <Title type='text' value={tag} style={{ overflow: 'hidden' }} placeholder="해시태그를 입력해보세요" onChange={TagHandler}/>
         </WrapInner>
 
         <BtnWrap>
-            <NextBtn onClick={nextBtnHandler}>Next</NextBtn>
+            <NextBtn onClick={nextBtnHandler}>다음</NextBtn>
         </BtnWrap>
                
     </Wrap>

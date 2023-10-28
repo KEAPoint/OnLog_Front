@@ -20,7 +20,7 @@ const MypageTop = () => {
     };
 
     return (
-        <div>
+        <PageWrap>
             <Wrap1>
                 <Left>
                     <Menu>
@@ -48,25 +48,38 @@ const MypageTop = () => {
             </Wrap1>
             <Wrap2>
                 <ProfileInfo>
-                Hani Tech World 는 최신 기술 정보와 실용적인 IT 팁을 제공하는 블로그입니다. 복잡한 기술 용어와 개념을 쉽게 이해할 수 있도록 가이드하며, 기술이 우리 일상 생활에 어떻게 적용될 수 있는지 알려드립니다.
+                Hani Tech World 는 최신 기술 정보와 실용적인 IT 팁을 제공하는 블로그입니다.
                 </ProfileInfo>
             </Wrap2>
             <Wrap2>
                 <Button onClick={handlePostButtonClick}>글 작성</Button>
                 <Button onClick={handleEditButtonClick}>프로필 수정</Button>
             </Wrap2>
-        </div>
+        </PageWrap>
     );
 };
 
 export default MypageTop;
 
+const PageWrap = styled.div`
+padding: 3.75rem 6.25rem 1.875rem 6.25rem;
+
+`
 const Wrap1 = styled.div`
+    // display: flex;
+    // padding-bottom: 1.88rem;
+    // justify-content: center;
+    // align-items: center;
+    // align-content: flex-start;
+    // align-self: stretch;
+    // flex-wrap: wrap;
+
     display: flex;
-    padding: 3.75rem 13.75rem;
-    justify-content: center;
+    padding-bottom: 1.88rem;
+    justify-content: space-between;
     align-items: center;
-    align-content: flex-start;
+    align-content: center;
+    row-gap: 3.75rem;
     align-self: stretch;
     flex-wrap: wrap;
 `
@@ -165,14 +178,14 @@ const Num = styled.div`
 
 const Wrap2 = styled.div`
     display: flex;
-    padding: 1.25rem 25rem 3.75rem 25rem;
+    // padding: 1.25rem 25rem 3.75rem 25rem;
+    padding-bottom: 1.25rem;
     justify-content: center;
     align-items: center;
     gap: 0.625rem;
     align-self: stretch;
 `
 const ProfileInfo = styled.div`
-    width: 70rem;
     color: var(--gray_bold, #4A4A4A);
 
     /* S-regular_30 */
@@ -188,7 +201,7 @@ const Button = styled.button`
     align-items: center;
     gap: 0.9375rem;
     background: var(--black, #000);
-    border: none;
+    border: 4px solid black;
     cursor: pointer;
 
     color: var(--white, #FFF);
@@ -199,4 +212,13 @@ const Button = styled.button`
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+
+    &:hover{
+        background: white;
+        color: black;
+        transition: 0.3s;
+    }
+    &:active{
+        transform: scale(0.95);
+    }
 `

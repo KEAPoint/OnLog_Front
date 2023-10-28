@@ -1,13 +1,16 @@
-
 import styled from "styled-components";
 import ThumbImg from "../../assets/images/catogories/Entertainment.png"
+// import Parser from 'html-react-parser';
+
 
 const PostThumb = () => {
+    const sum = "오늘은 맹구가 전학 왔다. \n 맹구는 콧물이 정말 길다. \n 진짜일까?"
     return(
         <Wrap>
             <ImageDiv>  </ImageDiv>
             <Summary>
-                캡틴아메리카 솔로무비를 보셨나요? 그렇다면 아이언맨과 캡틴아메리카의 싸움을 보셨겠네요. 로키의 세상으로 초대합니다.
+                {/* {Parser({title})} */}
+                {sum}
             </Summary>
         </Wrap>
     );
@@ -65,5 +68,7 @@ const Summary = styled.div`
     font-style: normal;
     font-weight: 600;
     line-height: normal;
+    white-spase: pre-wrap;
+
 
 `

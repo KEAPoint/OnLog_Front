@@ -24,7 +24,7 @@ const PostviewPage = () => {
             <PostComment/>
 
             {/* 댓글 작성 칸 */}
-            <CommentWrite/>
+            {/* <CommentWrite/> */}
 
             <Footer/>
         </div>
