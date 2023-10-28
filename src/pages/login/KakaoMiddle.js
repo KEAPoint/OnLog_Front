@@ -3,12 +3,28 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginAction } from '../../store/actions/login';
 import { useNavigate } from 'react-router-dom';
+import Swal from "sweetalert2";
 
 const KakaoMiddle = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     useEffect(() => {
+        
+        // 1초간 alert창 생김
+        Swal.fire({
+            title: "...",
+            text: "잠시만 기다려주세요",
+            timer: 1000,
+            onOpen: function() {
+                Swal.showLoading()
+            }
+        }).then(function(result) {
+            if (result.dismiss === "timer") {
+                console.log("I was closed by the timer")
+            }
+        })
+
         console.log("Test2")
         const fetchData = async () => {
             // code(인가코드)는 서버로 보내기
@@ -50,7 +66,7 @@ const KakaoMiddle = () => {
 
     return (
         <div>
-            잠시만 기다려라~~~
+            
         </div>
     );
 };

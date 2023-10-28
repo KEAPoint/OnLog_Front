@@ -17,7 +17,8 @@ import SearchPage from '../search/Index';
 import { useNavigate } from 'react-router-dom';
 import SearchBox from '../search/SearchBox';
 import { CardList } from '../../apis/API_Card';
-
+import ScrollTop from '../../components/common/ScrollTop';
+import Footer from '../../components/common/Footer';
 
 const navData = [
     {
@@ -26,36 +27,36 @@ const navData = [
     },
     {
         id:1,
-        name: "lifestyle",
+        name: "/lifestyle",
     },    
     {
         id:2,
-        name: "travel",
+        name: "/travel",
     },   
     {
         id:3,
-        name: "foodie",
+        name: "/foodie",
     },    
     {
         id:4,
-        name: "entertainment",
+        name: "/entertainment",
     },    
     {
         id:5,
-        name: "tech",
+        name: "/tech",
     },
     {
         id:6,
-        name: "sports",
+        name: "/sports",
     },
     {
         id:7,
-        name: "news",
+        name: "/news",
     },
 ]
 
 function isCurrent(to) {
-    // console.log(to);
+    console.log(to);
     // console.log(window.location.pathname.includes(to).toString());
     if(to === window.location.pathname){
         return true;
@@ -64,13 +65,6 @@ function isCurrent(to) {
 
 const HomePage = () => {
     const [category, setCategory] = useState("");
-
-    useEffect(() => {
-        // console.log(window.location.pathname);
-        let str = window.location.pathname.replace("/main/", "");
-        console.log(str);
-        setCategory(str);
-    },[]);
 
     // useEffect(async () => {
     //     try{
@@ -109,15 +103,17 @@ const HomePage = () => {
 
              <Wrap2>
                 <Nav>
+                    {/* {(category === "")&&(<></>):(<></>)} */}
+
                     {navData.map((item) => (
-                        (isCurrent('/main/' + item.name)) && (
+                        (isCurrent('/main' + item.name)) && (
                             (item.id===0) ? (
                                 <div key={item.id}>
                                     <Title>Onlog <p>&nbsp; 는 지금...</p></Title>
                                 </div>
                             ) : (
                                 <div key={item.id}>
-                                    <Title>#{item.name}</Title>
+                                    <Title>#{item.name.replace(/\//g, '')}</Title>
 
                                 </div>
                             )
@@ -141,8 +137,9 @@ const HomePage = () => {
 
             {/* <CarxdWrap> */}
             <Card category={category}/>
-            {/* <Card category="news"/> */}
             {/* </CardWrap> */}
+            {/* <ScrollTop/> */}
+            <Footer/>
         </PageWrap>
         </>
     );

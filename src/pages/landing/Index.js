@@ -12,6 +12,7 @@ import {ReactComponent as LogoText} from '../../assets/images/LogoText.svg';
 import { landingData } from '../../assets/datas/categoryData';
 import LandItem from './LandItem';
 import HeaderNormal from '../../components/common/HeaderNormal';
+import Footer from '../../components/common/Footer';
 
 const LandingPage = () => {
     
@@ -26,6 +27,7 @@ const LandingPage = () => {
                     <LandItem key={item.id} info={item}/>
                 ))}
             </Wrap>
+            <Footer/>
         </div>
     );
 };

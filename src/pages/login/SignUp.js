@@ -1,4 +1,4 @@
-import Header from '../../components/common/HeaderNormal';
+import Header from '../../components/common/HeaderLogoOnly';
 import styled from 'styled-components';
 import { S_bold_25 } from '../../components/style/Styled';
 import React, { useState } from 'react';
