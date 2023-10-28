@@ -9,6 +9,7 @@ const LoginPage = () => {
     return (
         <PageWrap>
             <Header/>
+            
             <Wrap>
                 <Text>#lifestyle #travel #foodie #entertainment #tech #sports #news</Text>
                 <KakaoLogin/>
