@@ -19,7 +19,7 @@ import SearchBox from '../search/SearchBox';
 import { CardList } from '../../apis/API_Card';
 import ScrollTop from '../../components/common/ScrollTop';
 import Footer from '../../components/common/Footer';
-
+import HeaderNormal from '../../components/common/HeaderNormal';
 const navData = [
     {
         id:0,
@@ -70,7 +70,9 @@ const HomePage = () => {
     useEffect(() => {
         // 그냥 이 페이지 들어오자마자 DOM링크 가져와서 카테고리가 뭔지 알 수 있도록 -> 해당하는 카드리스트 나오기
         let path = window.location.pathname.replace('/main/','');
-        console.log(path)
+        console.log("test");
+        console.log(path);
+        // if(path ===)
         setCategory(path);
     },[]) 
     // useEffect(async () => {
@@ -102,7 +104,8 @@ const HomePage = () => {
 
     return (
         <>
-        <Header/>
+        {/* <Header/> */}
+        <HeaderNormal/>
         <PageWrap>
            <Wrap>
                  <SearchBox/>
@@ -129,7 +132,7 @@ const HomePage = () => {
                     ))}
                     
                     <LinkWrap>
-                        <NavL to={'/main/'} $active={isCurrent("/main")} hovername="전체 게시물" onClick={() => setCategory('')}><p><img src={Home}/></p></NavL>
+                        <NavL to={'/main'} $active={isCurrent("/main")} hovername="전체 게시물" onClick={() => setCategory('')}><p><img src={Home}/></p></NavL>
                         <NavL to={'/main/lifestyle'} $active={isCurrent("/main/lifestyle")} hovername="일상" onClick={() => setCategory('lifestyle')}><p>#lifestyle</p></NavL>
                         <NavL to={'/main/travel'} $active={isCurrent("/main/travel")} hovername="여행" onClick={() => setCategory('travel')}><p>#travel</p></NavL>
                         <NavL to={'/main/foodie'} $active={isCurrent("/main/foodie")} hovername="맛집" onClick={() => setCategory('foodie')}><p>#foodie</p></NavL>
