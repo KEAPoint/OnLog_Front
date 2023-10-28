@@ -28,7 +28,6 @@ const PageWrap = styled.div`
     flex-direction: column;
 `;
 const Wrap = styled.div`
-
     display: flex;
     flex-direction: column;
     align-items: center;

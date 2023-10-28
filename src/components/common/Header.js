@@ -17,10 +17,10 @@ const Header = () => {
             <MenuWrap>
                 <Menu>
                     <MenuL to={'/subscribed'}>Subscribed</MenuL>
-                    <Alarm>21</Alarm>
+                    <Alarm>10</Alarm>
                 </Menu>
                 <Menu>
-                    Notification
+                    <MenuL to={'/notification'}>Notification</MenuL>
                     <Alarm>21</Alarm>
                 </Menu>
 

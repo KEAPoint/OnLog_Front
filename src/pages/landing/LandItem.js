@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { M_regular_38, XL_semibold_80 } from '../../components/style/Styled';
 
+
 const LandItem = ({info}) =>  {
     const [isHovering, setIsHovering] = useState(0);
     return (

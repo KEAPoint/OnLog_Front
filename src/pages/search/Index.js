@@ -17,7 +17,7 @@ const SearchPage = () => {
             <Header/>
             <SearchBoxWrap>
                 {/* <SearchTitle> <Highlight>"{term}"</Highlight>에 대한 검색 결과 <NumHighLight>10</NumHighLight>건 </SearchTitle> */}
-                {term && <SearchTitle> <Highlight>"{term}"</Highlight>에 대한 검색 결과 <NumHighLight>10</NumHighLight>건 </SearchTitle>}
+                {term && <SearchTitle> <Highlight>"{term}"</Highlight>에 대한 검색 결과 <NumHighLight>5</NumHighLight>건 </SearchTitle>}
                 {/* {!term && <div></div>} 검색값이 없으면 빈공간으로 */}
                 <SearchBox/>
             </SearchBoxWrap>

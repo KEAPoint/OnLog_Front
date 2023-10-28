@@ -13,7 +13,7 @@ export const Profile_ProfileImg = styled.div`
     height: 3.375rem;
     border-radius: 2.5rem;
     /* background: url(${Profile}) lightgray 50% / cover no-repeat; */
-    background: ${props => `url(${props.imgurl}) lightgray 50% / cover no-repeat`};
+    background: ${props => `url(${props.$imgurl}) lightgray 50% / cover no-repeat`};
 
 
 
@@ -40,7 +40,7 @@ export const Profile_Name = styled.div`
 const UserProfile = ({info}) => {
     return (
         <Profile_Wrap>
-        <Profile_ProfileImg imgurl={info.profile}></Profile_ProfileImg>
+        <Profile_ProfileImg $imgurl={info.profile}></Profile_ProfileImg>
         <Profile_TitleWrap>
             <Profile_Title>{info.blogName}</Profile_Title>
             <Profile_Name>{info.nickName}</Profile_Name>

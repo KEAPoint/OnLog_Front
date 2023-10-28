@@ -6,14 +6,14 @@ const PostSearch = () => {
         <div>
             <Wrap>
                 <Left> 게시물 검색 결과 </Left>
-                <Right><Num>6</Num>건</Right>
+                <Right><Num>4</Num>건</Right>
                 
             </Wrap>
-            <PostWrap>
-                <CardWrap>
-                    <Card category="lifestyle"/>
-                </CardWrap>
-            </PostWrap>
+            {/* <PostWrap> */}
+                <PageWrap>
+                    <Card category="news"/>
+                </PageWrap>
+            {/* </PostWrap> */}
 
         </div>
     );
@@ -21,12 +21,21 @@ const PostSearch = () => {
 
 export default PostSearch;
 
+const PageWrap = styled.div`
+    margin: 0rem 6.25rem;
+    /* box-sizing: border-box; */
+
+/* 
+    @media ${({ theme }) => theme.windowSize.test} {
+        background-color: pink;
+    } */
+`
 const Wrap = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
     align-self: stretch;
-    padding: 2.5rem 15rem 0rem 15rem;
+    padding: 2.5rem 7rem 0rem 7rem;
 `
 const Left = styled.div`
     display: flex;

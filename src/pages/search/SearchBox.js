@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Search from '../../assets/images/Icons/Search.png'
 import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 
 const SearchBox = () => {
@@ -22,7 +23,13 @@ const SearchBox = () => {
             if(searchTerm.trim() !== '') { // 입력값이 있는 경우 페이지 이동
                 navigate('/search', { state: { term: e.target.value } }); // 검색 결과 페이지로 이동
             } else {
-                alert('검색어를 입력해주세요!'); // 입력값이 없는 경우 입력하라고 경고창
+                // 입력값이 없는 경우 입력하라고 경고창
+                Swal.fire(
+                    {
+                        icon: "warning",
+                        title: "검색어를 입력해주세요!"
+                    }
+                )
             }
     }
       }

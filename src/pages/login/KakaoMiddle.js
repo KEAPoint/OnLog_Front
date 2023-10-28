@@ -9,6 +9,7 @@ const KakaoMiddle = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        console.log("Test2")
         const fetchData = async () => {
             // code(인가코드)는 서버로 보내기
             try {

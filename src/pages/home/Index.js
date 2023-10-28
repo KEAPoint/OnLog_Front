@@ -65,24 +65,50 @@ function isCurrent(to) {
 const HomePage = () => {
     const [category, setCategory] = useState("");
 
+    useEffect(() => {
+        // console.log(window.location.pathname);
+        let str = window.location.pathname.replace("/main/", "");
+        console.log(str);
+        setCategory(str);
+    },[]);
+
+    // useEffect(async () => {
+    //     try{
+    //     const localData = window.localStorage.getItem("jwt");
+
+    //     // 자동로그인 성공 시(jwt 인증 성공 시)
+    //     const data = await CardList(localData);
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
+
+    // },[])
     // useEffect(() => {
     //     console.log("dd")
     //     setCategory(window.location.pathname);
     //     console.log(category);
     // },isCurrent());
 
-    useEffect(async () => {
-        try{
-        const localData = window.localStorage.getItem("jwt");
+    // useEffect(async () => {
+    //     try{
+    //     const localData = window.localStorage.getItem("jwt");
 
-        // 자동로그인 성공 시(jwt 인증 성공 시)
-        const data = await CardList(localData);
-        } catch (error) {
-            console.log(error)
-        }
+    //     // 자동로그인 성공 시(jwt 인증 성공 시)
+    //     const data = await CardList(localData);
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
 
-    },[])
+    // },[])
 
+    //     async function fetchData() {
+    //       const data = await fetchSomeData();
+    //       // ...
+    //     }
+      
+    //     fetchData();
+    //   }, []);
+      
     const navigate = useNavigate();
 
     const handleSearch = (e) => {
@@ -91,8 +117,9 @@ const HomePage = () => {
     }
 
     return (
+        <>
+        <Header/>
         <PageWrap>
-           <Header/>
            <Wrap>
                  <SearchBox/>
             </Wrap>
@@ -102,9 +129,14 @@ const HomePage = () => {
                     {navData.map((item) => (
                         (isCurrent('/main/' + item.name)) && (
                             (item.id===0) ? (
-                                <Title key={item.id}>Onlog <p>&nbsp; 는 지금...</p></Title>
+                                <div key={item.id}>
+                                    <Title>Onlog <p>&nbsp; 는 지금...</p></Title>
+                                </div>
                             ) : (
-                                <Title key={item.id}>#{item.name}</Title>
+                                <div key={item.id}>
+                                    <Title>#{item.name}</Title>
+
+                                </div>
                             )
                         ) 
 
@@ -124,10 +156,12 @@ const HomePage = () => {
                     
             </Wrap2>
 
-            {/* <CardWrap> */}
+            {/* <CarxdWrap> */}
             <Card category={category}/>
+            {/* <Card category="news"/> */}
             {/* </CardWrap> */}
         </PageWrap>
+        </>
     );
 };
 
