@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import BlogItem from "../../components/common/BlogItem";
+import Footer from "../../components/common/Footer";
 
 const BlogSearch = () => {
     return(

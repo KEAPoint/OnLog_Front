@@ -1,6 +1,7 @@
 import Header from "../../components/common/Header";
 import styled from "styled-components";
 import NoticeItem from "../../components/common/NoticeItem";
+import Footer from "../../components/common/Footer";
 
 const NoticePage = () => {
     return(
@@ -18,6 +19,7 @@ const NoticePage = () => {
                 <NoticeItem noticeType='postLike'user='orangelike' postTitle='오렌지를 먹고싶어요 상큼' isReply='0' comment=''/>
                 <NoticeItem noticeType='commentLike'user='startup' postTitle='오렌지를 먹고싶어요 상큼' isReply='0' comment='저는 귤을 더 좋아해용'/>
             </BlogItemWrap>
+            <Footer/>
         </div>
     );
 };

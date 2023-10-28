@@ -59,8 +59,8 @@ const PostNew = () => {
 
         <div className="text-editor">
             <SunEditor 
-                width="100%"
-                height="30rem"
+                width="1500px"
+                height="700px"
                 setOptions={{
                     buttonList: [
                         [
@@ -81,7 +81,7 @@ const PostNew = () => {
                 }}
                 onChange={handleChange}
             />
-            <button onClick={handleSubmit}>제출</button>
+            {/* <button onClick={handleSubmit}>제출</button> */}
         </div>
         
         <WrapInner>

@@ -3,6 +3,7 @@ import Header from '../../components/common/Header';
 import UserProfile from '../../components/common/UserProfile';
 import MypageTop from './MypageTop.js';
 import MypagePost from './MyPagePost';
+import Footer from '../../components/common/Footer';
 
 const MyPage = () => {
     return(
@@ -17,6 +18,7 @@ const MyPage = () => {
         {/* <UserProfile/> */}
         <MypageTop/>
         <MypagePost/>
+        <Footer/>
     </div>
     );
 };

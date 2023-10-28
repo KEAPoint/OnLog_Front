@@ -2,6 +2,7 @@ import Header from "../../components/common/Header";
 import styled from "styled-components";
 import NewSubsPost from "../subscribe/NewSubsPost";
 import SubsBlog from "./SubsBlog";
+import Footer from "../../components/common/Footer";
 
 const SubscribePage = () => {
     return(
@@ -10,6 +11,7 @@ const SubscribePage = () => {
             <PageName>Subscribed</PageName>
             <NewSubsPost/>
             <SubsBlog/>
+            <Footer/>
         </div>
     );
 };

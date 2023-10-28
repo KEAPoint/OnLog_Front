@@ -5,6 +5,7 @@ import PostText from './PostText';
 import PostComment from './PostComment';
 import PostThumb from './PostThumb';
 import CommentWrite from './CommentWrite';
+import Footer from '../../components/common/Footer';
 
 const PostviewPage = () => {
     return(
@@ -25,6 +26,7 @@ const PostviewPage = () => {
             {/* 댓글 작성 칸 */}
             <CommentWrite/>
 
+            <Footer/>
         </div>
     )
 }
