@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { M_regular_38, XL_semibold_80 } from '../../components/style/Styled';
+import LoginItem from './LoginItem';
 
 
 const LandItem = ({info}) =>  {
@@ -13,6 +14,9 @@ const LandItem = ({info}) =>  {
         >
             {
                 info.img==="" ? (
+                    (info.name==="login")?(
+                            <LoginItem/>
+                    ):(
                     <Field>
                         {/* {info.contents} */}
                         {info.contents.split('\n').map((line, i) => (
@@ -22,6 +26,7 @@ const LandItem = ({info}) =>  {
                             </React.Fragment>
                         ))}
                     </Field>
+                    )
                 ):(
                     // <FieldL to={`/main/${info.name}`}>
                     <FieldL to={{
@@ -49,6 +54,8 @@ const FieldL = styled(Link)`
     text-decoration: none;
     width: 29.0625rem;
     height: 45.1875rem;
+    /* width: 25rem; */
+    /* height: 45rem; */
 `;
 const Field = styled.div`
     width: 29.0625rem;

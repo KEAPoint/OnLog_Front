@@ -59,8 +59,8 @@ const PostNew = () => {
 
         <div className="text-editor">
             <SunEditor 
-                width="1500px"
-                height="700px"
+                width="100rem"
+                height="70rem"
                 setOptions={{
                     buttonList: [
                         [

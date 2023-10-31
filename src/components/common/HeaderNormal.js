@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import {ReactComponent as Logo} from '../../assets/images/Logo.svg';
 import { useNavigate } from 'react-router-dom';
-import { S_bold_25 } from '../style/Styled';
+import { Header_font, S_bold_25 } from '../style/Styled';
 
 const HeaderNormal = () => {
     const navigate = useNavigate();
@@ -32,7 +32,7 @@ export default HeaderNormal;
 
 const Wrap = styled.div`
     background: var(--white);
-    padding: 1.88rem 6.25rem;    
+    padding: 0.5rem 6.25rem;    
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -49,7 +49,8 @@ const LogoBtn = styled.button`
 `;
 
 const SignInBtn = styled(S_bold_25).attrs({ as: 'button' })`
-    padding: 0.75rem 5.1875rem;
+    padding: 0.55rem 2.1875rem;
+    font-size: 1rem;
     background-color: var(--black);
     color: var(--white);
 

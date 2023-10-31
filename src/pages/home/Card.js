@@ -8,6 +8,8 @@ import {ReactComponent as RVector} from '../../assets/images/background/RVector.
 import { InfiniteScroll } from '../../components/common/InfiniteScroll';
 
 const Card = ({category}) => {
+    console.log("test2")
+    console.log(category)
     return (
         <Wrap>
 
@@ -32,13 +34,13 @@ export default Card;
 
 const Wrap = styled.div`
 
-    /* display: flex; */
-    /* justify-content: center; */
+    padding: 3rem;
+    box-sizing: border-box;
 `;
 const CardWrap = styled.div`
     display: grid;
     /* grid-template-columns: repeat(4, 1fr); */
-    grid-template-columns: repeat(auto-fill, minmax(23.063rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(15.1875rem, 1fr));
     place-items: center;
     gap: 0.5rem;
 

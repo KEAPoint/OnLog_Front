@@ -6,11 +6,12 @@ import { S_bold_25 } from '../style/Styled';
 
 export const Profile_Wrap = styled(S_bold_25)`
     display: flex;
-    align-items: center;
+    justify-content: center;
+    align-content: center;
 `;
 export const Profile_ProfileImg = styled.div`
-    width: 3.375rem;
-    height: 3.375rem;
+    width: 2.5rem;
+    height: 2.5rem;
     border-radius: 2.5rem;
     /* background: url(${Profile}) lightgray 50% / cover no-repeat; */
     background: ${props => `url(${props.$imgurl}) lightgray 50% / cover no-repeat`};
@@ -22,6 +23,11 @@ export const Profile_ProfileImg = styled.div`
 
 
 export const Profile_TitleWrap = styled.div`
+    display: flex;
+    flex-direction: column;
+    
+    justify-content: center;
+    align-content: center;
 `;
 export const Profile_Title = styled.div`
     text-align: justify;
@@ -40,11 +46,11 @@ export const Profile_Name = styled.div`
 const UserProfile = ({info}) => {
     return (
         <Profile_Wrap>
-        <Profile_ProfileImg $imgurl={info.profile}></Profile_ProfileImg>
-        <Profile_TitleWrap>
-            <Profile_Title>{info.blogName}</Profile_Title>
-            <Profile_Name>{info.nickName}</Profile_Name>
-        </Profile_TitleWrap>
+            <Profile_ProfileImg $imgurl={info.profile}></Profile_ProfileImg>
+            <Profile_TitleWrap>
+                <Profile_Title>{info.blogName}</Profile_Title>
+                <Profile_Name>{info.nickName}</Profile_Name>
+            </Profile_TitleWrap>
         </Profile_Wrap>
     );
 };
