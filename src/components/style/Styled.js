@@ -12,6 +12,16 @@ export const IconWrap = styled.div`
 `;
 
 
+// 
+export const Header_font = styled.div`
+     /* S-bold-25 */
+    font-family: Pretendard;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;   
+`;
+
 //
 export const S_bold_25 = styled.div`
     /* S-bold-25 */
@@ -65,7 +75,7 @@ export const S_regular_30 = styled.div`
 export const XL_semibold_80 = styled.div`
     /* XL-semibold-80 */
     /* font-family: Pretendard; */
-    font-size: 5rem;
+    font-size: 4.5rem;
     font-style: normal;
     font-weight: 600;
     line-height: 4.375rem; /* 87.5% */
