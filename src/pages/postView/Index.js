@@ -7,8 +7,13 @@ import PostThumb from './PostThumb';
 import CommentWrite from './CommentWrite';
 import Footer from '../../components/common/Footer';
 import styled from 'styled-components';
+import { useEffect } from 'react';
 
 const PostviewPage = () => {
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     return(
         <div>
             <StickWrap>

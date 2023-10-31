@@ -98,39 +98,41 @@ const HomePage = () => {
 
     return (
         <>
-            <Header/>
-            <Wrap>
-                    <TopWrap>
-                        {navData.map((item) => (
-                            (isCurrent('/main' + item.name)) && (
-                                (item.id===0) ? (
-                                    <div key={item.id}>
-                                        <Title>Onlog <p>&nbsp; 는 지금...</p></Title>
-                                    </div>
-                                ) : (
-                                    <div key={item.id}>
-                                        {/* <Title>#{item.name.replace(/\//g, '')}</Title> */}
-                                        <XL_semibold_80>#{item.name.replace(/\//g, '')}</XL_semibold_80>
-                                    </div>
-                                )
-                            ) 
+            <StickyWrap>
+                <Header/>
+                <Wrap>
+                        <TopWrap>
+                            {navData.map((item) => (
+                                (isCurrent('/main' + item.name)) && (
+                                    (item.id===0) ? (
+                                        <div key={item.id}>
+                                            <Title>Onlog <p>&nbsp; 는 지금...</p></Title>
+                                        </div>
+                                    ) : (
+                                        <div key={item.id}>
+                                            {/* <Title>#{item.name.replace(/\//g, '')}</Title> */}
+                                            <XL_semibold_80>#{item.name.replace(/\//g, '')}</XL_semibold_80>
+                                        </div>
+                                    )
+                                ) 
 
-                        ))}
-                        <SearchBox/>
-                    </TopWrap>
-                    <Nav>
-                        <LinkWrap>
-                            <NavL to={'/main'} $active={isCurrent("/main")} hovername="전체 게시물" onClick={() => setCategory('')}><p><img src={Home} style={{padding:"0rem 3rem"}}/></p></NavL>
-                            <NavL to={'/main/lifestyle'} $active={isCurrent("/main/lifestyle")} hovername="일상" onClick={() => setCategory('lifestyle')}><p>#lifestyle</p></NavL>
-                            <NavL to={'/main/travel'} $active={isCurrent("/main/travel")} hovername="여행" onClick={() => setCategory('travel')}><p>#travel</p></NavL>
-                            <NavL to={'/main/foodie'} $active={isCurrent("/main/foodie")} hovername="맛집" onClick={() => setCategory('foodie')}><p>#foodie</p></NavL>
-                            <NavL to={'/main/entertainment'} $active={isCurrent("/main/entertainment")} hovername="엔터테인먼트" onClick={() => setCategory('entertainment')}><p>#entertainment</p></NavL>
-                            <NavL to={'/main/tech'} $active={isCurrent("/main/tech")} hovername="IT기술"onClick={() => setCategory('tech')}><p>#tech</p></NavL>
-                            <NavL to={'/main/sports'} $active={isCurrent("/main/sports")} hovername="스포츠" onClick={() => setCategory('sports')}><p>#sports</p></NavL>
-                            <NavL to={'/main/news'} $active={isCurrent("/main/news")} hovername="뉴스/시사" onClick={() => setCategory('news')}><p>#news</p></NavL>
-                        </LinkWrap>
-                    </Nav>
-            </Wrap> 
+                            ))}
+                            <SearchBox/>
+                        </TopWrap>
+                        <Nav>
+                            <LinkWrap>
+                                <NavL to={'/main'} $active={isCurrent("/main")} hovername="전체 게시물" onClick={() => setCategory('')}><p><img src={Home} style={{padding:"0rem 3rem"}}/></p></NavL>
+                                <NavL to={'/main/lifestyle'} $active={isCurrent("/main/lifestyle")} hovername="일상" onClick={() => setCategory('lifestyle')}><p>#lifestyle</p></NavL>
+                                <NavL to={'/main/travel'} $active={isCurrent("/main/travel")} hovername="여행" onClick={() => setCategory('travel')}><p>#travel</p></NavL>
+                                <NavL to={'/main/foodie'} $active={isCurrent("/main/foodie")} hovername="맛집" onClick={() => setCategory('foodie')}><p>#foodie</p></NavL>
+                                <NavL to={'/main/entertainment'} $active={isCurrent("/main/entertainment")} hovername="엔터테인먼트" onClick={() => setCategory('entertainment')}><p>#entertainment</p></NavL>
+                                <NavL to={'/main/tech'} $active={isCurrent("/main/tech")} hovername="IT기술"onClick={() => setCategory('tech')}><p>#tech</p></NavL>
+                                <NavL to={'/main/sports'} $active={isCurrent("/main/sports")} hovername="스포츠" onClick={() => setCategory('sports')}><p>#sports</p></NavL>
+                                <NavL to={'/main/news'} $active={isCurrent("/main/news")} hovername="뉴스/시사" onClick={() => setCategory('news')}><p>#news</p></NavL>
+                            </LinkWrap>
+                        </Nav>
+                </Wrap> 
+            </StickyWrap>
         <PageWrap>
 
             <Card category={category}/>
@@ -143,6 +145,11 @@ const HomePage = () => {
 
 export default HomePage;
 
+const StickyWrap = styled.div`
+    background-color: white;
+    position: sticky;
+    top: 0;
+`
 const PageWrap = styled.div`
     /* margin: 0rem 6.25rem; */
     /* background-color: red; */
