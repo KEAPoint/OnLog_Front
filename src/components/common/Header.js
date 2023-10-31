@@ -4,7 +4,6 @@ import {ReactComponent as Logo} from '../../assets/images/Logo.svg';
 import Profile from '../../assets/images/Profile.jpeg';
 import { Header_font, S_bold_25, XS_bold_13 } from '../style/Styled';
 import { Link } from 'react-router-dom';
-import Video from './Video';
 
 
 const Header = () => {

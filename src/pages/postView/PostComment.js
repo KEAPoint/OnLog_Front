@@ -20,7 +20,7 @@ export default PostComment;
 
 const Wrap = styled.div`
     display: flex;
-    padding: 0rem 11.875rem 1.25rem;
+    // padding: 0rem 11.875rem 1.25rem;
     flex-direction: column;
     align-items: flex-end;
     gap: 0.625rem;
@@ -28,19 +28,19 @@ const Wrap = styled.div`
 `
 const CommentBtn = styled.button`
     display: flex;
-    padding: 0.75rem 4.0625rem;
+    padding: 0.75rem 4rem;
     margin-Top: 1.25rem;
     align-items: center;
     gap: 0.9375rem;
     background: var(--black, #000);
     color: var(--white, #FFF);
     text-align: justify;
-    border : 4px solid black;
+    border : 3px solid black;
     cursor: pointer;
     
     /* S-bold-25 */
     font-family: Pretendard;
-    font-size: 1.5625rem;
+    font-size: 1rem;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -59,7 +59,7 @@ const CommentBtn = styled.button`
 
 const CommentWrap = styled.div`
     display: flex;
-    padding: 0rem 11.875rem;
+    // padding: 0rem 11.875rem;
     flex-direction: column;
     align-items: flex-start;
     gap: 0.625rem;

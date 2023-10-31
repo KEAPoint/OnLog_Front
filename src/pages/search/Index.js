@@ -6,6 +6,7 @@ import SearchBox from './SearchBox';
 import BlogSearch from './BlogSearch';
 import PostSearch from './PostSearch';
 import Footer from '../../components/common/Footer';
+import { useEffect } from 'react';
 
 const SearchPage = () => {
 
@@ -13,6 +14,10 @@ const SearchPage = () => {
 
     const term = location.state ? location.state.term : ''; // 검색값이 비어있을 경우(페이지 이동 혹은 주소로 쳐서 접근한 경우)에는 
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+    
     return(
         <div>
             <Header/>

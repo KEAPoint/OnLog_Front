@@ -130,7 +130,7 @@ const HomePage = () => {
                     ))}
                     
                     <LinkWrap>
-                        <NavL to={'/main/'} $active={isCurrent("/main")} hovername="전체 게시물" onClick={() => setCategory('')}><p><img src={Home}/></p></NavL>
+                        <NavL to={'/main'} $active={isCurrent("/main")} hovername="전체 게시물" onClick={() => setCategory('')}><p><img src={Home}/></p></NavL>
                         <NavL to={'/main/lifestyle'} $active={isCurrent("/main/lifestyle")} hovername="일상" onClick={() => setCategory('lifestyle')}><p>#lifestyle</p></NavL>
                         <NavL to={'/main/travel'} $active={isCurrent("/main/travel")} hovername="여행" onClick={() => setCategory('travel')}><p>#travel</p></NavL>
                         <NavL to={'/main/foodie'} $active={isCurrent("/main/foodie")} hovername="맛집" onClick={() => setCategory('foodie')}><p>#foodie</p></NavL>
