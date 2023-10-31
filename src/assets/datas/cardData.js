@@ -29,7 +29,7 @@ export const cardData = [
         blogName: "Hani Tech World",
         nickName: "@hani",
         title: "철수와의 일상에 대한 기록 | Day2",
-        contents: "오늘 철수와 싸왔다. / 철수가 나에게 바보라고 했기 때문이다. / 이제부터 철수는 내 철천지 원수고 내일부터 전쟁이다.",
+        contents: "오늘 철수와 싸왔다. / 철수가 나에게 바보라고 했기 때문이다. / 이제부터 철수는 내 철천지 원수고 내일부터 전쟁이다.ㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ",
         img: LifeStyle,
         heart: 12,
         comment: 3,

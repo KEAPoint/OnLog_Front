@@ -18,9 +18,9 @@ const LandingPage = () => {
     
 
     return (
-        <div>
+        <div style={{padding:"1rem"}}>
             {/* <Header /> */}
-            <HeaderNormal/>
+            {/* <HeaderNormal/> */}
             <LogoFix/>
             <Wrap>
                 {landingData.map(item => (

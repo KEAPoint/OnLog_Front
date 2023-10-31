@@ -30,9 +30,12 @@ const CardItemHover = ({info}) => {
 export default CardItemHover;
 
 const HoverWrap = styled.button`
-    width: 23.0625rem;
-    height: 37.5625rem;
-    padding: 1.875rem 2.5rem;
+    /* width: 23.0625rem;
+    height: 37.5625rem; */
+    width: 15.1875rem;
+    height: 23.625rem;
+    /* padding: 1.875rem 2.5rem; */
+    padding: 1.875rem 1rem 1rem 1rem;
     box-sizing: border-box;
 
     background-color: var(--black);
@@ -57,8 +60,8 @@ const Wrap = styled.div`
     
 
 const Photo = styled.div`
-    width: 14.1875rem;
-    height: 14.1875rem;
+width: 8.125rem;
+height: 8.125rem;
     background: ${props => `url(${props.$imgurl}) lightgray 50% / cover no-repeat`};
 `;
 const Contents = styled(XS_regular_18)`
@@ -76,12 +79,14 @@ const Contents = styled(XS_regular_18)`
 `;
 const ReadWrap = styled.div`
     font-family: Pretendard;
-    font-size: 1.75rem;
+    font-size: 1.0625rem;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+
     color: var(--white, #FFF);
     border: none;
+    border-top: 1px solid var(--gray_bold, #4A4A4A);
     background: none;
     cursor: pointer;
     display: flex;

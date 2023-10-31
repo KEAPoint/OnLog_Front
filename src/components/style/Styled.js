@@ -26,7 +26,7 @@ export const Header_font = styled.div`
 export const S_bold_25 = styled.div`
     /* S-bold-25 */
     font-family: Pretendard;
-    font-size: 1.5625rem;
+    font-size: 1.0625rem;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -59,17 +59,17 @@ export const L_semibold_40 = styled.div`
 export const M_regular_38 = styled.div`
     /* M-regular-38 */
     font-family: Pretendard;
-    font-size: 2.375rem;
+    font-size: 1.3125rem;
     font-style: normal;
-    font-weight: 400;
-    line-height: 3.01875rem; /* 127.105% */
+    font-weight: 700;
+    line-height: normal;
 `;
 export const S_regular_30 = styled.div`
     /* S-regular_30 */
     font-family: Pretendard;
-    font-size: 1.875rem;
+    font-size: 1rem;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 600;
     line-height: normal;
 `;
 export const XL_semibold_80 = styled.div`
@@ -89,13 +89,13 @@ export const S_bold_28 = styled.div`
     line-height: normal;
 `;
 export const XS_regular_18 = styled.div`
-/* XS-regular-18 */
+    /* XS-regular-18 */
     font-family: Pretendard;
-    font-size: 1.125rem;
+    font-size: 1rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    letter-spacing: 0.03375rem;
+    letter-spacing: 0.0225rem;
 `;
 export const S_medium_34 = styled.div`
     /* S-medium-34 */

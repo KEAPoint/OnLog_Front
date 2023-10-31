@@ -16,10 +16,16 @@ export const landingData = [
     },
     {
         id:1,
-        name: "field1",
-        contents: "\n \n \n \n \n \n \n이곳에서 찾아가는\n 하루하루가\n 더욱 의미있길 바랍니다.",
+        name: "login",
+        contents: "",
         img: "",
     },
+    // {
+    //     id:1,
+    //     name: "field1",
+    //     contents: "\n \n \n \n \n \n \n이곳에서 찾아가는\n 하루하루가\n 더욱 의미있길 바랍니다.",
+    //     img: "",
+    // },
     {
         id:2,
         name: "travel",

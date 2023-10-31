@@ -77,8 +77,8 @@ const Alarm = styled(XS_bold_13)`
     align-self: flex-start;
 `;
 const TitleWrap = styled(Link)`
-text-decoration: none;
-color: var(--black);
+    text-decoration: none;
+    color: var(--black);
 `;
 const Title = styled.div`
     text-align: justify;
