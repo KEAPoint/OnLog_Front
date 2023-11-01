@@ -48,7 +48,7 @@ const KakaoMiddle = () => {
                         }),
                     );
                     window.localStorage.setItem("accessToken", res.data.data.tokenInfo.accessToken);
-                    // window.localStorage.setItem("refreshToken", res.data.tokenInfo.accessToken);
+                    window.localStorage.setItem("refreshToken", res.data.tokenInfo.refreshToken);
                     
                     navigate("/signUp");
                 } else {

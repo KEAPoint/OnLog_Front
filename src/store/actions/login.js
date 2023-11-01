@@ -4,3 +4,9 @@ export const loginAction = (data) => {
         data: data
     }
 }
+export const tokenAction = (data) => {
+    return {
+        type: 'SET_TOKEN',
+        data: data
+    }
+}

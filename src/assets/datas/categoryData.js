@@ -5,7 +5,7 @@ import News from '../../assets/images/catogories/News.png';
 import Sports from '../../assets/images/catogories/Sports.png';
 import Tech from '../../assets/images/catogories/Tech.png';
 import Travel from '../../assets/images/catogories/Travel.png';
-
+import Logo from '../images/Logo.svg';
 // landingpage
 export const landingData = [
     {
@@ -16,7 +16,7 @@ export const landingData = [
     },
     {
         id:1,
-        name: "login",
+        name: "field1",
         contents: "",
         img: "",
     },
@@ -82,9 +82,9 @@ export const landingData = [
     },
     {
         id:11,
-        name: "로그인..",
+        name: "field5",
         contents: "",
-        img: "",
+        img: Logo,
     },
 ]
 
