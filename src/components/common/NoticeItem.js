@@ -181,8 +181,8 @@ const Top = styled.div`
     line-height: normal;
 `;
 const ProfileImg = styled.div`
-    width: 3.375rem;
-    height: 3.375rem;
+    width: 2.5rem;
+    height: 2.5rem;
     border-radius: 2.5rem;
     background: url(${Profile}) lightgray 50% / cover no-repeat;
     margin-right: 0.94rem;
@@ -196,9 +196,16 @@ const NickName = styled.div`
     color: var(--black, #000);
     text-align: justify;
 
-    /* S-bold-25 */
+    // /* S-bold-25 */
+    // font-family: Pretendard;
+    // font-size: 1.5625rem;
+    // font-style: normal;
+    // font-weight: 700;
+    // line-height: normal;
+
+    /* S-bold-19.2(RE) */
     font-family: Pretendard;
-    font-size: 1.5625rem;
+    font-size: 1.2rem;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -220,9 +227,16 @@ const PostTitle = styled.div`
     color: var(--black, #000);
     text-align: justify;
 
-    /* S-bold-25 */
+    // /* S-bold-25 */
+    // font-family: Pretendard;
+    // font-size: 1.5625rem;
+    // font-style: normal;
+    // font-weight: 700;
+    // line-height: normal;
+    
+    /* S-bold-19.2(RE) */
     font-family: Pretendard;
-    font-size: 1.5625rem;
+    font-size: 1.2rem;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -230,9 +244,16 @@ const PostTitle = styled.div`
 const Date = styled.div`
     color: var(--gray_bold, #4A4A4A);
 
-    /* XS-semibold-20 */
+    // /* XS-semibold-20 */
+    // font-family: Pretendard;
+    // font-size: 1.25rem;
+    // font-style: normal;
+    // font-weight: 600;
+    // line-height: normal;
+
+    /* XS-semibold-16(RE) */
     font-family: Pretendard;
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
@@ -240,7 +261,7 @@ const Date = styled.div`
 const CommentWrap = styled.div`
     color: var(--gray_bold, #4A4A4A);
 
-    margin-left: 5rem;
+    margin-left: 3.5rem;
     margin-bottom: 0.5rem;
 
     /* S-regular-25 */
@@ -261,9 +282,16 @@ const SubscribeWrap = styled.button`
     border : 4px solid black;
 
     text-align: justify;
-    /* XS-semibold-20 */
+    // /* XS-semibold-20 */
+    // font-family: Pretendard;
+    // font-size: 1.25rem;
+    // font-style: normal;
+    // font-weight: 600;
+    // line-height: normal;
+
+    /* XS-semibold-16(RE) */
     font-family: Pretendard;
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-style: normal;
     font-weight: 600;
     line-height: normal;

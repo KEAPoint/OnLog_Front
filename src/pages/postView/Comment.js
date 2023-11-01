@@ -8,6 +8,9 @@ import CommentWrite from "./CommentWrite";
 
 const Comment = () => {
 
+    const context = '그런데 나는 캡틴아메리카보다 아이언맨이 더 좋던데??? 의리남이잖아 ㅎㅎ';
+    const date = '2023.10.18';
+    const heart = '3';
     const [isClicked, setIsClicked] = useState(false);
 
     const buttonHandler = () => {
@@ -24,9 +27,9 @@ const Comment = () => {
                         <NickName>@hanitech</NickName>
                     </TitleWrap>
                 </Menu>
-                <Context> 그런데 나는 캡틴아메리카보다 아이언맨이 더 좋던데??? 의리남이잖아 ㅎㅎ</Context>
+                <Context> {context} </Context>
                 <CommentFooter>
-                    <CommentDate>2023.10.18</CommentDate>
+                    <CommentDate>{date}</CommentDate>
                     
                     <HeartReplyWrap>
                         <HeartWrap>
@@ -35,10 +38,10 @@ const Comment = () => {
                                     <path d="M23 7.08001C23 3.72227 20.4472 1 17.2985 1C14.8933 1 12.8388 2.58809 12 4.83466C11.1623 2.58809 9.10669 1 6.70147 1C3.55278 1 1 3.72227 1 7.08001C1 8.23961 1.3042 9.32173 1.83201 10.2441C2.95573 12.7073 5.66402 16.3338 12 21C18.336 16.3338 21.0443 12.7073 22.168 10.2441C22.6958 9.32173 23 8.23961 23 7.08001Z" stroke="#4A4A4A" strokeWidth="2" strokeLinejoin="round"/>
                                     </svg>
                                 </HeartButton>
-                                <HeartNum> 1 </HeartNum>
+                                <HeartNum> {heart} </HeartNum>
                         </HeartWrap>
 
-                        <ReplyButton onClick={buttonHandler}> 댓글달기 </ReplyButton>
+                        <ReplyButton onClick={buttonHandler}> 답글달기 </ReplyButton>
                     </HeartReplyWrap>
                 </CommentFooter>
             </Wrap>

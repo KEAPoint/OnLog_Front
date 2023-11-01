@@ -31,7 +31,7 @@ const BlogItem = () => {
         Swal.fire({
             title: isSubscribed ? "구독 취소" : "구독 완료",
             html: isSubscribed ? "구독이 취소되었습니다!" : "구독이 완료되었습니다!",
-            // icon: 'success'
+            icon: 'success'
         });
     }
 
@@ -168,9 +168,16 @@ const SubscribeWrap = styled.button`
     border : 4px solid black;
 
     text-align: justify;
-    /* XS-semibold-20 */
+    // /* XS-semibold-20 */
+    // font-family: Pretendard;
+    // font-size: 1.25rem;
+    // font-style: normal;
+    // font-weight: 600;
+    // line-height: normal;
+    
+    /* XS-semibold-16(RE) */
     font-family: Pretendard;
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-style: normal;
     font-weight: 600;
     line-height: normal;

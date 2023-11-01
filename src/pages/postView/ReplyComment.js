@@ -3,45 +3,60 @@ import UserProfile from "../../components/common/UserProfile";
 import { cardData } from "../../assets/datas/cardData";
 import Profile from "../../assets/images/Profile.jpeg";
 import { S_bold_25 } from '../../components/style/Styled';
+import { useState } from "react";
+import CommentWrite from "./CommentWrite";
 
 const ReplyComment = () => {
+    const context = '그런데 나는 캡틴아메리카보다 아이언맨이 더 좋던데??? 의리남이잖아 ㅎㅎ';
+    const date = '2023.10.18';
+    const heart = '3';
+    const [isClicked, setIsClicked] = useState(false);
+
+    const buttonHandler = () => {
+        setIsClicked(!isClicked);
+    }
+
     return(
         <Wrap>
-            {/* <Profile>
-            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="22" viewBox="0 0 26 22" fill="none">
-  <path d="M20.4678 12.3509H8.40267C5.35749 12.3509 2.88889 9.88227 2.88889 6.83709V0H0V6.83709C0 11.4049 3.70291 15.1078 8.27068 15.1078H20.4678L15.2967 20.0564L17.3333 22L26 13.7293L17.3333 5.45865L15.2967 7.40226L20.4678 12.3509Z" fill="#4A4A4A"/>
-</svg>
-                <UserProfile info={cardData}/>
-            </Profile> */}
+            <Wrap2>
+                {/* <Profile>
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="22" viewBox="0 0 26 22" fill="none">
+                    <path d="M20.4678 12.3509H8.40267C5.35749 12.3509 2.88889 9.88227 2.88889 6.83709V0H0V6.83709C0 11.4049 3.70291 15.1078 8.27068 15.1078H20.4678L15.2967 20.0564L17.3333 22L26 13.7293L17.3333 5.45865L15.2967 7.40226L20.4678 12.3509Z" fill="#4A4A4A"/>
+                </svg>
+                    <UserProfile info={cardData}/>
+                </Profile> */}
 
-            <Menu>
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="18" viewBox="0 0 26 22" fill="none">
-  <path d="M20.4678 12.3509H8.40267C5.35749 12.3509 2.88889 9.88227 2.88889 6.83709V0H0V6.83709C0 11.4049 3.70291 15.1078 8.27068 15.1078H20.4678L15.2967 20.0564L17.3333 22L26 13.7293L17.3333 5.45865L15.2967 7.40226L20.4678 12.3509Z" fill="#4A4A4A"/>
-</svg>
-                <ProfileImg style={{marginLeft:"1rem"}}></ProfileImg>
-                <TitleWrap>
-                    <BlogName>Hani Tech World</BlogName>
-                    <NickName>@hanitech</NickName>
-                </TitleWrap>
-            </Menu>
-            
-            <Context style={{marginLeft:"1rem"}}> 그런데 나는 캡틴아메리카보다 아이언맨이 더 좋던데? 의리남이잖아</Context>
-            <CommentFooter>
-                <CommentDate style={{marginLeft:"1rem"}}>2023.10.18</CommentDate>
+                <Menu>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="18" viewBox="0 0 26 22" fill="none">
+                        <path d="M20.4678 12.3509H8.40267C5.35749 12.3509 2.88889 9.88227 2.88889 6.83709V0H0V6.83709C0 11.4049 3.70291 15.1078 8.27068 15.1078H20.4678L15.2967 20.0564L17.3333 22L26 13.7293L17.3333 5.45865L15.2967 7.40226L20.4678 12.3509Z" fill="#4A4A4A"/>
+                    </svg>
+                    <ProfileImg style={{marginLeft:"1rem"}}></ProfileImg>
+                    <TitleWrap>
+                        <BlogName>Hani Tech World</BlogName>
+                        <NickName>@hanitech</NickName>
+                    </TitleWrap>
+                </Menu>
                 
-                <HeartReplyWrap>
-                    <HeartWrap>
-                            <HeartButton>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 24 22" fill="none">
-                                <path d="M23 7.08001C23 3.72227 20.4472 1 17.2985 1C14.8933 1 12.8388 2.58809 12 4.83466C11.1623 2.58809 9.10669 1 6.70147 1C3.55278 1 1 3.72227 1 7.08001C1 8.23961 1.3042 9.32173 1.83201 10.2441C2.95573 12.7073 5.66402 16.3338 12 21C18.336 16.3338 21.0443 12.7073 22.168 10.2441C22.6958 9.32173 23 8.23961 23 7.08001Z" stroke="#4A4A4A" strokeWidth="2" strokeLinejoin="round"/>
-                                </svg>
-                            </HeartButton>
-                            <HeartNum> 1 </HeartNum>
-                    </HeartWrap>
+                <Context style={{marginLeft:"1rem"}}> {context}</Context>
+                <CommentFooter>
+                    <CommentDate style={{marginLeft:"1rem"}}>{date}</CommentDate>
+                    
+                    <HeartReplyWrap>
+                        <HeartWrap>
+                                <HeartButton>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 24 22" fill="none">
+                                    <path d="M23 7.08001C23 3.72227 20.4472 1 17.2985 1C14.8933 1 12.8388 2.58809 12 4.83466C11.1623 2.58809 9.10669 1 6.70147 1C3.55278 1 1 3.72227 1 7.08001C1 8.23961 1.3042 9.32173 1.83201 10.2441C2.95573 12.7073 5.66402 16.3338 12 21C18.336 16.3338 21.0443 12.7073 22.168 10.2441C22.6958 9.32173 23 8.23961 23 7.08001Z" stroke="#4A4A4A" strokeWidth="2" strokeLinejoin="round"/>
+                                    </svg>
+                                </HeartButton>
+                                <HeartNum> {heart} </HeartNum>
+                        </HeartWrap>
 
-                    <ReplyButton> 댓글달기 </ReplyButton>
-                </HeartReplyWrap>
-            </CommentFooter>
+                        <ReplyButton onClick={buttonHandler}> 답글달기 </ReplyButton>
+                    </HeartReplyWrap>
+                </CommentFooter>
+            </Wrap2>
+
+            {isClicked && <CommentWrite/>}
         </Wrap>
     );
 };
@@ -49,8 +64,10 @@ const ReplyComment = () => {
 export default ReplyComment;
 
 const Wrap = styled.div`
+margin-left: 2rem;
+`
+const Wrap2 = styled.div`
     display: flex;
-    margin-left: 2rem;
     padding: 1rem 1rem 0rem 1rem;
     flex-direction: column;
     justify-content: flex-start;
@@ -180,7 +197,7 @@ const ReplyButton = styled.button`
     background-color: transparent;
     border: 2px solid black;
 
-    cursor:
+    cursor: pointer;
 
     /* XS-semibold-20 */
     font-family: Pretendard;

@@ -4,24 +4,24 @@ import UserProfile from '../../components/common/UserProfile';
 import MypageTop from './MypageTop.js';
 import MypagePost from './MyPagePost';
 import Footer from '../../components/common/Footer';
+import styled from 'styled-components';
 
 const MyPage = () => {
     return(
-        // width 지정했기 때문에 축소하면 왼쪽으로 쏠려감. 그래서 auto 넣어줘서 가운데로 오게 했음
-        // <div style={{width: "1920px", marginLeft:"auto", marginRight:"auto"}}>
-        //     {/* <UserProfile/> */}
-        //     <MypageTop/>
-        //     <MypagePost style={{width: "1920px", marginLeft:"auto", marginRight:"auto"}}/>
-        // </div>
         <div>
-        <Header/>
-        {/* <UserProfile/> */}
-        <MypageTop/>
-        <MypagePost/>
-        <Footer/>
-    </div>
+            <Header/>
+            {/* <UserProfile/> */}
+            <Wrap>
+                <MypageTop/>
+                <MypagePost/>
+            </Wrap>
+            <Footer/>
+        </div>
     );
 };
 
+const Wrap = styled.div`
+    padding: 0rem 6.25rem;
+`
 export default MyPage;
 

@@ -97,7 +97,7 @@ const ReadWrap = styled.div`
     align-self: stretch;
 
     &:hover{
-        color: red;
+        // color: red;
     }
     &:active{
         transform: scale(0.95);

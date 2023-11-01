@@ -39,15 +39,15 @@ export const XS_bold_13 = styled.div`
     font-weight: 700;
     line-height: normal;
 `;
-// export const S_regular_25 = styled.input`
+export const S_regular_25 = styled.input`
 
-//     /* S-regular-25 */
-//     font-family: Pretendard;
-//     font-size: 1.5625rem;
-//     font-style: normal;
-//     font-weight: 400;
-//     line-height: normal;
-// `;
+    /* S-regular-25 */
+    font-family: Pretendard;
+    font-size: 1.5625rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+`;
 export const L_semibold_40 = styled.div`
     /* L-semibold-40 */
     font-family: Pretendard;

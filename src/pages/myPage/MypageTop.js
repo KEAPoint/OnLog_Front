@@ -62,7 +62,7 @@ const MypageTop = () => {
 export default MypageTop;
 
 const PageWrap = styled.div`
-padding: 3.75rem 6.25rem 1.875rem 6.25rem;
+    padding: 3.75rem 0rem 1.875rem 0rem;
 
 `
 const Wrap1 = styled.div`
@@ -108,7 +108,7 @@ const Menu = styled(S_bold_25)`
 // `
 const ProfileImg = styled.div`
     width: 12.6875rem;
-    height: 12.6875rem;
+    height: 12.625rem;
     border-radius: 6.875rem;
     background: url(${HaniProfile}) lightgray 50% / cover no-repeat;
     margin-right: 0.94rem;

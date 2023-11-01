@@ -50,6 +50,13 @@ const Left = styled.div`
     font-style: normal;
     font-weight: 400;
     line-height: 3.01875rem; /* 127.105% */
+    
+    // /* M-regular-38 */
+    // font-family: Pretendard;
+    // font-size: 2.375rem;
+    // font-style: normal;
+    // font-weight: 400;
+    // line-height: 3.01875rem; /* 127.105% */
 `
 const Right = styled.div`
     display: flex;
