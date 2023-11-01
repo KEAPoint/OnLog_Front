@@ -168,9 +168,16 @@ const SubscribeWrap = styled.button`
     border : 4px solid black;
 
     text-align: justify;
-    /* XS-semibold-20 */
+    // /* XS-semibold-20 */
+    // font-family: Pretendard;
+    // font-size: 1.25rem;
+    // font-style: normal;
+    // font-weight: 600;
+    // line-height: normal;
+    
+    /* XS-semibold-16(RE) */
     font-family: Pretendard;
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-style: normal;
     font-weight: 600;
     line-height: normal;

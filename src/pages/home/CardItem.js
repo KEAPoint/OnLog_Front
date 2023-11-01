@@ -14,7 +14,7 @@ const CardItem = ({info}) => {
     // Loading skeleton animation
     setTimeout(() => {
         setIsLoading(false);
-    }, 2000);
+    }, 5000);
 
     return (
         <PageWrap
@@ -26,28 +26,29 @@ const CardItem = ({info}) => {
                 <Wrap>
                     {isLoading ? (
                         <SkeletonItem/>
+                        // <></>
                     ) : (
                         <>
-                        {/* <Main> */}
                             <UserProfile info={info}/>
         
                             <TextWrap>
                                 <Title>{info.title}</Title>
-                                <Date>{info.date}</Date>
-                                <Category>#{info.category}</Category>
+                                {/* <Date>{info.date}</Date> */}
+                                {/* <Category>#{info.category}</Category> */}
                             </TextWrap>
-                        {/* </Main> */}
-        
-                        <Second>
-                            <Icon>
-                                <IconWrap><Heart/></IconWrap>
-                                <p>999</p>
-                            </Icon>
-                            <Icon>
-                                <IconWrap><Comment/></IconWrap>
-                                <p>100</p>
-                            </Icon>
-                        </Second>
+                            <Date>{info.date}</Date>
+                            <Second>
+                                <Icon>
+                                    {/* <IconWrap><Heart/></IconWrap> */}
+                                    <Heart style={{paddingRight:"1rem"}}/>
+                                    <p>999</p>
+                                </Icon>
+                                <Icon>
+                                    {/* <IconWrap><Comment/></IconWrap> */}
+                                    <Comment style={{paddingRight:"1rem"}}/>
+                                    <p>100</p>
+                                </Icon>
+                            </Second>
                         </>
                     )}  
                 </Wrap>
@@ -74,10 +75,9 @@ const Wrap = styled.div`
     flex-direction: column;
     justify-content: space-between;
 
-    width: 23.0625rem;
-    height: 37.5625rem;
-
-    padding: 1.875rem 1.25rem 3.75rem 1.25rem;
+    width: 15.1875rem;
+    height: 23.625rem;
+    padding: 1.875rem 1.25rem;
     box-sizing: border-box;
     
     // box style
@@ -123,12 +123,17 @@ export const Second = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6.25rem;
-
+    gap: 1.25rem;
 `;
 export const Icon = styled(S_regular_30)`
     display: flex;
     align-items: center;
+    justify-content: center;
+
+    p  {
+        font-size: 1.0625rem;
+
+    }
 `;
 
 

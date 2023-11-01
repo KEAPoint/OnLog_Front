@@ -8,7 +8,7 @@ const NewSubsPost = () => {
         <div>
             <Wrap>
                 <Left> 새로운 구독 글 </Left>
-                <Right><Num>5</Num>건</Right>
+                <Right><Num>4</Num>건</Right>
             </Wrap>
             <PageWrap>
                 <Card category="lifestyle"/>

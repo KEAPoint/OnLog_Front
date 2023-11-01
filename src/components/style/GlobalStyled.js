@@ -16,6 +16,15 @@ export const GlobalStyle = createGlobalStyle`
         --color-gray-100: rgba(255, 255, 255, 0.7);
         --color-red: #ff0000;
 
+        /* 주제 메인 색상 */
+        --tag-lifestyle: #FF7575;
+        --tag-travel: #88D67C;
+        --tag-foodie: #C0904A;
+        --tag-entertain: #C090C3;
+        --tag-tech: #5943E2;
+        --tag-sports: #3070EE;
+        --tag-news:#F3CC40;
+
     }    
     body {
 

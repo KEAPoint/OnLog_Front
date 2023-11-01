@@ -4,19 +4,23 @@ import React from "react";
 import TextareaAutosize from 'react-textarea-autosize'; // npm install react-textarea-autosize
 import Header from '../../components/common/Header';
 import Profile from "../../assets/images/Profile.jpeg"
+import Swal from "sweetalert2";
 
 
 const ProfileEditPage = () =>{
     const [email, setEmail] = useState('');
-    const [nickname, setNickname] = useState('');
-    const [blogname, setBlogname] = useState('');
-    const [info, setInfo] = useState('dddddddddddddddddddddddddddddddddddrrrrrrrrwwwllllllllllllllsmsmsmsmsmsmsmsmsmsm');
-
+    const [nickname, setNickname] = useState('Hani Tech World');
+    const [blogname, setBlogname] = useState('hanitech');
+    const [info, setInfo] = useState('Hani Tech World 는 최신 기술 정보와 실용적인 IT 팁을 제공하는 블로그입니다.');
     const handleSubmit = (e) => {
-        e.preventDefault();
-        alert(nickname);
-        alert(blogname);
-        alert(info);
+        // e.preventDefault();
+        // alert(nickname);
+        // alert(blogname);
+        // alert(info);
+        Swal.fire({
+            // icon: 'success',
+            title: '수정사항 변경 완료'
+        })
     };
     const onEmailHandler = (e) => {
         setEmail(e.currentTarget.value);
@@ -43,7 +47,7 @@ const ProfileEditPage = () =>{
                 <InfoWrap>
                     <Wrap2>
                         <Title> 이메일 </Title>
-                        <Email>haniyong@gmail.com</Email>
+                        <Email>seojinangel@naver.com</Email>
                     </Wrap2>
                     <Wrap2>
                         <Title>닉네임</Title>
@@ -61,7 +65,7 @@ const ProfileEditPage = () =>{
                         <InfoEdit type='text' value={info} style={{ overflow: 'hidden' }} onChange={infoHandler}/>
                     </Wrap2>
                     <Wrap2 style={{alignItems:'flex-end'}}>
-                        <SubmitButton onClick={handleSubmit}>Submit</SubmitButton>
+                        <SubmitButton onClick={handleSubmit}>수정사항 변경</SubmitButton>
                     </Wrap2>
                 </InfoWrap>
             </Wrap>
@@ -252,7 +256,7 @@ width: 44.625rem;
 `
 
 const SubmitButton = styled.button`
-    border:none;
+    border:4px solid black;
     display: flex;
     padding: 0.75rem 4.0625rem;
     align-items: center;
@@ -273,11 +277,8 @@ const SubmitButton = styled.button`
     &:hover{
         background-color: white;
         color: black;
-        border: 4px solid var(--black, #000);
     }
     &:active{
-        box-shadow: 1px 1px 0 rgb(0,0,0,0.5);
-        position: relative;
-        top:2px;
+        transform: scale(0.95);
     }
 `

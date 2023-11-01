@@ -24,11 +24,9 @@ const SearchBox = () => {
                 navigate('/search', { state: { term: e.target.value } }); // 검색 결과 페이지로 이동
             } else {
                 // 입력값이 없는 경우 입력하라고 경고창
-                Swal.fire(
-                    {
-                        icon: "warning",
-                        title: "검색어를 입력해주세요!"
-                    }
+                Swal.fire({
+                    // icon: "warning",
+                    title: "검색어를 입력해주세요!"}
                 )
             }
     }
@@ -57,14 +55,14 @@ const Wrap = styled.div`
     // padding: 0rem 6.25rem 1.25rem 6.25rem;
 `;
 const SearchWrap = styled.div`
-display: flex;
-width: 40.9375rem;
-padding: 0.75rem 1.5625rem;
-justify-content: flex-end;
-align-items: center;
-gap: 0.625rem;
-border-radius: 1.875rem;
-border: 1px solid var(--gray_light, #939393);
+    display: flex;
+    width: 35.9375rem;
+    padding: 0.5rem 1.5625rem;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.625rem;
+    border-radius: 1.875rem;
+    border: 1px solid var(--gray_light, #939393);
 
     input {
         width: 100%;

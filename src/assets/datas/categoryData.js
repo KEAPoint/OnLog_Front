@@ -16,10 +16,16 @@ export const landingData = [
     },
     {
         id:1,
-        name: "field1",
-        contents: "여기는 뭐가 들어갈지 아직 디자인이 안나왔쏘..",
+        name: "login",
+        contents: "",
         img: "",
     },
+    // {
+    //     id:1,
+    //     name: "field1",
+    //     contents: "\n \n \n \n \n \n \n이곳에서 찾아가는\n 하루하루가\n 더욱 의미있길 바랍니다.",
+    //     img: "",
+    // },
     {
         id:2,
         name: "travel",
@@ -29,7 +35,7 @@ export const landingData = [
     {
         id:3,
         name: "field2",
-        contents: "여기는 뭐가 들어갈지 아직 디자인이 안나왔쏘..",
+        contents: "세줄 요약,\n 당신의 시간을 소중히\n 생각하는 공간입니다.",
         img: "",
     },
     {
@@ -59,13 +65,13 @@ export const landingData = [
     {
         id:8,
         name: "field3",
-        contents: "field",
+        contents: "복잡한 세상, 정보를\n 세 줄로 간결하게 풀어내는\n 작은 행복을 제공합니다.",
         img: "",
     },
     {
         id:9,
         name: "field4",
-        contents: "field",
+        contents: "",
         img: "",
     },
     {
@@ -77,7 +83,7 @@ export const landingData = [
     {
         id:11,
         name: "로그인..",
-        contents: "로그인",
+        contents: "",
         img: "",
     },
 ]
