@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Header from '../../components/common/Header';
 import styled, { css } from 'styled-components';
 import Search from '../../assets/images/Icons/Search.png'
-import Home from '../../assets/images/Icons/Home.png'
+import {ReactComponent as Home} from '../../assets/images/Icons/Home.svg'
 import { L_semibold_40, S_regular_25, XL_semibold_80 } from '../../components/style/Styled';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { AniShow, AniFrameIn } from '../../components/style/AniStyled';
@@ -14,6 +14,8 @@ import SearchBox from '../search/SearchBox';
 import { CardList } from '../../apis/API_Card';
 import ScrollTop from '../../components/common/ScrollTop';
 import Footer from '../../components/common/Footer';
+import { useSelector } from 'react-redux';
+
 const navData = [
     {
         id:0,
@@ -60,6 +62,8 @@ function isCurrent(to) {
 const HomePage = () => {
     const [category, setCategory] = useState("");
     const location = useLocation();
+
+
 
     useEffect(() => {
         // 그냥 이 페이지 들어오자마자 DOM링크 가져와서 카테고리가 뭔지 알 수 있도록 -> 해당하는 카드리스트 나오기
@@ -138,7 +142,7 @@ const HomePage = () => {
                         </TopWrap>
                         <Nav>
                             <LinkWrap>
-                                <NavL to={'/main'} $active={isCurrent("/main")} hovername="전체 게시물" onClick={() => setCategory('')}><p><img src={Home} style={{padding:"0rem 3rem"}}/></p></NavL>
+                                <NavL to={'/main'} $active={isCurrent("/main")} hovername="전체 게시물" onClick={() => setCategory('')}><p><Home/></p></NavL>
                                 <NavL to={'/main/lifestyle'} $active={isCurrent("/main/lifestyle")} hovername="일상" onClick={() => setCategory('lifestyle')}><p>#lifestyle</p></NavL>
                                 <NavL to={'/main/travel'} $active={isCurrent("/main/travel")} hovername="여행" onClick={() => setCategory('travel')}><p>#travel</p></NavL>
                                 <NavL to={'/main/foodie'} $active={isCurrent("/main/foodie")} hovername="맛집" onClick={() => setCategory('foodie')}><p>#foodie</p></NavL>
