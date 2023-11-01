@@ -81,6 +81,23 @@ const HomePage = () => {
 
     // },[])
     // useEffect(() => {
+    //     console.log("dd")
+    //     setCategory(window.location.pathname);
+    //     console.log(category);
+    // },isCurrent());
+
+    // useEffect(async () => {
+    //     try{
+    //     const localData = window.localStorage.getItem("jwt");
+
+    //     // 자동로그인 성공 시(jwt 인증 성공 시)
+    //     const data = await CardList(localData);
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
+
+    // },[])
+
     //     async function fetchData() {
     //       const data = await fetchSomeData();
     //       // ...

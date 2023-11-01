@@ -65,9 +65,9 @@ const skeletonAnimation = keyframes`
 
 // Skeleton item component for loading animation
 const Skeleton = styled.div`
-  	width: ${({ width }) => width || '100%'};
+  width: ${({ width }) => width || '100%'};
 	height: ${({ height }) => height || '100%'};
-	border-radius: ${({ $borderRadius }) => $borderRadius || '4px'};
+	border-radius: ${({ borderRadius }) => borderRadius || '4px'};
 	background-color: var(--gray_bold); /* Or any desired color */
 
 	animation-duration: ${({ duration }) => duration || '1s'};
