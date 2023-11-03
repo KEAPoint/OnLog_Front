@@ -52,6 +52,14 @@ export const S_regular_25 = styled.input`
     font-weight: 400;
     line-height: normal;
 `;
+export const S_regular_30 = styled.div`
+    /* S-regular_30 */
+    font-family: Pretendard;
+    font-size: 1.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+`
 export const S_medium_34 = styled.div`
     /* S-medium-34 */
     font-family: Pretendard;

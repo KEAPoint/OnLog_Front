@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { S_bold_25 } from '../../components/style/Styled';
+import { L_bold_32, S_bold_25, S_regular_30 } from '../../components/style/Styled';
 import HaniProfile from '../../assets/images/Profile.jpeg';
 
 
@@ -117,26 +117,12 @@ const TitleWrap = styled.div`
     display: flex; 
     flex-direction: column;
 `;
-const BlogTitle = styled.div`
+const BlogTitle = styled(L_bold_32)`
     color: var(--black, #000);
-
-    /* L-bold-45 */
-    font-family: Pretendard;
-    font-size: 2.8125rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
 `;
-const Name = styled.div`
+const Name = styled(S_regular_30)`
     color: var(--gray_bold, #4A4A4A);
     text-align: justify;
-
-    /* S-regular_30 */
-    font-family: Pretendard;
-    font-size: 1.875rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
 `;
 const Right = styled.div`
     display: flex;

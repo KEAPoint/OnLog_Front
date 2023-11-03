@@ -5,6 +5,8 @@ import Profile from '../../assets/images/Profile.jpeg';
 import { S_bold_19_2, S_bold_25, XS_bold_13, XS_regular_16 } from '../style/Styled';
 import { Link, useNavigate } from 'react-router-dom';
 import { Get_Profile } from '../../apis/API_Header';
+import Logo2 from '../../assets/images/Logo2.svg'
+
 
 const Header = () => {
     const accessToken = window.localStorage.getItem("accessToken");
@@ -35,7 +37,9 @@ const Header = () => {
     return (
         <Wrap>
             <LogoL to={'/'}>
-                <Logo/>
+                {/* <Logo/> */}
+                <img src={Logo2} style={{width:'95px', height:'30px'}}/>
+                {/* <Logo/> */}
             </LogoL>
 
             {accessToken ? (

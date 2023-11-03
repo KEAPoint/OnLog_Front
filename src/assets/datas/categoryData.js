@@ -6,6 +6,7 @@ import Sports from '../../assets/images/catogories/Sports.png';
 import Tech from '../../assets/images/catogories/Tech.png';
 import Travel from '../../assets/images/catogories/Travel.png';
 import Logo from '../images/Logo.svg';
+import Logo2 from '../images/Logo2.svg';
 // landingpage
 export const landingData = [
     {
@@ -72,7 +73,7 @@ export const landingData = [
         id:9,
         name: "field4",
         contents: "",
-        img: "",
+        img: Logo2,
     },
     {
         id:10,
@@ -84,7 +85,7 @@ export const landingData = [
         id:11,
         name: "field5",
         contents: "",
-        img: Logo,
+        img: "",
     },
 ]
 

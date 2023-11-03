@@ -92,9 +92,9 @@ const FieldImg = styled.div`
 
 `;
 const Logo = styled.div`
-    width: 9.5rem;
-    height: 8.8rem;
-    background: ${props => `url(${props.$img}) center / cover no-repeat`};
+    width: 15rem;
+    height: 5rem;
+    background: ${props => `url(${props.$img}) center / contain no-repeat`};
 `;
 
 const Wrap = styled.div`
