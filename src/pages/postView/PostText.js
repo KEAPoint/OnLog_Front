@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
-const PostText = () => {
+const PostText = ({post}) => {
     // 관리자 여부 판단
     const [userId, setUserId] = useState("admin123");
     const [isAdmin, setIsAdmin] = useState(false);

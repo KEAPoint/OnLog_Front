@@ -4,6 +4,7 @@ import Search from '../../assets/images/Icons/Search.png'
 import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import Swal from "sweetalert2";
+import { S_regular_20_8 } from "../../components/style/Styled";
 
 
 const SearchBox = () => {
@@ -35,25 +36,25 @@ const SearchBox = () => {
     
     return(
         <div>
-            <Wrap>
+            {/* <Wrap> */}
                 <SearchWrap>
                     <img src={Search} />
                     <input type="text" value={searchTerm} placeholder="검색하기" onChange={(e) => setSearchTerm(e.target.value)} onKeyPress={handleOnKeyPress}/>
                 </SearchWrap>
-            </Wrap>
+            {/* </Wrap> */}
         </div>
     );
 };
 
 export default SearchBox;
 
-const Wrap = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    align-self: stretch;
-    // padding: 0rem 6.25rem 1.25rem 6.25rem;
-`;
+// const Wrap = styled.div`
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: flex-start;
+//     align-self: stretch;
+//     // padding: 0rem 6.25rem 1.25rem 6.25rem;
+// `;
 const SearchWrap = styled.div`
     display: flex;
     width: 35.9375rem;
@@ -70,9 +71,10 @@ const SearchWrap = styled.div`
         outline: none;
 
         color: var(—gray_bold, #4A4A4A);
-        /* S-regular-25 */
+
+        /* S-regular-20.8(RE) */
         font-family: Pretendard;
-        font-size: 1.5625rem;
+        font-size: 1.3rem;
         font-style: normal;
         font-weight: 400;
         line-height: normal;

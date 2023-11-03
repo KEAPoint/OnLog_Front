@@ -3,7 +3,7 @@ import Header from '../../components/common/Header';
 import styled, { css } from 'styled-components';
 import Search from '../../assets/images/Icons/Search.png'
 import {ReactComponent as Home} from '../../assets/images/Icons/Home.svg'
-import { L_semibold_40, S_regular_25, XL_semibold_80 } from '../../components/style/Styled';
+import { L_semibold_32, XL_semibold_56 } from '../../components/style/Styled';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { AniShow, AniFrameIn } from '../../components/style/AniStyled';
 import Card from './Card';
@@ -132,7 +132,7 @@ const HomePage = () => {
                                     ) : (
                                         <div key={item.id}>
                                             {/* <Title>#{item.name.replace(/\//g, '')}</Title> */}
-                                            <XL_semibold_80>#{item.name.replace(/\//g, '')}</XL_semibold_80>
+                                            <XL_semibold_56>#{item.name.replace(/\//g, '')}</XL_semibold_56>
                                         </div>
                                     )
                                 ) 
@@ -223,7 +223,7 @@ const Title = styled.div`
     }
 `;
 
-const LinkWrap = styled(L_semibold_40)`
+const LinkWrap = styled(L_semibold_32)`
     display: flex;
     gap: 0rem 2.44rem;
     /* align-items: center; */

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import {ReactComponent as Logo} from '../../assets/images/Logo.svg';
 import Profile from '../../assets/images/Profile.jpeg';
-import { Header_font, S_bold_25, XS_bold_13 } from '../style/Styled';
+import { S_bold_19_2, XS_regular_16, XS_bold_13 } from '../style/Styled';
 import { Link } from 'react-router-dom';
 
 
@@ -57,7 +57,7 @@ const MenuWrap = styled.div`
     gap: 2.5rem;
     align-items: center;
 `;
-const Menu = styled(Header_font)`
+const Menu = styled(S_bold_19_2)`
     display: flex;
     align-items: center;
 `;
@@ -83,13 +83,7 @@ const TitleWrap = styled(Link)`
 const Title = styled.div`
     text-align: justify;
 `;
-const Name = styled.div`
+const Name = styled(XS_regular_16)`
     color: var(--gray_bold, #4A4A4A);
     text-align: justify;
-    font-family: Pretendard;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: 0.03375rem;
 `;

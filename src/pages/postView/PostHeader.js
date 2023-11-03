@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { cardData } from "../../assets/datas/cardData";
-import { S_bold_25 } from '../../components/style/Styled';
 
 
 const PostHeader = () => {

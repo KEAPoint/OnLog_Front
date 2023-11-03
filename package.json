@@ -2,6 +2,8 @@
   "name": "onlog",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://172.16.213.23:8080",
+
   "dependencies": {
     "@redux-devtools/extension": "^3.2.5",
     "@testing-library/jest-dom": "^5.17.0",

@@ -2,7 +2,6 @@ import styled from "styled-components";
 import UserProfile from "../../components/common/UserProfile";
 import { cardData } from "../../assets/datas/cardData";
 import Profile from "../../assets/images/Profile.jpeg";
-import { S_bold_25 } from '../../components/style/Styled';
 import { useState } from "react";
 import CommentWrite from "./CommentWrite";
 

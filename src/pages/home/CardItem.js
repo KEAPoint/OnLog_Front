@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import UserProfile, { Profile_Name,Profile_ProfileImg,Profile_Title,Profile_TitleWrap,Profile_Wrap } from '../../components/common/UserProfile';
-import { IconWrap, L_semibold_40, M_regular_38, S_regular_30 } from '../../components/style/Styled';
+import { L_semibold_40, XS_semibold_16, S_bold_17, S_bold_19_2 } from '../../components/style/Styled';
 import {ReactComponent as Heart} from '../../assets/images/Icons/Heart.svg';
 import {ReactComponent as Comment} from '../../assets/images/Icons/Comment.svg';
 import CardItemHover from './CardItemHover';
@@ -39,12 +39,10 @@ const CardItem = ({info}) => {
                             <Date>{info.date}</Date>
                             <Second>
                                 <Icon>
-                                    {/* <IconWrap><Heart/></IconWrap> */}
                                     <Heart style={{paddingRight:"1rem"}}/>
                                     <p>999</p>
                                 </Icon>
                                 <Icon>
-                                    {/* <IconWrap><Comment/></IconWrap> */}
                                     <Comment style={{paddingRight:"1rem"}}/>
                                     <p>100</p>
                                 </Icon>
@@ -102,7 +100,7 @@ export const TextWrap = styled.div`
     flex-direction: column;
     gap: 1.25rem;
 `;
-export const Title = styled(M_regular_38)`
+export const Title = styled(S_bold_19_2)`
     color: var(--black);
     word-break: break-all;
 
@@ -112,12 +110,12 @@ export const Title = styled(M_regular_38)`
     overflow: hidden;
 
 `;
-export const Date = styled(S_regular_30)`
-    color: var(--gray_bold, #4A4A4A);
+export const Date = styled(XS_semibold_16)`
+    color: var(—gray_bold, #4A4A4A);
 
 `;
 export const Category = styled(L_semibold_40)`
-    color: var(--gray_bold, #4A4A4A);
+    color: var(—gray_bold, #4A4A4A);
 `;
 export const Second = styled.div`
     display: flex;
@@ -125,7 +123,7 @@ export const Second = styled.div`
     justify-content: center;
     gap: 1.25rem;
 `;
-export const Icon = styled(S_regular_30)`
+export const Icon = styled(S_bold_17)`
     display: flex;
     align-items: center;
     justify-content: center;

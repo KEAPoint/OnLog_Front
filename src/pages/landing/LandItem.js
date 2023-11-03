@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { M_regular_38, XL_semibold_80 } from '../../components/style/Styled';
+import { XL_semibold_80 } from '../../components/style/Styled';
 import LoginItem from './LoginItem';
 
 

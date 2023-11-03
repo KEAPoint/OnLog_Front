@@ -1,7 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Category, Date, Icon, Second, TextWrap, Title } from './CardItem';
-import { IconWrap } from '../../components/style/Styled';
 import { Profile_Name, Profile_ProfileImg, Profile_Title, Profile_TitleWrap, Profile_Wrap } from '../../components/common/UserProfile';
 
 const SkeletonItem = () => {

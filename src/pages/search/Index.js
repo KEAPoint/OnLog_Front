@@ -15,19 +15,21 @@ const SearchPage = () => {
     const term = location.state ? location.state.term : ''; // 검색값이 비어있을 경우(페이지 이동 혹은 주소로 쳐서 접근한 경우)에는 
 
     useEffect(() => {
-        window.scrollTo(0, 0);
+        window.scrollTo({top:0, behavior:"smooth"});
     }, []);
     
     return(
         <div>
             <Header/>
             <Wrap>
-                <SearchBoxWrap>
-                    {/* <SearchTitle> <Highlight>"{term}"</Highlight>에 대한 검색 결과 <NumHighLight>10</NumHighLight>건 </SearchTitle> */}
-                    {term && <SearchTitle> <Highlight>"{term}"</Highlight>에 대한 검색 결과 <NumHighLight>4</NumHighLight>건 </SearchTitle>}
-                    {/* {!term && <div></div>} 검색값이 없으면 빈공간으로 */}
-                    <SearchBox/>
-                </SearchBoxWrap>
+                <StickyWrap>
+                    <SearchBoxWrap>
+                        {/* <SearchTitle> <Highlight>"{term}"</Highlight>에 대한 검색 결과 <NumHighLight>10</NumHighLight>건 </SearchTitle> */}
+                        {term && <SearchTitle> <Highlight>"{term}"</Highlight>에 대한 검색 결과 <NumHighLight>4</NumHighLight>건 </SearchTitle>}
+                        {/* {!term && <div></div>} 검색값이 없으면 빈공간으로 */}
+                        <SearchBox/>
+                    </SearchBoxWrap>
+                </StickyWrap>
                 <BlogSearch/>
                 <PostSearch/>
             </Wrap>
@@ -37,6 +39,12 @@ const SearchPage = () => {
 };
 
 export default SearchPage;
+
+const StickyWrap = styled.div`
+    background-color: white;
+    position: sticky;
+    top: 0;
+`
 
 const Wrap = styled.div`
     padding: 0rem 6.25rem;

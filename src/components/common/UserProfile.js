@@ -2,9 +2,9 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import Profile from '../../assets/images/Profile.jpeg';
 
-import { S_bold_25 } from '../style/Styled';
+import { S_bold_17, XS_regular_16 } from '../style/Styled';
 
-export const Profile_Wrap = styled(S_bold_25)`
+export const Profile_Wrap = styled(S_bold_17)`
     display: flex;
     justify-content: center;
     align-content: center;
@@ -32,15 +32,9 @@ export const Profile_TitleWrap = styled.div`
 export const Profile_Title = styled.div`
     text-align: justify;
 `;
-export const Profile_Name = styled.div`
+export const Profile_Name = styled(XS_regular_16)`
     color: var(--gray_bold, #4A4A4A);
     text-align: justify;
-    font-family: Pretendard;
-    font-size: 1.125rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: 0.03375rem;
 `;
 
 const UserProfile = ({info}) => {
