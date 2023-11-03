@@ -11,8 +11,10 @@ import { S_bold_25 } from '../../components/style/Styled';
 import { useSelector } from 'react-redux';
 
 const LandingPage = () => {
-    const accessToken = useSelector(state => state.login.token.accessToken);
+    // const accessToken = useSelector(state => state.login.token.accessToken);
+    const accessToken = window.localStorage.getItem("accessToken");
 
+    console.log(accessToken)
     const navigate = useNavigate();
     const handleClick = (e) =>   {
         switch(e.currentTarget.name) {

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const CardList = async (localData) => {
+export const GET_CardList = async (localData) => {
     const url = '';
     const res = await axios({
         method: "get",

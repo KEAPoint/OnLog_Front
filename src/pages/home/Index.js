@@ -14,7 +14,6 @@ import SearchBox from '../search/SearchBox';
 import { CardList } from '../../apis/API_Card';
 import ScrollTop from '../../components/common/ScrollTop';
 import Footer from '../../components/common/Footer';
-import { useSelector } from 'react-redux';
 
 const navData = [
     {

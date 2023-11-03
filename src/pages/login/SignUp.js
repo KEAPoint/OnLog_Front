@@ -5,14 +5,15 @@ import React, { useState } from 'react';
 
 import "./Login.css";
 import { useSelector } from 'react-redux';
-import LoginReducer from '../../store/reducers/login';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
-    const {user} = useSelector((state) => state.LoginReducer); 
+    const {user} = useSelector((state) => state.profile); 
     const navigate = useNavigate();
-    console.log(user.email, user.userId);
+    console.log(user.email)
+    // console.log(user.email, user.userId);
+    // console.log(user ? user.email : 'User not defined'); 
 
 
     const handleSubmit = async (e) => {
@@ -31,6 +32,9 @@ const SignUp = () => {
                 const res = await axios({
                     method:"post",
                     url: url,
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                    },
                     data: {
                         blogId: user.userId,
                         blogName: blogname,
@@ -51,7 +55,7 @@ const SignUp = () => {
             } catch(error) {
                 console.log(error);
             }
-        }
+    }
 
     };
 
