@@ -68,7 +68,7 @@ const Header = () => {
 
                     {/* <UserProfile/> */}
                     <Menu>
-                        <ProfileImg></ProfileImg>
+                        <ProfileImg $blogProfileImg={user.blogProfileImg}></ProfileImg>
                         <TitleWrap to={'/mypage'}>
                             <Title>{user.blogName}</Title>
                             <Name>@{user.blogNickname}</Name>
@@ -112,7 +112,7 @@ const ProfileImg = styled.div`
     width: 2.5rem;
     height: 2.5rem;
     border-radius: 2.5rem;
-    background: url(${Profile}) lightgray 50% / cover no-repeat;
+    background: url(${props => props.$blogProfileImg}) lightgray 50% / cover no-repeat;
     margin-right: 0.94rem;
 `;
 const Alarm = styled(XS_bold_13)`

@@ -21,6 +21,7 @@ const SignUp = () => {
         const nickname = e.target.elements.nickname.value;
         const blogname = e.target.elements.blogname.value;
         const info = e.target.elements.info.value;
+        const profileImg = window.localStorage.getItem("profileImg");
 
         if(!nickname || !blogname || !info) {
             alert('빈칸채워라');
@@ -39,7 +40,8 @@ const SignUp = () => {
                         blogId: user.userId,
                         blogName: blogname,
                         blogNickname: nickname,
-                        blogIntro: info 
+                        blogIntro: info,
+                        blogProfileImg: profileImg,
                     }
                 });
 
