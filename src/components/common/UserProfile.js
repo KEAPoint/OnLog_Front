@@ -6,18 +6,15 @@ import { S_bold_17, XS_regular_16 } from '../style/Styled';
 
 export const Profile_Wrap = styled(S_bold_17)`
     display: flex;
-    justify-content: center;
-    align-content: center;
+    /* justify-content: center; */
+    /* align-content: center; */
 `;
 export const Profile_ProfileImg = styled.div`
     width: 2.5rem;
     height: 2.5rem;
     border-radius: 2.5rem;
-    /* background: url(${Profile}) lightgray 50% / cover no-repeat; */
     background: ${props => `url(${props.$imgurl}) lightgray 50% / cover no-repeat`};
-
-
-
+    flex-shrink: 0;
     margin-right: 0.94rem;
 `;
 
@@ -30,11 +27,13 @@ export const Profile_TitleWrap = styled.div`
     align-content: center;
 `;
 export const Profile_Title = styled.div`
-    text-align: justify;
+    /* text-align: justify; */
+    word-break: break-all;
+
 `;
 export const Profile_Name = styled(XS_regular_16)`
     color: var(--gray_bold, #4A4A4A);
-    text-align: justify;
+    text-align: left;
 `;
 
 const UserProfile = ({info}) => {

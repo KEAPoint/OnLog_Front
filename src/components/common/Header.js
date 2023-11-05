@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import {ReactComponent as Logo} from '../../assets/images/Logo.svg';
 import Profile from '../../assets/images/Profile.jpeg';
@@ -10,14 +10,26 @@ import Logo2 from '../../assets/images/Logo2.svg'
 
 const Header = () => {
     const accessToken = window.localStorage.getItem("accessToken");
+    const [user, setUser] = useState({
+        blogName:"",
+        blogNickname:"",
+        blogProfileImg:"",
+    }); 
 
     useEffect(() => {
         Get_Profile()
         .then((data) => {
             console.log(data);
+
+            setUser({
+                ...user,
+                blogName: data.data.blogName,
+                blogNickname: data.data.blogNickname,
+                blogProfileImg: data.data.blogProfileImg,
+            })
         })
         .catch((error) => {
-            console.error(error);
+            console.log(error);
         });
     },[]);
 
@@ -58,15 +70,13 @@ const Header = () => {
                     <Menu>
                         <ProfileImg></ProfileImg>
                         <TitleWrap to={'/mypage'}>
-                            <Title>Hani Tech World</Title>
-                            <Name>@hanitech</Name>
+                            <Title>{user.blogName}</Title>
+                            <Name>@{user.blogNickname}</Name>
                         </TitleWrap>
-                        {/* <Video/> */}
                     </Menu>
                 </MenuWrap>
             ):(
                 <SignInBtn name="signin" onClick={handleClick}>Sign in</SignInBtn>
-
             )}
         </Wrap>
     );
@@ -123,8 +133,8 @@ const Name = styled(XS_regular_16)`
 const SignInBtn = styled(S_bold_25).attrs({ as: 'button' })`
     padding: 0.55rem 2.1875rem;
     font-size: 1rem;
-    background-color: var(—black);
-    color: var(—white);
+    background-color: var(--black);
+    color: var(--white);
 
     border: 4px solid black;
 

@@ -5,9 +5,10 @@ export const GlobalStyle = createGlobalStyle`
     ${reset}
     :root{
         /* Fonts */
-        --font-pretendard: Pretendard;
+        /* --font-pretendard: Pretendard;
         --font-audiowide: Audiowide;
-        --font-roboto: Roboto;      
+        --font-roboto: Roboto;   */
+
         /* Colors */
         --white: #fff;
         --black: #000;

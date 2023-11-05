@@ -24,6 +24,7 @@ const KakaoMiddle = () => {
                 });
 
                 if(res.data.success) {
+                    console.log(res.data);
                     dispatch(
                         profileAction({
                             userId: res.data.data.memberIdx,
@@ -32,6 +33,9 @@ const KakaoMiddle = () => {
                         }),
                     );
                     window.localStorage.setItem("accessToken", res.data.data.tokenInfo.accessToken);
+                    window.localStorage.setItem("email", res.data.data.email);
+                    window.localStorage.setItem("userId", res.data.data.memberIdx);
+
                     // window.localStorage.setItem("refreshToken", res.data.data.tokenInfo.refreshToken);
                     
                     navigate("/signUp");

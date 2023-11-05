@@ -30,7 +30,7 @@ const SignUp = () => {
             try {
                 const url = '/blog';
                 const res = await axios({
-                    method:"post",
+                    method:"put",
                     url: url,
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('accessToken')}`

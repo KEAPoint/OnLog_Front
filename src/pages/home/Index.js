@@ -225,6 +225,7 @@ const Title = styled.div`
 const LinkWrap = styled(L_semibold_32)`
     display: flex;
     gap: 0rem 2.44rem;
+    margin-bottom: 1rem;
     /* align-items: center; */
     /* justify-content: center; */
 
