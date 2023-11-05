@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import {ReactComponent as Logo} from '../../assets/images/Logo.svg';
-import Profile from '../../assets/images/Profile.jpeg';
+import {ReactComponent as Logo2} from '../../assets/images/Logo2.svg';
 import { S_bold_19_2, S_bold_25, XS_bold_13, XS_regular_16 } from '../style/Styled';
 import { Link, useNavigate } from 'react-router-dom';
 import { Get_Profile } from '../../apis/API_Header';
-import Logo2 from '../../assets/images/Logo2.svg'
 
 
 const Header = () => {
@@ -35,9 +33,10 @@ const Header = () => {
 
     const navigate = useNavigate();
     const handleClick = (e) =>   {
+        console.log(e)
             switch(e.currentTarget.name) {
                 case "logo" :
-                    navigate('/main');
+                    navigate('/');
                     break;
                 case "signin" :
                     navigate('/login');
@@ -48,12 +47,9 @@ const Header = () => {
 
     return (
         <Wrap>
-            <LogoL to={'/'}>
-                {/* <Logo/> */}
-                <img src={Logo2} style={{width:'95px', height:'30px'}}/>
-                {/* <Logo/> */}
-            </LogoL>
-
+            <LogoBtn name="logo" onClick={handleClick}>
+                <Logo2 />
+            </LogoBtn>
             {accessToken ? (
                 <MenuWrap>
                     <Menu>
@@ -94,7 +90,15 @@ const Wrap = styled.div`
 
     }
 `;
-const LogoL = styled(Link)``;
+const LogoBtn = styled.button`
+  background-color: transparent;
+  border:none;
+  outline:none;
+  cursor:pointer; // 마우스 커서를 손 모양으로 변경
+  svg {
+      pointer-events:auto; // SVG 내부의 그래픽 요소에만 마우스 이벤트 적용
+   }
+`;
 const MenuWrap = styled.div`
     display: flex;
     gap: 2.5rem;

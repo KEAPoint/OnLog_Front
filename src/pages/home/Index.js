@@ -10,50 +10,72 @@ import SearchBox from '../search/SearchBox';
 import ScrollTop from '../../components/common/ScrollTop';
 import Footer from '../../components/common/Footer';
 import { navData } from '../../assets/datas/categoryData';
-
+import BackImage from '../../components/common/BackImage';
+import { useDispatch } from 'react-redux';
+import { colorAction } from '../../store/actions/color';
 
 const HomePage = () => {
     const location = useLocation();
-    const [category, setCategory] = useState("");
+    const dispatch = useDispatch();
+    const [category, setCategory] = useState({
+        name: "",
+        kName: "",
+        color: "",
+    });
+
+
     useEffect(() => {
         // 그냥 이 페이지 들어오자마자 DOM링크 가져와서 카테고리가 뭔지 알 수 있도록 -> 해당하는 카드리스트 나오기
         let path = location.pathname.replace(/\/main\/|\/main/g, '');
         console.log("현재 카테고리: ", path);
-        setCategory(path);
+        
+        navData.map((item) => {
+                if(path === item.name) {
+                    setCategory({
+                        name: item.name,
+                        hoverName: item.kName,
+                        color: item.color
+                    })
+                    
+                    dispatch(
+                        colorAction({
+                            category: item.name,  
+                            color: item.color,
+                        })
+                    );
+                }
+        });
+
     },[location]) 
 
     const isCurrent = to => to === location.pathname;
 
     return (
         <>
+            <BackImage/>
+
             <StickyWrap>
                 <Header/>
                 <Wrap>
                     <TopWrap>
-                        {navData.map((item) => (
-                            (category == item.name) && (
-                                <div key={item.id}>
-                                    {(item.id===0) ? (
-                                        <Title>Onlog <p>&nbsp; 는 지금...</p></Title>
-                                    ) : (
-                                        <XL_semibold_56>#{item.name}</XL_semibold_56>
-                                    )}
-                                </div>
-                            ) 
-                        ))}
+                        {(category.name==="") ? (
+                            <Title>Onlog <p>&nbsp; 는 지금...</p></Title>
+                        ) : (
+                            <Title2 color={category.color}>#{category.name}</Title2>
+                        )}
                         <SearchBox/>
                     </TopWrap>
 
                     <Nav>
                         <LinkWrap>
-                                {navData.map((item) => {
-                                    const to = item.id === 0 ? '/main' : `/main/${item.name}`;
-                                    return (
-                                        <NavL to={to} $active={isCurrent(to)} hovername={item.kName} key={item.id}>
-                                            <p>{item.id === 0 ? <Home/> : `#${item.name}`}</p>
-                                        </NavL>
-                                    )
-                                })}
+                            {navData.map((item) => {
+                                const to = item.id === 0 ? '/main' : `/main/${item.name}`;
+                                return (
+                                    <NavL to={to} $active={isCurrent(to)} hovername={item.kName} key={item.id} color={item.color}>
+                                        <p>{item.id === 0 ? <Home/> : `#${item.name}`}</p>
+                                    </NavL>
+                                )
+                            })} 
                         </LinkWrap>
                     </Nav>
                 </Wrap>
@@ -61,9 +83,10 @@ const HomePage = () => {
 
             <PageWrap>
 
-                <Card category={category}/>
+                <Card category={category.name}/>
                 {/* <ScrollTop/> */}
                 <Footer/>
+                
             </PageWrap>
         </>
     );
@@ -122,7 +145,16 @@ const Title = styled.div`
         line-height: normal;
     }
 `;
+const Title2 = styled(XL_semibold_56)`
+    // 애니
+    animation: ${AniShow} 1s forwards;
 
+    padding: 1.03125rem 0rem;
+    display: flex;
+    align-items: center;
+
+    color: var(${props => props.color});
+`;
 const LinkWrap = styled(L_semibold_32)`
     display: flex;
     gap: 0rem 2.44rem;
@@ -148,7 +180,7 @@ const NavL = styled(Link)`
     }
     &:hover:before {
         content: '${(props) => (props.hovername)}';
-        background-color: var(--black);
+        background-color: var(${props => props.color});
         color: var(--white);
         padding: 0rem 2rem;
         white-space: nowrap; /* 추가된 부분 */

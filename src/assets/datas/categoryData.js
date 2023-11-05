@@ -7,6 +7,7 @@ import Tech from '../../assets/images/catogories/Tech.png';
 import Travel from '../../assets/images/catogories/Travel.png';
 import Logo from '../images/Logo.svg';
 import Logo2 from '../images/Logo2.svg';
+
 // landingpage
 export const landingData = [
     {
@@ -95,41 +96,54 @@ export const navData = [
         id:0,
         name: "",
         kName: "전체게시물",
+        color: "--black"
     },
     {
         id:1,
         name: "lifestyle",
         kName: "일상",
+        color: "--tag-lifestyle"
     },    
     {
         id:2,
         name: "travel",
         kName: "여행",
+        color: "--tag-travel"
+
     },   
     {
         id:3,
         name: "foodie",
         kName: "맛집",
+        color: "--tag-foodie"
+
     },    
     {
         id:4,
         name: "entertainment",
         kName: "엔터테인먼트",
+        color: "--tag-entertain"
+
     },    
     {
         id:5,
         name: "tech",
         kName: "IT기술",
+        color: "--tag-tech"
 
     },
     {
         id:6,
         name: "sports",
         kName: "스포츠",
+        color: "--tag-sports"
+
     },
     {
         id:7,
         name: "news",
         kName: "뉴스/시사",
+        color: "--tag-news"
+
     },
 ]
