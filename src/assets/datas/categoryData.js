@@ -94,41 +94,42 @@ export const navData = [
     {
         id:0,
         name: "",
-        img: "",
+        kName: "전체게시물",
     },
     {
         id:1,
         name: "lifestyle",
-        img: LifeStyle,
+        kName: "일상",
     },    
     {
         id:2,
         name: "travel",
-        img: Travel,
+        kName: "여행",
     },   
     {
         id:3,
         name: "foodie",
-        img: Foodie,
+        kName: "맛집",
     },    
     {
         id:4,
         name: "entertainment",
-        img: Entertainment,
+        kName: "엔터테인먼트",
     },    
     {
         id:5,
         name: "tech",
-        img: Tech,
+        kName: "IT기술",
+
     },
     {
         id:6,
         name: "sports",
-        img: Sports,
+        kName: "스포츠",
     },
     {
         id:7,
         name: "news",
-        img: News,
+        kName: "뉴스/시사",
     },
 ]

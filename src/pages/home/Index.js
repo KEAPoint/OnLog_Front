@@ -1,164 +1,70 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../../components/common/Header';
 import styled, { css } from 'styled-components';
-import Search from '../../assets/images/Icons/Search.png'
 import {ReactComponent as Home} from '../../assets/images/Icons/Home.svg'
 import { L_semibold_32, XL_semibold_56 } from '../../components/style/Styled';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { AniShow, AniFrameIn } from '../../components/style/AniStyled';
 import Card from './Card';
-
-import SearchPage from '../search/Index';
-import { useNavigate } from 'react-router-dom';
 import SearchBox from '../search/SearchBox';
-import { CardList } from '../../apis/API_Card';
 import ScrollTop from '../../components/common/ScrollTop';
 import Footer from '../../components/common/Footer';
+import { navData } from '../../assets/datas/categoryData';
 
-const navData = [
-    {
-        id:0,
-        name: "",
-    },
-    {
-        id:1,
-        name: "/lifestyle",
-    },    
-    {
-        id:2,
-        name: "/travel",
-    },   
-    {
-        id:3,
-        name: "/foodie",
-    },    
-    {
-        id:4,
-        name: "/entertainment",
-    },    
-    {
-        id:5,
-        name: "/tech",
-    },
-    {
-        id:6,
-        name: "/sports",
-    },
-    {
-        id:7,
-        name: "/news",
-    },
-]
-
-function isCurrent(to) {
-    // console.log(to);
-    // console.log(window.location.pathname.includes(to).toString());
-    if(to === window.location.pathname){
-        return true;
-    } else { return false;}
-}
 
 const HomePage = () => {
-    const [category, setCategory] = useState("");
     const location = useLocation();
-
-
-
+    const [category, setCategory] = useState("");
     useEffect(() => {
         // 그냥 이 페이지 들어오자마자 DOM링크 가져와서 카테고리가 뭔지 알 수 있도록 -> 해당하는 카드리스트 나오기
-        let path = window.location.pathname.replace('/main/','');
-        console.log("test");
-        console.log(path);
-        // if(path ===)
+        let path = location.pathname.replace(/\/main\/|\/main/g, '');
+        console.log("현재 카테고리: ", path);
         setCategory(path);
-    },[]) 
-    // useEffect(async () => {
-    //     try{
-    //     const localData = window.localStorage.getItem("jwt");
+    },[location]) 
 
-    //     // 자동로그인 성공 시(jwt 인증 성공 시)
-    //     const data = await CardList(localData);
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-
-    // },[])
-    // useEffect(() => {
-    //     console.log("dd")
-    //     setCategory(window.location.pathname);
-    //     console.log(category);
-    // },isCurrent());
-
-    // useEffect(async () => {
-    //     try{
-    //     const localData = window.localStorage.getItem("jwt");
-
-    //     // 자동로그인 성공 시(jwt 인증 성공 시)
-    //     const data = await CardList(localData);
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-
-    // },[])
-
-    //     async function fetchData() {
-    //       const data = await fetchSomeData();
-    //       // ...
-    //     }
-      
-    //     fetchData();
-    //   }, []);
-      
-    const navigate = useNavigate();
-
-    const handleSearch = (e) => {
-        // console.log(e.target.value);
-        // history.push('/result', { term: searchTerm });
-    }
+    const isCurrent = to => to === location.pathname;
 
     return (
         <>
             <StickyWrap>
                 <Header/>
                 <Wrap>
-                        <TopWrap>
-                            {navData.map((item) => (
-                                (isCurrent('/main' + item.name)) && (
-                                    (item.id===0) ? (
-                                        <div key={item.id}>
-                                            <Title>Onlog <p>&nbsp; 는 지금...</p></Title>
-                                        </div>
+                    <TopWrap>
+                        {navData.map((item) => (
+                            (category == item.name) && (
+                                <div key={item.id}>
+                                    {(item.id===0) ? (
+                                        <Title>Onlog <p>&nbsp; 는 지금...</p></Title>
                                     ) : (
-                                        <div key={item.id}>
-                                            {/* <Title>#{item.name.replace(/\//g, '')}</Title> */}
-                                            <XL_semibold_56>#{item.name.replace(/\//g, '')}</XL_semibold_56>
-                                        </div>
+                                        <XL_semibold_56>#{item.name}</XL_semibold_56>
+                                    )}
+                                </div>
+                            ) 
+                        ))}
+                        <SearchBox/>
+                    </TopWrap>
+
+                    <Nav>
+                        <LinkWrap>
+                                {navData.map((item) => {
+                                    const to = item.id === 0 ? '/main' : `/main/${item.name}`;
+                                    return (
+                                        <NavL to={to} $active={isCurrent(to)} hovername={item.kName} key={item.id}>
+                                            <p>{item.id === 0 ? <Home/> : `#${item.name}`}</p>
+                                        </NavL>
                                     )
-                                ) 
+                                })}
+                        </LinkWrap>
+                    </Nav>
+                </Wrap>
+            </StickyWrap> 
 
-                            ))}
-                            <SearchBox/>
-                        </TopWrap>
-                        <Nav>
-                            <LinkWrap>
-                                <NavL to={'/main'} $active={isCurrent("/main")} hovername="전체 게시물" onClick={() => setCategory('')}><p><Home/></p></NavL>
-                                <NavL to={'/main/lifestyle'} $active={isCurrent("/main/lifestyle")} hovername="일상" onClick={() => setCategory('lifestyle')}><p>#lifestyle</p></NavL>
-                                <NavL to={'/main/travel'} $active={isCurrent("/main/travel")} hovername="여행" onClick={() => setCategory('travel')}><p>#travel</p></NavL>
-                                <NavL to={'/main/foodie'} $active={isCurrent("/main/foodie")} hovername="맛집" onClick={() => setCategory('foodie')}><p>#foodie</p></NavL>
-                                <NavL to={'/main/entertainment'} $active={isCurrent("/main/entertainment")} hovername="엔터테인먼트" onClick={() => setCategory('entertainment')}><p>#entertainment</p></NavL>
-                                <NavL to={'/main/tech'} $active={isCurrent("/main/tech")} hovername="IT기술"onClick={() => setCategory('tech')}><p>#tech</p></NavL>
-                                <NavL to={'/main/sports'} $active={isCurrent("/main/sports")} hovername="스포츠" onClick={() => setCategory('sports')}><p>#sports</p></NavL>
-                                <NavL to={'/main/news'} $active={isCurrent("/main/news")} hovername="뉴스/시사" onClick={() => setCategory('news')}><p>#news</p></NavL>
-                            </LinkWrap>
-                        </Nav>
-                </Wrap> 
-            </StickyWrap>
-        <PageWrap>
+            <PageWrap>
 
-            <Card category={category}/>
-            {/* <ScrollTop/> */}
-            <Footer/>
-        </PageWrap>
+                <Card category={category}/>
+                {/* <ScrollTop/> */}
+                <Footer/>
+            </PageWrap>
         </>
     );
 };
@@ -171,17 +77,12 @@ const StickyWrap = styled.div`
     top: 0;
 `
 const PageWrap = styled.div`
-    /* margin: 0rem 6.25rem; */
-    /* background-color: red; */
     margin: 0rem 10rem;
-
-    /* box-sizing: border-box; */
-
 /* 
     @media ${({ theme }) => theme.windowSize.test} {
         background-color: pink;
     } */
-`
+`;
 const Wrap = styled.div`
     display: flex;
     flex-direction: column;
@@ -226,16 +127,6 @@ const LinkWrap = styled(L_semibold_32)`
     display: flex;
     gap: 0rem 2.44rem;
     margin-bottom: 1rem;
-    /* align-items: center; */
-    /* justify-content: center; */
-
-
-    /* position: sticky; */
-    /* top: 0px; */
-
-    /*  */
-    /* flex-wrap: wrap; */
-    /*  */
 `;
 const NavL = styled(Link)`
     text-decoration: none;
@@ -245,7 +136,7 @@ const NavL = styled(Link)`
     display : ${(props) => (props.$active ? 'none' : '')};
 
     // 애니
-    animation: ${(props) => (!props.$active ? (
+    animation: ${(props) => (!props.to.includes(props.category) ? (
         css`
          ${AniFrameIn} .5s forwards
         `
@@ -262,10 +153,4 @@ const NavL = styled(Link)`
         padding: 0rem 2rem;
         white-space: nowrap; /* 추가된 부분 */
     }
-`;
-
-const CardWrap = styled.div`
-    /* background-color: red; */
-    /* position: relative; */
-    /* width: 100%; */
 `;
