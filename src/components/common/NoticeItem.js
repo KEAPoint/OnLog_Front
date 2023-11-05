@@ -80,9 +80,7 @@ const NoticeItem = (props) => {
                                 <NoticeType>님이 나를 구독했습니다. </NoticeType>
                             </Top>
                             <Date> 2023.10.25 </Date>
-                        </LeftWrap>
-
-                        <SubscribeWrap 
+                            <SubscribeWrap 
                             onClick={handleSubscribe} 
                             $isSubscribed={isSubscribed}
                             onMouseEnter={() => setHovered(true)}
@@ -90,6 +88,8 @@ const NoticeItem = (props) => {
                         >
                         {isHovered ? (isSubscribed ? "구독 취소" : "구독하기") : (isSubscribed ? "구독 중" : "구독하기")}
                         </SubscribeWrap>
+                        </LeftWrap>
+
                     </Wrap>
                 )}
 
@@ -153,18 +153,18 @@ export default NoticeItem;
 
 const Wrap = styled.div`
     display: flex;
-    padding: 1.25rem 0rem;
+    padding: 0.9375rem 0rem;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     align-self: stretch;
-
+    flex-direction: column;
     border-bottom: 1px solid var(--gray_light, #939393);
 `
 
 const LeftWrap = styled.div`
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
     gap: 0.625rem;
     // flex: 1;
 
