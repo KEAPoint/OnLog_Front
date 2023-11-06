@@ -12,10 +12,13 @@ export const Get_Profile = async () => {
     const res = await axios({
         method: "get",
         url: url,
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        },
         params: {
             'blog_id': userId
         }  
     });
-    
+    console.log(accessToken);
     return res.data;
 }
