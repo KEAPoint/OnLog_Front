@@ -1,12 +1,10 @@
 import styled from "styled-components";
-import UserProfile from "../../components/common/UserProfile";
-import { cardData } from "../../assets/datas/cardData";
-import Profile from "../../assets/images/Profile.jpeg";
 import React, { useState, Fragment, useEffect } from "react";
 import CommentWrite from "./CommentWrite";
 import { Delete_CommentLike, Post_CommentLike } from "../../apis/API_Like";
 import { Delete_Comment } from "../../apis/API_Comment";
 import Swal from "sweetalert2";
+import { S_bold_17, XS_regular_16, XS_semibold_16 } from "../../components/style/Styled";
 
 
 const Comment = ({post}) => {
@@ -194,33 +192,18 @@ const ProfileImg = styled.div`
     margin-right: 0.94rem;
 `;
 const TitleWrap = styled.div`
-text-decoration: none;
-color: var(--black);
+    text-decoration: none;
+    color: var(--black);
 `;
-const BlogName = styled.div`
+const BlogName = styled(S_bold_17)`
     text-align: justify;
-
     color: var(--black, #000);
     text-align: justify;
-
-    /* S-bold-25 */
-    font-family: Pretendard;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
 `;
-const NickName = styled.div`
+const NickName = styled(XS_regular_16)`
     color: var(--gray_bold, #4A4A4A);
     text-align: justify;
-    font-family: Pretendard;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: 0.03375rem;
 `;
-
 const UserInfo = styled.div`
     display: flex;
     justify-content: space-between;
@@ -237,7 +220,6 @@ const UserWrap = styled.div`
 const UserBtn = styled.button`
     display: flex;
     padding: 0rem 1rem;
-    // margin-left: 1rem;
     background: none;
     border: none;
     border-right: 1px solid gray;
@@ -263,46 +245,28 @@ const UserBtn = styled.button`
     }
 `
 // 댓글 내용
-const Context = styled.div`
+const Context = styled(XS_regular_16)`
     width: 50rem;
     align-self: stretch;
     color: var(--black, #000);
-    padding: 1.25rem 1.25rem 0rem 1.25rem;
-
-    /* S-regular-25 */
-    font-family: Pretendard;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
+    padding: 1.25rem 1.25rem 0rem 2rem;
 `
-
 // 댓글 작성 날짜, 좋아요, 답장
 const CommentFooter = styled.div`
     display: flex;
     justify-content: space-between;
-    padding-left: 1.5rem;
-    // align-items: flex-end;
+    padding-left: 2rem;
     align-items: center;
     align-self: stretch;
 `
-
-const CommentDate = styled.div`
+const CommentDate = styled(XS_semibold_16)`
     color: var(--gray_bold, #4A4A4A);
-
-    /* XS-semibold-20 */
-    font-family: Pretendard;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
 `
 const HeartReplyWrap = styled.div`
     display: flex;
     align-items: center;
     gap: 0.625rem;
 `
-
 const HeartWrap = styled.div`
     display: flex;
     width: 3rem;
@@ -321,16 +285,9 @@ const LikeButton = styled.button`
 
     cursor: pointer;
 `
-const LikeNum = styled.div`
+const LikeNum = styled(XS_semibold_16)`
     color: var(--gray_bold, #4A4A4A);
     text-align: justify;
-
-    /* XS-semibold-20 */
-    font-family: Pretendard;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
 `
 const ReplyButton = styled.button`
     display: flex;
