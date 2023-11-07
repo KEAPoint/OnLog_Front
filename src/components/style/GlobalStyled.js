@@ -16,7 +16,7 @@ export const GlobalStyle = createGlobalStyle`
         --gray-light: #939393;
         --color-gray-100: rgba(255, 255, 255, 0.7);
         --color-red: #ff0000;
-
+        
         /* 주제 메인 색상 */
         --tag-lifestyle: #FF7575;
         --tag-travel: #88D67C;

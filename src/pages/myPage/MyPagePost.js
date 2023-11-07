@@ -1,21 +1,43 @@
 import styled from "styled-components";
 import Card from "../home/Card";
+import { S_bold_19_2, S_regular_20_8 } from "../../components/style/Styled";
+import {ReactComponent as Menu} from "../../assets/images/Icons/Menu.svg";
+import {ReactComponent as Lock} from "../../assets/images/Icons/Lock.svg";
 
 const MypagePost = () => {
     return(
             <PageWrap>
-                <CateWrap>
-                    <Category>
-                        <CateTitle>나의 잡담</CateTitle>
-                        {/* <CateTopic>#lifestyle</CateTopic> */}
-                    </Category>
-                    <Category>
-                        <CateTitle>나의 IT 이야기</CateTitle>
-                        {/* <CateTopic>#tech</CateTopic> */}
-                    </Category>
-                </CateWrap>
+                <StickWrap>
+                    <CateWrap>
+                        <MenuWrap>
+                            <S_regular_20_8>Category</S_regular_20_8>
+                            <Menu/>
+                        </MenuWrap>
+
+                        <Option>
+                            <CateTitle>전체</CateTitle>
+                        </Option>
+                        <Option>
+                            <Lock/>
+                            <CateTitle>비공개 글</CateTitle>
+                        </Option>
+
+
+                        <Category>
+                            <CateTitle>나의 잡담</CateTitle>
+                        </Category>
+
+                        <Category>
+                            <CateTitle>일상</CateTitle>
+                        </Category>
+                        <Category>
+                            <CateTitle>나의 IT 이야기</CateTitle>
+                        </Category>
+                    </CateWrap>
+                </StickWrap>
+                
                 <PostWrap>
-                    <Card category="lifestyle"/>
+                    <Card category=""/>
                 </PostWrap>
             </PageWrap>
     );
@@ -26,74 +48,70 @@ export default MypagePost;
 const PageWrap = styled.div`
     display: flex;
     padding: 0rem 6.25rem;
-    // align-items: flex-start;
-    // align-content: flex-start;
-    // align-self: stretch;
-    // flex-wrap: wrap;
-    // flex-direction: row;
 
-    /* 
-    @media ${({ theme }) => theme.windowSize.test} {
-        background-color: pink;
-    } */
+    position: relative;
 `
+const StickWrap = styled.div``;
 
 const CateWrap = styled.div`
+    position: sticky;
+    top: 0;
     display: flex;
     width: 29.8125rem;
-    // height: 135.25rem;
     // padding: 1.625rem 0rem;
     flex-direction: column;
     align-items: flex-start;
     gap: 1.25rem;
     // border-right: 1px solid var(--gray_bold, #4A4A4A);
-    background: #FFF;
+    /* background: #FFF; */
 `
+const MenuWrap = styled.div`
+    align-self: stretch;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    /* gap: 2.5rem; */
+    padding: 1.62rem 1.25rem 1.25rem 1.25rem;
+`;
+const Option = styled.button`
+    cursor: pointer;
+    border: none;
+    background: var(--gray_lighter, #DCDCDC);
+
+    display: flex;
+    gap: 0.625rem;
+    padding: 1.5rem 1.25rem 1.5rem 2.5rem;
+    align-self: stretch;
+`;
 const Category = styled.button`
     cursor: pointer;
     display: flex;
     padding: 1.5rem 1.25rem 1.5rem 2.5rem;
-    margin-right: 1rem;
     justify-content: space-between;
     align-items: flex-start;
     align-self: stretch;
-    flex-direction: column;
 
-    border-top: 1px solid var(--gray_bold, #4A4A4A);
-    border-bottom: 1px solid var(--gray_bold, #4A4A4A);
-    border-left: 1px solid var(--gray_bold, #4A4A4A);
-    border-right: 1px solid var(--gray_bold, #4A4A4A);
+    border: none;
+    border-top: 1px solid var(--gray_light, #939393);
+    border-bottom: 1px solid var(--gray_light, #939393);
+    border-left: 1px solid var(--gray_light, #939393);
     background: #FFF;
 `
-const CateTitle = styled.div`
-    color: black;
-    /* S-bold-25 */
-    font-family: Pretendard;
-    font-size: 1.5625rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    margin-bottom: 0.625rem;
-    `
-const CateTopic = styled.div`
-    color: var(--tag_lifestyle, #FF7575);
-
-    /* XS-semibold-20 */
-    font-family: Pretendard;
-    font-size: 1.25rem;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
+const CateTitle = styled(S_bold_19_2)`
+    color: var(--black);
 `
+
 
 const PostWrap = styled.div`
     width: 90rem;
-    height: 100%;
+
     // display: flex;
     // padding: 1.875rem 0.5rem;
     // flex-direction: row;
     border-left: 1px solid var(--gray_bold, #4A4A4A);
-
+    
 `
 
 

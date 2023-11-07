@@ -10,7 +10,6 @@ const MyPage = () => {
     return(
         <div>
             <Header/>
-            {/* <UserProfile/> */}
             <Wrap>
                 <MypageTop/>
                 <MypagePost/>
