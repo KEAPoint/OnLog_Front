@@ -5,9 +5,11 @@ import Profile from "../../assets/images/Profile.jpeg";
 import { useState } from "react";
 import CommentWrite from "./CommentWrite";
 
-const Comment = () => {
+const Comment = ({post}) => {
 
     const context = '그런데 나는 캡틴아메리카보다 아이언맨이 더 좋던데??? 의리남이잖아 ㅎㅎ';
+    // const context = post?.comments?.map(comment => comment.content);
+
     const date = '2023.10.18';
     const heart = '3';
     const [isClicked, setIsClicked] = useState(false);

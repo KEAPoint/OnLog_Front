@@ -1,31 +1,42 @@
 import axios from "axios";
 
 const accessToken = localStorage.getItem('accessToken');
-// const userId = localStorage.getItem('userId');
+const url = '/posts/like';
 
-// export const Get_SinglePost = async () => {
-//     fetch(url, {
-//         method: 'GET',
-//       })
-    
-//       .then(response => {
-//         if (!response.ok) {
-//           throw new Error(`HTTP error! status: ${response.status}`);
-//         }
-//         return response.json();
-//       })
-//       .then(data => setPost(data))
-//       .catch(error => console.error(error));
-// }
+export const Post_Like = async (postId) => {
+    try {
+        const response = await axios({
+            method:"post",
+            url: url,
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            },
+            data: {
+                postId: postId,
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('post like error: ', error);
+        return { success: false, error: error.message };
+    }
+};
 
-// export const Post_Like = async (postId) => {
-//     // const response = await axios.get(`/posts/${postId}`);
-//     const response = await axios({
-//         method: "get",
-//         url: `/posts/${postId}`,
-//         headers: {
-//             'Authorization': `Bearer ${accessToken}`
-//         }
-//     });
-//     return response.data;
-// };
+export const Delete_Like = async (postId) => {
+    try {
+        const response = await axios({
+            method:"delete",
+            url: url,
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            },
+            data: {
+                postId: postId,
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('delete like error: ', error);
+        return { success: false, error: error.message };
+    }
+}

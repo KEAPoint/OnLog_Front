@@ -3,14 +3,16 @@ import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { S_regular_20 } from "../../components/style/Styled";
+import { Post_Like, Delete_Like } from "../../apis/API_Like";
 
 const PostText = ({post}) => {
     // 관리자 여부 판단
     const userId = window.localStorage.getItem("userId");
-    const writerId = post?.writer?.blogId;
+    const writerId = post?.writer?.blogId; // 작성자 아이디
     const [isAdmin, setIsAdmin] = useState(false);
 
     const navigate = useNavigate();
+
     useEffect(() => {
         if (userId === writerId) {
         setIsAdmin(true);
@@ -19,25 +21,50 @@ const PostText = ({post}) => {
         }
     }, [userId, writerId]);
 
-    const [like, setLike] = useState("");
-    const [isLike, setIsLike] = useState(post.isLiked); // 좋아요 눌렀는지 아닌지
+    const [like, setLike] = useState(0); // 좋아요 개수
+    const [isLike, setIsLike] = useState(false); // 좋아요 눌렀는지 여부 판단
+
+    useEffect(() => {
+        if (post) { // post 객체가 준비되었는지 확인
+          setLike(post.likesCount); // like 상태값을 post.likesCount로 설정
+          setIsLike(post.isLiked); // isLike 상태값을 post.isLiked로 설정
+        //   console.log('like:',like);
+        }
+      }, [post]); // post 객체가 변경될 때마다 이 useEffect를 실행
 
     const tagClickHandler = (tagClick) => {
         navigate('/search', { state: { term: tagClick } }); // 검색 결과 페이지로 이동
     }
 
-    const likeHandler = () => {
-        if (isLike){
-            setLike(prevLike => prevLike -1); // 좋아요 수 감소
-            setIsLike(false);
+    const likeHandler = async () => {
+        if (isLike) { // 좋아요 취소하기
+            try {
+                const response = await Delete_Like(post.postId); // Delete_Like API 호출
+    
+                if (response && response.success) { // 응답이 있고, 응답의 success 가 true 일 때
+                    setLike(prevLike => prevLike - 1); // 좋아요 수 증가
+                    setIsLike(false); // 좋아요 눌렀는지 상태를 true로 변경
+                } else {
+                    console.error(response ? response.error : 'No response from server'); // 실패 처리
+                }
+            } catch (error) {
+                console.error('delete like catch error: ', error); // 오류 처리
+            }
+        } else { // 좋아요 누르기
+            try {
+                const response = await Post_Like(post.postId); // Post_Like API 호출
+    
+                if (response && response.success) { // 응답이 있고, 응답의 success 가 true 일 때
+                    setLike(prevLike => prevLike + 1); // 좋아요 수 증가
+                    setIsLike(true); // 좋아요 눌렀는지 상태를 true로 변경
+                } else {
+                    console.error(response ? response.error : 'No response from server'); // 실패 처리
+                }
+            } catch (error) {
+                console.error(error); // 오류 처리
+            }
         }
-        else{
-            setLike(prevLike => prevLike + 1); // 좋아요 수 증가
-            setIsLike(true);
-        }        
-        // 변경된 값을 저장하는 코드 필요 (db에 반영)
-    }
-
+    };
     const editHandler = () => {
         alert("수정하기");
     }
@@ -90,7 +117,8 @@ const PostText = ({post}) => {
                         <LikeButton onClick={likeHandler}>
                         <HeartIcon fill={isLike ? "red" : "none"} />
                         </LikeButton>
-                        <LikeNum>{post.likesCount}</LikeNum>
+                        {/* <LikeNum>{post.likesCount}</LikeNum> */}
+                        <LikeNum>{like}</LikeNum>
                     </LikeIconNum>
             </LikeWrap>
 

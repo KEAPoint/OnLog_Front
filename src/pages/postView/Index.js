@@ -12,44 +12,18 @@ import axios from 'axios';
 
 const PostviewPage = () => {
     const [post, setPost] = useState([]);
-    // const postId = '9e7dbd6f-bc34-43ab-a679-99a1ac043a18';
-    const postId = '529e8fee-f402-46c6-a795-9134761a9d7a';
+    const postId = '1f5dc811-fba6-4e32-8d91-33076c694287'; // 목포 글
+    // const postId = '86dc02c3-41a9-4cdb-923e-e70849bc9c59' // 일상 글
     const accessToken = window.localStorage.getItem("accessToken");
 
     useEffect(() => {
         window.scrollTo({top:0, behavior:"smooth"});
 
         const fetchPosts = async () => {
-            // const res = await axios({
-            //     method: "get",
-            //     url: `/posts/${postId}`
-            //     // url: '/posts',
-            //     // params: {
-            //     //     'Authorization': accessToken
-            //     // }
-            // })
-            // const res = await axios.get('/posts', {
-            //     headers: {
-            //       Authorization: `Bearer ${accessToken}`
-            //     }
-            //   });
-            // console.log(res.data);
-
             const data = await Get_SinglePost(postId);
 
             console.log(data.data);
             setPost(data.data);
-    
-            // const res = await axios({
-            //     method: "get",
-            //     url: `/posts/${postId}`,
-            //     headers: {
-            //         'Authorization': `Bearer ${accessToken}`
-            //     }
-            // });
-        
-            // console.log(res.data);
-            // setPost(res.data);
         }
         fetchPosts();
       }, []);
@@ -70,10 +44,10 @@ const PostviewPage = () => {
                 <PostText post={post}/>
 
                 {/* 댓글목록 / 댓글 작성 버튼 */}
-                <PostComment/>
+                <PostComment post={post}/>
 
                 {/* 댓글 작성 칸 */}
-                <CommentWrite/>
+                <CommentWrite post={post}/>
             </Wrap>
 
             <Footer/>

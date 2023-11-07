@@ -3,22 +3,37 @@ import { useSelector } from "react-redux";
 
 const accessToken = window.localStorage.getItem("accessToken");
 const userId = window.localStorage.getItem("userId");
-// const accessToken = "eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2OTg3MzEyMjAsImV4cCI6MTY5OTMzNjAyMCwicGFzc3dvcmQiOiJ1ejRVSkFlbVBJQ2MrODdVb1VjMXd3amMrR0hrd3hNQVN2cmZ5N0dOOWl0alo2NkZ1dmlLQjhPK1dCeHo0Q1Q2LzdhTDJVR0Z2ZUlUOW9LNTJsc2FnUT09In0.ghv4RVqN8l2XW1jfD_TRWypj7xIxFeaJoK2ykegjTjG9QMFI3vPvYS1ADXb3mJ1SEoWWbjgEChv328ljOqdfJw";
 
-// export const Get_Profile = async () => {
-//     // const accessToken = useSelector(state => state.login.token.accessToken);
-//     const url = '/blog';
+export const Post_Comment = async (cmtData) => {
+    const url = '/post/comments';
+    console.log('postid: ',cmtData.postId);
+    console.log('content: ',cmtData.content);
+    console.log('parentId: ',cmtData.parentCommentId);
+    console.log('postId type:', typeof cmtData.postId);  // postId의 데이터 타입 출력
+    console.log('parentId type: ',typeof cmtData.parentCommentId);  // parentCommentId의 데이터 타입 출력
+    console.log('content type: ', typeof cmtData.content);
 
-//     const res = await axios({
-//         method: "get",
-//         url: url,
-//         headers: {
-//             'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
-//         },
-//         params: {
-//             'blog_id': userId
-//         }  
-//     });
-//     console.log(accessToken);
-//     return res.data;
-// }
+
+    try {
+        const response = await axios({
+            method: "post",
+            url: url,
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            },
+            data: {
+                postId: cmtData.postId,
+                content: cmtData.content,
+                // parentCommentId: cmtData.parentCommentId,
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error("댓글 작성 중 에러 발생:", error);
+        
+        // 오류 응답의 데이터를 출력
+        if (error.response) {
+            console.error("Error response data:", error.response.data);
+        }
+    }
+}
