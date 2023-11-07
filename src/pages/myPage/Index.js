@@ -21,6 +21,7 @@ const MyPage = () => {
 
 const Wrap = styled.div`
     padding: 0rem 6.25rem;
+    
 `
 export default MyPage;
 
