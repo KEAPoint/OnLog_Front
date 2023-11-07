@@ -8,15 +8,15 @@ const CardItemHover = ({item}) => {
     console.log(item.thumbnailLink);
     const navigate = useNavigate();
 
-    const handleReadButtonClick = (e) => {
-        e.preventDefault();
-        console.log(e.preventDefault());
-        navigate('/mypage/post');
+    const handleReadBtnClick = (e) => {
+        // e.preventDefault();
+        console.log(item.postId)
 
+        navigate(`/post/${item.postId}`);
     };
     
     return (
-        <HoverWrap onClick={handleReadButtonClick}>
+        <HoverWrap onClick={handleReadBtnClick}>
             <Wrap>
                 <Photo $imgurl = {item.thumbnailLink}></Photo>
                 <Contents>{item.summary}</Contents>

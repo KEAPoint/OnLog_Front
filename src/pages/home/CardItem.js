@@ -20,7 +20,8 @@ const CardItem = ({item}) => {
     };
     const hoverInfo = {
         thumbnailLink: item.thumbnailLink,
-        summary: item.summary
+        summary: item.summary,
+        postId: item.postId
     }
 
     const [isHovering, setIsHovering] = useState(0);

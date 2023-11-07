@@ -41,7 +41,7 @@ function App() {
           <Route path="/mypage" element={<MyPage/>}/>
           <Route path="/mypage/edit" element={<ProfileEditPage/>}/>
           <Route path="/mypage/postwrite" element={<PostWrite/>}/>
-          <Route path="/mypage/post" element={<PostviewPage/>}/>
+          <Route path="/post/:postId" element={<PostviewPage/>}/>
           <Route path="/search" element={<SearchPage/>}/>
           <Route path="/subscribed" element={<SubscribePage/>}/>
           <Route path="/notification" element={<NoticePage/>}/>
