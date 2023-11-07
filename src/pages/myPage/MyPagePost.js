@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 const MypagePost = () => {
     const [clickCheck, setClickCheck] = useState(false);
     const handleEdit = () => {
-        setClickCheck(true);
+        setClickCheck(!clickCheck);
     };
     useEffect(() => {
         console.log(clickCheck)
@@ -20,7 +20,7 @@ const MypagePost = () => {
             <PageWrap>
                 {/* {clickCheck && <CategoryEdit/>} */}
                 <StickWrap>
-                    <CateWrap isExpanded={clickCheck}>
+                    <CateWrap $isExpanded={clickCheck}>
                         <MenuWrap>
                             <S_regular_20_8>Category</S_regular_20_8>
                             <EditBtn onClick={handleEdit}><Edit/></EditBtn>
@@ -40,7 +40,7 @@ const MypagePost = () => {
 
 
 
-                        <Category as={!clickCheck ? "div" : "button"} isButton={clickCheck}>
+                        <Category as={clickCheck ? "div" : "button"} $isButton={clickCheck}>
                             <CateTitle>나의 잡담</CateTitle>
                             {clickCheck && (
                                 <UserOption>
@@ -86,7 +86,7 @@ const CateWrap = styled.div`
     top: 0;
     display: flex;
     /* width: 29.8125rem; */
-    width: ${props => props.isExpanded ? 'calc(100vw - 12.5rem)' : '29.8125rem'};
+    width: ${props => props.$isExpanded ? 'calc(100vw - 12.5rem)' : '29.8125rem'};
     transition: width 0.5s ease-out;
     // padding: 1.625rem 0rem;
     flex-direction: column;
@@ -130,7 +130,7 @@ const AddBtn = styled(Option)`
 
 `;
 const Category = styled.button`
-    cursor: ${props => !props.isButton ? "pointer" : "default"};
+    cursor: ${props => !props.$isButton ? "pointer" : "default"};
     display: flex;
     padding: 1.5rem 1.25rem 1.5rem 2.5rem;
     justify-content: space-between;

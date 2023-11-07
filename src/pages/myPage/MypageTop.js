@@ -2,20 +2,43 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { L_bold_32, S_bold_19_2, S_bold_25, S_regular_20_8, S_regular_30 } from '../../components/style/Styled';
 import HaniProfile from '../../assets/images/Profile.jpeg';
-
-
-
+import { Get_Profile } from "../../apis/API_MyPage";
+import { useEffect, useState } from "react";
 
 const MypageTop = () => {
-    const movePage = useNavigate();
+    const navigate = useNavigate();
+    const [profile, setProfile] = useState({}); 
+
+    useEffect(() => {
+        Get_Profile()
+        .then((data) => {
+
+            setProfile({
+                ...profile,
+                blogId: data.data.blogName,
+                blogName: data.data.blogName,
+                blogNickname: data.data.blogNickname,
+                blogProfileImg: data.data.blogProfileImg,
+                likeCount: data.data.likeCount,
+                postCount: data.data.postCount,
+                subscriberCount: data.data.subscriberCount,
+                blogIntro: data.data.blogIntro,
+
+            })
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    },[]);
+    
 
     const handlePostButtonClick = (e) => {
         e.preventDefault();
-        movePage('/mypage/postwrite');
+        navigate('/mypage/postwrite');
     };
     const handleEditButtonClick = (e) => {
         e.preventDefault();
-        movePage('/mypage/edit');
+        navigate('/mypage/edit');
 
     };
 
@@ -24,10 +47,10 @@ const MypageTop = () => {
             <Wrap1>
                 <Left>
                     <Menu>
-                        <ProfileImg/>
+                        <ProfileImg $proflieImg={profile.blogProfileImg}/>
                         <TitleWrap>
-                            <BlogTitle>Hani Tech World</BlogTitle>
-                            <Name>@hanitech</Name>
+                            <BlogTitle>{profile.blogName}</BlogTitle>
+                            <Name>@{profile.blogNickname}</Name>
                         </TitleWrap>
                     </Menu>
                 </Left>
@@ -35,21 +58,21 @@ const MypageTop = () => {
                 <Right>
                     <Box>
                         <Title> 작성한 글 </Title>
-                        <Num>999</Num>
+                        <Num>{profile.postCount}</Num>
                     </Box>
                     <Box>
                         <Title> 좋아요 수 </Title>
-                        <Num>999</Num>
+                        <Num>{profile.likeCount}</Num>
                     </Box>
                     <Box style={{borderRight:"none"}}>
                         <Title> 구독자 수 </Title>
-                        <Num>999</Num>
+                        <Num>{profile.subscriberCount}</Num>
                     </Box>
                 </Right>
             </Wrap1>
             <Wrap2>
                 <ProfileInfo>
-                Hani Tech World 는 최신 기술 정보와 실용적인 IT 팁을 제공하는 블로그입니다.
+                    {profile.blogIntro}
                 </ProfileInfo>
             </Wrap2>
             <Wrap2>
@@ -109,7 +132,7 @@ const ProfileImg = styled.div`
     width: 12.6875rem;
     height: 12.625rem;
     border-radius: 6.875rem;
-    background: url(${HaniProfile}) lightgray 50% / cover no-repeat;
+    background: ${props => `url(${props.proflieImg}) lightgray 50% / cover no-repeat`};
     margin-right: 2.81rem;
 `;
 const TitleWrap = styled.div`
