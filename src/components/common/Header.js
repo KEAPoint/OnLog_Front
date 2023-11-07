@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {ReactComponent as Logo2} from '../../assets/images/Logo2.svg';
 import { S_bold_19_2, S_bold_25, XS_bold_13, XS_regular_16 } from '../style/Styled';
 import { Link, useNavigate } from 'react-router-dom';
-import { Get_Profile } from '../../apis/API_Header';
+import { Get_Profile } from '../../apis/API_MyPage';
 
 
 const Header = () => {
@@ -34,6 +34,8 @@ const Header = () => {
     const navigate = useNavigate();
     const handleClick = (e) =>   {
         console.log(e)
+        const userId = window.localStorage.getItem("userId");
+
             switch(e.currentTarget.name) {
                 case "logo" :
                     navigate('/');
@@ -41,6 +43,8 @@ const Header = () => {
                 case "signin" :
                     navigate('/login');
                     break;
+                case "myPage" :
+                    navigate(`/mypage/${userId}`);
                 default:
             }
     }
@@ -63,13 +67,13 @@ const Header = () => {
 
 
                     {/* <UserProfile/> */}
-                    <Menu>
+                    <MyPageBtn name='myPage' onClick={handleClick}>
                         <ProfileImg $blogProfileImg={user.blogProfileImg}></ProfileImg>
                         <TitleWrap to={'/mypage'}>
                             <Title>{user.blogName}</Title>
                             <Name>@{user.blogNickname}</Name>
                         </TitleWrap>
-                    </Menu>
+                    </MyPageBtn>
                 </MenuWrap>
             ):(
                 <SignInBtn name="signin" onClick={handleClick}>Sign in</SignInBtn>
@@ -153,4 +157,9 @@ const SignInBtn = styled(S_bold_25).attrs({ as: 'button' })`
     &:active{
         transform: scale(0.95);
     }
+`;
+const MyPageBtn = styled(Menu).attrs({ as: 'button' })`
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
 `;

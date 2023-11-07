@@ -38,10 +38,13 @@ function App() {
 
           {/* 마이페이지 */}
           {/* <Route path="/mypage/post" element={<SignUp/>}/> */}
-          <Route path="/mypage" element={<MyPage/>}/>
+          <Route path="/post/:postId" element={<PostviewPage/>}/>
+          <Route path="/mypage/:userId" element={<MyPage/>}/>
+
+
+
           <Route path="/mypage/edit" element={<ProfileEditPage/>}/>
           <Route path="/mypage/postwrite" element={<PostWrite/>}/>
-          <Route path="/post/:postId" element={<PostviewPage/>}/>
           <Route path="/search" element={<SearchPage/>}/>
           <Route path="/subscribed" element={<SubscribePage/>}/>
           <Route path="/notification" element={<NoticePage/>}/>
