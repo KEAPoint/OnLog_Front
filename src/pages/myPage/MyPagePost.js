@@ -47,7 +47,7 @@ export default MypagePost;
 
 const PageWrap = styled.div`
     display: flex;
-    padding: 0rem 6.25rem;
+    /* padding: 0rem 6.25rem; */
 
     position: relative;
 `

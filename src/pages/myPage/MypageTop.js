@@ -75,7 +75,6 @@ const Wrap1 = styled.div`
     // flex-wrap: wrap;
 
     display: flex;
-    padding: 3.75rem 6.25rem 1.875rem 6.25rem;
     justify-content: space-between;
     align-items: center;
     align-content: center;
