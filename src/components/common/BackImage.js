@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 
 const BackImage = () => {
     const color = useSelector(state => state.color);
-    console.log(color.color);
+    // console.log(color.color);
 
     return (
         <Wrap>
