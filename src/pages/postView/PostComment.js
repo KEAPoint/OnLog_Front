@@ -4,27 +4,25 @@ import ReplyComment from "./ReplyComment";
 import CommentWrite from "./CommentWrite";
 import { useRef, useState } from "react";
 
+// 댓글 목록
 const PostComment = ({post}) => {
-    const [isClicked, setIsClicked] = useState(false);
+    // const [isClicked, setIsClicked] = useState(false);
     const commentWriteRef = useRef(null); // 댓글달기 버튼 누르면 댓글 창 뜬 곳으로 scroll 하게
 
 
-    const buttonHandler = () => {
-        setIsClicked(!isClicked);
-        commentWriteRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
+    // const buttonHandler = () => {
+    //     setIsClicked(!isClicked);
+    //     commentWriteRef.current.scrollIntoView({ behavior: 'smooth' });
+    // }
 
     return (
         <div>
-            <Wrap>
-                <CommentBtn onClick={buttonHandler}> 댓글 달기 </CommentBtn>
-            </Wrap>
             <CommentWrap ref={commentWriteRef}>
                 <Comment post={post}/>
                 <ReplyComment/>
             </CommentWrap>
-            {isClicked && <CommentWrite style={{padding:"0rem 0rem 0rem 0rem"}}/>}
-
+            {/* {isClicked && <CommentWrite style={{padding:"0rem 0rem 0rem 0rem"}}/>} */}
+            {/* <CommentWrite style={{padding:"0rem 0rem 0rem 0rem"}}/> */}
         </div>
     );
 };

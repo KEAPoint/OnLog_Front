@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { S_regular_20 } from "../../components/style/Styled";
-import { Post_Like, Delete_Like } from "../../apis/API_Like";
+import { Post_PostLike, Delete_PostLike } from "../../apis/API_Like";
 
 const PostText = ({post}) => {
     // 관리자 여부 판단
@@ -39,11 +39,12 @@ const PostText = ({post}) => {
     const likeHandler = async () => {
         if (isLike) { // 좋아요 취소하기
             try {
-                const response = await Delete_Like(post.postId); // Delete_Like API 호출
+                const response = await Delete_PostLike(post.postId); // Delete_PostLike API 호출
     
                 if (response && response.success) { // 응답이 있고, 응답의 success 가 true 일 때
                     setLike(prevLike => prevLike - 1); // 좋아요 수 증가
                     setIsLike(false); // 좋아요 눌렀는지 상태를 true로 변경
+                    console.log('게시글 좋아요 취소');
                 } else {
                     console.error(response ? response.error : 'No response from server'); // 실패 처리
                 }
@@ -52,11 +53,13 @@ const PostText = ({post}) => {
             }
         } else { // 좋아요 누르기
             try {
-                const response = await Post_Like(post.postId); // Post_Like API 호출
+                const response = await Post_PostLike(post.postId); // Post_PostLike API 호출
     
                 if (response && response.success) { // 응답이 있고, 응답의 success 가 true 일 때
                     setLike(prevLike => prevLike + 1); // 좋아요 수 증가
                     setIsLike(true); // 좋아요 눌렀는지 상태를 true로 변경
+                    console.log('게시글 좋아요 클릭');
+
                 } else {
                     console.error(response ? response.error : 'No response from server'); // 실패 처리
                 }
