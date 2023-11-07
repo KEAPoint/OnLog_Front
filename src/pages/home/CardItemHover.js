@@ -4,20 +4,22 @@ import { useNavigate } from "react-router-dom";
 import { S_bold_17, XS_regular_16 } from '../../components/style/Styled';
 import Arrow from '../../assets/images/Icons/Arrow.png';
 
-const CardItemHover = ({info}) => {
-    const movePage = useNavigate();
+const CardItemHover = ({item}) => {
+    console.log(item.thumbnailLink);
+    const navigate = useNavigate();
 
     const handleReadButtonClick = (e) => {
         e.preventDefault();
-        movePage('/mypage/post');
+        console.log(e.preventDefault());
+        navigate('/mypage/post');
 
     };
     
     return (
         <HoverWrap onClick={handleReadButtonClick}>
             <Wrap>
-                <Photo $imgurl = {info.img}></Photo>
-                <Contents>{info.contents}</Contents>
+                <Photo $imgurl = {item.thumbnailLink}></Photo>
+                <Contents>{item.summary}</Contents>
                 <ReadWrap>
                    <p>Read</p> 
                    <img src={Arrow} alt="arrow" /> 

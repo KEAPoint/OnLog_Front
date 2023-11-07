@@ -36,13 +36,14 @@ export const Profile_Name = styled(XS_regular_16)`
     text-align: left;
 `;
 
-const UserProfile = ({info}) => {
+const UserProfile = ({item}) => {
+    // console.log(item)
     return (
         <Profile_Wrap>
-            <Profile_ProfileImg $imgurl={info.profile}></Profile_ProfileImg>
+            <Profile_ProfileImg $imgurl={item.blogProfileImg}></Profile_ProfileImg>
             <Profile_TitleWrap>
-                <Profile_Title>{info.blogName}</Profile_Title>
-                <Profile_Name>{info.nickName}</Profile_Name>
+                <Profile_Title>{item.blogName}</Profile_Title>
+                <Profile_Name>@{item.blogNickname}</Profile_Name>
             </Profile_TitleWrap>
         </Profile_Wrap>
     );

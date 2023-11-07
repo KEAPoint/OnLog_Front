@@ -18,35 +18,31 @@ const HomePage = () => {
     const location = useLocation();
     const dispatch = useDispatch();
     const [category, setCategory] = useState({
-        name: "",
-        kName: "",
-        color: "",
+        name: null,
+        kName: null,
+        color: null,
     });
 
 
-    useEffect(() => {
-        // 그냥 이 페이지 들어오자마자 DOM링크 가져와서 카테고리가 뭔지 알 수 있도록 -> 해당하는 카드리스트 나오기
-        let path = location.pathname.replace(/\/main\/|\/main/g, '');
-        console.log("현재 카테고리: ", path);
-        
-        navData.map((item) => {
-                if(path === item.name) {
-                    setCategory({
-                        name: item.name,
-                        hoverName: item.kName,
-                        color: item.color
-                    })
-                    
-                    dispatch(
-                        colorAction({
-                            category: item.name,  
-                            color: item.color,
-                        })
-                    );
-                }
+useEffect(() => {
+    let path = location.pathname.replace(/\/main\/|\/main/g, '');
+
+    const newCategory = navData.find(item => item.name === path);
+    if (newCategory) {
+        setCategory({
+            name: newCategory.name,
+            hoverName: newCategory.kName,
+            color: newCategory.color
         });
 
-    },[location]) 
+        dispatch(
+            colorAction({
+                category: newCategory.name,
+                color: newCategory.color,
+            })
+        );
+    }
+}, [location, dispatch]);
 
     const isCurrent = to => to === location.pathname;
 

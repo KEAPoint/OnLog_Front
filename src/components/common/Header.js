@@ -17,7 +17,7 @@ const Header = () => {
     useEffect(() => {
         Get_Profile()
         .then((data) => {
-            console.log(data);
+            // console.log(data);
 
             setUser({
                 ...user,
