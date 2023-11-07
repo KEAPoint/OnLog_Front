@@ -1,26 +1,71 @@
 import styled from "styled-components";
 import ThumbImg from "../../assets/images/catogories/Tech.png"
 import Profile from "../../assets/images/Profile.jpeg";
+import { L_semibold_32, S_bold_17, XS_regular_16 } from "../../components/style/Styled";
 // import Parser from 'html-react-parser';
+import { useDispatch } from 'react-redux';
+import { colorAction } from '../../store/actions/color';
+import { useEffect , useState} from "react";
+import { navData } from "../../assets/datas/categoryData";
 
 
-const PostThumb = () => {
-    const sum = "오늘은 맹구가 전학 왔다. 맹구는 콧물이 정말 길다. 저 콧물은 진짜일까? 가짜일까? 모형일까? 뭘까?";
+function isValidUrl(string) {
+    try {
+      new URL(string);
+      return true;
+    } catch (_) {
+      return false;  
+    }
+  }
+
+const PostThumb = ({post}) => {
+
+    const defaultImageUrl = "https://i.namu.wiki/i/awkzTuu2p6WdaGIUbeHWGj0yzxUOd_wniEADxzMH8qvhWH4TDkpkkiUAJpefC-8J79giMVyjN5y1uRYQVoQm2g.webp";  // 이미지 url이 유효한 값이 아닌 string일 때 기본 이미지 URL 설정
+    const thumbImageUrl = isValidUrl(post.thumbnailLink) ? post.thumbnailLink : defaultImageUrl;
+
+
+    const dispatch = useDispatch();
+    const [topic, setTopic] = useState({
+        name:"",
+        color:"",
+    });
+
+    useEffect(() => {
+        if (post && post.topic) {
+            setTopic({
+                name: navData[post.topic.id].kName,
+                color: navData[post.topic.id].color,
+            });
+
+            dispatch(
+                colorAction({
+                    category: navData[post.topic.id].name,  
+                    color: navData[post.topic.id].color,
+                })
+            );
+        }
+    }, [post]);
+
+
+    // console.log('postThumb');
+    // console.log(post.writer);
+    // console.log(post.writer && post.writer.blogProfileImg);
 
     return(
         <>
             <Menu>
-                <ProfileImg></ProfileImg>
+            <ProfileImg $profileImg={post.writer && post.writer.blogProfileImg}></ProfileImg>
                 <TitleWrap>
-                    <BlogName>Hani Tech World</BlogName>
-                    <NickName>@hanitech</NickName>
+                    <BlogName>{post.writer && post.writer.blogName}</BlogName>
+                    <NickName>@{post.writer && post.writer.blogNickname}</NickName>
                 </TitleWrap>
             </Menu>
             <Wrap>
-                <ImageDiv>  </ImageDiv>
+                <ThumbImgDiv $thumbImg={post.thumbnailLink} color={topic.color}>  </ThumbImgDiv>
+                {/* <ThumbImgDiv $thumbImg={thumbImageUrl} color={topic.color}>  </ThumbImgDiv> */}
                 <Summary>
                     {/* {Parser({title})} */}
-                    {sum}
+                    {post.summary}
                 </Summary>
             </Wrap>
         </>
@@ -39,34 +84,21 @@ const ProfileImg = styled.div`
     width: 3rem;
     height: 3rem;
     border-radius: 2.5rem;
-    background: url(${Profile}) lightgray 50% / cover no-repeat;
+    background: url(${props => props.$profileImg}) #FF7575 50% / cover no-repeat;
     margin-right: 0.94rem;
 `;
 const TitleWrap = styled.div`
     text-decoration: none;
     color: var(--black);
 `;
-const BlogName = styled.div`
+const BlogName = styled(S_bold_17)`
     text-align: justify;
 
     color: var(--black, #000);
-
-    /* S-bold-25 */
-    font-family: Pretendard;
-    font-size: 1.2rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
 `;
-const NickName = styled.div`
+const NickName = styled(XS_regular_16)`
     color: var(--gray_bold, #4A4A4A);
     text-align: justify;
-    font-family: Pretendard;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: 0.03375rem;
 `;
 
 const Wrap = styled.div`
@@ -80,27 +112,20 @@ const Wrap = styled.div`
     align-self: stretch;
     flex-wrap: wrap;
 `
-const ImageDiv = styled.div`
+const ThumbImgDiv = styled.div`
     width: 20rem;
     height: 20rem;
     // border-radius: 1.875rem;
-    background: url(${ThumbImg}), #FF7575 50% / cover no-repeat;
-
+    background: url(${props => props.$thumbImg}), var(${props=>props.color}) 50% / cover no-repeat;
+    // background: url(${props => props.$thumbImg}), var(${props=>props.color}) 50% / cover no-repeat;
     /* style_shadow */
     // box-shadow: 6px 7px 7px 0px rgba(0, 0, 0, 0.50);
 `
 
-const Summary = styled.div`
+const Summary = styled(L_semibold_32)`
     width: 30rem;
     color: var(--gray_bold, #4A4A4A);
     text-align: justify;
 
     line-height: 2.3rem;
-
-    /* L-semibold-40 */
-    font-family: Pretendard;
-    font-size: 1.5rem;
-    // font-size: 24px;
-    font-style: normal;
-    font-weight: 600;
 `

@@ -12,13 +12,14 @@ import SearchPage from "./pages/search/Index";
 import SubscribePage from "./pages/subscribe/Index";
 import NoticePage from "./pages/notification/Index";
 import KakaoMiddle from "./pages/login/KakaoMiddle";
+import TestPage from "../src/Test";
 function App() {
   return (
     <BrowserRouter>
       <Routes>
           {/* 랜딩 */}
           <Route path="/" element={<LandingPage/>}/>
-          
+          <Route path="/test" element={<TestPage/>}/>
           {/* 로그인 */}
           <Route path="/login" element={<LoginPage/>}/>
           <Route path="/authMiddle" element={<KakaoMiddle/>}/>

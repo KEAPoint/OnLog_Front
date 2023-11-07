@@ -2,26 +2,25 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { S_regular_20 } from "../../components/style/Styled";
 
 const PostText = ({post}) => {
     // 관리자 여부 판단
-    const [userId, setUserId] = useState("admin123");
+    const userId = window.localStorage.getItem("userId");
+    const writerId = post?.writer?.blogId;
     const [isAdmin, setIsAdmin] = useState(false);
-
-    const adminId = "admin123";
-    const context = "패션이란 무엇일까 그것은 강함 강한건 철 철수와 영희 아이언맨이 되어버린 나의 이야기 렛츠기릿패션이란 무엇일까 그것은 강함 강한건 철 철수와 영희 아이언맨이 되어버린 나의 이야기 렛츠기릿패션이란 무엇일까 그것은 강함 강한건 철 철수와 영희 아이언맨이 되어버린 나의 이야기 렛츠기릿패션이란 무엇일까 그것은 강함 강한건 철 철수와 영희 아이언맨이 되어버린 나의 이야기 렛츠기릿패션이란 무엇일까 그것은 강함 강한건 철 철수와 영희 아이언맨이 되어버린 나의 이야기 렛츠기릿패션이란 무엇일까 그것은 강함 강한건 철 철수와 영희 아이언맨이 되어버린 나의 이야기 렛츠기릿패션이란 무엇일까 그것은 강함 강한건 철 철수와 영희 아이언맨이 되어버린 나의 이야기 렛츠기릿패션이란 무엇일까 그것은 강함 강한건 철 철수와 영희 아이언맨이 되어버린 나의 이야기 렛츠기릿패션이란 무엇일까 그것은 강함 강한건 철 철수와 영희 아이언맨이 되어버린 나의 이야기 렛츠기릿패션이란 무엇일까 그것은 강함 강한건 철 철수와 영희 아이언맨이 되어버린 나의 이야기 렛츠기릿패션이란 무엇일까 그것은 강함 강한건 철 철수와 영희 아이언맨이 되어버린 나의 이야기 렛츠기릿패션이란 무엇일까 그것은 강함 강한건 철 철수와 영희 아이언맨이 되어버린 나의 이야기 렛츠기릿";
-    const tag = ["전학", "10년생", "친구", "맹구"];
-    const [like, setLike] = useState(3);
-    const [isLike, setIsLike] = useState(false); // 좋아요 눌렀는지 아닌지
 
     const navigate = useNavigate();
     useEffect(() => {
-        if (userId === adminId) {
+        if (userId === writerId) {
         setIsAdmin(true);
         } else {
         setIsAdmin(false);
         }
-    }, [userId]);
+    }, [userId, writerId]);
+
+    const [like, setLike] = useState("");
+    const [isLike, setIsLike] = useState(post.isLiked); // 좋아요 눌렀는지 아닌지
 
     const tagClickHandler = (tagClick) => {
         navigate('/search', { state: { term: tagClick } }); // 검색 결과 페이지로 이동
@@ -36,7 +35,7 @@ const PostText = ({post}) => {
             setLike(prevLike => prevLike + 1); // 좋아요 수 증가
             setIsLike(true);
         }        
-        // 변경된 값을 저장한는 코드 필요 (db에 반영)
+        // 변경된 값을 저장하는 코드 필요 (db에 반영)
     }
 
     const editHandler = () => {
@@ -70,11 +69,16 @@ const PostText = ({post}) => {
         <Wrap>
             {/* 본문 내용 */}
             <Context>
-                {context}
+                {post.content}
             </Context>
 
             <HashTagWrap>
-                {tag.map((t) => <HashTag key={t} onClick={()=>tagClickHandler(t)}>#{t}</HashTag>)}
+                {/* {tag.map((t) => <HashTag key={t} onClick={()=>tagClickHandler(t)}>#{t}</HashTag>)} */}
+                {post.hashtagList && post.hashtagList.map((hashtag) => 
+                    <HashTag key={hashtag.id} onClick={() => tagClickHandler(hashtag.name)}>
+                        #{hashtag.name}
+                    </HashTag>
+                )}
             </HashTagWrap> 
 
             <LikeWrap>
@@ -86,7 +90,7 @@ const PostText = ({post}) => {
                         <LikeButton onClick={likeHandler}>
                         <HeartIcon fill={isLike ? "red" : "none"} />
                         </LikeButton>
-                        <LikeNum>{like}</LikeNum>
+                        <LikeNum>{post.likesCount}</LikeNum>
                     </LikeIconNum>
             </LikeWrap>
 
@@ -113,17 +117,9 @@ const Wrap = styled.div`
     align-self: stretch;
 `
 
-const Context = styled.div`
+const Context = styled(S_regular_20)`
     align-self: stretch;
     color: var(--black, #000);
-    /* S-regular_30(txt) */
-    font-family: Pretendard;
-    font-size: 1.25rem;
-    font-style: normal;
-    font-weight: 350;
-    // line-height: 3.125rem; /* 166.667% */
-    line-height: 2.3rem;
-    letter-spacing: 0.01875rem;
 `
 
 const HashTagWrap = styled.div`
@@ -144,12 +140,12 @@ const HashTag = styled.button`
     padding: 0rem 0.5rem;
     border: 3px solid var(--gray_bold, #4A4A4A);
 
-    /* S-medium-34 */
+    /* S-medium-20.8(RE) */
     font-family: Pretendard;
     font-size: 1.3rem;
     font-style: normal;
     font-weight: 500;
-    line-height: 158.023%; /* 2.96294rem */
+    line-height: 158.023%; /* 2.05431rem */
 
     transition: 0.3s;
     cursor: pointer;

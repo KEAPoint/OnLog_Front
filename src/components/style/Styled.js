@@ -36,6 +36,15 @@ export const S_regular_19_2 = styled.div`
     line-height: normal;
     letter-spacing: 0.012rem;
 `
+export const S_regular_20 = styled.div`
+    /* S-regular_20(RE) */
+    font-family: Pretendard;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 2.3rem; /* 184% */
+    letter-spacing: 0.0125rem;
+`
 export const S_regular_20_8 = styled.div`
     /* S-regular-20.8(RE) */
     font-family: Pretendard;
@@ -59,6 +68,14 @@ export const S_regular_30 = styled.div`
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+`
+export const S_medium_20_8 = styled.div`
+    /* S-medium-20.8(RE) */
+    font-family: Pretendard;
+    font-size: 1.3rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 158.023%; /* 2.05431rem */
 `
 export const S_medium_34 = styled.div`
     /* S-medium-34 */
