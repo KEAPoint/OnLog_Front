@@ -61,8 +61,8 @@ const PostThumb = ({post}) => {
                 </TitleWrap>
             </Menu>
             <Wrap>
-                <ThumbImgDiv $thumbImg={post.thumbnailLink} color={topic.color}>  </ThumbImgDiv>
-                {/* <ThumbImgDiv $thumbImg={thumbImageUrl} color={topic.color}>  </ThumbImgDiv> */}
+                {/* <ThumbImgDiv $thumbImg={post.thumbnailLink} color={topic.color}>  </ThumbImgDiv> */}
+                <ThumbImgDiv $thumbImg={thumbImageUrl} color={topic.color}>  </ThumbImgDiv>
                 <Summary>
                     {/* {Parser({title})} */}
                     {post.summary}
