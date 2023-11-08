@@ -14,7 +14,7 @@ import { filterListAction } from "../../store/actions/card";
 import AddCategoryItem from "./AddCategoryItem";
 
 const MypagePost = () => {
-    const [EditClickCheck, setEditClickCheck] = useState(true);
+    const [EditClickCheck, setEditClickCheck] = useState(false);
     const [AddClickCheck, setAddClickCheck] = useState(0);
     const dispatch = useDispatch();
     const cateList = useSelector(state => state.category.cate);
@@ -130,7 +130,6 @@ const PageWrap = styled.div`
     position: relative;
 `
 const StickWrap = styled.div`
-    /* background-color: red; */
 `;
 
 const CateWrap = styled.div`
@@ -146,8 +145,6 @@ const CateWrap = styled.div`
     gap: 1.25rem;
     /* border-right: 1px solid var(--gray_bold, #4A4A4A); */
     /* background: #FFF; */
-
-    background-color: aliceblue;
 `
 const MenuWrap = styled.div`
     align-self: stretch;
