@@ -1,7 +1,12 @@
 const initialState = {
     // cate: [],
-    cate: {},
-    editClick : false
+    // cateId: null,
+    cate: {
+        cateId: null,
+        name: "",
+        order: ""
+    },
+    editClick : false,
 }
 
 const CateReducer = (state = initialState, action) => {
@@ -15,13 +20,12 @@ const CateReducer = (state = initialState, action) => {
                 //     }]
                 // }
                 return {
-                    ...state,
                     cate : {
+                        cateId: action.data.cateId,
                         name: action.data.name,
                         order: action.data.order
-                    }
+                    }                   
                 }
-
 
             }
             case 'EDIT_CLICK' : {

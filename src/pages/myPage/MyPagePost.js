@@ -11,6 +11,7 @@ import { Get_Categori } from "../../apis/API_MyPage";
 import CategoryItem from "./CategoryItem";
 import { useDispatch } from "react-redux";
 import { cateAction, editClickAction } from "../../store/actions/category";
+import { filterListAction } from "../../store/actions/card";
 const MypagePost = () => {
     const [clickCheck, setClickCheck] = useState(false);
     const [categories, setCategories] = useState([]);
@@ -20,20 +21,27 @@ const MypagePost = () => {
         Get_Categori()
         .then((data) => {
             console.log("서버:",data.data)
-            setCategories(data.data);
+            let sortedData = data.data.sort((a, b) => a.order - b.order);
+            setCategories(sortedData);
 
-            // dispatch(
-            //     cateAction({
-            //         name: data.data.name,
-            //         order: data.data.order                    
+            dispatch(
+                // cateAction({
+                //     cateId: data.data.id,
+                //     name: data.data.name,
+                //     order: data.data.order                    
 
-            //     })
-            // );
+                // })
+                filterListAction({
+                    blog_id: window.localStorage.getItem("userId"),
+                    category_id: data.data.id
+                })
+            );
         })
         .catch((error) => {
             console.log(error);
         })
     },[]);
+
     const handleEdit = () => {
         setClickCheck(!clickCheck);
 
@@ -44,12 +52,16 @@ const MypagePost = () => {
         );
         console.log("확인", !clickCheck);
     };
-    useEffect(() => {
-        // console.log(clickCheck)
-        // console.log("test");
-        // console.log(clickCheck)
-        // console.log(categories[0])
-    },[clickCheck,categories])
+    const handleClick = (cateId=null) => { // 함수 호출 시 인자가 전달되지 않은 경우 대비 위해
+        console.log("click"); 
+        dispatch(
+            filterListAction({
+                blog_id: window.localStorage.getItem("userId"),
+              category_id: cateId
+            })
+        )
+    }
+
     return(
             <PageWrap>
                 {/* {clickCheck && <CategoryEdit/>} */}
@@ -62,7 +74,7 @@ const MypagePost = () => {
 
                         {!clickCheck && (
                             <>
-                                <Option>
+                                <Option onClick={() => handleClick()}>
                                     <CateTitle>전체</CateTitle>
                                 </Option>
                                 <Option>
@@ -74,18 +86,8 @@ const MypagePost = () => {
 
 
                         {categories.map((item) => (
-                            <CategoryItem key={item.id} item={item}/>
+                            <CategoryItem key={item.id} item={item} handleClick={handleClick}/>
                         ))}
-                        {/* <Category as={clickCheck ? "div" : "button"} $isButton={clickCheck}>
-                            <CateTitle>나의 잡담</CateTitle>
-                            {clickCheck && (
-                                <UserOption>
-                                    <UserOptionBtn>수정하기</UserOptionBtn>
-                                    <UserOptionBtn>삭제하기</UserOptionBtn>
-                                </UserOption>
-                            )}
-
-                        </Category> */}
 
 
                         {clickCheck && (
@@ -97,10 +99,14 @@ const MypagePost = () => {
                     </CateWrap>
                 </StickWrap>
                 
-                {!clickCheck && (
-                    <PostWrap>
-                        <Card category=""/>
-                    </PostWrap>
+                {!clickCheck  && (
+                    <>
+                        {categories.length > 0 && 
+                            <PostWrap>
+                                <Card/>
+                            </PostWrap>
+                        }
+                    </>
                 )}
 
             </PageWrap>

@@ -1,16 +1,18 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { S_bold_19_2, XS_semibold_16 } from '../../components/style/Styled';
+import { filterListAction } from '../../store/actions/card';
 
-const CategoryItem = ({item}) => {
+const CategoryItem = ({item, handleClick}) => {
     const editClick = useSelector((state) => state.category.editClick);
+    const dispatch = useDispatch();
     console.log("확인2",editClick);
 
 
     return (
         <Wrap>
-            <Category as={editClick ? "div" : "button"} $isButton={editClick}>
+            <Category as={editClick ? "div" : "button"} $isButton={editClick} onClick={()=>handleClick(item.id)}>
                 <CateTitle>{item.name}</CateTitle>
                     {editClick && (
                         <UserOption>
@@ -71,7 +73,7 @@ const UserOptionBtn = styled(XS_semibold_16).attrs({as:'button'})`
         background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), #000;
         height: 23px;
         position: absolute;
-        right: -10px;  // Adjust this value to position "sss" correctly
+        right: -10px;  
     }
 
     &:last-child::after {
