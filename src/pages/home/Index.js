@@ -31,6 +31,7 @@ useEffect(() => {
     console.log("확인확인", newCategory)
     
     if (newCategory) {
+        console.log("유지연");
         setCategory({
             name: newCategory.name,
             hoverName: newCategory.kName,
@@ -88,7 +89,8 @@ useEffect(() => {
 
                 {/* <Card/> */}
                 {/* category.name이 설정되는 시점과 filterListAction이 dispatch되는 시점이 동일하기 때문에 => Card컴포넌트에서 filterList가 다 업데이트되기도 전에 HomePage컴포넌트의 dispatch를 변경으로 감지하여, 초기값이 들어가버리는 상황 방지*/}
-                {category.name && <Card/>}
+                {category.name!==null && <Card/>}
+                {/* <Card/>  */}
                 {/* <ScrollTop/> */}
                 <Footer/>
                 
