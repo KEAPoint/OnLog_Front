@@ -25,7 +25,7 @@ const Comment = ({post}) => {
     const [isClicked, setIsClicked] = useState({}); // 답글 버튼 상태 관리 (눌렸는지 아닌지)
 
     // 답글 작성 버튼 핸들러 (각 댓글별로 상태관리)
-    const buttonHandler = (commentId) => {
+    const replyBtnHandler = (commentId) => {
         setIsClicked(prevState => ({ ...prevState, [commentId]: !prevState[commentId] }));
       }
 
@@ -286,7 +286,7 @@ const Comment = ({post}) => {
                                 <LikeNum>{likesCount[comment.commentId]}</LikeNum>
                             </HeartWrap>
                             {/* 답글 버튼 */}
-                            <ReplyButton onClick={() => buttonHandler(comment.commentId)}> 답글달기 </ReplyButton>
+                            <ReplyButton onClick={() => replyBtnHandler(comment.commentId)}> 답글달기 </ReplyButton>
                             </HeartReplyWrap>
                         </CommentFooter>
                     </Wrap>
@@ -515,7 +515,6 @@ const ReplyButton = styled.button`
 
     &:hover{
         transition: 0.3s;
-        background-color: black;
-        color: white;
+        color: red;
     }
 `

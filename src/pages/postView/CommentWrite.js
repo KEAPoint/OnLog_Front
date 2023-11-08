@@ -45,7 +45,7 @@ const CommentWrite = ({post}) => {
         <Wrap>
             <WriteWrap type="text" value={inputText} onChange={handleInputChange}/>
             <Sendbtn onClick={handleSubmit}>
-                Send
+                댓글달기
             </Sendbtn>
         </Wrap>
     );
@@ -93,7 +93,7 @@ const Sendbtn = styled.button`
     text-align: justify;
     /* S-bold-19.2(RE) */
     font-family: Pretendard;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
