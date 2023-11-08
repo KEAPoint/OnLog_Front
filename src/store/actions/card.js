@@ -1,6 +1,6 @@
-export const cardAction = (data) => {
+export const filterListAction = (data) => {
     return {
-        type: 'CARD',
+        type: 'FILTER_LIST',
         data: data
     }
 }

@@ -9,7 +9,7 @@ const RootReducer = combineReducers({
     // login: LoginReducer,
     profile: ProfileReducer,
     color: ColorReducer,
-    cards: CardReducer,
+    card: CardReducer,
     category: CateReducer
 })
 
