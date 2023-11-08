@@ -1,57 +1,82 @@
+import React from 'react';
+import { useSelector } from 'react-redux';
+import styled from 'styled-components';
+import { S_bold_19_2, XS_semibold_16 } from '../../components/style/Styled';
 
-// const CategoryItem = () => {
-//     return(
-//         <>
-//         </>
-//     );
-// };
+const CategoryItem = ({item}) => {
+    const editClick = useSelector((state) => state.category.editClick);
+    console.log("확인2",editClick);
 
-// export default CategoryItem;
 
-// const CateWrap = styled.div`
-//     display: flex;
-//     width: 29.8125rem;
-//     // height: 135.25rem;
-//     // padding: 1.625rem 0rem;
-//     flex-direction: column;
-//     align-items: flex-start;
-//     gap: 1.25rem;
-//     // border-right: 1px solid var(--gray_bold, #4A4A4A);
-//     background: #FFF;
-// `
-// const Category = styled.button`
-//     cursor: pointer;
-//     display: flex;
-//     padding: 1.5rem 1.25rem 1.5rem 2.5rem;
-//     margin-right: 1rem;
-//     justify-content: space-between;
-//     align-items: flex-start;
-//     align-self: stretch;
-//     flex-direction: column;
+    return (
+        <Wrap>
+            <Category as={editClick ? "div" : "button"} $isButton={editClick}>
+                <CateTitle>{item.name}</CateTitle>
+                    {editClick && (
+                        <UserOption>
+                            <UserOptionBtn>수정하기</UserOptionBtn>
+                            <UserOptionBtn>삭제하기</UserOptionBtn>
+                        </UserOption>
+                    )}
 
-//     border-top: 1px solid var(--gray_bold, #4A4A4A);
-//     border-bottom: 1px solid var(--gray_bold, #4A4A4A);
-//     border-left: 1px solid var(--gray_bold, #4A4A4A);
-//     border-right: 1px solid var(--gray_bold, #4A4A4A);
-//     background: #FFF;
-// `
-// const CateTitle = styled.div`
-//     color: black;
-//     /* S-bold-25 */
-//     font-family: Pretendard;
-//     font-size: 1.5625rem;
-//     font-style: normal;
-//     font-weight: 700;
-//     line-height: normal;
-//     margin-bottom: 0.625rem;
-//     `
-// const CateTopic = styled.div`
-//     color: var(--tag_lifestyle, #FF7575);
+            </Category>
+        </Wrap>
+    );
+};
 
-//     /* XS-semibold-20 */
-//     font-family: Pretendard;
-//     font-size: 1.25rem;
-//     font-style: normal;
-//     font-weight: 600;
-//     line-height: normal;
-// `
+export default CategoryItem;
+
+const Wrap = styled.div`
+    width: 100%;
+    background-color: yellow;
+    display: flex;
+`;
+const Category = styled.button`
+    cursor: ${props => !props.$isButton ? "pointer" : "default"};
+    display: flex;
+    padding: 1.5rem 1.25rem 1.5rem 2.5rem;
+    justify-content: space-between;
+    flex-grow: 1;
+    border: 1px solid var(--gray_light, #939393);
+    background: #FFF;
+
+`
+const CateTitle = styled(S_bold_19_2)`
+    color: var(--black);
+    /* align-self: ; */
+    display: flex;
+    align-items: center;
+`
+const UserOption = styled.div`
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+
+`;
+const UserOptionBtn = styled(XS_semibold_16).attrs({as:'button'})`
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border: none;
+    background-color: var(--white);
+    position: relative;
+    cursor: pointer;
+    gap: 0.5rem;
+
+    &::after {
+        content: "";
+        /* border: 0cap.5 solid black; */
+        width: 0.0625rem;
+        height: 1.875rem;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), #000;
+        height: 23px;
+        position: absolute;
+        right: -10px;  // Adjust this value to position "sss" correctly
+    }
+
+    &:last-child::after {
+        display: none;
+    }
+    
+`;
+

@@ -12,7 +12,7 @@ const MypageTop = () => {
     useEffect(() => {
         Get_Profile()
         .then((data) => {
-
+            console.log(data.data)
             setProfile({
                 ...profile,
                 blogId: data.data.blogName,
@@ -132,7 +132,7 @@ const ProfileImg = styled.div`
     width: 12.6875rem;
     height: 12.625rem;
     border-radius: 6.875rem;
-    background: ${props => `url(${props.proflieImg}) lightgray 50% / cover no-repeat`};
+    background: ${props => `url(${props.$proflieImg}) lightgray 50% / cover no-repeat`};
     margin-right: 2.81rem;
 `;
 const TitleWrap = styled.div`

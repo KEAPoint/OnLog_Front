@@ -6,16 +6,50 @@ import {ReactComponent as Edit} from "../../assets/images/Icons/Edit.svg";
 import {ReactComponent as Lock} from "../../assets/images/Icons/Lock.svg";
 import {ReactComponent as Plus} from "../../assets/images/Icons/Plus.svg";
 
-import CategoryEdit from "./CategoryEdit";
 import { useEffect, useState } from "react";
+import { Get_Categori } from "../../apis/API_MyPage";
+import CategoryItem from "./CategoryItem";
+import { useDispatch } from "react-redux";
+import { cateAction, editClickAction } from "../../store/actions/category";
 const MypagePost = () => {
     const [clickCheck, setClickCheck] = useState(false);
+    const [categories, setCategories] = useState([]);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        Get_Categori()
+        .then((data) => {
+            console.log("서버:",data.data)
+            setCategories(data.data);
+
+            // dispatch(
+            //     cateAction({
+            //         name: data.data.name,
+            //         order: data.data.order                    
+
+            //     })
+            // );
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    },[]);
     const handleEdit = () => {
         setClickCheck(!clickCheck);
+
+        dispatch(
+            editClickAction({
+                editClick : !clickCheck,
+            })
+        );
+        console.log("확인", !clickCheck);
     };
     useEffect(() => {
-        console.log(clickCheck)
-    },[clickCheck])
+        // console.log(clickCheck)
+        // console.log("test");
+        // console.log(clickCheck)
+        // console.log(categories[0])
+    },[clickCheck,categories])
     return(
             <PageWrap>
                 {/* {clickCheck && <CategoryEdit/>} */}
@@ -39,8 +73,10 @@ const MypagePost = () => {
                         )}
 
 
-
-                        <Category as={clickCheck ? "div" : "button"} $isButton={clickCheck}>
+                        {categories.map((item) => (
+                            <CategoryItem key={item.id} item={item}/>
+                        ))}
+                        {/* <Category as={clickCheck ? "div" : "button"} $isButton={clickCheck}>
                             <CateTitle>나의 잡담</CateTitle>
                             {clickCheck && (
                                 <UserOption>
@@ -49,7 +85,7 @@ const MypagePost = () => {
                                 </UserOption>
                             )}
 
-                        </Category>
+                        </Category> */}
 
 
                         {clickCheck && (
@@ -78,7 +114,7 @@ const PageWrap = styled.div`
     position: relative;
 `
 const StickWrap = styled.div`
-
+    /* background-color: red; */
 `;
 
 const CateWrap = styled.div`
@@ -94,6 +130,8 @@ const CateWrap = styled.div`
     gap: 1.25rem;
     /* border-right: 1px solid var(--gray_bold, #4A4A4A); */
     /* background: #FFF; */
+
+    background-color: aliceblue;
 `
 const MenuWrap = styled.div`
     align-self: stretch;
