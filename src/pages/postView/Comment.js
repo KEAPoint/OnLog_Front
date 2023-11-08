@@ -37,7 +37,7 @@ const Comment = ({post}) => {
             let initialLikeStates = {};
             let initialLikesCount = {};
             post.comments.forEach(comment => {
-                initialLikeStates[comment.commentId] = comment.isLiked;
+                initialLikeStates[comment.commentId] = comment.commentLiked;
                 initialLikesCount[comment.commentId] = comment.likesCount;
             });
             setLikeStates(initialLikeStates);
@@ -82,9 +82,15 @@ const Comment = ({post}) => {
     };
 
     // 댓글 수정하기 버튼 핸들러
-    const editHandler = () => {
+    const editHandler = async (commentId, content) => {
         alert("댓글 수정하기");
     }
+
+    // // 댓글 삭제 후 삭제된 댓글목록 다시 보여주기
+    // const [postState, setPostState] = useState(post);
+    // useEffect(() => {
+    //     setPostState(post);
+    // }, [post]);
     // 댓글 삭제하기 버튼 핸들러
     const deleteHandler = async (commentId) => {
         Swal.fire({
@@ -104,6 +110,10 @@ const Comment = ({post}) => {
                     if (response && response.success) { // 응답이 있고, 응답의 success 가 true 일 때
                         console.log('댓글 삭제');
                         Swal.fire('댓글이 삭제되었습니다', 'success');
+                        // const newComments = postState.comments.filter(comment => comment.commentId !== commentId);
+                        // setPostState({...postState, comments: newComments});
+                        // console.log('삭제되는 댓글 id : ',commentId);
+
                     } else {
                         console.error(response ? response.error : 'No response from server'); // 실패 처리
                     }

@@ -29,7 +29,7 @@ const PostText = ({post}) => {
     useEffect(() => {
         if (post) { // post 객체가 준비되었는지 확인
           setLike(post.likesCount); // like 상태값을 post.likesCount로 설정
-          setIsLike(post.isLiked); // isLike 상태값을 post.isLiked로 설정
+          setIsLike(post.postLiked); // isLike 상태값을 post.postLiked로 설정
         //   console.log('like:',like);
         }
       }, [post]); // post 객체가 변경될 때마다 이 useEffect를 실행

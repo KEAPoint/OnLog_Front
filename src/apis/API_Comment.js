@@ -5,14 +5,6 @@ const accessToken = localStorage.getItem('accessToken');
 
 
 export const Post_Comment = async (cmtData) => {
-    // console.log('postid: ',cmtData.postId);
-    // console.log('content: ',cmtData.content);
-    // console.log('parentId: ',cmtData.parentCommentId);
-    // console.log('postId type:', typeof cmtData.postId);  // postId의 데이터 타입 출력
-    // console.log('parentId type: ',typeof cmtData.parentCommentId);  // parentCommentId의 데이터 타입 출력
-    // console.log('content type: ', typeof cmtData.content);
-
-
     try {
         const response = await axios({
             method: "post",
@@ -34,6 +26,26 @@ export const Post_Comment = async (cmtData) => {
         if (error.response) {
             console.error("Error response data:", error.response.data);
         }
+    }
+};
+
+export const Put_Comment = async (commentId, content) => {
+    try {
+        const response = await axios({
+            method:"put",
+            url: url,
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            },
+            data: {
+                commentId: commentId,
+                content: content,
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('delete comment error: ', error);
+        return { success: false, error: error.message };
     }
 };
 
