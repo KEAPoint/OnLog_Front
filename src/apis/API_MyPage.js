@@ -38,3 +38,21 @@ export const Get_Categori = async () => {
     });
     return res.data;
 }
+export const Post_Categori = async (inputValue) => {
+    const accessToken = window.localStorage.getItem("accessToken");
+    console.log("dddd",inputValue);
+
+    const url = '/blog/categories';
+    const res = await axios({
+        method: "post",
+        url: url,
+        headers: {
+            'Authorization': `Bearer ${accessToken}`
+        },
+        data: {
+            name: inputValue,
+        }
+    });
+
+    return res.data;
+}

@@ -5,32 +5,32 @@ import {ReactComponent as Menu} from "../../assets/images/Icons/Menu.svg";
 import {ReactComponent as Edit} from "../../assets/images/Icons/Edit.svg";
 import {ReactComponent as Lock} from "../../assets/images/Icons/Lock.svg";
 import {ReactComponent as Plus} from "../../assets/images/Icons/Plus.svg";
-
 import { useEffect, useState } from "react";
 import { Get_Categori } from "../../apis/API_MyPage";
 import CategoryItem from "./CategoryItem";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { cateAction, editClickAction } from "../../store/actions/category";
 import { filterListAction } from "../../store/actions/card";
+import AddCategoryItem from "./AddCategoryItem";
+
 const MypagePost = () => {
-    const [clickCheck, setClickCheck] = useState(false);
-    const [categories, setCategories] = useState([]);
+    const [EditClickCheck, setEditClickCheck] = useState(true);
+    const [AddClickCheck, setAddClickCheck] = useState(0);
     const dispatch = useDispatch();
+    const cateList = useSelector(state => state.category.cate);
 
     useEffect(() => {
         Get_Categori()
         .then((data) => {
-            console.log("서버:",data.data)
+            //카테고리 order 오름차순으로 저장
             let sortedData = data.data.sort((a, b) => a.order - b.order);
-            setCategories(sortedData);
-
+            
+            // 스토어-카테고리리스트 add
+            sortedData.forEach((item) => {
+                dispatch(cateAction(item));
+              });
+            // 스토어-필터링조건
             dispatch(
-                // cateAction({
-                //     cateId: data.data.id,
-                //     name: data.data.name,
-                //     order: data.data.order                    
-
-                // })
                 filterListAction({
                     blog_id: window.localStorage.getItem("userId"),
                     category_id: data.data.id
@@ -42,37 +42,40 @@ const MypagePost = () => {
         })
     },[]);
 
+
+
     const handleEdit = () => {
-        setClickCheck(!clickCheck);
+        setEditClickCheck(!EditClickCheck);
 
         dispatch(
             editClickAction({
-                editClick : !clickCheck,
+                editClick : !EditClickCheck,
             })
         );
-        console.log("확인", !clickCheck);
+        console.log("확인", !EditClickCheck);
     };
+
     const handleClick = (cateId=null) => { // 함수 호출 시 인자가 전달되지 않은 경우 대비 위해
         console.log("click"); 
         dispatch(
             filterListAction({
                 blog_id: window.localStorage.getItem("userId"),
-              category_id: cateId
+                category_id: cateId
             })
         )
     }
 
     return(
             <PageWrap>
-                {/* {clickCheck && <CategoryEdit/>} */}
+                {/* {EditClickCheck && <CategoryEdit/>} */}
                 <StickWrap>
-                    <CateWrap $isExpanded={clickCheck}>
+                    <CateWrap $isExpanded={EditClickCheck}>
                         <MenuWrap>
                             <S_regular_20_8>Category</S_regular_20_8>
                             <EditBtn onClick={handleEdit}><Edit/></EditBtn>
                         </MenuWrap>
 
-                        {!clickCheck && (
+                        {!EditClickCheck && (
                             <>
                                 <Option onClick={() => handleClick()}>
                                     <CateTitle>전체</CateTitle>
@@ -85,23 +88,30 @@ const MypagePost = () => {
                         )}
 
 
-                        {categories.map((item) => (
+                        {cateList.map((item) => (
                             <CategoryItem key={item.id} item={item} handleClick={handleClick}/>
                         ))}
 
 
-                        {clickCheck && (
-                            <AddBtn>
-                                <Plus/>
-                                <CateTitle>카테고리 추가</CateTitle>
-                            </AddBtn>
+                        {EditClickCheck && (
+                            <>
+                                {Array.from({ length: AddClickCheck }).map((_, index) => (
+                                    <AddCategoryItem key={index} />
+                                ))}
+
+                                <AddBtn onClick={() => setAddClickCheck(AddClickCheck+1)}>
+                                    <Plus/>
+                                    <CateTitle>카테고리 추가</CateTitle>
+                                </AddBtn>
+                            </>
                         )}
+
                     </CateWrap>
                 </StickWrap>
                 
-                {!clickCheck  && (
+                {!EditClickCheck  && (
                     <>
-                        {categories.length > 0 && 
+                        {cateList.length > 0 && 
                             <PostWrap>
                                 <Card/>
                             </PostWrap>

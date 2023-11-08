@@ -1,30 +1,26 @@
 const initialState = {
-    // cate: [],
-    // cateId: null,
-    cate: {
-        cateId: null,
-        name: "",
-        order: ""
-    },
+    cate: [],
+    // cate: {
+    //     cateId: null,
+    //     name: "",
+    //     order: ""
+    // },
     editClick : false,
 }
 
 const CateReducer = (state = initialState, action) => {
         switch (action.type) {
             case 'CATE' : {
-                // return {
-                //     ...state,
-                //     cate : [...state.cate, {
-                //         name: action.data.name,
-                //         order: action.data.order
-                //     }]
-                // }
                 return {
-                    cate : {
-                        cateId: action.data.cateId,
-                        name: action.data.name,
-                        order: action.data.order
-                    }                   
+                    ...state,
+                    cate : [...state.cate, 
+                        action.data
+                        // {
+                        //     cateId: action.data.cateId,
+                        //     name: action.data.name,
+                        //     order: action.data.order
+                        // }
+                    ]
                 }
 
             }
@@ -34,6 +30,11 @@ const CateReducer = (state = initialState, action) => {
                     editClick : action.data.editClick
                 }
             }
+            // case 'REMOVE_CATE' : {
+            //     return {
+                    
+            //     }
+            // }
             default:
                 return state;
         }
