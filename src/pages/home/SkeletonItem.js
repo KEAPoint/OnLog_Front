@@ -1,7 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import { Category, Date, Icon, Second, TextWrap, Title } from './CardItem';
-import { IconWrap } from '../../components/style/Styled';
+import { Category, DateWrap, Icon, Second, TextWrap, Title } from './CardItem';
 import { Profile_Name, Profile_ProfileImg, Profile_Title, Profile_TitleWrap, Profile_Wrap } from '../../components/common/UserProfile';
 
 const SkeletonItem = () => {
@@ -22,7 +21,7 @@ const SkeletonItem = () => {
                 <TextWrap>
                     <Title><Skeleton width="100%" height="5rem"/></Title>
                 </TextWrap>
-                <Date><Skeleton width="5rem" height="1rem"/></Date>
+                <DateWrap><Skeleton width="5rem" height="1rem"/></DateWrap>
                 <Second>
                     <Icon>
                     <Skeleton width="5rem" height="2rem"/>

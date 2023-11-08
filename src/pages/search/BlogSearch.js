@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import BlogItem from "../../components/common/BlogItem";
 import Footer from "../../components/common/Footer";
+import { M_regular_32, L_bold_32 } from "../../components/style/Styled";
 
 const BlogSearch = () => {
     return(
@@ -36,53 +37,25 @@ const Wrap = styled.div`
     align-self: stretch;
     padding: 2.5rem 7rem 0rem 7rem;
 `
-const Left = styled.div`
+const Left = styled(M_regular_32)`
     display: flex;
     padding: 1.25rem 0rem;
     align-items: flex-start;
     gap: 0.625rem;
 
     color: var(--black, #000);
-
-    /* M-regular-38 */
-    font-family: Pretendard;
-    font-size: 2rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 3.01875rem; /* 127.105% */
-    
-    // /* M-regular-38 */
-    // font-family: Pretendard;
-    // font-size: 2.375rem;
-    // font-style: normal;
-    // font-weight: 400;
-    // line-height: 3.01875rem; /* 127.105% */
 `
-const Right = styled.div`
+const Right = styled(M_regular_32)`
     display: flex;
     padding: 1.25rem 0rem;
     align-items: flex-end;
     gap: 0.375rem;
 
     color: var(--gray_bold, #4A4A4A);
-
-    /* M-regular-38 */
-    font-family: Pretendard;
-    font-size: 2rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 3.01875rem; /* 127.105% */
 `
 
-const Num = styled.div`
+const Num = styled(L_bold_32)`
     color: var(--black, #000);
-
-    /* L-bold-45 */
-    font-family: Pretendard;
-    font-size: 2.3rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
 `
 const BlogItemWrap = styled.div`
     display: flex;

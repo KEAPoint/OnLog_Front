@@ -1,19 +1,50 @@
 import styled from "styled-components";
 import { cardData } from "../../assets/datas/cardData";
-import { S_bold_25 } from '../../components/style/Styled';
+import { L_semibold_32, L_bold_32, XS_semibold_16 } from "../../components/style/Styled";
+import { useState, useEffect } from "react";
+import { navData } from "../../assets/datas/categoryData";
+import { useDispatch } from 'react-redux';
+import { colorAction } from '../../store/actions/color';
 
+const PostHeader = ({post}) => {
 
-const PostHeader = () => {
-    const topic = "일상";
-    const title = "새로운 친구랑 놀았다.";
-    const date = "2023.10.03";
+    const dispatch = useDispatch();
+
+    const [topic, setTopic] = useState({
+        name:"",
+        color:"",
+    });
+
+    useEffect(() => {
+        if (post && post.topic) {
+            setTopic({
+                name: navData[post.topic.id].kName,
+                color: navData[post.topic.id].color,
+            });
+
+            dispatch(
+                colorAction({
+                    category: navData[post.topic.id].name,  
+                    color: navData[post.topic.id].color,
+                })
+            );
+        }
+    }, [post]);
 
     return(
         <div>
             <Wrap>
-                <Category>#{topic}</Category>
-                <Title>{title}</Title>
-                <Date>{date}</Date>
+                {post && (
+                    <>
+                        {/* {post.topic && <Topic>#{topicKName[post.topic.name]}</Topic>} */}
+                        {/* {post.topic && <Topic>#{navData[post.topic.id].kName}</Topic>} */}
+                        {post.topic && <Topic color={topic.color}>#{topic.name}</Topic>}
+                        <Title>{post.title}</Title>
+                        {post.createdAt && <DateWrap>{new Date(post.createdAt).toISOString().split('T')[0].replace(/-/g, '.')}</DateWrap>}
+                        {/* {post.createdAt && <DateWrap> {post.createdAt}</DateWrap>} */}
+
+                    </>
+                )}
             </Wrap>
         </div>
     )
@@ -31,40 +62,21 @@ const Wrap = styled.div`
     background-color: rgba(255,255,255,1);
 `
 
-const Title = styled.div`
+const Title = styled(L_bold_32)`
     max-width: 80.625rem;
     color: var(--black, #000);
-
-    /* L-bold-45 */
-    font-family: Pretendard;
-    font-size: 2rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
 `
 
-const Category = styled.div`
+const Topic = styled(L_semibold_32)`
     display: flex;
     padding: 0rem 2.40625rem;
     align-items: flex-start;
     gap: 0.625rem;
-    background: #FF7575;
+    // background: ${props => props.$bgColor || '#FF7575'};
+    background: var(${props=>props.color});
     color: var(--white, #FFF);
-    /* L-semibold-40 */
-    font-family: Pretendard;
-    font-size: 2rem;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
 `
 
-const Date = styled.div`
+const DateWrap = styled(XS_semibold_16)`
     color: var(--gray_bold, #4A4A4A);
-
-    /* XS-semibold-20 */
-    font-family: Pretendard;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
 `

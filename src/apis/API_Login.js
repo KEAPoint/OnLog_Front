@@ -1,12 +1,13 @@
-const AutoLogin = async (localData) => {
-    // console.log(localData);
+const accessToken = window.localStorage.getItem("accessToken");
+
+export const AutoLogin = async () => {
     const url = '';
 
     const res = await axios({
         method: "post",
         url: url,
         headers: {
-            'X-ACCESS-TOKEN': localData
+            'Authorization': accessToken
           }
     });
     // console.log('Home자동로그인jwt:',localData);

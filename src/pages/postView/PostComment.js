@@ -4,7 +4,7 @@ import ReplyComment from "./ReplyComment";
 import CommentWrite from "./CommentWrite";
 import { useRef, useState } from "react";
 
-const PostComment = () => {
+const PostComment = ({post}) => {
     const [isClicked, setIsClicked] = useState(false);
     const commentWriteRef = useRef(null); // 댓글달기 버튼 누르면 댓글 창 뜬 곳으로 scroll 하게
 
@@ -20,7 +20,7 @@ const PostComment = () => {
                 <CommentBtn onClick={buttonHandler}> 댓글 달기 </CommentBtn>
             </Wrap>
             <CommentWrap ref={commentWriteRef}>
-                <Comment/>
+                <Comment post={post}/>
                 <ReplyComment/>
             </CommentWrap>
             {isClicked && <CommentWrite style={{padding:"0rem 0rem 0rem 0rem"}}/>}

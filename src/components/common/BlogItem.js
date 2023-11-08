@@ -1,7 +1,7 @@
 import styled, {keyframes} from "styled-components";
 import UserProfile from '../../components/common/UserProfile';
 import { cardData } from "../../assets/datas/cardData";
-import { S_bold_25 } from '../style/Styled';
+import { S_bold_17, XS_regular_16 } from '../style/Styled';
 import { useState, useEffect } from "react";
 import Profile from "../../assets/images/Profile.jpeg"
 import Swal from "sweetalert2";
@@ -116,7 +116,7 @@ const LeftWrap = styled.div`
 //     gap: 0.625rem;
 //     align-self: stretch;
 // `
-const Menu = styled(S_bold_25)`
+const Menu = styled(S_bold_17)`
     display: flex;
     align-items: center;
 `;
@@ -134,17 +134,11 @@ const TitleWrap = styled.div`
 const Title = styled.div`
     text-align: justify;
 `;
-const Name = styled.div`
+const Name = styled(XS_regular_16)`
     color: var(--gray_bold, #4A4A4A);
     text-align: justify;
-    font-family: Pretendard;
-    font-size: 1.125rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: 0.03375rem;
 `;
-const BlogInfo = styled(S_bold_25)`
+const BlogInfo = styled(XS_regular_16)`
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
@@ -154,8 +148,6 @@ const BlogInfo = styled(S_bold_25)`
     text-overflow: ellipsis;
 
     padding-Left: 4rem;
-    font-weight: 400;
-    font-size: 1.3rem;
 `
 
 

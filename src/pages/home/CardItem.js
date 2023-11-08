@@ -1,20 +1,38 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import UserProfile, { Profile_Name,Profile_ProfileImg,Profile_Title,Profile_TitleWrap,Profile_Wrap } from '../../components/common/UserProfile';
-import { IconWrap, L_semibold_40, M_regular_38, S_regular_30 } from '../../components/style/Styled';
+import { L_semibold_40, XS_semibold_16, S_bold_17, S_bold_19_2 } from '../../components/style/Styled';
 import {ReactComponent as Heart} from '../../assets/images/Icons/Heart.svg';
 import {ReactComponent as Comment} from '../../assets/images/Icons/Comment.svg';
 import CardItemHover from './CardItemHover';
 import SkeletonItem from './SkeletonItem';
+import { useSelector } from 'react-redux';
 
-const CardItem = ({info}) => {
+const CardItem = ({item}) => {
+    // const specificData = useSelector(state => state.cards.cards); 
+    // const item = useSelector(state => state.cards.cards.find(card => card.postId === postId));
+    // const item = data;
+
+    const profileInfo = {
+        blogName: item.writer.blogName,
+        blogNickname: item.writer.blogNickname,
+        blogProfileImg: item.writer.blogProfileImg
+    };
+    const hoverInfo = {
+        thumbnailLink: item.thumbnailLink,
+        summary: item.summary,
+        postId: item.postId
+    }
+
     const [isHovering, setIsHovering] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
 
-    // Loading skeleton animation
-    setTimeout(() => {
-        setIsLoading(false);
-    }, 5000);
+    //Loading skeleton animation
+    useEffect(() => {
+        if (item) {
+            setIsLoading(false);
+        }
+    }, [item]);
 
     return (
         <PageWrap
@@ -26,36 +44,29 @@ const CardItem = ({info}) => {
                 <Wrap>
                     {isLoading ? (
                         <SkeletonItem/>
-                        // <></>
                     ) : (
                         <>
-                            <UserProfile info={info}/>
+                            <UserProfile item={profileInfo}/>
         
                             <TextWrap>
-                                <Title>{info.title}</Title>
-                                {/* <Date>{info.date}</Date> */}
-                                {/* <Category>#{info.category}</Category> */}
+                                <Title>{item.title}</Title>
                             </TextWrap>
-                            <Date>{info.date}</Date>
+                            <DateWrap>{new Date(item.createdAt).toISOString().split('T')[0].replace(/-/g, '.')}</DateWrap>
                             <Second>
                                 <Icon>
-                                    {/* <IconWrap><Heart/></IconWrap> */}
                                     <Heart style={{paddingRight:"1rem"}}/>
-                                    <p>999</p>
+                                    <p>{item.likesCount}</p>
                                 </Icon>
                                 <Icon>
-                                    {/* <IconWrap><Comment/></IconWrap> */}
                                     <Comment style={{paddingRight:"1rem"}}/>
-                                    <p>100</p>
+                                    <p>{item.commentsCounts}</p>
                                 </Icon>
                             </Second>
                         </>
                     )}  
                 </Wrap>
             ) : (
-                // <Test></Test>
-                // <>seojin</>
-                <CardItemHover info={info}/>
+                <CardItemHover key={item.postId} item={hoverInfo}/>
             )}
 
         </PageWrap>
@@ -102,7 +113,7 @@ export const TextWrap = styled.div`
     flex-direction: column;
     gap: 1.25rem;
 `;
-export const Title = styled(M_regular_38)`
+export const Title = styled(S_bold_19_2)`
     color: var(--black);
     word-break: break-all;
 
@@ -112,12 +123,12 @@ export const Title = styled(M_regular_38)`
     overflow: hidden;
 
 `;
-export const Date = styled(S_regular_30)`
-    color: var(--gray_bold, #4A4A4A);
+export const DateWrap = styled(XS_semibold_16)`
+    color: var(—gray_bold, #4A4A4A);
 
 `;
 export const Category = styled(L_semibold_40)`
-    color: var(--gray_bold, #4A4A4A);
+    color: var(—gray_bold, #4A4A4A);
 `;
 export const Second = styled.div`
     display: flex;
@@ -125,7 +136,7 @@ export const Second = styled.div`
     justify-content: center;
     gap: 1.25rem;
 `;
-export const Icon = styled(S_regular_30)`
+export const Icon = styled(S_bold_17)`
     display: flex;
     align-items: center;
     justify-content: center;

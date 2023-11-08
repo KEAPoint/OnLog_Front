@@ -1,31 +1,38 @@
-import React, { useState } from 'react';
-import Profile from '../../assets/images/Profile.jpeg';
+import React, { useEffect, useState } from 'react';
 import CardItem from './CardItem';
-import { cardData } from '../../assets/datas/cardData';
 import styled from 'styled-components';
-import {ReactComponent as Vector} from '../../assets/images/background/Vector.svg';
-import {ReactComponent as RVector} from '../../assets/images/background/RVector.svg';
 import { InfiniteScroll } from '../../components/common/InfiniteScroll';
+import { GET_CardList } from '../../apis/API_Card';
+import { useSelector } from 'react-redux';
+// import { cardFutAction } from '../../store/actions/card';
 
-const Card = ({category}) => {
-    console.log("test2")
-    console.log(category)
+const Card = () => {
+    console.log("윤서진")
+    const [cardData, setCardData] = useState([]);
+    const filterList = useSelector(state => state.card.filterList);
+    console.log("filterList", filterList);
+
+    useEffect(() => {
+                GET_CardList(filterList)
+
+                .then((data) => {
+                    setCardData(data.data.content);
+
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+    },[filterList]);
+
     return (
         <Wrap>
-
             <CardWrap>
-                
-                {cardData.map((item) => (
-                    (category==="/main" || category==="")?(
-                        <CardItem key={item.id} info={item}/>
-                    ):(
-                        (item.category === category) && (
-                            <CardItem key={item.id} info={item}/>
-                        )
-                    )
-                ))}
+                {
+                    cardData.map((item) => (
+                        <CardItem key={item.postId} item={item}/>
+                    ))
+                }
             </CardWrap>
-
         </Wrap>
     );
 };

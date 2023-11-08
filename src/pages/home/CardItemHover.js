@@ -1,23 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from "react-router-dom";
-import { S_bold_28, S_regular_30, XS_regular_18 } from '../../components/style/Styled';
+import { S_bold_17, XS_regular_16 } from '../../components/style/Styled';
 import Arrow from '../../assets/images/Icons/Arrow.png';
 
-const CardItemHover = ({info}) => {
-    const movePage = useNavigate();
+const CardItemHover = ({item}) => {
+    console.log(item.thumbnailLink);
+    const navigate = useNavigate();
 
-    const handleReadButtonClick = (e) => {
-        e.preventDefault();
-        movePage('/mypage/post');
+    const handleReadBtnClick = (e) => {
+        // e.preventDefault();
+        console.log(item.postId)
 
+        navigate(`/post/${item.postId}`);
     };
     
     return (
-        <HoverWrap onClick={handleReadButtonClick}>
+        <HoverWrap onClick={handleReadBtnClick}>
             <Wrap>
-                <Photo $imgurl = {info.img}></Photo>
-                <Contents>{info.contents}</Contents>
+                <Photo $imgurl = {item.thumbnailLink}></Photo>
+                <Contents>{item.summary}</Contents>
                 <ReadWrap>
                    <p>Read</p> 
                    <img src={Arrow} alt="arrow" /> 
@@ -64,7 +66,7 @@ width: 8.125rem;
 height: 8.125rem;
     background: ${props => `url(${props.$imgurl}) lightgray 50% / cover no-repeat`};
 `;
-const Contents = styled(XS_regular_18)`
+const Contents = styled(XS_regular_16)`
 
     color: var(--white);
 
@@ -77,13 +79,7 @@ const Contents = styled(XS_regular_18)`
     line-height: 1.5;
 
 `;
-const ReadWrap = styled.div`
-    font-family: Pretendard;
-    font-size: 1.0625rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-
+const ReadWrap = styled(S_bold_17)`
     color: var(--white, #FFF);
     border: none;
     border-top: 1px solid var(--gray_bold, #4A4A4A);

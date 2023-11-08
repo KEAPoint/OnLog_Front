@@ -1,27 +1,38 @@
 import React from 'react';
 import Header from '../../components/common/Header';
+import HeaderNormal from '../../components/common/HeaderNormal';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import Entertainment from '../../assets/images/catogories/Entertainment.png';
-import Foodie from '../../assets/images/catogories/Foodie.png';
-import LifeStyle from '../../assets/images/catogories/LifeStyle.png';
-import News from '../../assets/images/catogories/News.png';
-import Sports from '../../assets/images/catogories/Sports.png';
-import Tech from '../../assets/images/catogories/Tech.png';
 import {ReactComponent as LogoText} from '../../assets/images/LogoText.svg';
 import { landingData } from '../../assets/datas/categoryData';
 import LandItem from './LandItem';
-import HeaderNormal from '../../components/common/HeaderNormal';
 import Footer from '../../components/common/Footer';
+import { useNavigate } from 'react-router-dom';
+import { S_bold_25 } from '../../components/style/Styled';
+import { useSelector } from 'react-redux';
 
 const LandingPage = () => {
-    
+    // const accessToken = useSelector(state => state.login.token.accessToken);
+    const accessToken = window.localStorage.getItem("accessToken");
+
+    console.log(accessToken)
+    const navigate = useNavigate();
+    const handleClick = (e) =>   {
+        switch(e.currentTarget.name) {
+            case "signin" :
+                navigate('/login');
+                break;
+            default:
+        }
+    }
 
     return (
         <div style={{padding:"1rem"}}>
             {/* <Header /> */}
             {/* <HeaderNormal/> */}
-            <LogoFix/>
+            <FixWrap>
+                <LogoFix/>
+                {accessToken === null && <SignInBtn name="signin" onClick={handleClick}>로그인</SignInBtn>}
+            </FixWrap>
             <Wrap>
                 {landingData.map(item => (
                     <LandItem key={item.id} info={item}/>
@@ -34,15 +45,43 @@ const LandingPage = () => {
 
 export default LandingPage;
 
-const LogoFix = styled(LogoText)`
-
-    /* width: 45.06225rem; */
-    /* height: 14.08725rem; */
-    /* background-attachment: fixed; */
+const FixWrap = styled.div`
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+const LogoFix = styled(LogoText)`
+    /* & path {
+        stroke: white;
+        stroke-width: 5px;
+    } */
+`;
+const SignInBtn = styled(S_bold_25).attrs({ as: 'button' })`
+    padding: 1rem 4rem;
+    font-size: 1.5rem;
+    /* background-color: var(--black); */
+    /* color: var(--white); */
+    background-color: var(--white);
+    color: var(--black);
+
+    border: 4px solid black;
+
+    cursor: pointer;
+
+    &:hover{
+        background-color: var(--black);
+        color: var(--white);
+        transition: 0.5s;
+    }
+
+    &:active{
+        transform: scale(0.95);
+    }
 `;
 const Wrap = styled.div`
     /* padding: 7.125rem 6.25rem 0rem 6.25rem; */
@@ -56,4 +95,6 @@ const Wrap = styled.div`
     justify-content: center;
     gap: 0.62rem;
 `;
+
+
 

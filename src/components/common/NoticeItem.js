@@ -1,7 +1,7 @@
 import styled, {keyframes} from "styled-components";
 import UserProfile from '../../components/common/UserProfile';
 import { cardData } from "../../assets/datas/cardData";
-import { S_bold_25, S } from '../style/Styled';
+import { S_bold_19_2, S_regular_19_2,XS_semibold_16, XS_regular_16 } from '../style/Styled';
 import { useState, useEffect } from "react";
 import Profile from "../../assets/images/Profile.jpeg"
 import Swal from "sweetalert2";
@@ -80,9 +80,7 @@ const NoticeItem = (props) => {
                                 <NoticeType>님이 나를 구독했습니다. </NoticeType>
                             </Top>
                             <Date> 2023.10.25 </Date>
-                        </LeftWrap>
-
-                        <SubscribeWrap 
+                            <SubscribeWrap 
                             onClick={handleSubscribe} 
                             $isSubscribed={isSubscribed}
                             onMouseEnter={() => setHovered(true)}
@@ -90,6 +88,8 @@ const NoticeItem = (props) => {
                         >
                         {isHovered ? (isSubscribed ? "구독 취소" : "구독하기") : (isSubscribed ? "구독 중" : "구독하기")}
                         </SubscribeWrap>
+                        </LeftWrap>
+
                     </Wrap>
                 )}
 
@@ -136,9 +136,11 @@ const NoticeItem = (props) => {
                                     {/* 댓글이면 댓글, 대댓글이면 '답글'로 출력 */}
                                     <NoticeType>에 {isReply === 0 ? '댓글' : '답글'}을 남겼습니다.</NoticeType>
                                 </Top>
-                                <CommentWrap>{`${comment}`}</CommentWrap>
+                                {/* <CommentWrap>{`${comment}`}</CommentWrap> */}
                                 <Date> 2023.10.25 </Date>
                             </LeftWrap>
+                            <CommentWrap>{`${comment}`}</CommentWrap>
+
                         </Wrap>
                 )}
             </>
@@ -151,34 +153,27 @@ export default NoticeItem;
 
 const Wrap = styled.div`
     display: flex;
-    padding: 1.25rem 0rem;
+    padding: 0.9375rem 0rem;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     align-self: stretch;
-
+    flex-direction: column;
     border-bottom: 1px solid var(--gray_light, #939393);
 `
 
 const LeftWrap = styled.div`
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    align-items: center;
     gap: 0.625rem;
     // flex: 1;
 
 `
-const Top = styled.div`
+const Top = styled(S_regular_19_2)`
     display: flex;
     align-items: center;
     color: var(--black, #000);
     text-align: justify;
-
-    /* S-regular-25 */
-    font-family: Pretendard;
-    font-size: 1.5625rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
 `;
 const ProfileImg = styled.div`
     width: 2.5rem;
@@ -191,24 +186,10 @@ const TitleWrap = styled.div`
     display: flex; 
     flex-direction: column;
 `;
-const NickName = styled.div`
-    margin-right: 1rem;
+const NickName = styled(S_bold_19_2)`
+    margin-right: 0.125rem;
     color: var(--black, #000);
     text-align: justify;
-
-    // /* S-bold-25 */
-    // font-family: Pretendard;
-    // font-size: 1.5625rem;
-    // font-style: normal;
-    // font-weight: 700;
-    // line-height: normal;
-
-    /* S-bold-19.2(RE) */
-    font-family: Pretendard;
-    font-size: 1.2rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
 `;
 const NoticeType = styled.div`
     color: var(--black, #000);
@@ -216,14 +197,14 @@ const NoticeType = styled.div`
 
     /* S-regular-25 */
     font-family: Pretendard;
-    font-size: 1.5625rem;
+    font-size: 1.2rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
 `
 const PostTitle = styled.div`
-    margin-left: 1rem;
-    margin-right: 0.5rem;
+    margin-left: 0.25rem;
+    margin-right: 0.125rem;
     color: var(--black, #000);
     text-align: justify;
 
@@ -241,35 +222,14 @@ const PostTitle = styled.div`
     font-weight: 700;
     line-height: normal;
 `;
-const Date = styled.div`
+const Date = styled(XS_semibold_16)`
     color: var(--gray_bold, #4A4A4A);
-
-    // /* XS-semibold-20 */
-    // font-family: Pretendard;
-    // font-size: 1.25rem;
-    // font-style: normal;
-    // font-weight: 600;
-    // line-height: normal;
-
-    /* XS-semibold-16(RE) */
-    font-family: Pretendard;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
 `
-const CommentWrap = styled.div`
+const CommentWrap = styled(XS_regular_16)`
     color: var(--gray_bold, #4A4A4A);
 
     margin-left: 3.5rem;
     margin-bottom: 0.5rem;
-
-    /* S-regular-25 */
-    font-family: Pretendard;
-    font-size: 1.5625rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
 `
 
 

@@ -17,8 +17,8 @@ const LoginItem = () => {
 
     return (
         <Wrap>
-            <div>매일 새로운 아티클을 구독해서 읽어보세요</div>
-            <SignInBtn name="signin" onClick={handleClick}>로그인</SignInBtn>
+            {/* <div>매일 새로운 아티클을 구독해서 읽어보세요</div> */}
+            {/* <SignInBtn name="signin" onClick={handleClick}>로그인</SignInBtn> */}
         </Wrap>
     );
 };

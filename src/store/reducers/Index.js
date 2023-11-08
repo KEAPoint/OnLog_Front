@@ -1,9 +1,16 @@
 import { combineReducers } from "redux";
 import LoginReducer from "./login";
+import ProfileReducer from "./profile";
+import ColorReducer from "./color";
+import CardReducer from "./card";
+import CateReducer from "./category";
 
 const RootReducer = combineReducers({
-    LoginReducer,
-
+    // login: LoginReducer,
+    profile: ProfileReducer,
+    color: ColorReducer,
+    card: CardReducer,
+    category: CateReducer
 })
 
 export default RootReducer

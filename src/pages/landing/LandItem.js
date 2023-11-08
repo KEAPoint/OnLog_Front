@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { M_regular_38, XL_semibold_80 } from '../../components/style/Styled';
+import { XL_semibold_80 } from '../../components/style/Styled';
 import LoginItem from './LoginItem';
 
 
@@ -13,10 +13,10 @@ const LandItem = ({info}) =>  {
             onMouseOut={() => setIsHovering(0)}
         >
             {
-                info.img==="" ? (
-                    (info.name==="login")?(
-                            <LoginItem/>
-                    ):(
+                info.name.includes("field") ? (
+                    // (info.name==="login")?(
+                    //         <LoginItem/>
+                    // ):(
                     <Field>
                         {/* {info.contents} */}
                         {info.contents.split('\n').map((line, i) => (
@@ -25,8 +25,9 @@ const LandItem = ({info}) =>  {
                                 <br />
                             </React.Fragment>
                         ))}
+                        <Logo $img={info.img}/>
                     </Field>
-                    )
+                    // )
                 ):(
                     // <FieldL to={`/main/${info.name}`}>
                     <FieldL to={{
@@ -62,6 +63,7 @@ const Field = styled.div`
     height: 45.1875rem;
 
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 3rem;
@@ -89,7 +91,11 @@ const FieldImg = styled.div`
     display: flex;
 
 `;
-
+const Logo = styled.div`
+    width: 15rem;
+    height: 5rem;
+    background: ${props => `url(${props.$img}) center / contain no-repeat`};
+`;
 
 const Wrap = styled.div`
     padding: 2.75rem 3.375rem 3.9375rem 3.375rem;

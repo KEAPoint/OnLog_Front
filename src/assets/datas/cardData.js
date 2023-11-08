@@ -91,7 +91,7 @@ export const cardData = [
         category: "news",
         date: "02 Sep '23",
         profile: Profile,
-        blogName: "Time Capsule News",
+        blogName: "Time Capsule News----------------",
         nickName: "@Paperboy",
         title: "의대 신설vs국립대 의대 확대… 지역·필수의료 담당할 ‘의대생’ 어떻게 늘리나",
         contents: "의대 정원 확대를 둘러싼 전쟁 / 의대가 신설될 경우, 그만큼 국립대 의대 증원 가능성이 작아진다. / 반대로 국립대 의대 인원을 증원하면 의대 신설 가능성이 희박해진다.",
