@@ -1,14 +1,21 @@
 import styled from "styled-components";
-import React, { useState, Fragment, useEffect } from "react";
+import React, { useState, Fragment, useEffect, useRef } from "react";
 import CommentWrite from "./CommentWrite";
 import { Delete_CommentLike, Post_CommentLike } from "../../apis/API_Like";
-import { Delete_Comment } from "../../apis/API_Comment";
+import { Delete_Comment, Put_Comment } from "../../apis/API_Comment";
 import Swal from "sweetalert2";
-import { S_bold_17, XS_regular_16, XS_semibold_16 } from "../../components/style/Styled";
+import { S_bold_17, XS_regular_16, XS_semibold_16,XS_bold_13 } from "../../components/style/Styled";
+import TextareaAutosize from 'react-textarea-autosize'; // npm install react-textarea-autosize
 
 
 const Comment = ({post}) => {
-    const comments = post.comments; // map을 위한 comment 배열 저장
+    // const comments = post.comments; // map을 위한 comment 배열 저장
+    const [comments, setComments] = useState([]); // 초기값을 빈 배열로 설정
+
+    // post.comments가 변경될 때마다 comments 상태 업데이트
+    useEffect(() => {
+        setComments(post.comments || []);
+    }, [post.comments]);
 
     // comment를 최신순서로 보여주기 위해 내림차순 정렬
     let sortedComments = [];
@@ -81,16 +88,84 @@ const Comment = ({post}) => {
         
     };
 
+    // 댓글 수정/삭제 버튼과 그거 보여지는 쩜쩜쩜 아이콘
+    const [showButtons, setShowButtons] = useState([]);
+    const toggleShowButtons = (commentId) => {
+        setShowButtons(prev => {
+            if (prev.includes(commentId)) {
+                // 이미 표시 중인 경우 숨김
+                return prev.filter(id => id !== commentId);
+            } else {
+                // 표시되지 않은 경우 표시
+                return [...prev, commentId];
+            }
+        });
+    };
+
+    // 수정 중인 댓글의 ID를 저장하는 state
+    const [editingCommentId, setEditingCommentId] = useState(null);
+    const [editingContents, setEditingContents] = useState({});
+    const editingRef = useRef(null); // 텍스트 수정 시 바로 커서 깜빡이게
+
+    // 수정할 텍스트 가장 오늘쪽으로 커서 자동 이동 & 깜빡깜빡
+    useEffect(() => {
+        if (editingCommentId && editingRef.current) {
+            editingRef.current.focus();
+            editingRef.current.selectionStart = editingRef.current.value.length;
+            editingRef.current.selectionEnd = editingRef.current.value.length;
+        }
+    }, [editingCommentId]);
+
     // 댓글 수정하기 버튼 핸들러
-    const editHandler = async (commentId, content) => {
-        alert("댓글 수정하기");
+    const editHandler = (commentId) => {
+        console.log('댓글 수정 중, 댓글 Id : ',commentId);
+        setEditingCommentId(commentId);
+        setEditingContents({...editingContents, [commentId]: comments.find(comment => comment.commentId === commentId).content});
     }
 
-    // // 댓글 삭제 후 삭제된 댓글목록 다시 보여주기
-    // const [postState, setPostState] = useState(post);
-    // useEffect(() => {
-    //     setPostState(post);
-    // }, [post]);
+    // 댓글 수정본 반영 버튼 핸들러
+    const editConfirmHandler = async (commentId) => {
+        const newContent = editingContents[commentId];
+        const originalContent = comments.find(comment => comment.commentId === commentId).content;
+
+        // 원래 댓글과 수정된 댓글이 같은 경우 - 수정반영 하면 안됨! 빠꾸시키고 다시 입력하도록.
+        if (newContent === originalContent) {
+            Swal.fire({
+                icon: "warning",
+                title: "댓글이 수정되지 않았습니다.", 
+                text: "수정 내용을 입력해주세요!"
+                }
+            )
+        } else { // 정상적으로 수정내용이 등록되었을 때, 댓글 수정 api 호출
+            try {
+                // const ContentWithLineBreaks = newContent.replace(/\n/g, '<br>'); // \n을 <br>로 변경하여 줄바꿈 표시
+                const response = await Put_Comment(commentId, newContent); // Put_Comment API 호출
+
+                if (response && response.success) { // 응답이 있고, 응답의 success 가 true 일 때
+                    console.log('댓글 수정 완료. Id : ',commentId, "내용: ",newContent);
+                    Swal.fire('댓글이 수정되었습니다', 'success');
+                    // 댓글 리스트 업데이트
+                    setComments(comments.map(comment => {
+                        if(comment.commentId === commentId) {
+                            return { ...comment, content: newContent };
+                        }
+                        return comment;
+                    }));
+                    setEditingCommentId(null);
+                } else {
+                    console.error(response ? response.error : 'No response from server'); // 실패 처리
+                }
+            } catch (error) {
+                console.error('update comment catch error: ', error); // 오류 처리
+            }
+        }
+    }
+    //댓글 수정하기 취소 버튼 핸들러
+    const editCancleHandler = () => {
+        setEditingCommentId(null);
+        console.log('댓글 수정 취소');
+    }
+
     // 댓글 삭제하기 버튼 핸들러
     const deleteHandler = async (commentId) => {
         Swal.fire({
@@ -110,9 +185,9 @@ const Comment = ({post}) => {
                     if (response && response.success) { // 응답이 있고, 응답의 success 가 true 일 때
                         console.log('댓글 삭제');
                         Swal.fire('댓글이 삭제되었습니다', 'success');
-                        // const newComments = postState.comments.filter(comment => comment.commentId !== commentId);
-                        // setPostState({...postState, comments: newComments});
-                        // console.log('삭제되는 댓글 id : ',commentId);
+                        // 삭제 후 삭제된 댓글 리스트 다시 보여주기
+                        const updatedComments = comments.filter(comment => comment.commentId !== commentId);
+                        setComments(updatedComments);
 
                     } else {
                         console.error(response ? response.error : 'No response from server'); // 실패 처리
@@ -124,7 +199,6 @@ const Comment = ({post}) => {
         });
     };
 
-    
     return (
         <div>
         {sortedComments && sortedComments.map(comment => {
@@ -134,42 +208,89 @@ const Comment = ({post}) => {
 
             return (
             <Fragment key={comment.commentId}>
-                <Wrap key={comment.commentId}>
-                {/* 댓글 작성자 프로필 & 수정/삭제 버튼 */}
-                <UserInfo>
-                    <Menu>
-                    <ProfileImg $profileImg={comment.writer && comment.writer.blogProfileImg}></ProfileImg>
-                    <TitleWrap>
-                        <BlogName>{comment.writer && comment.writer.blogName}</BlogName>
-                        <NickName>@{comment.writer && comment.writer.blogNickname}</NickName>
-                    </TitleWrap>
-                    </Menu>
-                    {/* 댓글작성자 본인인 경우만 수정/삭제 버튼 노출 */}
-                    {isAdmin && (
-                    <UserWrap>
-                        <UserBtn onClick={editHandler}>수정하기</UserBtn>
-                        <UserBtn style={{border: "none"}} onClick={() => deleteHandler(comment.commentId)}>삭제하기</UserBtn>
-                    </UserWrap>
-                    )}
-                </UserInfo>
-                {/* 댓글 내용 */}
-                <Context> {comment.content} </Context>
-                <CommentFooter>
-                    {/* 댓글 작성 날짜 */}
-                    {comment.createdAt && <CommentDate>{new Date(comment.createdAt).toISOString().split('T')[0].replace(/-/g, '.')}</CommentDate>}
-                    {/* 좋아요 버튼 & 좋아요 개수 */}
-                    <HeartReplyWrap>
-                    <HeartWrap>
-                        <LikeButton onClick={() => likeHandler(comment.commentId)}>
-                        <HeartIcon fill={likeStates[comment.commentId] ? "red" : "none"} />
-                        </LikeButton>
-                        <LikeNum>{likesCount[comment.commentId]}</LikeNum>
-                    </HeartWrap>
-                    {/* 답글 버튼 */}
-                    <ReplyButton onClick={() => buttonHandler(comment.commentId)}> 답글달기 </ReplyButton>
-                    </HeartReplyWrap>
-                </CommentFooter>
-                </Wrap>
+                {editingCommentId === comment.commentId ? (
+                    // 수정 중인 댓글인 경우
+                    <WrapEdit key={comment.commentId}>
+                        {/* 댓글 작성자 프로필 & 수정댓글 저장하기 버튼 */}
+                        <UserInfo>
+                            <Menu>
+                            <ProfileImg $profileImg={comment.writer && comment.writer.blogProfileImg}></ProfileImg>
+                            <TitleWrap>
+                                <BlogName>{comment.writer && comment.writer.blogName}</BlogName>
+                            </TitleWrap>
+                            <EditSubmitBtn onClick={() => editConfirmHandler(comment.commentId)}>저장하기</EditSubmitBtn>
+                            <EditSubmitBtn style={{border:"none"}} onClick={editCancleHandler}>취소하기</EditSubmitBtn>
+                            </Menu>
+                        </UserInfo>
+                        <EditingName>댓글 수정 중...</EditingName>
+
+                        {/* 댓글 내용 */}
+                        {/* <ContextEdit type='text' value={comment.content} style={{ overflow: 'hidden' }} onChange={EditContextHandler}> {comment.content} </ContextEdit> */}
+                        <ContextEdit
+                            ref={editingRef}
+                            value={editingContents[comment.commentId] || comment.content}
+                            onChange={(e) => setEditingContents({...editingContents, [comment.commentId]: e.target.value})}
+                            style={{ overflow: 'hidden' }}
+                        />
+                    </WrapEdit>
+                ) : (
+                    <Wrap key={comment.commentId}>
+                        {/* 댓글 작성자 프로필 & 수정/삭제 버튼 */}
+                        <UserInfo>
+                            <Menu>
+                            <ProfileImg $profileImg={comment.writer && comment.writer.blogProfileImg}></ProfileImg>
+                            <TitleWrap>
+                                <BlogName>{comment.writer && comment.writer.blogName}</BlogName>
+                                <NickName>@{comment.writer && comment.writer.blogNickname}</NickName>
+                            </TitleWrap>
+                            </Menu>
+                            {/* 댓글작성자 본인인 경우만 수정/삭제 버튼 노출 */}
+                            {isAdmin && (
+                                <UserWrap>
+                                    {/* 쩜쩜쩜 눌렀을 때만 수정/삭제 버튼 보여지게 */}
+                                    {!showButtons.includes(comment.commentId) && 
+                                        <DotButton onClick={() => toggleShowButtons(comment.commentId)}>
+                                            <DotIcon/>
+                                        </DotButton>
+                                    }
+                                    {showButtons.includes(comment.commentId) && (
+                                        <>
+                                            <UserBtn onClick={() => {
+                                                editHandler(comment.commentId);
+                                                toggleShowButtons(comment.commentId);
+                                            }}>수정하기</UserBtn>
+                                            <UserBtn style={{border: "none"}} onClick={() => {
+                                                deleteHandler(comment.commentId);
+                                                toggleShowButtons(comment.commentId);
+                                            }}>삭제하기</UserBtn>
+                                        </>
+                                    )}
+                                </UserWrap>
+                            )}
+                        </UserInfo>
+                        {/* 댓글 내용 엔터 적용해서 보여주기 */}
+                        <Context>
+                            {comment.content.split('\n').map((line, index) => (
+                                <React.Fragment key={index}>{line}<br/></React.Fragment>
+                            ))}
+                        </Context>
+                        <CommentFooter>
+                            {/* 댓글 작성 날짜 */}
+                            {comment.createdAt && <CommentDate>{new Date(comment.createdAt).toISOString().split('T')[0].replace(/-/g, '.')}</CommentDate>}
+                            {/* 좋아요 버튼 & 좋아요 개수 */}
+                            <HeartReplyWrap>
+                            <HeartWrap>
+                                <LikeButton onClick={() => likeHandler(comment.commentId)}>
+                                <HeartIcon fill={likeStates[comment.commentId] ? "red" : "none"} />
+                                </LikeButton>
+                                <LikeNum>{likesCount[comment.commentId]}</LikeNum>
+                            </HeartWrap>
+                            {/* 답글 버튼 */}
+                            <ReplyButton onClick={() => buttonHandler(comment.commentId)}> 답글달기 </ReplyButton>
+                            </HeartReplyWrap>
+                        </CommentFooter>
+                    </Wrap>
+                )}
                 {/* 답글 버튼 누르면 답글 작성 칸 등장 */}
                 {isClicked[comment.commentId] && <CommentWrite/>}
             </Fragment>
@@ -181,6 +302,33 @@ const Comment = ({post}) => {
 
 export default Comment;
 
+const WrapEdit = styled.div`
+    display: flex;
+    padding: 2rem 2rem 2rem 2rem;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: stretch;
+    border-bottom: 1px solid var(--gray_lighter, #DCDCDC);
+`
+const EditingName = styled(XS_bold_13)`
+    padding:0.5rem 0rem 0rem 4rem;
+    color: red;
+`
+const EditSubmitBtn =  styled.button`
+    // margin: 1rem;
+    padding: 0rem 1rem;
+    background: none;
+    border: none;
+    border-right: 1px solid gray;
+    cursor: pointer;
+    color: gray;
+
+    &:hover{
+        color: red;
+        transition : 0.3s;
+    }
+`
 const Wrap = styled.div`
     display: flex;
     padding: 1rem 1rem 0rem 1rem;
@@ -221,6 +369,27 @@ const UserInfo = styled.div`
     align-items: center;
     align-self: stretch;
 `
+// 수정삭제 쩜쩜쩜 버튼
+const DotButton = styled.button`
+    display: flex;
+    width: 3rem;
+    height: 3rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+
+    cursor: pointer;
+
+    background-color: transparent;
+    border: none;
+`
+// 수정삭제 쩜쩜쩜 아이콘
+const DotIcon = ({fill}) => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 48 48" fill="none">
+        <path fillRule="evenodd" clipRule="evenodd" d="M24 16C26.2 16 28 14.2 28 12C28 9.8 26.2 8 24 8C21.8 8 20 9.8 20 12C20 14.2 21.8 16 24 16ZM24 20C21.8 20 20 21.8 20 24C20 26.2 21.8 28 24 28C26.2 28 28 26.2 28 24C28 21.8 26.2 20 24 20ZM20 36C20 33.8 21.8 32 24 32C26.2 32 28 33.8 28 36C28 38.2 26.2 40 24 40C21.8 40 20 38.2 20 36Z" fill="#4A4A4A"/>
+    </svg>
+);
 // 수정삭제 버튼 wrap
 const UserWrap = styled.div`
     display: flex;
@@ -260,6 +429,31 @@ const Context = styled(XS_regular_16)`
     align-self: stretch;
     color: var(--black, #000);
     padding: 1.25rem 1.25rem 0rem 2rem;
+`
+const ContextEdit = styled(TextareaAutosize)`
+    width: 44.625rem;
+    display: flex;
+    margin: 1rem 3rem;
+    padding: 1rem;
+    align-items: center;
+    align-self: stretch;
+    border: none;
+    resize: none;
+
+    color: var(--gray_bold, #4A4A4A);
+
+    /* XS-regular-16(RE) */
+    font-family: Pretendard;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.03rem;
+
+    &:hover{
+        /* background-color: #e5e5e5; */
+        box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.25);
+    }
 `
 // 댓글 작성 날짜, 좋아요, 답장
 const CommentFooter = styled.div`
@@ -301,12 +495,14 @@ const LikeNum = styled(XS_semibold_16)`
 `
 const ReplyButton = styled.button`
     display: flex;
-    padding: 0.5rem 1rem;
+    padding: 0rem 1rem;
+    margin: 0.5rem 0rem;
     align-items: center;
     color: var(--gray_bold, #4A4A4A);
     text-align: justify;
     background-color: transparent;
-    border: 2px solid black;
+    border: none;
+    border-left: 2px solid black;
 
     cursor: pointer;
 
