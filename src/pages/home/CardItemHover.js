@@ -12,8 +12,8 @@ const CardItemHover = ({item}) => {
         // e.preventDefault();
         console.log('hover postId: ',item.postId);
 
-        // navigate(`/post/${item.postId}`);
-        navigate(`/mypage/post`);
+        navigate(`/post/${item.postId}`);
+        // navigate(`/mypage/post`);
 
     };
     
