@@ -9,13 +9,26 @@ import TextareaAutosize from 'react-textarea-autosize'; // npm install react-tex
 
 
 const Comment = ({post}) => {
-    // const comments = post.comments; // map을 위한 comment 배열 저장
     const [comments, setComments] = useState([]); // 초기값을 빈 배열로 설정
 
     // post.comments가 변경될 때마다 comments 상태 업데이트
     useEffect(() => {
-        setComments(post.comments || []);
+        if (post.comments) {
+            let sortedComments = [...post.comments].sort((a, b) => {
+                if (b.ref - a.ref !== 0) {
+                    return b.ref - a.ref;  // ref로 내림차순 정렬 (부모댓글 최신순으로 보여줌)
+                } else {
+                    if (a.step - b.step !== 0) {
+                        return a.step - b.step;  // step으로 오름차순 정렬  (대댓글의 대댓글 뭐 이런 기능을 위한 거.. 일단은 막아놓을 예정)
+                    } else {
+                        return a.refOrder - b.refOrder;  // refOrder로 오름차순 정렬 (대댓글은 최신이 밑으로 쌓이게)
+                    }
+                }
+            });
+            setComments(sortedComments);
+        }
     }, [post.comments]);
+    
 
     // comment를 최신순서로 보여주기 위해 내림차순 정렬
     let sortedComments = [];
