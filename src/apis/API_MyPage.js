@@ -40,7 +40,6 @@ export const Get_Categori = async () => {
 }
 export const Post_Categori = async (inputValue) => {
     const accessToken = window.localStorage.getItem("accessToken");
-    console.log("dddd",inputValue);
 
     const url = '/blog/categories';
     const res = await axios({

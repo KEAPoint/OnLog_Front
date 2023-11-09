@@ -12,23 +12,30 @@ import { useDispatch, useSelector } from "react-redux";
 import { cateAction, editClickAction } from "../../store/actions/category";
 import { filterListAction } from "../../store/actions/card";
 import AddCategoryItem from "./AddCategoryItem";
+import { useLocation } from "react-router-dom";
 
 const MypagePost = () => {
     const [EditClickCheck, setEditClickCheck] = useState(false);
     const [AddClickCheck, setAddClickCheck] = useState(0);
     const dispatch = useDispatch();
     const cateList = useSelector(state => state.category.cate);
+    const location = useLocation();
 
     useEffect(() => {
+        // 기존에 스토어에 저장된 데이터를 초기화
+        // dispatch(cateAction([])); 
+
         Get_Categori()
         .then((data) => {
             //카테고리 order 오름차순으로 저장
             let sortedData = data.data.sort((a, b) => a.order - b.order);
-            
-            // 스토어-카테고리리스트 add
-            sortedData.forEach((item) => {
-                dispatch(cateAction(item));
-              });
+            console.log("sortedData",sortedData);
+            // 스토어-카테고리리스트 add  
+            // sortedData.forEach((item) => {
+            //     dispatch(cateAction(item));
+            //   });
+            dispatch(cateAction(sortedData));
+
             // 스토어-필터링조건
             dispatch(
                 filterListAction({
@@ -40,7 +47,7 @@ const MypagePost = () => {
         .catch((error) => {
             console.log(error);
         })
-    },[]);
+    },[location.key]);
 
 
 
