@@ -10,9 +10,11 @@ const CardItemHover = ({item}) => {
 
     const handleReadBtnClick = (e) => {
         // e.preventDefault();
-        console.log(item.postId)
+        console.log('hover postId: ',item.postId);
 
         navigate(`/post/${item.postId}`);
+        // navigate(`/mypage/post`);
+
     };
     
     return (

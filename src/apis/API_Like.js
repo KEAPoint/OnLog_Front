@@ -1,9 +1,10 @@
 import axios from "axios";
 
 const accessToken = localStorage.getItem('accessToken');
-const url = '/posts/like';
 
-export const Post_Like = async (postId) => {
+export const Post_PostLike = async (postId) => {
+    const url = '/posts/like';
+
     try {
         const response = await axios({
             method:"post",
@@ -17,12 +18,14 @@ export const Post_Like = async (postId) => {
         });
         return response.data;
     } catch (error) {
-        console.error('post like error: ', error);
+        console.error('post post like error: ', error);
         return { success: false, error: error.message };
     }
 };
 
-export const Delete_Like = async (postId) => {
+export const Delete_PostLike = async (postId) => {
+    const url = '/posts/like';
+
     try {
         const response = await axios({
             method:"delete",
@@ -36,7 +39,49 @@ export const Delete_Like = async (postId) => {
         });
         return response.data;
     } catch (error) {
-        console.error('delete like error: ', error);
+        console.error('delete post like error: ', error);
+        return { success: false, error: error.message };
+    }
+}
+
+export const Post_CommentLike = async (commentId) => {
+    const url = '/post/comments/like';
+
+    try {
+        const response = await axios({
+            method:"post",
+            url: url,
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            },
+            data: {
+                commentId: commentId,
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('post comment like error: ', error);
+        return { success: false, error: error.message };
+    }
+};
+
+export const Delete_CommentLike = async (commentId) => {
+    const url = '/post/comments/like';
+
+    try {
+        const response = await axios({
+            method:"delete",
+            url: url,
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            },
+            data: {
+                commentId: commentId,
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('delete comment like error: ', error);
         return { success: false, error: error.message };
     }
 }
