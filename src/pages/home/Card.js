@@ -1,45 +1,34 @@
 import React, { useEffect, useState } from 'react';
-import Profile from '../../assets/images/Profile.jpeg';
 import CardItem from './CardItem';
-import { cardData } from '../../assets/datas/cardData';
 import styled from 'styled-components';
 import { InfiniteScroll } from '../../components/common/InfiniteScroll';
-import axios from 'axios';
 import { GET_CardList } from '../../apis/API_Card';
-import { useDispatch } from 'react-redux';
-import { cardAction } from '../../store/actions/card';
+import { useSelector } from 'react-redux';
+// import { cardFutAction } from '../../store/actions/card';
 
-const Card = ({category}) => {
-    const dispatch = useDispatch();    
+const Card = () => {
     const [cardData, setCardData] = useState([]);
-    useEffect(() => {
-            console.log("현재 카테고리: ", category);
+    const filterList = useSelector(state => state.card.filterList);
+    console.log("filterList", filterList);
 
-            if (category !== null) { // category가 null이 아닐 때만 API 요청을 보냅니다.
-                GET_CardList(category)
+    useEffect(() => {
+                GET_CardList(filterList)
+
                 .then((data) => {
-                    // console.log(data.data.content)
                     setCardData(data.data.content);
 
-                    dispatch(
-                        cardAction(data.data.content)
-                    );
                 })
                 .catch((error) => {
                     console.log(error);
                 });
-            }
-    },[category]);
+    },[filterList]);
 
     return (
         <Wrap>
             <CardWrap>
                 {
                     cardData.map((item) => (
-                        // <p>데이터 있음</p>
-                        // <CardItem key={item.postId} postId={item.postId}/>
                         <CardItem key={item.postId} item={item}/>
-
                     ))
                 }
             </CardWrap>

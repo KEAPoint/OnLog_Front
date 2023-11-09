@@ -10,7 +10,6 @@ const MyPage = () => {
     return(
         <div>
             <Header/>
-            {/* <UserProfile/> */}
             <Wrap>
                 <MypageTop/>
                 <MypagePost/>
@@ -22,6 +21,7 @@ const MyPage = () => {
 
 const Wrap = styled.div`
     padding: 0rem 6.25rem;
+    
 `
 export default MyPage;
 

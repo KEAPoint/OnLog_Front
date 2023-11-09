@@ -13,6 +13,7 @@ import { navData } from '../../assets/datas/categoryData';
 import BackImage from '../../components/common/BackImage';
 import { useDispatch } from 'react-redux';
 import { colorAction } from '../../store/actions/color';
+import { filterListAction } from '../../store/actions/card';
 
 const HomePage = () => {
     const location = useLocation();
@@ -26,9 +27,11 @@ const HomePage = () => {
 
 useEffect(() => {
     let path = location.pathname.replace(/\/main\/|\/main/g, '');
-
     const newCategory = navData.find(item => item.name === path);
+    console.log("확인확인", newCategory)
+    
     if (newCategory) {
+        console.log("유지연");
         setCategory({
             name: newCategory.name,
             hoverName: newCategory.kName,
@@ -41,8 +44,13 @@ useEffect(() => {
                 color: newCategory.color,
             })
         );
+        dispatch(
+            filterListAction({
+                topic: newCategory.name
+            })
+        )
     }
-}, [location, dispatch]);
+}, [location.pathname]);
 
     const isCurrent = to => to === location.pathname;
 
@@ -79,7 +87,10 @@ useEffect(() => {
 
             <PageWrap>
 
-                <Card category={category.name}/>
+                {/* <Card/> */}
+                {/* category.name이 설정되는 시점과 filterListAction이 dispatch되는 시점이 동일하기 때문에 => Card컴포넌트에서 filterList가 다 업데이트되기도 전에 HomePage컴포넌트의 dispatch를 변경으로 감지하여, 초기값이 들어가버리는 상황 방지*/}
+                {category.name!==null && <Card/>}
+                {/* <Card/>  */}
                 {/* <ScrollTop/> */}
                 <Footer/>
                 

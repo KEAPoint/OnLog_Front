@@ -1,21 +1,44 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { L_bold_32, S_bold_25, S_regular_30 } from '../../components/style/Styled';
+import { L_bold_32, S_bold_19_2, S_bold_25, S_regular_20_8, S_regular_30 } from '../../components/style/Styled';
 import HaniProfile from '../../assets/images/Profile.jpeg';
-
-
-
+import { Get_Profile } from "../../apis/API_MyPage";
+import { useEffect, useState } from "react";
 
 const MypageTop = () => {
-    const movePage = useNavigate();
+    const navigate = useNavigate();
+    const [profile, setProfile] = useState({}); 
+
+    useEffect(() => {
+        Get_Profile()
+        .then((data) => {
+            console.log(data.data)
+            setProfile({
+                ...profile,
+                blogId: data.data.blogName,
+                blogName: data.data.blogName,
+                blogNickname: data.data.blogNickname,
+                blogProfileImg: data.data.blogProfileImg,
+                likeCount: data.data.likeCount,
+                postCount: data.data.postCount,
+                subscriberCount: data.data.subscriberCount,
+                blogIntro: data.data.blogIntro,
+
+            })
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    },[]);
+    
 
     const handlePostButtonClick = (e) => {
         e.preventDefault();
-        movePage('/mypage/postwrite');
+        navigate('/mypage/postwrite');
     };
     const handleEditButtonClick = (e) => {
         e.preventDefault();
-        movePage('/mypage/edit');
+        navigate('/mypage/edit');
 
     };
 
@@ -24,31 +47,32 @@ const MypageTop = () => {
             <Wrap1>
                 <Left>
                     <Menu>
-                        <ProfileImg></ProfileImg>
+                        <ProfileImg $proflieImg={profile.blogProfileImg}/>
                         <TitleWrap>
-                            <BlogTitle>Hani Tech World</BlogTitle>
-                            <Name>@hanitech</Name>
+                            <BlogTitle>{profile.blogName}</BlogTitle>
+                            <Name>@{profile.blogNickname}</Name>
                         </TitleWrap>
                     </Menu>
                 </Left>
+
                 <Right>
                     <Box>
                         <Title> 작성한 글 </Title>
-                        <Num>999</Num>
+                        <Num>{profile.postCount}</Num>
                     </Box>
                     <Box>
                         <Title> 좋아요 수 </Title>
-                        <Num>999</Num>
+                        <Num>{profile.likeCount}</Num>
                     </Box>
                     <Box style={{borderRight:"none"}}>
                         <Title> 구독자 수 </Title>
-                        <Num>999</Num>
+                        <Num>{profile.subscriberCount}</Num>
                     </Box>
                 </Right>
             </Wrap1>
             <Wrap2>
                 <ProfileInfo>
-                Hani Tech World 는 최신 기술 정보와 실용적인 IT 팁을 제공하는 블로그입니다.
+                    {profile.blogIntro}
                 </ProfileInfo>
             </Wrap2>
             <Wrap2>
@@ -63,7 +87,6 @@ export default MypageTop;
 
 const PageWrap = styled.div`
     padding: 3.75rem 0rem 1.875rem 0rem;
-
 `
 const Wrap1 = styled.div`
     // display: flex;
@@ -75,7 +98,6 @@ const Wrap1 = styled.div`
     // flex-wrap: wrap;
 
     display: flex;
-    padding-bottom: 1.88rem;
     justify-content: space-between;
     align-items: center;
     align-content: center;
@@ -110,8 +132,8 @@ const ProfileImg = styled.div`
     width: 12.6875rem;
     height: 12.625rem;
     border-radius: 6.875rem;
-    background: url(${HaniProfile}) lightgray 50% / cover no-repeat;
-    margin-right: 0.94rem;
+    background: ${props => `url(${props.$proflieImg}) lightgray 50% / cover no-repeat`};
+    margin-right: 2.81rem;
 `;
 const TitleWrap = styled.div`
     display: flex; 
@@ -139,27 +161,16 @@ const Box = styled.div`
     align-items: center;
     border-right: 1px solid var(--gray_light, #939393);
 `
-const Title = styled.div`
+const Title = styled(S_regular_20_8)`
     color: var(--gray_bold, #4A4A4A);
     text-align: justify;
 
-    /* S-regular-25 */
-    font-family: Pretendard;
-    font-size: 1.5625rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
 `
-const Num = styled.div`
+const Num = styled(L_bold_32)`
     color: var(--black, #000);
     text-align: justify;
 
-    /* L-bold-45 */
-    font-family: Pretendard;
-    font-size: 2.8125rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
+
 `
 
 const Wrap2 = styled.div`
@@ -171,17 +182,11 @@ const Wrap2 = styled.div`
     gap: 0.625rem;
     align-self: stretch;
 `
-const ProfileInfo = styled.div`
+const ProfileInfo = styled(S_regular_30)`
     color: var(--gray_bold, #4A4A4A);
 
-    /* S-regular_30 */
-    font-family: Pretendard;
-    font-size: 1.875rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
 `
-const Button = styled.button`
+const Button = styled(S_bold_19_2).attrs({as:'button'})`
     display: flex;
     padding: 0.75rem 6.03125rem;
     align-items: center;
@@ -192,12 +197,7 @@ const Button = styled.button`
 
     color: var(--white, #FFF);
     text-align: justify;
-    /* S-bold-25 */
-    font-family: Pretendard;
-    font-size: 1.5625rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
+
 
     &:hover{
         background: white;
