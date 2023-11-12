@@ -6,20 +6,21 @@ import styled from "styled-components";
 import { S_bold_19_2, XS_bold_13} from "../../components/style/Styled";
 import { Get_Categori } from "../../apis/API_MyPage";
 import { useNavigate } from "react-router-dom";
+import { navData } from "../../assets/datas/categoryData";
 
 
 const PostNew = () => {
-    const nagivate = useNavigate();
+    const navigate = useNavigate();
     const [content, setContent] = useState("");
     const [title, setTitle] = useState("");
+    const [tagItem, setTagItem] = useState('');
+    const [tagList, setTagList] = useState([]);
     const [topic, setTopic] = useState("");
     const [category, setCategory] = useState("");
-    const [isPrivate, setIsPrivate] = useState(false);
-
-    const topics = ["lifestyle", "travel", "foodie", "entertainment", "tech", "sports", "news"]; // 주제 리스트
+    const [isPublic, setIsPublic] = useState(true);
 
     // onChange 발생 시 content에 저장 (디바운스 적용)
-    const handleChange = _.debounce((newContent) => {
+    const handleContentChange = _.debounce((newContent) => {
         setContent(newContent);
         console.log(newContent);
     });
@@ -29,6 +30,7 @@ const PostNew = () => {
     setTitle(e.currentTarget.value);
     }
 
+    // 글 내용 입력 후 ai페이지로 이동
     const nextBtnHandler = () => {
         // 제목, 글 내용, 해시태그, 카테고리 모두 선택했는지 확인해야함
         if(title==""){
@@ -45,15 +47,14 @@ const PostNew = () => {
             console.log('카테고리 : ',category);
             console.log('주제 : ',topic);
             console.log('내용 : ', content);
-            console.log('비공개글 : ',isPrivate);
-
-            // navigate(``);
+            console.log('비공개글 : ',isPublic);
+            
+            // ai 생성 페이지로 넘어갈 때, 제목, 내용, 해시태그, 카테고리, 주제, 공개여부 데이터 보내주기
+            const data = { title, content, tagList, category, topic, isPublic };
+            console.log('data : ', data);
+            navigate("/mypage/postwrite/createAI", { state: { data: { title, content, tagList, category, topic, isPublic } } });
         }
     }
-
-    const [tagItem, setTagItem] = useState('')
-    const [tagList, setTagList] = useState([])
-  
     const onKeyPress = e => {
       if (e.target.value.length !== 0 && e.key === "Enter") { // enter key 누르면
         submitTagItem() // tagItem에 저장
@@ -70,7 +71,7 @@ const PostNew = () => {
       else{
           alert('중복값 x')
       }
-      console.log("tag add. taglist : ", tagList);
+      console.log("tag added. taglist : ", tagList);
 
     }
     // 태그 삭제
@@ -85,20 +86,23 @@ const PostNew = () => {
     const [categories, setCategories] = useState([]);
     useEffect(() => {
         const fetchCategory = async () => {
-            const data = await Get_Categori();
-            
+          const data = await Get_Categori();
+          
+          if (data && data.data) { // data와 data.data가 모두 null이 아닌지 확인
             let sortedData = data.data.sort((a, b) => a.order - b.order);
-            console.log("sortedData: ",sortedData);
+            console.log("sortedData: ", sortedData);
             setCategories(sortedData);
+          } else {
+            console.error('카테고리 없음', data);
+          }
         }
         fetchCategory();
-      }, []);
+      }, []);      
 
-      // 비공개글 설정
-      const privateChecked = () => {
-        setIsPrivate(!isPrivate);
-        console.log(isPrivate);
-      }
+    // 비공개글 설정
+    const privateChecked = () => {
+        setIsPublic(!isPublic);
+    }
 
 
    return (
@@ -130,7 +134,7 @@ const PostNew = () => {
                         ]
                     ],
                 }}
-                onChange={handleChange}
+                onChange={handleContentChange}
             />
         </div>
         
@@ -164,7 +168,7 @@ const PostNew = () => {
             <div>카테고리 선택</div>
             <div style={{paddingTop:"1rem", paddingBottom:"1rem"}}>
                 {categories.map((cate) => (
-                    <CateBtn key={cate.id} onClick={() => setCategory(cate.name)} selected={category === cate.name}>
+                    <CateBtn key={cate.id} onClick={() => setCategory(cate.id)} selected={category === cate.id}>
                         {cate.name}
                     </CateBtn> 
                 ))}
@@ -176,9 +180,9 @@ const PostNew = () => {
         <Title>
             <div>주제 선택</div>
             <div style={{paddingTop:"1rem", paddingBottom:"1rem"}}>
-                {topics.map((top) => (
-                    <TopicBtn key={top} onClick={() => setTopic(top)} selected={topic === top}>
-                        #{top}
+                {navData.slice(1).map((top) => (
+                    <TopicBtn key={top.name} onClick={() => setTopic(top.id)} selected={topic === top.id} color={top.color}>
+                        #{top.name}
                     </TopicBtn> 
                 ))}
             </div>
@@ -340,7 +344,7 @@ const CateBtn = styled.button`
 `
 const TopicBtn = styled.button`
     color: ${props => props.selected ? 'white' : 'var(--gray_bold, #4A4A4A)'};
-    background-color: ${props => props.selected ? '#FF7575' : 'white'};
+    background-color: ${props => props.selected ? `var(${props.color})` : 'white'};
 
     /* L-semibold-32(RE) */
     font-family: Pretendard;
@@ -356,7 +360,7 @@ const TopicBtn = styled.button`
     
     &:hover {
         color: white;
-        background: #FF7575;
+        background: var(${props=>props.color});
     }
 
     //버튼 클릭 시 애니메이션

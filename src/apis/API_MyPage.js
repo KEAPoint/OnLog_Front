@@ -55,3 +55,28 @@ export const Post_Categori = async (inputValue) => {
 
     return res.data;
 }
+
+export const Post_Post = async(input) => {
+    const accessToken = window.localStorage.getItem("accessToken");
+    console.log(input);
+    const url = '/posts';
+    const res = await axios({
+        method: "post",
+        url: url,
+        headers: {
+            'Authorization': `Bearer ${accessToken}`
+        },
+        data: {
+            title: input.title,
+            content: input.content,
+            summary: input.summary,
+            thumbnailLink: input.thumbnailLink,
+            isPublic: input.isPublic,
+            categoryId: input.category,
+            hashtagList: input.tagList,
+            topicId: input.topic
+        }
+    });
+
+    return res.data;
+}
