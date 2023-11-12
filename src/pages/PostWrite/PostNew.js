@@ -3,9 +3,7 @@ import SunEditor from "suneditor-react";
 import _ from 'lodash';
 import "suneditor/dist/css/suneditor.min.css";
 import styled from "styled-components";
-import TextareaAutosize from 'react-textarea-autosize'; // npm install react-textarea-autosize
 import { S_bold_19_2, XS_bold_13} from "../../components/style/Styled";
-import Swal from "sweetalert2";
 import { Get_Categori } from "../../apis/API_MyPage";
 import { useNavigate } from "react-router-dom";
 
@@ -16,6 +14,7 @@ const PostNew = () => {
     const [title, setTitle] = useState("");
     const [topic, setTopic] = useState("");
     const [category, setCategory] = useState("");
+    const [isPrivate, setIsPrivate] = useState(false);
 
     const topics = ["lifestyle", "travel", "foodie", "entertainment", "tech", "sports", "news"]; // 주제 리스트
 
@@ -46,6 +45,7 @@ const PostNew = () => {
             console.log('카테고리 : ',category);
             console.log('주제 : ',topic);
             console.log('내용 : ', content);
+            console.log('비공개글 : ',isPrivate);
 
             // navigate(``);
         }
@@ -94,7 +94,11 @@ const PostNew = () => {
         fetchCategory();
       }, []);
 
-
+      // 비공개글 설정
+      const privateChecked = () => {
+        setIsPrivate(!isPrivate);
+        console.log(isPrivate);
+      }
 
 
    return (
@@ -180,99 +184,23 @@ const PostNew = () => {
             </div>
         </Title>
 
+        {/* 글 공개여부 선택 */}
+        <PublicWrap>
+            <Title>
+                <div> 비공개 글로 설정할래요</div>
+            </Title>
+            <CheckBoxStyled onClick={privateChecked}/>
+        </PublicWrap>
+
         <BtnWrap>
             <NextBtn onClick={nextBtnHandler}>다음</NextBtn>
         </BtnWrap>
-               
     </Wrap>
   );
 };
 
 export default PostNew;
 
-
-
-const Tagging = styled(XS_bold_13)`
-    padding:0.5rem 0rem 0rem 0.5rem;
-    color: red;
-`
-const TagBox = styled.div`
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    width: 100%;
-    margin: 1rem 1rem 1rem 0rem;
-    padding: 0.5rem;
-    border: 1px solid rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-
-    &:focus-within {
-    border-color: #FF7575;
-    }
-
-    &:hover{
-    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.05);
-    }
-`
-
-const TagItem = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-right: 1rem;
-    padding: 0rem 0.5rem;
-    background-color: #FF7575;
-    border-radius: 5px;
-    color: white;
-
-    /* S-medium-20.8(RE) */
-    font-family: Pretendard;
-    font-size: 1.3rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 158.023%; /* 2.05431rem */
-  `
-
-const Text = styled.span``
-
-const XButton = styled.button`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 1rem;
-    height: 1rem;
-    margin-left: 0.2rem;
-    background-color: white;
-    border-radius: 50%;
-    border: 1px solid white;
-    color: tomato;
-
-    cursor: pointer;
-`
-
-const TagInput = styled.input`
-    display: inline-flex;
-    background: transparent;
-    border: none;
-    outline: none;
-    cursor: text;
-
-    /* S-regular_20(RE) */
-    font-family: Pretendard;
-    font-size: 1.25rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 2.3rem; /* 184% */
-    letter-spacing: 0.0125rem;
-`
-
-
-
-const StickyWrap = styled.div`
-    background-color: white;
-    position: sticky;
-    top: 0;
-`
 const Wrap = styled.div`
     display: flex;
     flex-direction: column;
@@ -312,6 +240,76 @@ const TitleInput = styled.input`
     &:hover{
         box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.05);
     }
+`
+const Tagging = styled(XS_bold_13)`
+    padding:0.5rem 0rem 0rem 0.5rem;
+    color: red;
+`
+const TagBox = styled.div`
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 1rem 1rem 1rem 0rem;
+    padding: 0.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+
+    &:focus-within {
+    border-color: #FF7575;
+    }
+
+    &:hover{
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.05);
+    }
+`
+const TagItem = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 1rem;
+    padding: 0rem 0.5rem;
+    background-color: #FF7575;
+    border-radius: 5px;
+    color: white;
+
+    /* S-medium-20.8(RE) */
+    font-family: Pretendard;
+    font-size: 1.3rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 158.023%; /* 2.05431rem */
+  `
+
+const Text = styled.span``
+const XButton = styled.button`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1rem;
+    height: 1rem;
+    margin-left: 0.2rem;
+    background-color: white;
+    border-radius: 50%;
+    border: 1px solid white;
+    color: tomato;
+
+    cursor: pointer;
+`
+const TagInput = styled.input`
+    display: inline-flex;
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: text;
+
+    /* S-regular_20(RE) */
+    font-family: Pretendard;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 2.3rem; /* 184% */
+    letter-spacing: 0.0125rem;
 `
 const CateBtn = styled.button`
     color: ${props => props.selected ? 'white' : 'var(--gray_bold, #4A4A4A)'};
@@ -368,7 +366,6 @@ const TopicBtn = styled.button`
 `
 
 const BtnWrap = styled.div`
-    padding-Top: 2rem;
     padding-Left:5rem;
     padding-Right:5rem;
 `
@@ -400,3 +397,24 @@ const NextBtn = styled.button`
         box-shadow: inset 0 0 0 5px black;
     }
 `
+const PublicWrap = styled.div`
+    display: flex;
+    flex-direction: row;
+    padding-top: 2rem;
+    align-items: center;
+    color: gray;
+`
+const CheckBoxStyled = styled.input.attrs({ type: 'checkbox' })`
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin-left: 1rem;
+  border: 3px solid gray;
+  width: 2.2rem;
+  height: 1.8rem;
+
+  cursor: pointer;
+  &:checked {
+    background-color: gray;
+  }
+`;
