@@ -32,7 +32,7 @@ const MypagePost = () => {
             console.log("sortedData",sortedData);
             // 스토어-카테고리리스트 add  
             // sortedData.forEach((item) => {
-            //     dispatch(cateAction(item));
+            //     dispatch(cateAction(item));ㅊ
             //   });
             dispatch(cateAction(sortedData));
 

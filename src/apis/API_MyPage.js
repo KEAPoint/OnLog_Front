@@ -19,6 +19,23 @@ export const Get_Profile = async () => {
     });
     return res.data;
 }
+export const Put_Profile = async (inputValue) => {
+    const accessToken = window.localStorage.getItem("accessToken");
+    const url = '/blog';
+    const res = await axios({
+        method: "put",
+        url: url,
+        headers: {
+            'Authorization': `Bearer ${accessToken}`
+        },
+        data: {
+            "blogName": inputValue.blogName,
+            "blogNickname": inputValue.nickName,
+            "blogIntro": inputValue.info,
+            "blogProfileImg": inputValue.profileImg
+        }
+    })
+}
 
 // 카테고리 관련
 export const Get_Categori = async () => {
