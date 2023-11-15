@@ -13,15 +13,13 @@ const CardItemHover = ({item}) => {
         console.log('hover postId: ',item.postId);
 
         navigate(`/post/${item.postId}`);
-        // navigate(`/mypage/post`);
-
     };
     
     return (
         <HoverWrap onClick={handleReadBtnClick}>
             <Wrap>
                 <Photo $imgurl = {item.thumbnailLink}></Photo>
-                <Contents>{item.summary}</Contents>
+                <Contents dangerouslySetInnerHTML={{__html: item.summary}}/>
                 <ReadWrap>
                    <p>Read</p> 
                    <img src={Arrow} alt="arrow" /> 
