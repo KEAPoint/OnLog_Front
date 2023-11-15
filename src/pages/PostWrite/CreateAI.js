@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { S_bold_19_2 , S_bold_28, S_regular_20} from "../../components/style/Styled";
 import { useState, useEffect, useRef } from "react";
 import Header from "../../components/common/Header";
@@ -18,14 +18,13 @@ function isValidUrl(string) {
 
 const CreateAI = () => {
     const location = useLocation();
+    const navigate = useNavigate();
     const [props, setProps] = useState({
         ...location.state.data
       });
-    console.log('props data : ',props);
-
     const [summary, setSummary] = useState(props.summary);
     const defaultImageUrl = "https://i.namu.wiki/i/awkzTuu2p6WdaGIUbeHWGj0yzxUOd_wniEADxzMH8qvhWH4TDkpkkiUAJpefC-8J79giMVyjN5y1uRYQVoQm2g.webp";  // 이미지 url이 유효한 값이 아닌 string일 때 기본 이미지 URL 설정
-    const thumbImageUrl = isValidUrl(props.thumbnailLink) ? props.thumbnailLink : defaultImageUrl;
+    const thumbImageUrl = isValidUrl(props.thumbnailLink[0]) ? props.thumbnailLink[0] : defaultImageUrl;
 
     useEffect(() => {
         window.scrollTo({top:0, behavior:"smooth"});
@@ -41,8 +40,10 @@ const CreateAI = () => {
 
     // 요약글 수정
     const SummaryEditHandler = (e) => {
-        setSummary(e.currentTarget.value);
-    }
+        setProps({
+            ...props,
+            summary: e.currentTarget.value
+        })    }
 
     // 글 작성 버튼 클릭
     const SubmitHandler = async () => {
@@ -56,6 +57,7 @@ const CreateAI = () => {
 
         if (response.success) {
             console.log("글 작성 완료!");
+            navigate(`/post/${response.data.postId}`);
             console.log(response);
         } else {
             console.error("글 작성 실패! :", response.message);

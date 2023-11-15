@@ -19,7 +19,7 @@ const  PostComment = ({post}) => {
         <div>
             <CommentWrap ref={commentWriteRef}>
                 <Comment post={post}/>
-                <ReplyComment/>
+                {/* <ReplyComment/> */}
             </CommentWrap>
             {/* {isClicked && <CommentWrite style={{padding:"0rem 0rem 0rem 0rem"}}/>} */}
             {/* <CommentWrite style={{padding:"0rem 0rem 0rem 0rem"}}/> */}
