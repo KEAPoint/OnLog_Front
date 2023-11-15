@@ -4,32 +4,48 @@ import {ReactComponent as Logo2} from '../../assets/images/Logo2.svg';
 import { S_bold_19_2, S_bold_25, XS_bold_13, XS_regular_16 } from '../style/Styled';
 import { Link, useNavigate } from 'react-router-dom';
 import { Get_Profile } from '../../apis/API_MyPage';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { profileAction } from '../../store/actions/profile';
 
 const Header = () => {
     const accessToken = window.localStorage.getItem("accessToken");
-    const [user, setUser] = useState({
-        blogName:"",
-        blogNickname:"",
-        blogProfileImg:"",
-    }); 
+    //
+    // const selector = useSelector(state => state.profile);
+    // console.log("selector:", selector);
+    const dispatch = useDispatch();
+    const user = useSelector((state) => state.profile.user);
+    //
+
+    // const [user, setUser] = useState({
+    //     blogName: "",
+    //     blogNickname:"",
+    //     blogProfileImg: "",
+    // }); 
 
     useEffect(() => {
         Get_Profile()
         .then((data) => {
-            // console.log(data);
+            console.log(data);
+            // setUser({
+            //     ...user,
+            //     blogName: data.data.blogName,
+            //     blogNickname: data.data.blogNickname,
+            //     blogProfileImg: data.data.blogProfileImg,
+            // })
+            dispatch(
+                profileAction({
+                    blogName: data.data.blogName,
+                    nickName: data.data.blogNickname,
+                    profileImg: data.data.blogProfileImg,
+                    info: data.data.info,
+                })
+            )
 
-            setUser({
-                ...user,
-                blogName: data.data.blogName,
-                blogNickname: data.data.blogNickname,
-                blogProfileImg: data.data.blogProfileImg,
-            })
         })
         .catch((error) => {
             console.log(error);
         });
-    },[]);
+    },[dispatch]);
 
     const navigate = useNavigate();
     const handleClick = (e) =>   {
@@ -71,7 +87,7 @@ const Header = () => {
                         <ProfileImg $blogProfileImg={user.blogProfileImg}></ProfileImg>
                         <TitleWrap to={'/mypage'}>
                             <Title>{user.blogName}</Title>
-                            <Name>@{user.blogNickname}</Name>
+                            <Name>@{user.nickName}</Name>
                         </TitleWrap>
                     </MyPageBtn>
                 </MenuWrap>

@@ -109,6 +109,14 @@ export const S_bold_25 = styled.div`
     font-weight: 700;
     line-height: normal;
 `;
+export const S_bold_28 = styled.div`
+    /* S-bold-28 */
+    font-family: Pretendard;
+    font-size: 1.75rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+`
 export const M_regular_32 = styled.div`
     /* M-regular-32(RE) */
     font-family: Pretendard;

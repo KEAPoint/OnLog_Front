@@ -15,7 +15,6 @@ const SignUp = () => {
     // console.log(user.email, user.userId);
     // console.log(user ? user.email : 'User not defined'); 
 
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         const nickname = e.target.elements.nickname.value;

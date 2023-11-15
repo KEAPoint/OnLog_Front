@@ -73,6 +73,7 @@ const PostText = ({post}) => {
     };
     // 댓글 수정하기 버튼 핸들러
     const editHandler = () => {
+        
         alert("수정하기");
     }
     // 댓글 삭제하기 버튼 핸들러
@@ -109,9 +110,7 @@ const PostText = ({post}) => {
     return(
         <Wrap>
             {/* 본문 내용 */}
-            <Context>
-                {post.content}
-            </Context>
+            <Context dangerouslySetInnerHTML={{ __html: post.content }}/>
             {/* 해시태그 */}
             <HashTagWrap>
                 {post.hashtagList && post.hashtagList.map((hashtag) => 

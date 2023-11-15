@@ -34,3 +34,27 @@ export const Delete_SinglePost = async (postId) => {
         return { success: false, error: error.message };
     }
 }
+
+export const Put_SinglePost = async (input) => {
+    const url = '/posts';
+    const res = await axios({
+        method: "put",
+        url: url,
+        headers: {
+            'Authorization': `Bearer ${accessToken}`
+        },
+        data: {
+            postId: input.postId,
+            title: input.title,
+            content: input.content,
+            summary: input.summary,
+            thumbnailLink: input.thumbnailLink,
+            isPublic: input.isPublic,
+            categoryId: input.category,
+            hashtagList: input.tagList,
+            topicId: input.topic
+        }
+    });
+
+    return res.data;
+}

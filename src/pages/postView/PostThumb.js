@@ -63,10 +63,7 @@ const PostThumb = ({post}) => {
             <Wrap>
                 {/* <ThumbImgDiv $thumbImg={post.thumbnailLink} color={topic.color}>  </ThumbImgDiv> */}
                 <ThumbImgDiv $thumbImg={thumbImageUrl} color={topic.color}>  </ThumbImgDiv>
-                <Summary>
-                    {/* {Parser({title})} */}
-                    {post.summary}
-                </Summary>
+                <Summary dangerouslySetInnerHTML={{__html: post.summary}}/>
             </Wrap>
         </>
     );
@@ -122,7 +119,7 @@ const ThumbImgDiv = styled.div`
     // box-shadow: 6px 7px 7px 0px rgba(0, 0, 0, 0.50);
 `
 
-const Summary = styled(L_semibold_32)`
+const Summary = styled(S_bold_17)`
     width: 30rem;
     color: var(--gray_bold, #4A4A4A);
     text-align: justify;

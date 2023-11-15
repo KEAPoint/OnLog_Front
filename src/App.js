@@ -13,6 +13,7 @@ import SubscribePage from "./pages/subscribe/Index";
 import NoticePage from "./pages/notification/Index";
 import KakaoMiddle from "./pages/login/KakaoMiddle";
 import TestPage from "../src/Test";
+import CreateAI from "./pages/PostWrite/CreateAI";
 function App() {
   return (
     <BrowserRouter>
@@ -45,6 +46,7 @@ function App() {
 
           <Route path="/mypage/edit" element={<ProfileEditPage/>}/>
           <Route path="/mypage/postwrite" element={<PostWrite/>}/>
+          <Route path="/mypage/postwrite/createAI" element={<CreateAI/>}/>
           <Route path="/search" element={<SearchPage/>}/>
           <Route path="/subscribed" element={<SubscribePage/>}/>
           <Route path="/notification" element={<NoticePage/>}/>
