@@ -58,7 +58,6 @@ export const Post_Categori = async (inputValue) => {
 
 export const Post_Post = async(input) => {
     const accessToken = window.localStorage.getItem("accessToken");
-    console.log(input);
     const url = '/posts';
     const res = await axios({
         method: "post",

@@ -7,7 +7,8 @@ import { S_bold_19_2, XS_bold_13} from "../../components/style/Styled";
 import { Get_Categori } from "../../apis/API_MyPage";
 import { useNavigate } from "react-router-dom";
 import { navData } from "../../assets/datas/categoryData";
-
+import { Post_Recommendation } from "../../apis/API_Recommendation";
+import { useRef } from "react";
 
 const PostNew = () => {
     const navigate = useNavigate();
@@ -18,6 +19,8 @@ const PostNew = () => {
     const [topic, setTopic] = useState("");
     const [category, setCategory] = useState("");
     const [isPublic, setIsPublic] = useState(true);
+    const [summary, setSummary] = useState("");
+    const [thumbnailLink, setThumbnailLink] = useState("");
 
     // onChange 발생 시 content에 저장 (디바운스 적용)
     const handleContentChange = _.debounce((newContent) => {
@@ -28,15 +31,30 @@ const PostNew = () => {
    // 제목 입력시 변경사항 반영
    const TitleHandler = (e) => {
     setTitle(e.currentTarget.value);
-    }
+    };
+
+    // summary, thumbnaiilLink가 둘 다 ai로 받은 값일 경우, 다음 페이지로 값 전달
+    useEffect(() => {
+        // summary와 thumbnailLink가 모두 null값이 아닐 때
+        if (summary!="" && thumbnailLink!="") {
+            console.log('Both summary and thumbnailLink changed');
+            console.log('summary : ', summary);
+            console.log('thumbnailLink : ', thumbnailLink);
+    
+            // 글 작성에서 얻은 데이터 몽땅 저장
+            const data = { title, content, tagList, category, topic, isPublic, summary, thumbnailLink };
+            console.log('data : ', data);
+            // 세줄요약, 썸네일 생성 페이지로 이동
+            navigate("/mypage/postwrite/createAI", { state: { data: { title, content, tagList, category, topic, isPublic, summary, thumbnailLink } } });
+        }
+    }, [summary, thumbnailLink]);
 
     // 글 내용 입력 후 ai페이지로 이동
-    const nextBtnHandler = () => {
+    const nextBtnHandler = async () => {
         // 제목, 글 내용, 해시태그, 카테고리 모두 선택했는지 확인해야함
         if(title==""){
             alert('제목을 입력해주세요');
             window.scrollTo({top:0, behavior:"smooth"});
-
         }
         else if (content==""){
             alert('글을 작성해주세요');
@@ -48,18 +66,28 @@ const PostNew = () => {
             console.log('주제 : ',topic);
             console.log('내용 : ', content);
             console.log('비공개글 : ',isPublic);
-            
-            // ai 생성 페이지로 넘어갈 때, 제목, 내용, 해시태그, 카테고리, 주제, 공개여부 데이터 보내주기
-            const data = { title, content, tagList, category, topic, isPublic };
-            console.log('data : ', data);
-            navigate("/mypage/postwrite/createAI", { state: { data: { title, content, tagList, category, topic, isPublic } } });
+
+            // ai로 썸네일 추천 & 세줄요약 값 받아오기
+            const response = await Post_Recommendation(content, tagList);
+
+            if (response.success) {
+                console.log("ai 생성 완료");
+                
+                // 생성된 세줄요약, 썸네일 이미지 값 저장하기
+                setSummary(response.data.summary);
+                setThumbnailLink(response.data.imageUrl[0]);
+            } else {
+                console.error("ai 생성 실패", response.message);
+            }
         }
     }
+
     const onKeyPress = e => {
       if (e.target.value.length !== 0 && e.key === "Enter") { // enter key 누르면
         submitTagItem() // tagItem에 저장
       }
     }
+
     // 태그리스트에 태그아이템 추가
     const submitTagItem = () => {
       if (!tagList.includes(tagItem)) { // tagList에 tagItem이 포함되어 있지 않은 경우에만 추가

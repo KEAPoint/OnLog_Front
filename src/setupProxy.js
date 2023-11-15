@@ -15,4 +15,11 @@ module.exports = function(app) {
             changeOrigin: true,
         })
     );
+    app.use(
+        '/recommendation',
+        createProxyMiddleware({
+            target: 'http://172.16.213.33:8080',
+            changeOrigin: true,
+        })
+    );
 };

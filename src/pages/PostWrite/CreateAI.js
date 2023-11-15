@@ -7,17 +7,25 @@ import {ReactComponent as Arrow} from '../../assets/images/Icons/Next.svg';
 import TextareaAutosize from 'react-textarea-autosize'; // npm install react-textarea-autosize
 import { Post_Post } from "../../apis/API_MyPage";
 
-
+function isValidUrl(string) {
+    try {
+      new URL(string);
+      return true;
+    } catch (_) {
+      return false;  
+    }
+  }
 
 const CreateAI = () => {
     const location = useLocation();
     const [props, setProps] = useState({
-        ...location.state.data,
-        thumbnailLink: '',
-        summary: ''
+        ...location.state.data
       });
+    console.log('props data : ',props);
 
-    const [summary, setSummary] = useState("요약글이에요 에이아이가 해줄거에요 호호요약글이에요 에이아이가 해줄거에요 호호요약글이에요 에이아이가 해줄거에요 호호요약글이에요 에이아이가 해줄거에요 호호요약글이에요 에이아이가 해줄거에요 호호요약글이에요 에이아이가 해줄거에요 호호요약글이에요 에이아이가 해줄거에요 호호");
+    const [summary, setSummary] = useState(props.summary);
+    const defaultImageUrl = "https://i.namu.wiki/i/awkzTuu2p6WdaGIUbeHWGj0yzxUOd_wniEADxzMH8qvhWH4TDkpkkiUAJpefC-8J79giMVyjN5y1uRYQVoQm2g.webp";  // 이미지 url이 유효한 값이 아닌 string일 때 기본 이미지 URL 설정
+    const thumbImageUrl = isValidUrl(props.thumbnailLink) ? props.thumbnailLink : defaultImageUrl;
 
     useEffect(() => {
         window.scrollTo({top:0, behavior:"smooth"});
@@ -75,9 +83,7 @@ const CreateAI = () => {
                         <ArrowBtn>
                             <Arrow/>
                         </ArrowBtn>
-                        <Images>
-
-                        </Images>
+                        <Images $thumbImg={thumbImageUrl}/>
                         {/* 오른쪽 화살표 */}
                         <ArrowBtn $flip>
                             <Arrow/>
@@ -86,7 +92,7 @@ const CreateAI = () => {
 
                     <SummaryWrap>
                         <SummaryTitle> 세 줄 요약 </SummaryTitle>
-                        <SummaryContent type='text' value={summary} style={{ overflow: 'hidden' }} placeholder="요약" onChange={SummaryEditHandler}/>
+                        <SummaryContent type='text' value={props.summary} style={{ overflow: 'hidden' }} placeholder="요약" onChange={SummaryEditHandler}/>
                     </SummaryWrap>
                 </AiWrap>
 
@@ -198,6 +204,8 @@ const Images = styled.div`
     width: 37.5rem;
     height: 37.5rem;
     background-color: white;
+    background: url(${props => props.$thumbImg}) 50% / cover no-repeat;
+
 `
 const SummaryWrap = styled(S_regular_20)`
     width: 100%;
