@@ -36,12 +36,11 @@ const PostNew = () => {
         // summary와 thumbnailLink가 모두 null값이 아닐 때
         if (summary!=="" && thumbnailLink!==null) {
             console.log('Both summary and thumbnailLink changed');
-            // 글 작성에서 얻은 데이터 몽땅 저장
-            const data = { title, content, tagList, category, topic, isPublic, summary, thumbnailLink };
             // 세줄요약, 썸네일 생성 페이지로 이동
             navigate("/mypage/postwrite/createAI", { state: { data: { title, content, tagList, category, topic, isPublic, summary, thumbnailLink } } });
         }
-    }, [summary, thumbnailLink]);
+    }, [summary, thumbnailLink, title, content, tagList, category, topic, isPublic, navigate]);
+    
 
     // 글 내용 입력 후 ai페이지로 이동
     const nextBtnHandler = async () => {

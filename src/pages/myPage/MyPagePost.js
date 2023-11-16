@@ -46,12 +46,7 @@ const MypagePost = () => {
         .catch((error) => {
             console.log(error);
         })
-    },[location.key]);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-
-
-
+    },[dispatch, location.key]);
 
     const handleEdit = () => {
         setEditClickCheck(!EditClickCheck);
