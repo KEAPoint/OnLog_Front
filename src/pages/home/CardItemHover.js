@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from "react-router-dom";
-import { S_bold_17, XS_regular_16 } from '../../components/style/Styled';
+import { SBold17, XSRegular16 } from '../../components/style/Styled';
 import Arrow from '../../assets/images/Icons/Arrow.png';
 
 const CardItemHover = ({item}) => {
@@ -66,7 +66,7 @@ width: 8.125rem;
 height: 8.125rem;
     background: ${props => `url(${props.$imgurl}) lightgray 50% / cover no-repeat`};
 `;
-const Contents = styled(XS_regular_16)`
+const Contents = styled(XSRegular16)`
 
     color: var(--white);
 
@@ -79,7 +79,7 @@ const Contents = styled(XS_regular_16)`
     line-height: 1.5;
 
 `;
-const ReadWrap = styled(S_bold_17)`
+const ReadWrap = styled(SBold17)`
     color: var(--white, #FFF);
     border: none;
     border-top: 1px solid var(--gray_bold, #4A4A4A);

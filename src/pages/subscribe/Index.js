@@ -4,7 +4,7 @@ import NewSubsPost from "../subscribe/NewSubsPost";
 import SubsBlog from "./SubsBlog";
 import Footer from "../../components/common/Footer";
 import { useEffect } from "react";
-import { L_bold_32 } from "../../components/style/Styled";
+import { LBold32 } from "../../components/style/Styled";
 
 const SubscribePage = () => {
     useEffect(() => {
@@ -37,7 +37,7 @@ const StickyWrap = styled.div`
 const Wrap = styled.div`
     padding: 0rem 8rem;
 `
-const PageName = styled(L_bold_32)`
+const PageName = styled(LBold32)`
     display: flex;
     padding: 0rem 0rem 1.25rem 0rem;
     flex-direction: column;

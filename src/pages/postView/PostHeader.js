@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { L_semibold_32, L_bold_32, XS_semibold_16 } from "../../components/style/Styled";
+import { LSemibold32, LBold32, XSSemibold16 } from "../../components/style/Styled";
 import { useState, useEffect } from "react";
 import { navData } from "../../assets/datas/categoryData";
 import { useDispatch } from 'react-redux';
@@ -57,12 +57,12 @@ const Wrap = styled.div`
     background-color: rgba(255,255,255,1);
 `
 
-const Title = styled(L_bold_32)`
+const Title = styled(LBold32)`
     max-width: 80.625rem;
     color: var(--black, #000);
 `
 
-const Topic = styled(L_semibold_32)`
+const Topic = styled(LSemibold32)`
     display: flex;
     padding: 0rem 2.40625rem;
     align-items: flex-start;
@@ -72,6 +72,6 @@ const Topic = styled(L_semibold_32)`
     color: var(--white, #FFF);
 `
 
-const DateWrap = styled(XS_semibold_16)`
+const DateWrap = styled(XSSemibold16)`
     color: var(--gray_bold, #4A4A4A);
 `

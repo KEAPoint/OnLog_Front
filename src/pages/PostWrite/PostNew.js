@@ -3,7 +3,7 @@ import SunEditor from "suneditor-react";
 import _ from 'lodash';
 import "suneditor/dist/css/suneditor.min.css";
 import styled from "styled-components";
-import { S_bold_19_2, XS_bold_13} from "../../components/style/Styled";
+import { SBold192, XSBold13} from "../../components/style/Styled";
 import { Get_Categori } from "../../apis/API_MyPage";
 import { useNavigate } from "react-router-dom";
 import { navData } from "../../assets/datas/categoryData";
@@ -226,7 +226,7 @@ const Wrap = styled.div`
     align-self: stretch;
 `
 
-const Title = styled(S_bold_19_2)`
+const Title = styled(SBold192)`
   width: 100%;
   display: flex;
   align-items: flex-start;
@@ -257,7 +257,7 @@ const TitleInput = styled.input`
         box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.05);
     }
 `
-const Tagging = styled(XS_bold_13)`
+const Tagging = styled(XSBold13)`
     padding:0.5rem 0rem 0rem 0.5rem;
     color: red;
 `

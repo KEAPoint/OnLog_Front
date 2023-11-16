@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { useLocation, useNavigate } from "react-router-dom";
-import { S_bold_19_2 , S_bold_28, S_regular_20} from "../../components/style/Styled";
+import { SBold192 , SBold28, SRegular20} from "../../components/style/Styled";
 import { useState, useEffect } from "react";
 import Header from "../../components/common/Header";
 import {ReactComponent as Arrow} from '../../assets/images/Icons/Next.svg';
@@ -117,7 +117,7 @@ const Wrap = styled.div`
     gap: 1.875rem;
     align-self: stretch;
 `
-const Title = styled(S_bold_19_2)`
+const Title = styled(SBold192)`
   width: 100%;
   display: flex;
   align-items: flex-start;
@@ -159,7 +159,7 @@ const AiWrap = styled.div`
     border-radius: 6.25rem 6.25rem 0rem 0rem;
     background: var(--black, linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), #000);
 `
-const ThumbTitle = styled(S_bold_28)`
+const ThumbTitle = styled(SBold28)`
     display: flex;
     padding-bottom: 0px;
     justify-content: space-between;
@@ -210,14 +210,14 @@ const Images = styled.div`
     background: url(${props => props.$thumbImg}) 50% / cover no-repeat;
 
 `
-const SummaryWrap = styled(S_regular_20)`
+const SummaryWrap = styled(SRegular20)`
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 1.25rem;
 `
-const SummaryTitle = styled(S_bold_19_2)`
+const SummaryTitle = styled(SBold192)`
     color: var(--gray_light, #939393);
 `
 const SummaryContent = styled(TextareaAutosize)`

@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import styled, { keyframes } from 'styled-components';
-import UserProfile, { Profile_Name,Profile_ProfileImg,Profile_Title,Profile_TitleWrap,Profile_Wrap } from '../../components/common/UserProfile';
-import { L_semibold_40, XS_semibold_16, S_bold_17, S_bold_19_2 } from '../../components/style/Styled';
+import styled from 'styled-components';
+import UserProfile from '../../components/common/UserProfile';
+import { LSemibold40, XSSemibold16, SBold17, SBold192 } from '../../components/style/Styled';
 import {ReactComponent as Heart} from '../../assets/images/Icons/Heart.svg';
 import {ReactComponent as Comment} from '../../assets/images/Icons/Comment.svg';
 import CardItemHover from './CardItemHover';
 import SkeletonItem from './SkeletonItem';
-import { useSelector } from 'react-redux';
 
 const CardItem = ({item}) => {
     // const specificData = useSelector(state => state.cards.cards); 
@@ -98,22 +97,12 @@ const Wrap = styled.div`
     box-shadow: 6px 7px 7px 0px rgba(0, 0, 0, 0.50);
 `;
 
-const Main = styled.div`
-    background-color: pink;
-
-    display: flex;
-    flex-direction: column;
-    gap: 9.125rem;
-    
-    padding: 0rem 3rem;
-
-`;
 export const TextWrap = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
 `;
-export const Title = styled(S_bold_19_2)`
+export const Title = styled(SBold192)`
     color: var(--black);
     word-break: break-all;
 
@@ -123,11 +112,11 @@ export const Title = styled(S_bold_19_2)`
     overflow: hidden;
 
 `;
-export const DateWrap = styled(XS_semibold_16)`
+export const DateWrap = styled(XSSemibold16)`
     color: var(—gray_bold, #4A4A4A);
 
 `;
-export const Category = styled(L_semibold_40)`
+export const Category = styled(LSemibold40)`
     color: var(—gray_bold, #4A4A4A);
 `;
 export const Second = styled.div`
@@ -136,7 +125,7 @@ export const Second = styled.div`
     justify-content: center;
     gap: 1.25rem;
 `;
-export const Icon = styled(S_bold_17)`
+export const Icon = styled(SBold17)`
     display: flex;
     align-items: center;
     justify-content: center;

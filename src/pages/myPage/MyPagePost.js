@@ -214,7 +214,7 @@ const PostWrap = styled.div`
 //     justify-content: center;
 //     gap: 1rem;
 // `;
-// const UserOptionBtn = styled(XS_semibold_16).attrs({as:'button'})`
+// const UserOptionBtn = styled(XSSemibold16).attrs({as:'button'})`
 //     display: flex;
 //     align-items: center;
 //     padding: 0.75rem 1rem;

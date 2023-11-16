@@ -1,14 +1,10 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { S_bold_19_2, XS_semibold_16 } from '../../components/style/Styled';
-import { filterListAction } from '../../store/actions/card';
+import { SBold192, XSSemibold16 } from '../../components/style/Styled';
 
 const CategoryItem = ({item, handleClick}) => {
     const editClick = useSelector((state) => state.category.editClick);
-    const dispatch = useDispatch();
-    console.log("확인2",editClick);
-
 
     return (
         <Wrap>
@@ -43,7 +39,7 @@ const Category = styled.button`
     background: #FFF;
 
 `
-const CateTitle = styled(S_bold_19_2)`
+const CateTitle = styled(SBold192)`
     color: var(--black);
     /* align-self: ; */
     display: flex;
@@ -55,7 +51,7 @@ const UserOption = styled.div`
     gap: 1rem;
 
 `;
-const UserOptionBtn = styled(XS_semibold_16).attrs({as:'button'})`
+const UserOptionBtn = styled(XSSemibold16).attrs({as:'button'})`
     display: flex;
     align-items: center;
     padding: 0.75rem 1rem;

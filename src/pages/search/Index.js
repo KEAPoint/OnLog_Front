@@ -1,13 +1,12 @@
 import Header from '../../components/common/Header';
-import Search from '../../assets/images/Icons/Search.png'
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { useLocation } from 'react-router-dom'; // 검색 입력값 가져오기
 import SearchBox from './SearchBox';
 import BlogSearch from './BlogSearch';
 import PostSearch from './PostSearch';
 import Footer from '../../components/common/Footer';
 import { useEffect } from 'react';
-import { L_bold_32, M_regular_32 } from '../../components/style/Styled';
+import { LBold32, MRegular32 } from '../../components/style/Styled';
 
 const SearchPage = () => {
 
@@ -61,7 +60,7 @@ const SearchBoxWrap = styled.div`
     }
 `;
 
-const SearchTitle = styled(M_regular_32)`
+const SearchTitle = styled(MRegular32)`
     display: flex;
     flex-wrap: wrap;
 
@@ -72,9 +71,9 @@ const SearchTitle = styled(M_regular_32)`
     color: var(--gray_bold, #4A4A4A);
 `
 
-const Highlight = styled(L_bold_32)`
+const Highlight = styled(LBold32)`
     color: var(--black, #000);
 `
-const NumHighLight = styled(L_bold_32)`
+const NumHighLight = styled(LBold32)`
     color: var(--black, #000);
 `

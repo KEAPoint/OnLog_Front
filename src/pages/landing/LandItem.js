@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { XL_semibold_80 } from '../../components/style/Styled';
-import LoginItem from './LoginItem';
-
+import { XLSemibold80 } from '../../components/style/Styled';
 
 const LandItem = ({info}) =>  {
     const [isHovering, setIsHovering] = useState(0);
@@ -35,7 +33,7 @@ const LandItem = ({info}) =>  {
                         // state: {clickCategory: info.name}
                     }}>
                         <FieldImg $img={info.img} $hover={isHovering}>
-                            {isHovering==1 && (
+                            {isHovering===1 && (
                                 <Wrap>
                                     <Title>#{info.name}</Title>
                                     <Contents>{info.contents}</Contents>
@@ -114,7 +112,7 @@ const Wrap = styled.div`
     letter-spacing: 0.01rem;
 `;
 
-const Title = styled(XL_semibold_80)`
+const Title = styled(XLSemibold80)`
     color: var(--black, #000);
     word-break: break-all;
 `;

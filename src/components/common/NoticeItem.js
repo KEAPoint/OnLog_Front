@@ -1,5 +1,5 @@
 import styled, {keyframes} from "styled-components";
-import { S_bold_19_2, S_regular_19_2,XS_semibold_16, XS_regular_16 } from '../style/Styled';
+import { SBold192, SRegular192,XSSemibold16, XSRegular16 } from '../style/Styled';
 import { useState } from "react";
 import Profile from "../../assets/images/Profile.jpeg"
 import Swal from "sweetalert2";
@@ -167,7 +167,7 @@ const LeftWrap = styled.div`
     // flex: 1;
 
 `
-const Top = styled(S_regular_19_2)`
+const Top = styled(SRegular192)`
     display: flex;
     align-items: center;
     color: var(--black, #000);
@@ -184,7 +184,7 @@ const TitleWrap = styled.div`
     display: flex; 
     flex-direction: column;
 `;
-const NickName = styled(S_bold_19_2)`
+const NickName = styled(SBold192)`
     margin-right: 0.125rem;
     color: var(--black, #000);
     text-align: justify;
@@ -220,10 +220,10 @@ const PostTitle = styled.div`
     font-weight: 700;
     line-height: normal;
 `;
-const Date = styled(XS_semibold_16)`
+const Date = styled(XSSemibold16)`
     color: var(--gray_bold, #4A4A4A);
 `
-const CommentWrap = styled(XS_regular_16)`
+const CommentWrap = styled(XSRegular16)`
     color: var(--gray_bold, #4A4A4A);
 
     margin-left: 3.5rem;
