@@ -74,6 +74,7 @@ export const Post_Categori = async (inputValue) => {
 }
 
 export const Post_Post = async(input) => {
+    console.log("input:", input);
     const accessToken = window.localStorage.getItem("accessToken");
     const url = '/posts';
     const res = await axios({
@@ -86,7 +87,7 @@ export const Post_Post = async(input) => {
             title: input.title,
             content: input.content,
             summary: input.summary,
-            thumbnailLink: input.thumbnailLink,
+            thumbnailLink: input.thumbnailLink[0],
             isPublic: input.isPublic,
             categoryId: input.category,
             hashtagList: input.tagList,

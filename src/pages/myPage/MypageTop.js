@@ -13,7 +13,7 @@ const MypageTop = () => {
         .then((data) => {
             console.log(data.data)
             setProfile({
-                ...profile,
+                // ...profile,
                 blogId: data.data.blogName,
                 blogName: data.data.blogName,
                 blogNickname: data.data.blogNickname,
@@ -28,7 +28,7 @@ const MypageTop = () => {
         .catch((error) => {
             console.log(error);
         });
-    },[profile]);
+    },[]);
     
 
     const handlePostButtonClick = (e) => {

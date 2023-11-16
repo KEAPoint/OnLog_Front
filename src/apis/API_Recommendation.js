@@ -11,9 +11,9 @@ export const Post_Recommendation = async(content, tagList) => {
                 hashtag: tagList,
             }
         });
-        console.log('ai 추천 api 성공!');
+        // console.log('ai 추천 api 성공!');
         // console.log('추천api에서 summary : ', res.data.data.summary);
-        // console.log('추천api에서 thumbnailLink : ', res.data.data.imageUrl);
+        console.log('추천api에서 thumbnailLink : ', res.data.data.imageUrl);
         return res.data;
     } catch (error) {
         console.log('ai 추천 api 실패:',error.response);

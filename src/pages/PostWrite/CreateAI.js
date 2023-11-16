@@ -22,10 +22,13 @@ const CreateAI = () => {
     const [props, setProps] = useState({
         ...location.state.data
       });
-    // const [summary, setSummary] = useState(props.summary);
     const summary = props.summary;
     const defaultImageUrl = "https://i.namu.wiki/i/awkzTuu2p6WdaGIUbeHWGj0yzxUOd_wniEADxzMH8qvhWH4TDkpkkiUAJpefC-8J79giMVyjN5y1uRYQVoQm2g.webp";  // 이미지 url이 유효한 값이 아닌 string일 때 기본 이미지 URL 설정
     const thumbImageUrl = isValidUrl(props.thumbnailLink[0]) ? props.thumbnailLink[0] : defaultImageUrl;
+
+    useEffect(() => {
+        console.log("props 테스트:", props);
+    },[props])
 
     useEffect(() => {
         window.scrollTo({top:0, behavior:"smooth"});
@@ -48,12 +51,7 @@ const CreateAI = () => {
 
     // 글 작성 버튼 클릭
     const SubmitHandler = async () => {
-        setProps({
-            ...props,
-            summary: summary,
-            thumbnailLink: ''
-        })
-
+        console.log("SubmitHandlerrrrrrrrrrrrr")
         const response = await Post_Post(props);
 
         if (response.success) {

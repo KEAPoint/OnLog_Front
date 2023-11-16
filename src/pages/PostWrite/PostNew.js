@@ -19,7 +19,7 @@ const PostNew = () => {
     const [category, setCategory] = useState("");
     const [isPublic, setIsPublic] = useState(true);
     const [summary, setSummary] = useState("");
-    const [thumbnailLink, setThumbnailLink] = useState([]);
+    const [thumbnailLink, setThumbnailLink] = useState();
 
     // onChange 발생 시 content에 저장 (디바운스 적용)
     const handleContentChange = _.debounce((newContent) => {
@@ -34,10 +34,10 @@ const PostNew = () => {
     // summary, thumbnaiilLink가 둘 다 ai로 받은 값일 경우, 다음 페이지로 값 전달
     useEffect(() => {
         // summary와 thumbnailLink가 모두 null값이 아닐 때
-        if (summary!=="" && thumbnailLink[0]!=="") {
+        if (summary!=="" && thumbnailLink!==null) {
             console.log('Both summary and thumbnailLink changed');
             // 글 작성에서 얻은 데이터 몽땅 저장
-            // const data = { title, content, tagList, category, topic, isPublic, summary, thumbnailLink };
+            const data = { title, content, tagList, category, topic, isPublic, summary, thumbnailLink };
             // 세줄요약, 썸네일 생성 페이지로 이동
             navigate("/mypage/postwrite/createAI", { state: { data: { title, content, tagList, category, topic, isPublic, summary, thumbnailLink } } });
         }
