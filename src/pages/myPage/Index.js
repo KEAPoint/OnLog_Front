@@ -1,6 +1,5 @@
 import React from 'react';
 import Header from '../../components/common/Header';
-import UserProfile from '../../components/common/UserProfile';
 import MypageTop from './MypageTop.js';
 import MypagePost from './MyPagePost';
 import Footer from '../../components/common/Footer';
