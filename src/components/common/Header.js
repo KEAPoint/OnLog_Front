@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect} from 'react';
 import styled from 'styled-components';
 import {ReactComponent as Logo2} from '../../assets/images/Logo2.svg';
 import { S_bold_19_2, S_bold_25, XS_bold_13, XS_regular_16 } from '../style/Styled';
@@ -25,7 +25,7 @@ const Header = () => {
     useEffect(() => {
         Get_Profile()
         .then((data) => {
-            console.log(data);
+            console.log("header:",data);
             // setUser({
             //     ...user,
             //     blogName: data.data.blogName,
@@ -61,7 +61,9 @@ const Header = () => {
                     break;
                 case "myPage" :
                     navigate(`/mypage/${userId}`);
+                    break;
                 default:
+                    break;
             }
     }
 
