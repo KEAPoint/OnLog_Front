@@ -1,7 +1,7 @@
 import React from 'react';
 
 const TestPage = () => {
-    return <h1>테스트 페이지입니다</h1>;
+    return <h1>안녕</h1>;
 }
 
 export default TestPage;
