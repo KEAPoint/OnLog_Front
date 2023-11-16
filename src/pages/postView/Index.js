@@ -9,16 +9,11 @@ import styled from 'styled-components';
 import { useEffect, useState, React } from 'react';
 import { Get_SinglePost } from '../../apis/API_Postview';
 import { useParams } from "react-router-dom";
-import axios from 'axios';
 
 const PostviewPage = () => {
     const [post, setPost] = useState([]);
     // 수정
     const { postId } = useParams(); // URL에서 postId 가져오기
-    // const postId = '1f5dc811-fba6-4e32-8d91-33076c694287'; // 목포 글 
-    // const postId = '86dc02c3-41a9-4cdb-923e-e70849bc9c59' // 일상 글
-    // const postId = 'bee7f48b-1c24-4772-8038-423972853b50' // test1 글
-    const accessToken = window.localStorage.getItem("accessToken");
 
     useEffect(() => {
         window.scrollTo({top:0, behavior:"smooth"});
@@ -30,7 +25,7 @@ const PostviewPage = () => {
             setPost(data.data);
         }
         fetchPosts();
-      }, []);
+      }, [postId]);
 
     return(
         <div>

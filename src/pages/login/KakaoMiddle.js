@@ -52,7 +52,7 @@ const KakaoMiddle = () => {
         };
 
         fetchData();
-    },[])
+    },[dispatch, navigate])
 
 
     return (

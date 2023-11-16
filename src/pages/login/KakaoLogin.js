@@ -1,7 +1,4 @@
 import styled from 'styled-components';
-import { useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Header from '../../components/common/HeaderNormal';
 import { Kakao_Auth_url } from './OAuth';
 
 
