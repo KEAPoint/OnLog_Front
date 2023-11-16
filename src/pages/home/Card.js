@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import CardItem from './CardItem';
 import styled from 'styled-components';
-import { InfiniteScroll } from '../../components/common/InfiniteScroll';
 import { GET_CardList } from '../../apis/API_Card';
 import { useSelector } from 'react-redux';
 // import { cardFutAction } from '../../store/actions/card';
 
 const Card = () => {
-    console.log("윤서진")
     const [cardData, setCardData] = useState([]);
     const filterList = useSelector(state => state.card.filterList);
     console.log("filterList", filterList);

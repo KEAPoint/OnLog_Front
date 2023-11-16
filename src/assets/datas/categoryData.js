@@ -5,7 +5,7 @@ import News from '../../assets/images/catogories/News.png';
 import Sports from '../../assets/images/catogories/Sports.png';
 import Tech from '../../assets/images/catogories/Tech.png';
 import Travel from '../../assets/images/catogories/Travel.png';
-import Logo from '../images/Logo.svg';
+// import Logo from '../images/Logo.svg';
 import Logo2 from '../images/Logo2.svg';
 
 // landingpage

@@ -1,5 +1,5 @@
 import React from 'react';
-import { S_medium_34 } from '../style/Styled';
+import { SMedium34 } from '../style/Styled';
 import styled from 'styled-components';
 
 const Footer = () => {
@@ -12,7 +12,7 @@ const Footer = () => {
 
 export default Footer;
 
-const Wrap = styled(S_medium_34)`
+const Wrap = styled(SMedium34)`
     display: flex;
     padding: 12.5rem 6.25rem 4.375rem 6.25rem;
     justify-content: space-between;

@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import BlogItem from "../../components/common/BlogItem";
-import Footer from "../../components/common/Footer";
-import { M_regular_32, L_bold_32 } from "../../components/style/Styled";
+import { MRegular32, LBold32 } from "../../components/style/Styled";
 
 const BlogSearch = () => {
     return(
@@ -37,7 +36,7 @@ const Wrap = styled.div`
     align-self: stretch;
     padding: 2.5rem 7rem 0rem 7rem;
 `
-const Left = styled(M_regular_32)`
+const Left = styled(MRegular32)`
     display: flex;
     padding: 1.25rem 0rem;
     align-items: flex-start;
@@ -45,7 +44,7 @@ const Left = styled(M_regular_32)`
 
     color: var(--black, #000);
 `
-const Right = styled(M_regular_32)`
+const Right = styled(MRegular32)`
     display: flex;
     padding: 1.25rem 0rem;
     align-items: flex-end;
@@ -54,14 +53,6 @@ const Right = styled(M_regular_32)`
     color: var(--gray_bold, #4A4A4A);
 `
 
-const Num = styled(L_bold_32)`
+const Num = styled(LBold32)`
     color: var(--black, #000);
-`
-const BlogItemWrap = styled.div`
-    display: flex;
-    padding: 0rem 11.875rem;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.625rem;
-    align-self: stretch;
 `

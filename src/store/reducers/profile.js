@@ -2,9 +2,10 @@ const initialState = {
     user: {
         userId: "",
         email: "",
-        // nickName: "",
-        // blogName: "",
-        // info: ""
+        nickName: "",
+        blogName: "",
+        info: "",
+        profileImg: "",
     }
 }
 
@@ -17,9 +18,10 @@ const ProfileReducer = (state = initialState, action) => {
                     ...state.user,
                     userId: action.data.userId,
                     email: action.data.email,
-                    // nickName: action.data.nickName,
-                    // blogName: action.data.blogName,
-                    // info: action.data.info
+                    nickName: action.data.nickName,
+                    blogName: action.data.blogName,
+                    info: action.data.info,
+                    profileImg: action.data.profileImg
                 }
             }
         }

@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { L_bold_32, S_bold_19_2, S_bold_25, S_regular_20_8, S_regular_30 } from '../../components/style/Styled';
-import HaniProfile from '../../assets/images/Profile.jpeg';
+import { LBold32, SBold192, SBold25, SRegular208, SRegular30 } from '../../components/style/Styled';
 import { Get_Profile } from "../../apis/API_MyPage";
 import { useEffect, useState } from "react";
 
@@ -29,7 +28,7 @@ const MypageTop = () => {
         .catch((error) => {
             console.log(error);
         });
-    },[]);
+    },[profile]);
     
 
     const handlePostButtonClick = (e) => {
@@ -113,7 +112,7 @@ const Left = styled.div`
     width: 35.5rem;
     padding-bottom: 2rem;
 `
-const Menu = styled(S_bold_25)`
+const Menu = styled(SBold25)`
     display: flex;
     align-items: center;
 `;
@@ -139,10 +138,10 @@ const TitleWrap = styled.div`
     display: flex; 
     flex-direction: column;
 `;
-const BlogTitle = styled(L_bold_32)`
+const BlogTitle = styled(LBold32)`
     color: var(--black, #000);
 `;
-const Name = styled(S_regular_30)`
+const Name = styled(SRegular30)`
     color: var(--gray_bold, #4A4A4A);
     text-align: justify;
 `;
@@ -161,12 +160,12 @@ const Box = styled.div`
     align-items: center;
     border-right: 1px solid var(--gray_light, #939393);
 `
-const Title = styled(S_regular_20_8)`
+const Title = styled(SRegular208)`
     color: var(--gray_bold, #4A4A4A);
     text-align: justify;
 
 `
-const Num = styled(L_bold_32)`
+const Num = styled(LBold32)`
     color: var(--black, #000);
     text-align: justify;
 
@@ -182,11 +181,11 @@ const Wrap2 = styled.div`
     gap: 0.625rem;
     align-self: stretch;
 `
-const ProfileInfo = styled(S_regular_30)`
+const ProfileInfo = styled(SRegular30)`
     color: var(--gray_bold, #4A4A4A);
 
 `
-const Button = styled(S_bold_19_2).attrs({as:'button'})`
+const Button = styled(SBold192).attrs({as:'button'})`
     display: flex;
     padding: 0.75rem 6.03125rem;
     align-items: center;

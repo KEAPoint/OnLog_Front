@@ -1,35 +1,51 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect} from 'react';
 import styled from 'styled-components';
 import {ReactComponent as Logo2} from '../../assets/images/Logo2.svg';
-import { S_bold_19_2, S_bold_25, XS_bold_13, XS_regular_16 } from '../style/Styled';
+import { SBold192, SBold25, XSBold13, XSRegular16 } from '../style/Styled';
 import { Link, useNavigate } from 'react-router-dom';
 import { Get_Profile } from '../../apis/API_MyPage';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { profileAction } from '../../store/actions/profile';
 
 const Header = () => {
     const accessToken = window.localStorage.getItem("accessToken");
-    const [user, setUser] = useState({
-        blogName:"",
-        blogNickname:"",
-        blogProfileImg:"",
-    }); 
+    //
+    // const selector = useSelector(state => state.profile);
+    // console.log("selector:", selector);
+    const dispatch = useDispatch();
+    const user = useSelector((state) => state.profile.user);
+    //
+
+    // const [user, setUser] = useState({
+    //     blogName: "",
+    //     blogNickname:"",
+    //     blogProfileImg: "",
+    // }); 
 
     useEffect(() => {
         Get_Profile()
         .then((data) => {
-            // console.log(data);
+            console.log("header:",data);
+            // setUser({
+            //     ...user,
+            //     blogName: data.data.blogName,
+            //     blogNickname: data.data.blogNickname,
+            //     blogProfileImg: data.data.blogProfileImg,
+            // })
+            dispatch(
+                profileAction({
+                    blogName: data.data.blogName,
+                    nickName: data.data.blogNickname,
+                    profileImg: data.data.blogProfileImg,
+                    info: data.data.info,
+                })
+            )
 
-            setUser({
-                ...user,
-                blogName: data.data.blogName,
-                blogNickname: data.data.blogNickname,
-                blogProfileImg: data.data.blogProfileImg,
-            })
         })
         .catch((error) => {
             console.log(error);
         });
-    },[]);
+    },[dispatch]);
 
     const navigate = useNavigate();
     const handleClick = (e) =>   {
@@ -45,7 +61,9 @@ const Header = () => {
                     break;
                 case "myPage" :
                     navigate(`/mypage/${userId}`);
+                    break;
                 default:
+                    break;
             }
     }
 
@@ -71,7 +89,7 @@ const Header = () => {
                         <ProfileImg $blogProfileImg={user.blogProfileImg}></ProfileImg>
                         <TitleWrap to={'/mypage'}>
                             <Title>{user.blogName}</Title>
-                            <Name>@{user.blogNickname}</Name>
+                            <Name>@{user.nickName}</Name>
                         </TitleWrap>
                     </MyPageBtn>
                 </MenuWrap>
@@ -108,7 +126,7 @@ const MenuWrap = styled.div`
     gap: 2.5rem;
     align-items: center;
 `;
-const Menu = styled(S_bold_19_2)`
+const Menu = styled(SBold192)`
     display: flex;
     align-items: center;
 `;
@@ -123,7 +141,7 @@ const ProfileImg = styled.div`
     background: url(${props => props.$blogProfileImg}) lightgray 50% / cover no-repeat;
     margin-right: 0.94rem;
 `;
-const Alarm = styled(XS_bold_13)`
+const Alarm = styled(XSBold13)`
     color: #F00;
     align-self: flex-start;
 `;
@@ -134,11 +152,11 @@ const TitleWrap = styled(Link)`
 const Title = styled.div`
     text-align: justify;
 `;
-const Name = styled(XS_regular_16)`
+const Name = styled(XSRegular16)`
     color: var(—gray_bold, #4A4A4A);
     text-align: justify;
 `;
-const SignInBtn = styled(S_bold_25).attrs({ as: 'button' })`
+const SignInBtn = styled(SBold25).attrs({ as: 'button' })`
     padding: 0.55rem 2.1875rem;
     font-size: 1rem;
     background-color: var(--black);

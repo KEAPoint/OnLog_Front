@@ -1,25 +1,9 @@
 import axios from "axios";
 
 const accessToken = localStorage.getItem('accessToken');
-// const userId = localStorage.getItem('userId');
-
-// export const Get_SinglePost = async () => {
-//     fetch(url, {
-//         method: 'GET',
-//       })
-    
-//       .then(response => {
-//         if (!response.ok) {
-//           throw new Error(`HTTP error! status: ${response.status}`);
-//         }
-//         return response.json();
-//       })
-//       .then(data => setPost(data))
-//       .catch(error => console.error(error));
-// }
 
 export const Get_SinglePost = async (postId) => {
-    // const response = await axios.get(`/posts/${postId}`);
+
     const response = await axios({
         method: "get",
         url: `/posts/${postId}`,
@@ -29,3 +13,48 @@ export const Get_SinglePost = async (postId) => {
     });
     return response.data;
 };
+
+export const Delete_SinglePost = async (postId) => {
+    try {
+        const response = await axios({
+            method:"delete",
+            url: `/posts`,
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            },
+            data: {
+                postId: postId,
+            }
+        });
+        console.log('delete post api success');
+        return response.data;
+    } catch (error) {
+        console.log('delete post error:',error.response);
+        console.error('delete post error: ', error);
+        return { success: false, error: error.message };
+    }
+}
+
+export const Put_SinglePost = async (input) => {
+    const url = '/posts';
+    const res = await axios({
+        method: "put",
+        url: url,
+        headers: {
+            'Authorization': `Bearer ${accessToken}`
+        },
+        data: {
+            postId: input.postId,
+            title: input.title,
+            content: input.content,
+            summary: input.summary,
+            thumbnailLink: input.thumbnailLink,
+            isPublic: input.isPublic,
+            categoryId: input.category,
+            hashtagList: input.tagList,
+            topicId: input.topic
+        }
+    });
+
+    return res.data;
+}

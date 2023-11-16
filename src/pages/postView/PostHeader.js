@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { cardData } from "../../assets/datas/cardData";
-import { L_semibold_32, L_bold_32, XS_semibold_16 } from "../../components/style/Styled";
+import { LSemibold32, LBold32, XSSemibold16 } from "../../components/style/Styled";
 import { useState, useEffect } from "react";
 import { navData } from "../../assets/datas/categoryData";
 import { useDispatch } from 'react-redux';
@@ -29,20 +28,16 @@ const PostHeader = ({post}) => {
                 })
             );
         }
-    }, [post]);
+    }, [post, dispatch]);
 
     return(
         <div>
             <Wrap>
                 {post && (
                     <>
-                        {/* {post.topic && <Topic>#{topicKName[post.topic.name]}</Topic>} */}
-                        {/* {post.topic && <Topic>#{navData[post.topic.id].kName}</Topic>} */}
                         {post.topic && <Topic color={topic.color}>#{topic.name}</Topic>}
-                        <Title>{post.title}</Title>
+                        <Title dangerouslySetInnerHTML={{ __html: post.title }}/>
                         {post.createdAt && <DateWrap>{new Date(post.createdAt).toISOString().split('T')[0].replace(/-/g, '.')}</DateWrap>}
-                        {/* {post.createdAt && <DateWrap> {post.createdAt}</DateWrap>} */}
-
                     </>
                 )}
             </Wrap>
@@ -62,12 +57,12 @@ const Wrap = styled.div`
     background-color: rgba(255,255,255,1);
 `
 
-const Title = styled(L_bold_32)`
+const Title = styled(LBold32)`
     max-width: 80.625rem;
     color: var(--black, #000);
 `
 
-const Topic = styled(L_semibold_32)`
+const Topic = styled(LSemibold32)`
     display: flex;
     padding: 0rem 2.40625rem;
     align-items: flex-start;
@@ -77,6 +72,6 @@ const Topic = styled(L_semibold_32)`
     color: var(--white, #FFF);
 `
 
-const DateWrap = styled(XS_semibold_16)`
+const DateWrap = styled(XSSemibold16)`
     color: var(--gray_bold, #4A4A4A);
 `

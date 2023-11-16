@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { S_bold_19_2, XS_semibold_16 } from '../../components/style/Styled';
+import { SBold192, XSSemibold16 } from '../../components/style/Styled';
 import { Post_Categori } from '../../apis/API_MyPage';
 import { useDispatch } from 'react-redux';
-import { cateAction } from '../../store/actions/category';
+import { cateAddAction } from '../../store/actions/category';
 
 const AddCategoryItem = () => {
     const [inputValue, setInputValue] = useState('');
@@ -18,10 +18,10 @@ const AddCategoryItem = () => {
 
         Post_Categori(inputValue)
         .then((data) => {
-
+            console.log("추가할 데이터",data.data)
             // 카테고리리스트에 추가
             dispatch(
-                cateAction(data.data)
+                cateAddAction(data.data)
             )
         })
         .catch((error) => {
@@ -66,7 +66,7 @@ const Category = styled.div`
     align-items: center;
     
 `;
-const Input = styled(S_bold_19_2).attrs({as:'input'})`
+const Input = styled(SBold192).attrs({as:'input'})`
     /* padding: 1rem; */
     padding-left: 1rem;
     /* box-sizing: border-box; */
@@ -85,7 +85,7 @@ const UserOption = styled.div`
     gap: 1rem;
 
 `;
-const UserOptionBtn = styled(XS_semibold_16).attrs({as:'button'})`
+const UserOptionBtn = styled(XSSemibold16).attrs({as:'button'})`
     display: flex;
     align-items: center;
     padding: 0.75rem 1rem;

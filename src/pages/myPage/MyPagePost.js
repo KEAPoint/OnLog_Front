@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Card from "../home/Card";
-import { S_bold_19_2, S_regular_20_8, XS_semibold_16 } from "../../components/style/Styled";
-import {ReactComponent as Menu} from "../../assets/images/Icons/Menu.svg";
+import { SBold192, SRegular208 } from "../../components/style/Styled";
 import {ReactComponent as Edit} from "../../assets/images/Icons/Edit.svg";
 import {ReactComponent as Lock} from "../../assets/images/Icons/Lock.svg";
 import {ReactComponent as Plus} from "../../assets/images/Icons/Plus.svg";
@@ -12,23 +11,30 @@ import { useDispatch, useSelector } from "react-redux";
 import { cateAction, editClickAction } from "../../store/actions/category";
 import { filterListAction } from "../../store/actions/card";
 import AddCategoryItem from "./AddCategoryItem";
+import { useLocation } from "react-router-dom";
 
 const MypagePost = () => {
-    const [EditClickCheck, setEditClickCheck] = useState(true);
+    const [EditClickCheck, setEditClickCheck] = useState(false);
     const [AddClickCheck, setAddClickCheck] = useState(0);
     const dispatch = useDispatch();
     const cateList = useSelector(state => state.category.cate);
+    const location = useLocation();
 
     useEffect(() => {
+        // 기존에 스토어에 저장된 데이터를 초기화
+        // dispatch(cateAction([])); 
+
         Get_Categori()
         .then((data) => {
             //카테고리 order 오름차순으로 저장
             let sortedData = data.data.sort((a, b) => a.order - b.order);
-            
-            // 스토어-카테고리리스트 add
-            sortedData.forEach((item) => {
-                dispatch(cateAction(item));
-              });
+            console.log("sortedData",sortedData);
+            // 스토어-카테고리리스트 add  
+            // sortedData.forEach((item) => {
+            //     dispatch(cateAction(item));ㅊ
+            //   });
+            dispatch(cateAction(sortedData));
+
             // 스토어-필터링조건
             dispatch(
                 filterListAction({
@@ -40,7 +46,7 @@ const MypagePost = () => {
         .catch((error) => {
             console.log(error);
         })
-    },[]);
+    },[dispatch, location.key]);
 
 
 
@@ -71,7 +77,7 @@ const MypagePost = () => {
                 <StickWrap>
                     <CateWrap $isExpanded={EditClickCheck}>
                         <MenuWrap>
-                            <S_regular_20_8>Category</S_regular_20_8>
+                            <SRegular208>Category</SRegular208>
                             <EditBtn onClick={handleEdit}><Edit/></EditBtn>
                         </MenuWrap>
 
@@ -130,7 +136,6 @@ const PageWrap = styled.div`
     position: relative;
 `
 const StickWrap = styled.div`
-    /* background-color: red; */
 `;
 
 const CateWrap = styled.div`
@@ -146,8 +151,6 @@ const CateWrap = styled.div`
     gap: 1.25rem;
     /* border-right: 1px solid var(--gray_bold, #4A4A4A); */
     /* background: #FFF; */
-
-    background-color: aliceblue;
 `
 const MenuWrap = styled.div`
     align-self: stretch;
@@ -183,19 +186,19 @@ const AddBtn = styled(Option)`
     align-items: center;
 
 `;
-const Category = styled.button`
-    cursor: ${props => !props.$isButton ? "pointer" : "default"};
-    display: flex;
-    padding: 1.5rem 1.25rem 1.5rem 2.5rem;
-    justify-content: space-between;
-    /* align-items: flex-start; */
-    align-content: center;
-    align-self: stretch;
+// const Category = styled.button`
+//     cursor: ${props => !props.$isButton ? "pointer" : "default"};
+//     display: flex;
+//     padding: 1.5rem 1.25rem 1.5rem 2.5rem;
+//     justify-content: space-between;
+//     /* align-items: flex-start; */
+//     align-content: center;
+//     align-self: stretch;
 
-    border: 1px solid var(--gray_light, #939393);
-    background: #FFF;
-`
-const CateTitle = styled(S_bold_19_2)`
+//     border: 1px solid var(--gray_light, #939393);
+//     background: #FFF;
+// `
+const CateTitle = styled(SBold192)`
     color: var(--black);
     align-self: stretch;
     display: flex;
@@ -206,36 +209,36 @@ const PostWrap = styled.div`
     border-left: 1px solid var(--gray_bold, #4A4A4A);
     
 `
-const UserOption = styled.div`
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-`;
-const UserOptionBtn = styled(XS_semibold_16).attrs({as:'button'})`
-    display: flex;
-    align-items: center;
-    padding: 0.75rem 1rem;
-    border: none;
-    background-color: var(--white);
-    position: relative;
-    cursor: pointer;
-    gap: 0.5rem;
+// const UserOption = styled.div`
+//     display: flex;
+//     justify-content: center;
+//     gap: 1rem;
+// `;
+// const UserOptionBtn = styled(XSSemibold16).attrs({as:'button'})`
+//     display: flex;
+//     align-items: center;
+//     padding: 0.75rem 1rem;
+//     border: none;
+//     background-color: var(--white);
+//     position: relative;
+//     cursor: pointer;
+//     gap: 0.5rem;
 
-    &::after {
-        content: "";
-        /* border: 0cap.5 solid black; */
-        width: 0.0625rem;
-        height: 1.875rem;
-        background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), #000;
-        height: 23px;
-        position: absolute;
-        right: -10px;  // Adjust this value to position "sss" correctly
-    }
+//     &::after {
+//         content: "";
+//         /* border: 0cap.5 solid black; */
+//         width: 0.0625rem;
+//         height: 1.875rem;
+//         background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), #000;
+//         height: 23px;
+//         position: absolute;
+//         right: -10px;  // Adjust this value to position "sss" correctly
+//     }
 
-    &:last-child::after {
-        display: none;
-    }
+//     &:last-child::after {
+//         display: none;
+//     }
     
-`;
+// `;
 
 

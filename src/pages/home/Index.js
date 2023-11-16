@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react';
 import Header from '../../components/common/Header';
 import styled, { css } from 'styled-components';
 import {ReactComponent as Home} from '../../assets/images/Icons/Home.svg'
-import { L_semibold_32, XL_semibold_56 } from '../../components/style/Styled';
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { LSemibold32, XLSemibold56 } from '../../components/style/Styled';
+import { Link, useLocation } from 'react-router-dom';
 import { AniShow, AniFrameIn } from '../../components/style/AniStyled';
 import Card from './Card';
 import SearchBox from '../search/SearchBox';
-import ScrollTop from '../../components/common/ScrollTop';
 import Footer from '../../components/common/Footer';
 import { navData } from '../../assets/datas/categoryData';
 import BackImage from '../../components/common/BackImage';
@@ -31,7 +30,6 @@ useEffect(() => {
     console.log("확인확인", newCategory)
     
     if (newCategory) {
-        console.log("유지연");
         setCategory({
             name: newCategory.name,
             hoverName: newCategory.kName,
@@ -50,7 +48,7 @@ useEffect(() => {
             })
         )
     }
-}, [location.pathname]);
+}, [location.pathname, dispatch]);
 
     const isCurrent = to => to === location.pathname;
 
@@ -152,7 +150,7 @@ const Title = styled.div`
         line-height: normal;
     }
 `;
-const Title2 = styled(XL_semibold_56)`
+const Title2 = styled(XLSemibold56)`
     // 애니
     animation: ${AniShow} 1s forwards;
 
@@ -162,7 +160,7 @@ const Title2 = styled(XL_semibold_56)`
 
     color: var(${props => props.color});
 `;
-const LinkWrap = styled(L_semibold_32)`
+const LinkWrap = styled(LSemibold32)`
     display: flex;
     gap: 0rem 2.44rem;
     margin-bottom: 1rem;
