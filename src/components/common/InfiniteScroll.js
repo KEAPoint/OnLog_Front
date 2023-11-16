@@ -1,4 +1,3 @@
-import React from 'react';
 
 export const observeIntersection = (target, callback) => {
     const observer = new IntersectionObserver((entries) => {

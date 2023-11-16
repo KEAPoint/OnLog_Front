@@ -8,7 +8,6 @@ import { Get_Categori } from "../../apis/API_MyPage";
 import { useNavigate } from "react-router-dom";
 import { navData } from "../../assets/datas/categoryData";
 import { Post_Recommendation } from "../../apis/API_Recommendation";
-import { useRef } from "react";
 
 const PostNew = () => {
     const navigate = useNavigate();

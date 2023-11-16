@@ -1,8 +1,6 @@
 import styled, {keyframes} from "styled-components";
-import UserProfile from '../../components/common/UserProfile';
-import { cardData } from "../../assets/datas/cardData";
 import { S_bold_19_2, S_regular_19_2,XS_semibold_16, XS_regular_16 } from '../style/Styled';
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Profile from "../../assets/images/Profile.jpeg"
 import Swal from "sweetalert2";
 
@@ -15,24 +13,24 @@ const NoticeItem = (props) => {
     const [isHovered, setHovered] = useState(false); // Hover 상태를 저장하는 state
     const [isLoading, setLoading] = useState(true); // 데이터 로딩 상태를 저장하는 state (skeleton)
     
-    const alarmData = [
-        {
-            id:0,
-            name: "subscribed",
-        },
-        {
-            id:1,
-            name: "postLike",
-        },    
-        {
-            id:2,
-            name: "commentLike",
-        },
-        {
-            id:3,
-            name: "comment",
-        },   
-    ]
+    // const alarmData = [
+    //     {
+    //         id:0,
+    //         name: "subscribed",
+    //     },
+    //     {
+    //         id:1,
+    //         name: "postLike",
+    //     },    
+    //     {
+    //         id:2,
+    //         name: "commentLike",
+    //     },
+    //     {
+    //         id:3,
+    //         name: "comment",
+    //     },   
+    // ]
 
     setTimeout(() => {
         setLoading(false);
@@ -71,7 +69,7 @@ const NoticeItem = (props) => {
                 <>
 
                 {/* 구독 알림일 때 */}
-                {noticeType=="subscribed" && (
+                {noticeType==="subscribed" && (
                     <Wrap>
                         <LeftWrap>
                             <Top>
@@ -94,7 +92,7 @@ const NoticeItem = (props) => {
                 )}
 
                 {/* 게시글 좋아요 알림일 때 */}
-                {noticeType=="postLike" && (
+                {noticeType==="postLike" && (
                     <Wrap>
                         <LeftWrap>
                             <Top>
@@ -109,7 +107,7 @@ const NoticeItem = (props) => {
                 )}
 
                 {/* 댓글 좋아요 알림일 때 */}
-                {noticeType=="commentLike" && (
+                {noticeType==="commentLike" && (
                     <Wrap>
                         <LeftWrap>
                             <Top>
@@ -126,7 +124,7 @@ const NoticeItem = (props) => {
                 )}
 
                     {/* 댓글 달린 거 알림일 때 */}
-                    {noticeType=="comment" && (
+                    {noticeType==="comment" && (
                         <Wrap>
                             <LeftWrap>
                                 <Top>

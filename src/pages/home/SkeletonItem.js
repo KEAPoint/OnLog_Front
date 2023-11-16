@@ -1,22 +1,22 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import { Category, DateWrap, Icon, Second, TextWrap, Title } from './CardItem';
-import { Profile_Name, Profile_ProfileImg, Profile_Title, Profile_TitleWrap, Profile_Wrap } from '../../components/common/UserProfile';
+import { DateWrap, Icon, Second, TextWrap, Title } from './CardItem';
+import { ProfileName, ProfileProfileImg, ProfileTitle, ProfileTitleWrap, ProfileWrap } from '../../components/common/UserProfile';
 
 const SkeletonItem = () => {
     return (
         <Wrap>
             {/* <Main> */}
                 {/* <UserProfile info={info}/> */}
-                <Profile_Wrap>
-                    <Profile_ProfileImg2>
+                <ProfileWrap>
+                    <ProfileProfileImg2>
                         <Skeleton width="2.5rem" height="2.5rem" $borderRadius="2.5rem"/>
-                    </Profile_ProfileImg2>
-                    <Profile_TitleWrap>
-                        <Profile_Title><Skeleton width="8rem" height="1.1rem"/></Profile_Title>
-                        <Profile_Name><Skeleton width="5.5rem" height="1.1rem"/></Profile_Name>
-                    </Profile_TitleWrap>
-                </Profile_Wrap>
+                    </ProfileProfileImg2>
+                    <ProfileTitleWrap>
+                        <ProfileTitle><Skeleton width="8rem" height="1.1rem"/></ProfileTitle>
+                        <ProfileName><Skeleton width="5.5rem" height="1.1rem"/></ProfileName>
+                    </ProfileTitleWrap>
+                </ProfileWrap>
                 
                 <TextWrap>
                     <Title><Skeleton width="100%" height="5rem"/></Title>
@@ -44,7 +44,7 @@ const Wrap = styled.div`
     justify-content: space-between;
     height: 100vh;
 `;
-const Profile_ProfileImg2 = styled(Profile_ProfileImg)`
+const ProfileProfileImg2 = styled(ProfileProfileImg)`
     background: none;
 `;
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import TopBtn from '../../assets/images/Icons/TopBtn.png';
-import Profile from "../../assets/images/Profile.jpeg"
 const ScrollTop = () => {
     return (
         <div>

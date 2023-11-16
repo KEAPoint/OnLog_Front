@@ -1,8 +1,8 @@
 import styled, {keyframes} from "styled-components";
-import UserProfile from '../../components/common/UserProfile';
-import { cardData } from "../../assets/datas/cardData";
+// import UserProfile from '../../components/common/UserProfile';
+// import { cardData } from "../../assets/datas/cardData";
 import { S_bold_17, XS_regular_16 } from '../style/Styled';
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Profile from "../../assets/images/Profile.jpeg"
 import Swal from "sweetalert2";
 

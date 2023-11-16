@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import {ReactComponent as Logo} from '../../assets/images/Logo.svg';
 import { useNavigate } from 'react-router-dom';
-import { Header_font, S_bold_25 } from '../style/Styled';
+import { S_bold_25 } from '../style/Styled';
 
 const HeaderNormal = () => {
     const navigate = useNavigate();

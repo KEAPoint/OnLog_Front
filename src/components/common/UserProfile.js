@@ -1,15 +1,14 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
-import Profile from '../../assets/images/Profile.jpeg';
+import styled from 'styled-components';
 
-import { S_bold_17, XS_regular_16 } from '../style/Styled';
+import { SBold17, XSRegular16 } from '../style/Styled';
 
-export const Profile_Wrap = styled(S_bold_17)`
+export const ProfileWrap = styled(SBold17)`
     display: flex;
     /* justify-content: center; */
     /* align-content: center; */
 `;
-export const Profile_ProfileImg = styled.div`
+export const ProfileProfileImg = styled.div`
     width: 2.5rem;
     height: 2.5rem;
     border-radius: 2.5rem;
@@ -19,19 +18,19 @@ export const Profile_ProfileImg = styled.div`
 `;
 
 
-export const Profile_TitleWrap = styled.div`
+export const ProfileTitleWrap = styled.div`
     display: flex;
     flex-direction: column;
     
     justify-content: center;
     align-content: center;
 `;
-export const Profile_Title = styled.div`
+export const ProfileTitle = styled.div`
     /* text-align: justify; */
     word-break: break-all;
 
 `;
-export const Profile_Name = styled(XS_regular_16)`
+export const ProfileName = styled(XSRegular16)`
     color: var(--gray_bold, #4A4A4A);
     text-align: left;
 `;
@@ -39,13 +38,13 @@ export const Profile_Name = styled(XS_regular_16)`
 const UserProfile = ({item}) => {
     // console.log(item)
     return (
-        <Profile_Wrap>
-            <Profile_ProfileImg $imgurl={item.blogProfileImg}></Profile_ProfileImg>
-            <Profile_TitleWrap>
-                <Profile_Title>{item.blogName}</Profile_Title>
-                <Profile_Name>@{item.blogNickname}</Profile_Name>
-            </Profile_TitleWrap>
-        </Profile_Wrap>
+        <ProfileWrap>
+            <ProfileProfileImg $imgurl={item.blogProfileImg}></ProfileProfileImg>
+            <ProfileTitleWrap>
+                <ProfileTitle>{item.blogName}</ProfileTitle>
+                <ProfileName>@{item.blogNickname}</ProfileName>
+            </ProfileTitleWrap>
+        </ProfileWrap>
     );
 };
 
