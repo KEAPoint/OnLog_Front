@@ -8,7 +8,6 @@ import { Get_Categori } from "../../apis/API_MyPage";
 import { useNavigate } from "react-router-dom";
 import { navData } from "../../assets/datas/categoryData";
 import { Post_Recommendation } from "../../apis/API_Recommendation";
-import { useRef } from "react";
 
 const PostNew = () => {
     const navigate = useNavigate();
@@ -35,23 +34,22 @@ const PostNew = () => {
     // summary, thumbnaiilLink가 둘 다 ai로 받은 값일 경우, 다음 페이지로 값 전달
     useEffect(() => {
         // summary와 thumbnailLink가 모두 null값이 아닐 때
-        if (summary!="" && thumbnailLink[0]!="") {
+        if (summary!=="" && thumbnailLink[0]!=="") {
             console.log('Both summary and thumbnailLink changed');
-            // 글 작성에서 얻은 데이터 몽땅 저장
-            const data = { title, content, tagList, category, topic, isPublic, summary, thumbnailLink };
             // 세줄요약, 썸네일 생성 페이지로 이동
             navigate("/mypage/postwrite/createAI", { state: { data: { title, content, tagList, category, topic, isPublic, summary, thumbnailLink } } });
+
         }
-    }, [summary, thumbnailLink]);
+    }, [summary, thumbnailLink, title, content, tagList, category, topic, isPublic, navigate]);
 
     // 글 내용 입력 후 ai페이지로 이동
     const nextBtnHandler = async () => {
         // 제목, 글 내용, 해시태그, 카테고리 모두 선택했는지 확인해야함
-        if(title==""){
+        if(title === ""){
             alert('제목을 입력해주세요');
             window.scrollTo({top:0, behavior:"smooth"});
         }
-        else if (content==""){
+        else if (content === ""){
             alert('글을 작성해주세요');
             window.scrollTo({top:0, behavior:"smooth"});
         }

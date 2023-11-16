@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { useLocation, useNavigate } from "react-router-dom";
 import { S_bold_19_2 , S_bold_28, S_regular_20} from "../../components/style/Styled";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Header from "../../components/common/Header";
 import {ReactComponent as Arrow} from '../../assets/images/Icons/Next.svg';
 import TextareaAutosize from 'react-textarea-autosize'; // npm install react-textarea-autosize
@@ -22,7 +22,7 @@ const CreateAI = () => {
     const [props, setProps] = useState({
         ...location.state.data
       });
-    const [summary, setSummary] = useState(props.summary);
+    // const [summary, setSummary] = useState(props.summary);
     const defaultImageUrl = "https://i.namu.wiki/i/awkzTuu2p6WdaGIUbeHWGj0yzxUOd_wniEADxzMH8qvhWH4TDkpkkiUAJpefC-8J79giMVyjN5y1uRYQVoQm2g.webp";  // 이미지 url이 유효한 값이 아닌 string일 때 기본 이미지 URL 설정
     const thumbImageUrl = isValidUrl(props.thumbnailLink[0]) ? props.thumbnailLink[0] : defaultImageUrl;
 
@@ -49,7 +49,7 @@ const CreateAI = () => {
     const SubmitHandler = async () => {
         setProps({
             ...props,
-            summary: summary,
+            summary: props.summary, // 원래 : summary
             thumbnailLink: ''
         })
 
