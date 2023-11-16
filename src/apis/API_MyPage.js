@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useSelector } from "react-redux";
 
 export const Get_Profile = async () => {
     const accessToken = window.localStorage.getItem("accessToken");
@@ -35,6 +34,7 @@ export const Put_Profile = async (inputValue) => {
             "blogProfileImg": inputValue.profileImg
         }
     })
+    return res.data;
 }
 
 // 카테고리 관련

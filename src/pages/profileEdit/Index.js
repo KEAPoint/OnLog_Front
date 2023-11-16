@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import React from "react";
 import TextareaAutosize from 'react-textarea-autosize'; // npm install react-textarea-autosize
 import Header from '../../components/common/Header';
@@ -24,15 +24,15 @@ const ProfileEditPage = () =>{
         Get_Profile()
         .then((data) => {
             console.log(data.data)
-            setUser({
-                ...user,
+            setUser(prevUser => ({
+                ...prevUser,
                 // blogId는 안해도 될듯?
                 blogName: data.data.blogName,
                 nickName: data.data.blogNickname,
                 profileImg: data.data.blogProfileImg,
                 info: data.data.blogIntro,
                 // email: data.data.email,
-            })
+            }))
 
         })
     },[]);
@@ -204,7 +204,7 @@ width: 44.625rem;
     }
 `
 const InfoEdit = styled(TextareaAutosize)`
-width: 44.625rem;
+    width: 44.625rem;
     display: flex;
     padding: 0.6875rem 1.4375rem;
     align-items: center;

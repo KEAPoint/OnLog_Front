@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import "./font.css";
 
@@ -68,7 +67,7 @@ export const S_regular_30 = styled.div`
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-`
+`;
 export const S_medium_20_8 = styled.div`
     /* S-medium-20.8(RE) */
     font-family: Pretendard;

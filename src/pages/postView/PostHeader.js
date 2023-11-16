@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { cardData } from "../../assets/datas/cardData";
 import { L_semibold_32, L_bold_32, XS_semibold_16 } from "../../components/style/Styled";
 import { useState, useEffect } from "react";
 import { navData } from "../../assets/datas/categoryData";
@@ -29,20 +28,16 @@ const PostHeader = ({post}) => {
                 })
             );
         }
-    }, [post]);
+    }, [post, dispatch]);
 
     return(
         <div>
             <Wrap>
                 {post && (
                     <>
-                        {/* {post.topic && <Topic>#{topicKName[post.topic.name]}</Topic>} */}
-                        {/* {post.topic && <Topic>#{navData[post.topic.id].kName}</Topic>} */}
                         {post.topic && <Topic color={topic.color}>#{topic.name}</Topic>}
                         <Title dangerouslySetInnerHTML={{ __html: post.title }}/>
                         {post.createdAt && <DateWrap>{new Date(post.createdAt).toISOString().split('T')[0].replace(/-/g, '.')}</DateWrap>}
-                        {/* {post.createdAt && <DateWrap> {post.createdAt}</DateWrap>} */}
-
                     </>
                 )}
             </Wrap>

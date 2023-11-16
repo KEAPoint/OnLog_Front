@@ -1,7 +1,6 @@
 import Header from '../../components/common/HeaderLogoOnly';
 import styled from 'styled-components';
 import { S_bold_25 } from '../../components/style/Styled';
-import React, { useState } from 'react';
 
 import "./Login.css";
 import { useSelector } from 'react-redux';
@@ -93,17 +92,17 @@ const SignUp = () => {
 
 export default SignUp;
 
-const Wrap = styled.div`
-    padding: 7.125rem 6.25rem 0rem 6.25rem;
-    display: grid;
+// const Wrap = styled.div`
+//     padding: 7.125rem 6.25rem 0rem 6.25rem;
+//     display: grid;
 
-    grid-template-columns: repeat(3, 29.0625rem);
-    /* grid-template-rows: repeat(3, 45.1875rem); */
-    /* grid-template-columns: 1fr 1fr 1fr; */
+//     grid-template-columns: repeat(3, 29.0625rem);
+//     /* grid-template-rows: repeat(3, 45.1875rem); */
+//     /* grid-template-columns: 1fr 1fr 1fr; */
 
-    justify-content: center;
-    gap: 0.62rem;
-`;
+//     justify-content: center;
+//     gap: 0.62rem;
+// `;
 export const LoginInner = styled.div`
   align-self: stretch;
   display: flex;

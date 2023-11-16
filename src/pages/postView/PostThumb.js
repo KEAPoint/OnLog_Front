@@ -1,7 +1,5 @@
 import styled from "styled-components";
-import ThumbImg from "../../assets/images/catogories/Tech.png"
-import Profile from "../../assets/images/Profile.jpeg";
-import { L_semibold_32, S_bold_17, XS_regular_16 } from "../../components/style/Styled";
+import { S_bold_17, XS_regular_16 } from "../../components/style/Styled";
 // import Parser from 'html-react-parser';
 import { useDispatch } from 'react-redux';
 import { colorAction } from '../../store/actions/color';
@@ -44,12 +42,7 @@ const PostThumb = ({post}) => {
                 })
             );
         }
-    }, [post]);
-
-
-    // console.log('postThumb');
-    // console.log(post.writer);
-    // console.log(post.writer && post.writer.blogProfileImg);
+    }, [post, dispatch]);
 
     return(
         <>
