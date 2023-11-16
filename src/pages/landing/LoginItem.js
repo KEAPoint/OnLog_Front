@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { M_regular_38, S_bold_25 } from '../../components/style/Styled';
+import { MRegular38, SBold25 } from '../../components/style/Styled';
 
 const LoginItem = () => {
     const navigate = useNavigate();
@@ -25,7 +25,7 @@ const LoginItem = () => {
 
 export default LoginItem;
 
-const Wrap = styled(M_regular_38)`
+const Wrap = styled(MRegular38)`
     /* width: 100%; */
     width: 29.0625rem;
     height: 45.1875rem;
@@ -42,7 +42,7 @@ const Wrap = styled(M_regular_38)`
     
 `;
 
-const SignInBtn = styled(S_bold_25).attrs({ as: 'button' })`
+const SignInBtn = styled(SBold25).attrs({ as: 'button' })`
     /* flex-shrink: 0; */
     /* width: 15rem; */
     /* height: 3rem; */

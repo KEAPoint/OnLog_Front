@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { S_bold_17, XS_regular_16 } from "../../components/style/Styled";
+import { SBold17, XSRegular16 } from "../../components/style/Styled";
 // import Parser from 'html-react-parser';
 import { useDispatch } from 'react-redux';
 import { colorAction } from '../../store/actions/color';
@@ -81,12 +81,12 @@ const TitleWrap = styled.div`
     text-decoration: none;
     color: var(--black);
 `;
-const BlogName = styled(S_bold_17)`
+const BlogName = styled(SBold17)`
     text-align: justify;
 
     color: var(--black, #000);
 `;
-const NickName = styled(XS_regular_16)`
+const NickName = styled(XSRegular16)`
     color: var(--gray_bold, #4A4A4A);
     text-align: justify;
 `;
@@ -112,7 +112,7 @@ const ThumbImgDiv = styled.div`
     // box-shadow: 6px 7px 7px 0px rgba(0, 0, 0, 0.50);
 `
 
-const Summary = styled(S_bold_17)`
+const Summary = styled(SBold17)`
     width: 30rem;
     color: var(--gray_bold, #4A4A4A);
     text-align: justify;

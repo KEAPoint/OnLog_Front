@@ -1,6 +1,6 @@
 import Header from '../../components/common/HeaderLogoOnly';
 import styled from 'styled-components';
-import { S_bold_25 } from '../../components/style/Styled';
+import { SBold25 } from '../../components/style/Styled';
 
 import "./Login.css";
 import { useSelector } from 'react-redux';
@@ -120,7 +120,7 @@ export const Parent = styled.div`
   justify-content: flex-start;
   gap: var(--gap-4xs);
 `;
-const FieldName = styled(S_bold_25)`
+const FieldName = styled(SBold25)`
     display: flex;
     flex-direction: column;
     align-items: flex-start;

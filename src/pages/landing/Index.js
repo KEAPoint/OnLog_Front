@@ -1,14 +1,11 @@
 import React from 'react';
-import Header from '../../components/common/Header';
-import HeaderNormal from '../../components/common/HeaderNormal';
 import styled from 'styled-components';
 import {ReactComponent as LogoText} from '../../assets/images/LogoText.svg';
 import { landingData } from '../../assets/datas/categoryData';
 import LandItem from './LandItem';
 import Footer from '../../components/common/Footer';
 import { useNavigate } from 'react-router-dom';
-import { S_bold_25 } from '../../components/style/Styled';
-import { useSelector } from 'react-redux';
+import { SBold25 } from '../../components/style/Styled';
 
 const LandingPage = () => {
     // const accessToken = useSelector(state => state.login.token.accessToken);
@@ -61,7 +58,7 @@ const LogoFix = styled(LogoText)`
         stroke-width: 5px;
     } */
 `;
-const SignInBtn = styled(S_bold_25).attrs({ as: 'button' })`
+const SignInBtn = styled(SBold25).attrs({ as: 'button' })`
     padding: 1rem 4rem;
     font-size: 1.5rem;
     /* background-color: var(--black); */

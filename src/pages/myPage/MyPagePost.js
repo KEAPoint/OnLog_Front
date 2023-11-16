@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Card from "../home/Card";
-import { S_bold_19_2, S_regular_20_8, XS_semibold_16 } from "../../components/style/Styled";
+import { SBold192, SRegular208 } from "../../components/style/Styled";
 import {ReactComponent as Edit} from "../../assets/images/Icons/Edit.svg";
 import {ReactComponent as Lock} from "../../assets/images/Icons/Lock.svg";
 import {ReactComponent as Plus} from "../../assets/images/Icons/Plus.svg";
@@ -77,7 +77,7 @@ const MypagePost = () => {
                 <StickWrap>
                     <CateWrap $isExpanded={EditClickCheck}>
                         <MenuWrap>
-                            <S_regular_20_8>Category</S_regular_20_8>
+                            <SRegular208>Category</SRegular208>
                             <EditBtn onClick={handleEdit}><Edit/></EditBtn>
                         </MenuWrap>
 
@@ -198,7 +198,7 @@ const AddBtn = styled(Option)`
 //     border: 1px solid var(--gray_light, #939393);
 //     background: #FFF;
 // `
-const CateTitle = styled(S_bold_19_2)`
+const CateTitle = styled(SBold192)`
     color: var(--black);
     align-self: stretch;
     display: flex;
@@ -214,7 +214,7 @@ const PostWrap = styled.div`
 //     justify-content: center;
 //     gap: 1rem;
 // `;
-// const UserOptionBtn = styled(XS_semibold_16).attrs({as:'button'})`
+// const UserOptionBtn = styled(XSSemibold16).attrs({as:'button'})`
 //     display: flex;
 //     align-items: center;
 //     padding: 0.75rem 1rem;

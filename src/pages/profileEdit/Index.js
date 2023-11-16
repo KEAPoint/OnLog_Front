@@ -4,7 +4,7 @@ import React from "react";
 import TextareaAutosize from 'react-textarea-autosize'; // npm install react-textarea-autosize
 import Header from '../../components/common/Header';
 import Profile from "../../assets/images/Profile.jpeg"
-import { L_bold_32, S_bold_19_2, S_regular_20, S_regular_30 } from "../../components/style/Styled";
+import { LBold32, SBold192, SRegular20, SRegular30 } from "../../components/style/Styled";
 import { Get_Profile, Put_Profile } from "../../apis/API_MyPage";
 import { useDispatch } from "react-redux";
 import { profileAction } from "../../store/actions/profile";
@@ -92,9 +92,9 @@ const ProfileEditPage = () =>{
                     </Wrap2>
                     <Wrap2>
                         <Title>블로그 소개</Title>
-                        <S_regular_30 style={{color:"var(--gray_bold, #4A4A4A)"}}>
+                        <SRegular30 style={{color:"var(--gray_bold, #4A4A4A)"}}>
                             <InfoEdit name='info' type='text' value={user.info} style={{ overflow: 'hidden' }} onChange={handleChange} />
-                        </S_regular_30>
+                        </SRegular30>
                     </Wrap2>
                     <Wrap2 style={{alignItems:'flex-end'}}>
                         <SubmitButton type="submit">변경 완료</SubmitButton>
@@ -107,7 +107,7 @@ const ProfileEditPage = () =>{
 
 export default ProfileEditPage;
 
-const PageName = styled(L_bold_32)`
+const PageName = styled(LBold32)`
     display: flex;
     padding: 0rem 0rem 1.25rem 6.25rem;
     flex-direction: column;
@@ -154,12 +154,12 @@ const Wrap2 = styled.div`
     gap: 0.5625rem;
     align-self: stretch;
 `
-const Title = styled(S_bold_19_2)`
+const Title = styled(SBold192)`
     width: 8.4375rem;
     height: 1.75rem;
     color: var(--gray_bold, #4A4A4A);
 `
-const Email = styled(S_regular_20)`
+const Email = styled(SRegular20)`
     display: flex;
     padding: 0.6875rem 1.4375rem;
     align-items: center;
@@ -169,7 +169,7 @@ const Email = styled(S_regular_20)`
     color: var(--gray_light, #939393);
 `
 
-const NicknameWrap = styled(S_regular_20)`
+const NicknameWrap = styled(SRegular20)`
     display: flex;
     padding: 0.6875rem 1.4375rem;
     align-items: center;
@@ -177,15 +177,15 @@ const NicknameWrap = styled(S_regular_20)`
     align-self: stretch;
     border-bottom: 1.5px solid var(--gray_bold, #4A4A4A);
 `
-const NicknameBasic = styled(S_regular_20)`
+const NicknameBasic = styled(SRegular20)`
     color: var(--gray_light, #939393);
 `
-const NicknameInputEdit = styled(S_regular_20).attrs({as:'input'})`
+const NicknameInputEdit = styled(SRegular20).attrs({as:'input'})`
     border:none;
     color: var(--gray_bold, #4A4A4A);
     width: 40rem;
 `
-const InputEdit = styled(S_regular_20).attrs({as:'input'})`
+const InputEdit = styled(SRegular20).attrs({as:'input'})`
 width: 44.625rem;
     display: flex;
     padding: 0.6875rem 1.4375rem;
@@ -231,7 +231,7 @@ const InfoEdit = styled(TextareaAutosize)`
     }
 `
 
-const SubmitButton = styled(S_bold_19_2).attrs({as:'button'})`
+const SubmitButton = styled(SBold192).attrs({as:'button'})`
     border:4px solid black;
     display: flex;
     padding: 0.75rem 4.0625rem;

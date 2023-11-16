@@ -3,8 +3,8 @@ import LifeStyle from '../../assets/images/catogories/LifeStyle.png';
 import News from '../../assets/images/catogories/News.png';
 import Foodie from '../../assets/images/catogories/Foodie.png';
 import Enter from '../../assets/images/catogories/Entertainment.png';
-import Tech from '../../assets/images/catogories/Tech.png';
-import Sports from '../../assets/images/catogories/Sports.png';
+// import Tech from '../../assets/images/catogories/Tech.png';
+// import Sports from '../../assets/images/catogories/Sports.png';
 import Travel from '../../assets/images/catogories/Travel.png';
 
 export const cardData = [

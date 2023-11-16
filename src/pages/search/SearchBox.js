@@ -1,24 +1,13 @@
-import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import Search from '../../assets/images/Icons/Search.png'
 import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import Swal from "sweetalert2";
-import { S_regular_20_8 } from "../../components/style/Styled";
-
 
 const SearchBox = () => {
-    const location = useLocation();
-
-    const [category, setCategory] = useState("");
-
     const [searchTerm, setSearchTerm] = useState('');
     const navigate = useNavigate();
 
-    const handleSearch = (e) => {
-        // console.log(e.target.value);
-        // history.push('/result', { term: searchTerm });
-    }
       const handleOnKeyPress = (e) => {
         if (e.key === 'Enter') {
             if(searchTerm.trim() !== '') { // 입력값이 있는 경우 페이지 이동
@@ -38,7 +27,7 @@ const SearchBox = () => {
         <div>
             {/* <Wrap> */}
                 <SearchWrap>
-                    <img src={Search} />
+                    <img src={Search} alt="search"/>
                     <input type="text" value={searchTerm} placeholder="검색하기" onChange={(e) => setSearchTerm(e.target.value)} onKeyPress={handleOnKeyPress}/>
                 </SearchWrap>
             {/* </Wrap> */}

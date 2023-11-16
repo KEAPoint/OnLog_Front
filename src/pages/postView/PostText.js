@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import { L_semibold_32, S_regular_20 } from "../../components/style/Styled";
+import { LSemibold32, SRegular20 } from "../../components/style/Styled";
 import { Post_PostLike, Delete_PostLike } from "../../apis/API_Like";
 import { Delete_SinglePost } from "../../apis/API_Postview";
 
@@ -151,7 +151,7 @@ const Wrap = styled.div`
     align-items: center;
     align-self: stretch;
 `
-const Context = styled(S_regular_20)`
+const Context = styled(SRegular20)`
     align-self: stretch;
     color: var(--black, #000);
 `
@@ -219,7 +219,7 @@ const LikeButton = styled.button`
     background-color: transparent;
     border: none;
 `
-const LikeNum = styled(L_semibold_32)`
+const LikeNum = styled(LSemibold32)`
     color: var(--black, #000);
 `
 const UserWrap = styled.div`

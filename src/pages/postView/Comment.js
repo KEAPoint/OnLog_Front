@@ -4,7 +4,7 @@ import CommentWrite from "./CommentWrite";
 import { Delete_CommentLike, Post_CommentLike } from "../../apis/API_Like";
 import { Delete_Comment, Put_Comment } from "../../apis/API_Comment";
 import Swal from "sweetalert2";
-import { S_bold_17, XS_regular_16, XS_semibold_16,XS_bold_13 } from "../../components/style/Styled";
+import { SBold17, XSRegular16, XSSemibold16,XSBold13 } from "../../components/style/Styled";
 import TextareaAutosize from 'react-textarea-autosize'; // npm install react-textarea-autosize
 
 
@@ -324,7 +324,7 @@ const WrapEdit = styled.div`
     align-self: stretch;
     border-bottom: 1px solid var(--gray_lighter, #DCDCDC);
 `
-const EditingName = styled(XS_bold_13)`
+const EditingName = styled(XSBold13)`
     padding:0.5rem 0rem 0rem 4rem;
     color: red;
 `
@@ -366,12 +366,12 @@ const TitleWrap = styled.div`
     text-decoration: none;
     color: var(--black);
 `;
-const BlogName = styled(S_bold_17)`
+const BlogName = styled(SBold17)`
     text-align: justify;
     color: var(--black, #000);
     text-align: justify;
 `;
-const NickName = styled(XS_regular_16)`
+const NickName = styled(XSRegular16)`
     color: var(--gray_bold, #4A4A4A);
     text-align: justify;
 `;
@@ -437,7 +437,7 @@ const UserBtn = styled.button`
     }
 `
 // 댓글 내용
-const Context = styled(XS_regular_16)`
+const Context = styled(XSRegular16)`
     width: 50rem;
     align-self: stretch;
     color: var(--black, #000);
@@ -476,7 +476,7 @@ const CommentFooter = styled.div`
     align-items: center;
     align-self: stretch;
 `
-const CommentDate = styled(XS_semibold_16)`
+const CommentDate = styled(XSSemibold16)`
     color: var(--gray_bold, #4A4A4A);
 `
 const HeartReplyWrap = styled.div`
@@ -502,7 +502,7 @@ const LikeButton = styled.button`
 
     cursor: pointer;
 `
-const LikeNum = styled(XS_semibold_16)`
+const LikeNum = styled(XSSemibold16)`
     color: var(--gray_bold, #4A4A4A);
     text-align: justify;
 `

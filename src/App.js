@@ -6,7 +6,7 @@ import PostviewPage from "./pages/postView/Index";
 import LoginPage from "./pages/login/Index";
 import SignUp from "./pages/login/SignUp";
 import MyPage from "./pages/myPage/Index";
-import KakaoLogin from "./pages/login/KakaoLogin";
+// import KakaoLogin from "./pages/login/KakaoLogin";
 import ProfileEditPage from "./pages/profileEdit/Index";
 import SearchPage from "./pages/search/Index";
 import SubscribePage from "./pages/subscribe/Index";
