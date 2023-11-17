@@ -43,8 +43,10 @@ jobs:
     # build docker image and push to docker hub
     # only if the app build and test successfully
     needs: [build_test]
-    steps:
-      
+    steps:          
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
 
