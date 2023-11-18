@@ -18,8 +18,8 @@ const SubscribePage = () => {
             </StickyWrap>
             <Wrap>
                 <PageName>Subscribed</PageName>
-                <NewSubsPost/>
                 <SubsBlog/>
+                <NewSubsPost/>
             </Wrap>
             <Footer/>
         </div>

@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { colorAction } from '../../store/actions/color';
 import { useEffect , useState} from "react";
 import { navData } from "../../assets/datas/categoryData";
+import { Post_follow, Delete_Follow } from "../../apis/API_Subs";
 
 
 function isValidUrl(string) {
@@ -16,7 +17,17 @@ function isValidUrl(string) {
     }
   }
 
-const PostThumb = ({post}) => {
+const PostThumb = ({post, isSubs}) => {
+    const userId = window.localStorage.getItem("userId");
+    const [isAdmin, setIsAdmin] = useState(false);
+    // 현재 유저와 글 작성자가 같은지 판단 (구독중 버튼 띄우기 위함)
+    useEffect(() => {
+        if (userId === post.writer.blogId) {
+        setIsAdmin(true);
+        } else {
+        setIsAdmin(false);
+        }
+    }, [userId, post.writer.blogId]);
 
     const defaultImageUrl = "https://i.namu.wiki/i/awkzTuu2p6WdaGIUbeHWGj0yzxUOd_wniEADxzMH8qvhWH4TDkpkkiUAJpefC-8J79giMVyjN5y1uRYQVoQm2g.webp";  // 이미지 url이 유효한 값이 아닌 string일 때 기본 이미지 URL 설정
     const thumbImageUrl = isValidUrl(post.thumbnailLink) ? post.thumbnailLink : defaultImageUrl;
@@ -44,17 +55,53 @@ const PostThumb = ({post}) => {
         }
     }, [post, dispatch]);
 
+    // 구독하기 버튼
+    const [isSubscribed, setSubscribed] = useState(isSubs); // 구독 상태를 저장하는 state
+    const [isHovered, setHovered] = useState(false); // Hover 상태를 저장하는 state
+    const handleSubscribe = async (e) => {
+        // 구독중인 상태에서 버튼 누른거라면, 구독취소 요청
+        if(isSubscribed){
+            const response = await Delete_Follow(post.writer.blogId);
+            if (response.success) {
+                console.log("구독 취소 완료");
+                setSubscribed(false);
+            } else {
+                console.error("구독취소 실패", response.message);
+            }
+        }
+        // 구독 아닌 상태에서 버튼 누른거라면, 구독요청
+        else{
+            const response = await Post_follow(post.writer.blogId);
+
+            if (response.success) {
+                console.log("구독 완료!!!! 성공!");
+                setSubscribed(true);
+            } else {
+                console.error("구독하는거 실패", response.message);
+            }
+        }
+    }
+
     return(
         <>
             <Menu>
-            <ProfileImg $profileImg={post.writer && post.writer.blogProfileImg}></ProfileImg>
+                <ProfileImg $profileImg={post.writer && post.writer.blogProfileImg}></ProfileImg>
                 <TitleWrap>
                     <BlogName>{post.writer && post.writer.blogName}</BlogName>
                     <NickName>@{post.writer && post.writer.blogNickname}</NickName>
                 </TitleWrap>
+                {!isAdmin&&(
+                    <SubscribeWrap 
+                    onClick={handleSubscribe} 
+                    $isSubscribed={isSubscribed}
+                    onMouseEnter={() => setHovered(true)}
+                    onMouseLeave={() => setHovered(false)}
+                    >
+                    {isHovered ? (isSubscribed ? "구독 취소" : "구독하기") : (isSubscribed ? "구독 중" : "구독하기")}
+                    </SubscribeWrap>
+                )}
             </Menu>
             <Wrap>
-                {/* <ThumbImgDiv $thumbImg={post.thumbnailLink} color={topic.color}>  </ThumbImgDiv> */}
                 <ThumbImgDiv $thumbImg={thumbImageUrl} color={topic.color}>  </ThumbImgDiv>
                 <Summary dangerouslySetInnerHTML={{__html: post.summary}}/>
             </Wrap>
@@ -118,4 +165,35 @@ const Summary = styled(SBold17)`
     text-align: justify;
 
     line-height: 2.3rem;
+`
+const SubscribeWrap = styled.button`
+    display: flex;
+    margin-left: 1rem;
+    padding: 0.5rem 0.5rem;
+    align-items: center;
+    gap: 0.9375rem;
+
+    border : 2px solid black;
+
+    text-align: justify;
+    
+    /* XS-bold-13(RE) */
+    font-family: Pretendard;
+    font-size: 0.7rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
+    cursor: pointer;
+
+    background: ${props => props.$isSubscribed ? 'white' : 'var(--black, #000)'};
+    color: ${props => props.$isSubscribed ? 'black' : 'var(--white, #FFF)'};
+
+    &:hover {
+        background: ${props => props.$isSubscribed ? 'red' : 'white'};
+        color: ${props => props.$isSubscribed ? 'var(--white, #FFF)' : 'black'};
+        border-color: ${props => props.$isSubscribed ? 'red' : 'black'};
+
+        transition: 0.5s;
+    }
 `

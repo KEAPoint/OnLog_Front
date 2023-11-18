@@ -24,8 +24,7 @@ export default NewSubsPost;
 const PageWrap = styled.div`
     margin: 0rem 6.25rem;
     /* box-sizing: border-box; */
-
-/* 
+    /* 
     @media ${({ theme }) => theme.windowSize.test} {
         background-color: pink;
     } */
@@ -48,7 +47,7 @@ const Left = styled(MRegular32)`
 const Right = styled.div`
     display: flex;
     padding: 1.25rem 0rem;
-    align-items: flex-end;
+    align-items: center;
     gap: 0.375rem;
 
     color: var(--gray_bold, #4A4A4A);
