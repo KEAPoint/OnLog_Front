@@ -5,7 +5,9 @@ import MypagePost from './MyPagePost';
 import Footer from '../../components/common/Footer';
 import styled from 'styled-components';
 
+
 const MyPage = () => {
+
     return(
         <div>
             <Header/>

@@ -23,7 +23,8 @@ const Header = () => {
     // }); 
 
     useEffect(() => {
-        Get_Profile()
+        const userId = window.localStorage.getItem("userId");
+        Get_Profile(userId)
         .then((data) => {
             console.log("header:",data);
             // setUser({

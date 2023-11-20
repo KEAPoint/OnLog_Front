@@ -1,8 +1,9 @@
 import axios from "axios";
 
-export const Get_Profile = async () => {
+export const Get_Profile = async (userId) => {
     const accessToken = window.localStorage.getItem("accessToken");
-    const userId = window.localStorage.getItem("userId");
+    console.log("userId api:", userId);
+    // const userId = window.localStorage.getItem("userId");
     // const accessToken = useSelector(state => state.login.token.accessToken);
 
     const url = '/blog';

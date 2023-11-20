@@ -6,6 +6,7 @@ import { Delete_Comment, Put_Comment } from "../../apis/API_Comment";
 import Swal from "sweetalert2";
 import { SBold17, XSRegular16, XSSemibold16,XSBold13 } from "../../components/style/Styled";
 import TextareaAutosize from 'react-textarea-autosize'; // npm install react-textarea-autosize
+import { useNavigate } from "react-router-dom";
 
 
 const Comment = ({post}) => {
@@ -212,6 +213,11 @@ const Comment = ({post}) => {
         });
     };
 
+    const navigate = useNavigate();
+    const handleProfileClick = (commentId) => {
+        console.log("commentId: ", commentId)
+        navigate(`/mypage/${commentId}`)
+    }
     return (
         <div>
         {sortedComments && sortedComments.map(comment => {
@@ -227,12 +233,12 @@ const Comment = ({post}) => {
                         {/* 댓글 작성자 프로필 & 수정댓글 저장하기 버튼 */}
                         <UserInfo>
                             <Menu>
-                            <ProfileImg $profileImg={comment.writer && comment.writer.blogProfileImg}></ProfileImg>
-                            <TitleWrap>
-                                <BlogName>{comment.writer && comment.writer.blogName}</BlogName>
-                            </TitleWrap>
-                            <EditSubmitBtn onClick={() => editConfirmHandler(comment.commentId)}>저장하기</EditSubmitBtn>
-                            <EditSubmitBtn style={{border:"none"}} onClick={editCancleHandler}>취소하기</EditSubmitBtn>
+                                <ProfileImg $profileImg={comment.writer && comment.writer.blogProfileImg}></ProfileImg>
+                                <TitleWrap>
+                                    <BlogName>{comment.writer && comment.writer.blogName}</BlogName>
+                                </TitleWrap>
+                                <EditSubmitBtn onClick={() => editConfirmHandler(comment.commentId)}>저장하기</EditSubmitBtn>
+                                <EditSubmitBtn style={{border:"none"}} onClick={editCancleHandler}>취소하기</EditSubmitBtn>
                             </Menu>
                         </UserInfo>
                         <EditingName>댓글 수정 중...</EditingName>
@@ -250,7 +256,8 @@ const Comment = ({post}) => {
                     <Wrap key={comment.commentId}>
                         {/* 댓글 작성자 프로필 & 수정/삭제 버튼 */}
                         <UserInfo>
-                            <Menu>
+                            {/* 서진------------------------------------------------ */}
+                            <Menu onClick={() => handleProfileClick(comment.writer.blogId)}>
                             <ProfileImg $profileImg={comment.writer && comment.writer.blogProfileImg}></ProfileImg>
                             <TitleWrap>
                                 <BlogName>{comment.writer && comment.writer.blogName}</BlogName>

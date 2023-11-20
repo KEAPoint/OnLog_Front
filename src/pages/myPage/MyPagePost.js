@@ -23,12 +23,12 @@ const MypagePost = () => {
     useEffect(() => {
         // 기존에 스토어에 저장된 데이터를 초기화
         // dispatch(cateAction([])); 
-        console.log("MyPagePost 테스트");
         Get_Categori()
         .then((data) => {
             //카테고리 order 오름차순으로 저장
             let sortedData = data.data.sort((a, b) => a.order - b.order);
-            console.log("sortedData",sortedData);
+            // console.log("sortedData",sortedData);
+            
             // 스토어-카테고리리스트 add  
             // sortedData.forEach((item) => {
             //     dispatch(cateAction(item));ㅊ

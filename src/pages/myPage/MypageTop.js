@@ -1,34 +1,54 @@
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { LBold32, SBold192, SBold25, SRegular208, SRegular30 } from '../../components/style/Styled';
 import { Get_Profile } from "../../apis/API_MyPage";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { profileAction } from "../../store/actions/profile";
 
 const MypageTop = () => {
+
+    const params = useParams().userId;
+    // const { userId } = useParams();
+    const dispatch = useDispatch();
+
+    console.log("--------------------------------------------")
     const navigate = useNavigate();
     const [profile, setProfile] = useState({}); 
-
+    // const userId = useSelector((state) => state.profile.user.userId);
+    
     useEffect(() => {
-        Get_Profile()
-        .then((data) => {
-            console.log(data.data)
-            setProfile({
-                // ...profile,
-                blogId: data.data.blogName,
-                blogName: data.data.blogName,
-                blogNickname: data.data.blogNickname,
-                blogProfileImg: data.data.blogProfileImg,
-                likeCount: data.data.likeCount,
-                postCount: data.data.postCount,
-                subscriberCount: data.data.subscriberCount,
-                blogIntro: data.data.blogIntro,
-
+        dispatch(
+            profileAction({
+                userId: params
             })
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-    },[]);
+        )
+    
+        // if (params) {
+            Get_Profile(params)
+                .then((data) => {
+                    // console.log("data.data:", data);
+                    if (data.success === false) {
+                        throw new Error(data.message); // 에러 발생
+                    }
+
+                    setProfile({
+                        blogId: params,
+                        blogName: data.data.blogName,
+                        blogNickname: data.data.blogNickname,
+                        blogProfileImg: data.data.blogProfileImg,
+                        likeCount: data.data.likeCount,
+                        postCount: data.data.postCount,
+                        subscriberCount: data.data.subscriberCount,
+                        blogIntro: data.data.blogIntro,
+                    });
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        // }
+    }, []);
+    
     
 
     const handlePostButtonClick = (e) => {
