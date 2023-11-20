@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from '../../components/common/Header';
 import MypageTop from './MypageTop.js';
 import MypagePost from './MyPagePost';
@@ -11,17 +11,28 @@ import { userAuthAction } from '../../store/actions/profile';
 
 const MyPage = () => {
     let params = useParams().userId;
-    // console.log("params:", params)
+    console.log("params:", params)
 
     const dispatch = useDispatch();
+    
+    useEffect(() => {
+        if (params === undefined || params === window.localStorage.getItem("userId")) {
+            console.log("권한 주기@@@@@")
+            dispatch(
+                userAuthAction({
+                    userAuth: true
+                })      
+            )
+        } else {
+            dispatch(
+                userAuthAction({
+                    userAuth: false
+                })      
+            )
+        }
+    }, [params, dispatch]);
 
-    if(params === window.localStorage.getItem("userId") || params === undefined){ // 권한 있을 시
-        dispatch(
-            userAuthAction()
-        )
-    }
-
-    return(
+    return (
         <div>
             <Header/>
             <Wrap>
@@ -35,7 +46,6 @@ const MyPage = () => {
 
 const Wrap = styled.div`
     padding: 0rem 6.25rem;
-    
-`
-export default MyPage;
+`;
 
+export default MyPage;

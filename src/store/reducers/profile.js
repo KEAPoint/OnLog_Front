@@ -30,7 +30,8 @@ const ProfileReducer = (state = initialState, action) => {
         case 'USER_AUTH' : {
             return {
                 ...state,
-                userAuth: !state.userAuth
+                // userAuth: !state.userAuth
+                userAuth: action.data.userAuth
             }
         }
         default: {
