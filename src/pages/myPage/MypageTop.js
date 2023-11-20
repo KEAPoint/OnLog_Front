@@ -8,6 +8,7 @@ import { profileAction } from "../../store/actions/profile";
 
 const MypageTop = () => {
 
+    // url에서 userId 가져오기 -> 이걸 api에 params로 넣어주기!
     const params = useParams().userId;
     // const { userId } = useParams();
     const dispatch = useDispatch();
@@ -24,29 +25,27 @@ const MypageTop = () => {
             })
         )
     
-        // if (params) {
-            Get_Profile(params)
-                .then((data) => {
-                    // console.log("data.data:", data);
-                    if (data.success === false) {
-                        throw new Error(data.message); // 에러 발생
-                    }
+        Get_Profile(params)
+            .then((data) => {
+                // console.log("data.data:", data);
+                if (data.success === false) {
+                    throw new Error(data.message); // 에러 발생
+                }
 
-                    setProfile({
-                        blogId: params,
-                        blogName: data.data.blogName,
-                        blogNickname: data.data.blogNickname,
-                        blogProfileImg: data.data.blogProfileImg,
-                        likeCount: data.data.likeCount,
-                        postCount: data.data.postCount,
-                        subscriberCount: data.data.subscriberCount,
-                        blogIntro: data.data.blogIntro,
-                    });
-                })
-                .catch((error) => {
-                    console.log(error);
+                setProfile({
+                    blogId: params,
+                    blogName: data.data.blogName,
+                    blogNickname: data.data.blogNickname,
+                    blogProfileImg: data.data.blogProfileImg,
+                    likeCount: data.data.likeCount,
+                    postCount: data.data.postCount,
+                    subscriberCount: data.data.subscriberCount,
+                    blogIntro: data.data.blogIntro,
                 });
-        // }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }, []);
     
     

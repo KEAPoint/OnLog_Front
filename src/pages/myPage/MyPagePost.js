@@ -11,9 +11,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { cateAction, editClickAction } from "../../store/actions/category";
 import { filterListAction } from "../../store/actions/card";
 import AddCategoryItem from "./AddCategoryItem";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 const MypagePost = () => {
+    // url에서 userId 가져오기 -> 이걸 api에 params로 넣어주기!
+    const params = useParams().userId;
+
     const [EditClickCheck, setEditClickCheck] = useState(false);
     const [AddClickCheck, setAddClickCheck] = useState(0);
     const dispatch = useDispatch();
@@ -23,12 +26,16 @@ const MypagePost = () => {
     useEffect(() => {
         // 기존에 스토어에 저장된 데이터를 초기화
         // dispatch(cateAction([])); 
-        Get_Categori()
+        Get_Categori(params)
         .then((data) => {
+            if (data.success === false) {
+                throw new Error(data.message); // 에러 발생
+            }
+            
             //카테고리 order 오름차순으로 저장
             let sortedData = data.data.sort((a, b) => a.order - b.order);
             // console.log("sortedData",sortedData);
-            
+
             // 스토어-카테고리리스트 add  
             // sortedData.forEach((item) => {
             //     dispatch(cateAction(item));ㅊ
