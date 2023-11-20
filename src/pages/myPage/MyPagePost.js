@@ -52,7 +52,7 @@ const MypagePost = () => {
         .catch((error) => {
             console.log(error);
         })
-    },[dispatch, location.key]);
+    },[params, dispatch, location.key]);
 
     const handleEdit = () => {
         setEditClickCheck(!EditClickCheck);

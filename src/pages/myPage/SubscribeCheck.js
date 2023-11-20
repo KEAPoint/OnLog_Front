@@ -21,7 +21,7 @@ const SubscribeCheck = ({params}) => {
             
         };
         fetchData();
-    },[])
+    },[params])
 
 
     const handleClick = async (e) => {

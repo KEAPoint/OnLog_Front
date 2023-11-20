@@ -46,7 +46,7 @@ const MypageTop = () => {
             .catch((error) => {
                 console.log(error);
             });
-    }, []);
+    }, [params, dispatch]);
     
     
 
@@ -56,8 +56,10 @@ const MypageTop = () => {
         switch(e.currentTarget.name) {
             case "post" :
                 navigate('/mypage/postwrite');
+                break;
             case "edit" :
                 navigate('/mypage/edit');
+                break;
             default:
                 break;
         }
