@@ -10,7 +10,11 @@ import SubscribeCheck from "./SubscribeCheck";
 const MypageTop = () => {
 
     // url에서 userId 가져오기 -> 이걸 api에 params로 넣어주기!
-    const params = useParams().userId;
+    let params = useParams().userId;
+    if (params === undefined) {
+        params = window.localStorage.getItem("userId");
+    }
+
     // console.log(params);
     // 수정 및 생성 권한 있는지 확인
     const userAuth = useSelector(state => state.profile.userAuth);

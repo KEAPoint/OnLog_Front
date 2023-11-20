@@ -10,14 +10,17 @@ import { userAuthAction } from '../../store/actions/profile';
 
 
 const MyPage = () => {
-    const params = useParams().userId;
+    let params = useParams().userId;
+    // console.log("params:", params)
+
     const dispatch = useDispatch();
 
-    if(params === window.localStorage.getItem("userId")){ // 권한 있을 시
+    if(params === window.localStorage.getItem("userId") || params === undefined){ // 권한 있을 시
         dispatch(
             userAuthAction()
         )
     }
+
     return(
         <div>
             <Header/>

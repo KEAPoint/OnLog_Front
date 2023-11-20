@@ -61,7 +61,7 @@ const Header = () => {
                     navigate('/login');
                     break;
                 case "myPage" :
-                    navigate(`/mypage/${userId}`);
+                    navigate(`/mypage`);
                     break;
                 default:
                     break;

@@ -15,7 +15,11 @@ import { useLocation, useParams } from "react-router-dom";
 
 const MypagePost = () => {
     // url에서 userId 가져오기 -> 이걸 api에 params로 넣어주기!
-    const params = useParams().userId;
+    let params = useParams().userId;
+    if (params === undefined) {
+        params = window.localStorage.getItem("userId");
+    }
+
 
     const [EditClickCheck, setEditClickCheck] = useState(false);
     const [AddClickCheck, setAddClickCheck] = useState(0);
