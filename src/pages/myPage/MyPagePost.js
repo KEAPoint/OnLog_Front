@@ -24,14 +24,13 @@ const MypagePost = () => {
     const location = useLocation();
 
     useEffect(() => {
-        // 기존에 스토어에 저장된 데이터를 초기화
-        // dispatch(cateAction([])); 
+
         Get_Categori(params)
         .then((data) => {
             if (data.success === false) {
                 throw new Error(data.message); // 에러 발생
             }
-            
+
             //카테고리 order 오름차순으로 저장
             let sortedData = data.data.sort((a, b) => a.order - b.order);
             // console.log("sortedData",sortedData);
@@ -45,7 +44,7 @@ const MypagePost = () => {
             // 스토어-필터링조건
             dispatch(
                 filterListAction({
-                    blog_id: window.localStorage.getItem("userId"),
+                    blog_id: params,
                     category_id: data.data.id
                 })
             );
@@ -70,7 +69,7 @@ const MypagePost = () => {
         console.log("click"); 
         dispatch(
             filterListAction({
-                blog_id: window.localStorage.getItem("userId"),
+                blog_id: params,
                 category_id: cateId
             })
         )

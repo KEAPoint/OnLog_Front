@@ -32,7 +32,7 @@ const MypageTop = () => {
                     throw new Error(data.message); // 에러 발생
                 }
 
-                setProfile({
+                setProfile({       
                     blogId: params,
                     blogName: data.data.blogName,
                     blogNickname: data.data.blogNickname,
