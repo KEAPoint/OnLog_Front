@@ -1,8 +1,9 @@
 import styled, {keyframes} from "styled-components";
-import { SBold17, XSRegular16 } from '../style/Styled';
+import { XSRegular16 } from '../style/Styled';
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import { Get_SubProfile, Post_follow, Delete_Follow } from "../../apis/API_Subs";
+import { useNavigate } from "react-router-dom";
 
 const BlogItem = ({blogId, isSubs}) => {
 
@@ -61,6 +62,11 @@ const BlogItem = ({blogId, isSubs}) => {
         });
     }
 
+    const navigate = useNavigate();
+    const handleProfileBtn = (e) => {
+        console.log('button 클릭');
+        navigate(`/mypage/${blogId}`);
+    }
     return(
         <Wrap>
             {isLoading ? (
@@ -84,7 +90,7 @@ const BlogItem = ({blogId, isSubs}) => {
                 // loading중 아니라면 제대로 보여주기
                 <>
             <LeftWrap>
-                <Menu>
+                <Menu onClick={handleProfileBtn}>
                     <ProfileImg $imgUrl={profile.blogProfileImg}/>
                     <TitleWrap>
                         <Title>{profile.blogName}</Title>
@@ -128,7 +134,16 @@ const LeftWrap = styled.div`
     // flex: 1;
 
 `
-const Menu = styled(SBold17)`
+const Menu = styled.button`
+    /* S-bold-17(RE) */
+    font-family: Pretendard;
+    font-size: 1.0625rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    border: none;
+    background: transparent;
+    cursor: pointer;
     display: flex;
     align-items: center;
 `;
