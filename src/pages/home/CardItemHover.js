@@ -5,7 +5,7 @@ import { SBold17, XSRegular16 } from '../../components/style/Styled';
 import Arrow from '../../assets/images/Icons/Arrow.png';
 
 const CardItemHover = ({item}) => {
-    console.log(item.thumbnailLink);
+    // console.log(item.thumbnailLink);
     const navigate = useNavigate();
 
     const handleReadBtnClick = (e) => {

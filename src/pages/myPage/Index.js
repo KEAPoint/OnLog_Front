@@ -4,10 +4,20 @@ import MypageTop from './MypageTop.js';
 import MypagePost from './MyPagePost';
 import Footer from '../../components/common/Footer';
 import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { userAuthAction } from '../../store/actions/profile';
 
 
 const MyPage = () => {
+    const params = useParams().userId;
+    const dispatch = useDispatch();
 
+    if(params === window.localStorage.getItem("userId")){ // 권한 있을 시
+        dispatch(
+            userAuthAction()
+        )
+    }
     return(
         <div>
             <Header/>

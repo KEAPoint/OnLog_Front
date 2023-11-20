@@ -5,19 +5,20 @@ import { Get_Profile } from "../../apis/API_MyPage";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { profileAction } from "../../store/actions/profile";
+import SubscribeCheck from "./SubscribeCheck";
 
 const MypageTop = () => {
 
     // url에서 userId 가져오기 -> 이걸 api에 params로 넣어주기!
     const params = useParams().userId;
-    // const { userId } = useParams();
+    // console.log(params);
+    // 수정 및 생성 권한 있는지 확인
+    const userAuth = useSelector(state => state.profile.userAuth);
+    
     const dispatch = useDispatch();
-
-    console.log("--------------------------------------------")
     const navigate = useNavigate();
     const [profile, setProfile] = useState({}); 
-    // const userId = useSelector((state) => state.profile.user.userId);
-    
+
     useEffect(() => {
         dispatch(
             profileAction({
@@ -27,7 +28,6 @@ const MypageTop = () => {
     
         Get_Profile(params)
             .then((data) => {
-                // console.log("data.data:", data);
                 if (data.success === false) {
                     throw new Error(data.message); // 에러 발생
                 }
@@ -50,14 +50,17 @@ const MypageTop = () => {
     
     
 
-    const handlePostButtonClick = (e) => {
+    const handleClick = (e) => {
         e.preventDefault();
-        navigate('/mypage/postwrite');
-    };
-    const handleEditButtonClick = (e) => {
-        e.preventDefault();
-        navigate('/mypage/edit');
-
+        
+        switch(e.currentTarget.name) {
+            case "post" :
+                navigate('/mypage/postwrite');
+            case "edit" :
+                navigate('/mypage/edit');
+            default:
+                break;
+        }
     };
 
     return (
@@ -93,10 +96,18 @@ const MypageTop = () => {
                     {profile.blogIntro}
                 </ProfileInfo>
             </Wrap2>
-            <Wrap2>
-                <Button onClick={handlePostButtonClick}>글 작성</Button>
-                <Button onClick={handleEditButtonClick}>프로필 수정</Button>
-            </Wrap2>
+            
+            {userAuth ? (
+                <Wrap2>
+                    <Button name = 'post' onClick={handleClick}>글 작성</Button>
+                    <Button name = 'edit' onClick={handleClick}>프로필 수정</Button>
+                </Wrap2>
+            ) : (
+                <Wrap2>
+                    <SubscribeCheck params={params}/>
+                </Wrap2>
+            )}
+
         </PageWrap>
     );
 };

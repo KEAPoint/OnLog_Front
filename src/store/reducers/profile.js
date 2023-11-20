@@ -6,7 +6,9 @@ const initialState = {
         blogName: "",
         info: "",
         profileImg: "",
-    }
+    },
+    // userAuth 가 true이면, 게시글 및 프로필 수정, 생성 등등 권한 있음
+    userAuth: false
 }
 
 const ProfileReducer = (state = initialState, action) => {
@@ -23,6 +25,12 @@ const ProfileReducer = (state = initialState, action) => {
                     info: action.data.info,
                     profileImg: action.data.profileImg
                 }
+            }
+        }
+        case 'USER_AUTH' : {
+            return {
+                ...state,
+                userAuth: !state.userAuth
             }
         }
         default: {
