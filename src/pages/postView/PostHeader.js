@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { navData } from "../../assets/datas/categoryData";
 import { useDispatch } from 'react-redux';
 import { colorAction } from '../../store/actions/color';
+import {ReactComponent as Lock} from "../../assets/images/Icons/Lock.svg";
 
 const PostHeader = ({post}) => {
 
@@ -13,6 +14,7 @@ const PostHeader = ({post}) => {
         name:"",
         color:"",
     });
+    const [isPublic, setIsPublic] = useState(true);
 
     useEffect(() => {
         if (post && post.topic) {
@@ -28,6 +30,9 @@ const PostHeader = ({post}) => {
                 })
             );
         }
+        if (post && post.isPublic===false){
+            setIsPublic(false);
+        }
     }, [post, dispatch]);
 
     return(
@@ -38,6 +43,7 @@ const PostHeader = ({post}) => {
                         {post.topic && <Topic color={topic.color}>#{topic.name}</Topic>}
                         <Title dangerouslySetInnerHTML={{ __html: post.title }}/>
                         {post.createdAt && <DateWrap>{new Date(post.createdAt).toISOString().split('T')[0].replace(/-/g, '.')}</DateWrap>}
+                        {!isPublic && (<Lock/>)}
                     </>
                 )}
             </Wrap>

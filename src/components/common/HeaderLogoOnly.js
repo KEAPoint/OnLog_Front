@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {ReactComponent as Logo} from '../../assets/images/Logo.svg';
+import {ReactComponent as Logo} from '../../assets/images/Logo2.svg';
 import { useNavigate } from 'react-router-dom';
 
 const HeaderLogoOnly = () => {

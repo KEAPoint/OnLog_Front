@@ -1,7 +1,7 @@
 import Header from '../../components/common/HeaderLogoOnly';
 import styled from 'styled-components';
 import { SBold25 } from '../../components/style/Styled';
-
+import Swal from 'sweetalert2';
 import "./Login.css";
 import { useSelector } from 'react-redux';
 import axios from 'axios';
@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 const SignUp = () => {
     const {user} = useSelector((state) => state.profile); 
     const navigate = useNavigate();
-    console.log(user.email)
+    // console.log(user.email)
     // console.log(user.email, user.userId);
     // console.log(user ? user.email : 'User not defined'); 
 
@@ -20,9 +20,13 @@ const SignUp = () => {
         const blogname = e.target.elements.blogname.value;
         const info = e.target.elements.info.value;
         const profileImg = window.localStorage.getItem("profileImg");
+        
 
         if(!nickname || !blogname || !info) {
-            alert('빈칸채워라');
+            Swal.fire({
+                // icon: "warning",
+                title: "빈칸을 모두 채워주세요!"}
+            )            
             return;
         } else {
 
