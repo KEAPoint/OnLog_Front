@@ -49,8 +49,6 @@ const Header = () => {
     const navigate = useNavigate();
     const handleClick = (e) =>   {
         console.log(e)
-        const userId = window.localStorage.getItem("userId");
-
             switch(e.currentTarget.name) {
                 case "logo" :
                     navigate('/');
