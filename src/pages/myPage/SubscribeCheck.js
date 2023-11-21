@@ -8,6 +8,7 @@ const SubscribeCheck = ({params}) => {
     const [hovered, setHovered] = useState(false); // hover 상태 여부
 
     useEffect(() => {
+        // 특정 유저의 팔로우 여부 API가 없기 때문에 하나씩 id를 비교해서 팔로우 여부를 알아야 하는 상황         
         const fetchData = async () => {
             const response = await Get_follow();
             const match = response.data.some(item => {
@@ -17,7 +18,7 @@ const SubscribeCheck = ({params}) => {
                 return false;
             });
             console.log("match:", match);
-            setSubCheck(match); // match 값을 subCheck에 할당
+            setSubCheck(match); 
             
         };
         fetchData();
@@ -31,6 +32,7 @@ const SubscribeCheck = ({params}) => {
             // await Delete_Follow(params);
             const response = await Delete_Follow(params);
             console.log(response)
+
             if (response.success) {
                 console.log("구독 취소 완료");
                 setSubCheck(false);

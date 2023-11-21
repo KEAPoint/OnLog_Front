@@ -216,7 +216,11 @@ const Comment = ({post}) => {
     const navigate = useNavigate();
     const handleProfileClick = (commentId) => {
         console.log("commentId: ", commentId)
-        navigate(`/mypage/${commentId}`)
+        if(commentId === window.localStorage.getItem("userId")){
+            navigate(`/mypage`)
+        } else {
+            navigate(`/mypage/${commentId}`)
+        }
     }
     return (
         <div>

@@ -23,8 +23,14 @@ const PostviewPage = () => {
         const fetchPosts = async () => {
             const data = await Get_SinglePost(postId);
 
-            console.log(data.data);
-            setPost(data.data);
+            // console.log("응답 메시지: ", data);
+            // console.log(data.data);
+            // if(data.code===403){
+            //     alert("비공개 게시글은 조회할 수 없습니다.");
+            // }
+            // else{
+                setPost(data.data);
+            // }
         }
         fetchPosts();
       }, [postId]);
