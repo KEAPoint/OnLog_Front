@@ -1,4 +1,4 @@
-import React from 'react';
+import {React, useEffect} from 'react';
 import Header from '../../components/common/Header';
 import MypageTop from './MypageTop.js';
 import MypagePost from './MyPagePost';
@@ -12,6 +12,10 @@ import { userAuthAction } from '../../store/actions/profile';
 const MyPage = () => {
     const params = useParams().userId;
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        window.scrollTo({top:0, behavior:"smooth"});
+    }, []);
 
     if(params === window.localStorage.getItem("userId")){ // 권한 있을 시
         dispatch(

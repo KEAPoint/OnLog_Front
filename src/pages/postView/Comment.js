@@ -358,7 +358,10 @@ const Wrap = styled.div`
     align-self: stretch;
     border-bottom: 1px solid var(--gray_lighter, #DCDCDC);
 `
-const Menu = styled.div`
+const Menu = styled.button`
+    border: none;
+    background: none;
+    cursor: pointer;
     display: flex;
     align-items: center;
 `;
