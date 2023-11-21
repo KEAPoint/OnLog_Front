@@ -3,14 +3,15 @@ import { useState, useEffect } from "react";
 import React from "react";
 import TextareaAutosize from 'react-textarea-autosize'; // npm install react-textarea-autosize
 import Header from '../../components/common/Header';
-import Profile from "../../assets/images/Profile.jpeg"
 import { LBold32, SBold192, SRegular20, SRegular30 } from "../../components/style/Styled";
 import { Get_Profile, Put_Profile } from "../../apis/API_MyPage";
 import { useDispatch } from "react-redux";
 import { profileAction } from "../../store/actions/profile";
+import { useNavigate } from "react-router-dom";
 
 const ProfileEditPage = () =>{
     const dismatch = useDispatch();
+    const navigate = useNavigate();
 
     const [user, setUser] = useState({
         blogName: "",
@@ -19,19 +20,20 @@ const ProfileEditPage = () =>{
         info: "",
         email: ""
     });
+    const profileImg = window.localStorage.getItem("profileImg");
 
     useEffect(() => {
-        Get_Profile()
+        const userId = window.localStorage.getItem("userId");
+        Get_Profile(userId)
         .then((data) => {
             console.log(data.data)
             setUser(prevUser => ({
                 ...prevUser,
-                // blogId는 안해도 될듯?
+                email: window.localStorage.getItem("email"),
                 blogName: data.data.blogName,
                 nickName: data.data.blogNickname,
                 profileImg: data.data.blogProfileImg,
                 info: data.data.blogIntro,
-                // email: data.data.email,
             }))
 
         })
@@ -56,6 +58,8 @@ const ProfileEditPage = () =>{
                     info: user.info,
                 })
             )
+
+            navigate(`/mypage`);
         })
         .catch((error) => {
             console.log(error)
@@ -71,13 +75,13 @@ const ProfileEditPage = () =>{
             <PageName>My Profile</PageName>
             <Wrap>
                 <ProfileImageWrap>
-                    <Image/>
+                    <Image $imgUrl={profileImg}/>
                 </ProfileImageWrap>
                 
                 <FormWrap onSubmit={handleSubmit}>
                     <Wrap2>
                         <Title> 이메일 </Title>
-                        <Email>seojinangel@naver.com</Email>
+                        <Email>{user.email}</Email>
                     </Wrap2>
                     <Wrap2>
                         <Title>닉네임</Title>
@@ -131,11 +135,11 @@ const ProfileImageWrap = styled.div`
     align-items: center;
     gap: 1.25rem;
 `
-const Image = styled.img`
+const Image = styled.div`
     width: 28.125rem;
     height: 28.125rem;
     border-radius: 25rem;
-    background: url(${Profile}) lightgray 50% / cover no-repeat;
+    background: url(${props => props.$imgUrl}) lightgray 50% / cover no-repeat;
     margin-right: 0.94rem;
 `
 
