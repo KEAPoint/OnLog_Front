@@ -54,6 +54,7 @@ const PostNew = () => {
             window.scrollTo({top:0, behavior:"smooth"});
         }
         else{
+            console.log("content: ",content);
             // ai로 썸네일 추천 & 세줄요약 값 받아오기
             const response = await Post_Recommendation(content, tagList);
 
