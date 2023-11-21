@@ -26,7 +26,6 @@ const BlogItem = ({blogId, isSubs}) => {
                 blogProfileImg: data.data.blogProfileImg,
                 blogIntro: data.data.blogIntro,
             })
-            console.log('profileImg: ',profile.blogProfileImg);
         })
         .catch((error) => {
             console.log(error);
