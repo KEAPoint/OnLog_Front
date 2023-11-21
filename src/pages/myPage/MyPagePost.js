@@ -19,6 +19,8 @@ const MypagePost = () => {
     if (params === undefined) {
         params = window.localStorage.getItem("userId");
     }
+    // auth 여부 확인
+    const userAuth = useSelector(state => state.profile.userAuth);
 
 
     const [EditClickCheck, setEditClickCheck] = useState(false);
@@ -86,7 +88,9 @@ const MypagePost = () => {
                     <CateWrap $isExpanded={EditClickCheck}>
                         <MenuWrap>
                             <SRegular208>Category</SRegular208>
-                            <EditBtn onClick={handleEdit}><Edit/></EditBtn>
+                            {userAuth && (
+                                <EditBtn onClick={handleEdit}><Edit/></EditBtn>
+                            )}
                         </MenuWrap>
 
                         {!EditClickCheck && (
@@ -94,10 +98,12 @@ const MypagePost = () => {
                                 <Option onClick={() => handleClick()}>
                                     <CateTitle>전체</CateTitle>
                                 </Option>
-                                <Option>
-                                    <Lock/>
-                                    <CateTitle>비공개 글</CateTitle>
-                                </Option>
+                                {userAuth && (
+                                    <Option>
+                                        <Lock/>
+                                        <CateTitle>비공개 글</CateTitle>
+                                    </Option>
+                                )}
                             </>
                         )}
 
