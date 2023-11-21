@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { Post_Comment } from "../../apis/API_Comment";
+// import { useNavigate } from "react-router-dom";
 
 const CommentWrite = ({post}) => {
+    // const navigate = useNavigate();
     const [inputText, setInputText] = useState("");
     const [messages, setMessages] = useState({
         postId: "",
@@ -28,12 +30,13 @@ const CommentWrite = ({post}) => {
         };
         setMessages(newMessages);
 
-        console.log('댓글:', newMessages);
+        // console.log('댓글:', newMessages);
 
         const response = await Post_Comment(newMessages);
 
         if (response.success) {
             console.log("Comment posted successfully!");
+            // navigate(`/postview/${newMessages.postId}`);
         } else {
             console.error("Failed to post comment:", response.message);
         }
