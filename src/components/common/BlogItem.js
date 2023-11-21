@@ -26,6 +26,7 @@ const BlogItem = ({blogId, isSubs}) => {
                 blogProfileImg: data.data.blogProfileImg,
                 blogIntro: data.data.blogIntro,
             })
+            console.log('profileImg: ',profile.blogProfileImg);
         })
         .catch((error) => {
             console.log(error);
@@ -89,26 +90,26 @@ const BlogItem = ({blogId, isSubs}) => {
             ) : (
                 // loading중 아니라면 제대로 보여주기
                 <>
-            <LeftWrap>
-                <Menu onClick={handleProfileBtn}>
-                    <ProfileImg $imgUrl={profile.blogProfileImg}/>
-                    <TitleWrap>
-                        <Title>{profile.blogName}</Title>
-                        <Name>@{profile.blogNickname}</Name>
-                    </TitleWrap>
-                </Menu>
+                    <LeftWrap>
+                        <Menu onClick={handleProfileBtn}>
+                            <ProfileImg $imgUrl={profile.blogProfileImg}/>
+                            <TitleWrap>
+                                <Title>{profile.blogName}</Title>
+                                <Name>@{profile.blogNickname}</Name>
+                            </TitleWrap>
+                        </Menu>
 
-                <BlogInfo> {profile.blogIntro}</BlogInfo>
-            </LeftWrap>
-            <SubscribeWrap 
-                onClick={handleSubscribe} 
-                $isSubscribed={isSubscribed}
-                onMouseEnter={() => setHovered(true)}
-                onMouseLeave={() => setHovered(false)}
-            >
-            {isHovered ? (isSubscribed ? "구독 취소" : "구독하기") : (isSubscribed ? "구독 중" : "구독하기")}
-            </SubscribeWrap>
-            </>
+                        <BlogInfo> {profile.blogIntro}</BlogInfo>
+                    </LeftWrap>
+                    <SubscribeWrap 
+                        onClick={handleSubscribe} 
+                        $isSubscribed={isSubscribed}
+                        onMouseEnter={() => setHovered(true)}
+                        onMouseLeave={() => setHovered(false)}
+                    >
+                    {isHovered ? (isSubscribed ? "구독 취소" : "구독하기") : (isSubscribed ? "구독 중" : "구독하기")}
+                    </SubscribeWrap>
+                </>
             )}
         </Wrap>
     );
@@ -151,7 +152,7 @@ const ProfileImg = styled.div`
     width: 3.375rem;
     height: 3.375rem;
     border-radius: 2.5rem;
-    background: url(${props => props.imgUrl}) lightgray 50% / cover no-repeat;
+    background: url(${props => props.$imgUrl}) lightgray 50% / cover no-repeat;
     margin-right: 0.94rem;
 `;
 const TitleWrap = styled.div`
@@ -176,8 +177,6 @@ const BlogInfo = styled(XSRegular16)`
 
     padding-Left: 4rem;
 `
-
-
 const SubscribeWrap = styled.button`
     display: flex;
     padding: 0.75rem 3.9375rem;
@@ -201,14 +200,13 @@ const SubscribeWrap = styled.button`
     color: ${props => props.$isSubscribed ? 'black' : 'var(--white, #FFF)'};
 
     &:hover {
-        background: ${props => props.$isSubscribed ? 'red' : 'white'};
+        background: ${props => props.$isSubscribed ? 'black' : 'white'};
         color: ${props => props.$isSubscribed ? 'var(--white, #FFF)' : 'black'};
-        border-color: ${props => props.$isSubscribed ? 'red' : 'black'};
+        border-color: ${props => props.$isSubscribed ? 'black' : 'black'};
 
         transition: 0.5s;
     }
 `
-
 // Skeleton loading animation keyframes
 const skeletonAnimation = keyframes`
     0% {
@@ -229,7 +227,6 @@ const skeletonAnimation = keyframes`
 
   	}
 `;
-
 // Skeleton item component for loading animation
 const SkeletonItem = styled.div`
   	width: ${({ width }) => width || '100%'};
