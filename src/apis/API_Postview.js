@@ -3,15 +3,19 @@ import axios from "axios";
 const accessToken = localStorage.getItem('accessToken');
 
 export const Get_SinglePost = async (postId) => {
+    try{
+        const response = await axios({
+            method: "get",
+            url: `/posts/${postId}`,
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        });
 
-    const response = await axios({
-        method: "get",
-        url: `/posts/${postId}`,
-        headers: {
-            'Authorization': `Bearer ${accessToken}`
-        }
-    });
-    return response.data;
+        return response.data;
+    } catch (error) {
+        console.log("상세 보기 중 에러 발생:", error);
+    }
 };
 
 export const Delete_SinglePost = async (postId) => {

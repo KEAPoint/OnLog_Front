@@ -1,10 +1,28 @@
 import styled from "styled-components";
 import BlogItem from "../../components/common/BlogItem";
 import { MRegular32, LBold32 } from "../../components/style/Styled";
-
+import { Get_follow } from "../../apis/API_Subs";
+import { useState, useEffect } from "react";
 
 const SubsBlog = () => {
-    const totalBlog = '2';
+    const [totalBlog, setTotalBlog] = useState("");
+    const [followList, setFollowList] = useState([]);
+
+    useEffect(() => {
+        window.scrollTo({top:0, behavior:"smooth"});
+
+        const fetchFollow = async () => {
+            const response = await Get_follow();
+            if (response.success) {
+                console.log("구독 리스트 조회 성공", response.data);
+                setTotalBlog(response.data.filter(item=>item.following).length);
+                setFollowList(response.data);
+            } else {
+                console.error("구독 리스트 조회 실패", response.message);
+            }
+        }
+        fetchFollow();
+      }, []);
 
     return(
         <div style={{paddingBottom:"6rem"}}>
@@ -13,8 +31,9 @@ const SubsBlog = () => {
                 <Right><Num>{totalBlog}</Num>명</Right>
             </Wrap>
             <PageWrap>
-            {[...Array(2)].map((_, index) => (
-                    <BlogItem key={index} />
+                {/* 구독상태가 true인 경우에만 mapping */}
+                {followList.filter(item => item.following).map(item => (
+                    <BlogItem key={item.followId} blogId={item.followId} isSubs={item.following} />
                 ))}
             </PageWrap>
         </div>
@@ -50,7 +69,7 @@ const Left = styled(MRegular32)`
 const Right = styled.div`
     display: flex;
     padding: 1.25rem 0rem;
-    align-items: flex-end;
+    align-items: center;
     gap: 0.375rem;
 
     color: var(--gray_bold, #4A4A4A);

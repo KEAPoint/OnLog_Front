@@ -55,7 +55,7 @@ const CreateAI = () => {
 
         if (response.success) {
             console.log("글 작성 완료!");
-            navigate(`/post/${response.data.postId}`);
+            navigate(`/postview/${response.data.postId}`);
             console.log(response);
         } else {
             console.error("글 작성 실패! :", response.message);

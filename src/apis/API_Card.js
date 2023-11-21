@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const GET_CardList = async (filterList) => {
     const accessToken = window.localStorage.getItem("accessToken");
-    console.log("test:", filterList);
+    // console.log("test:", filterList);
 
     const url = '/posts';
     const res = await axios({

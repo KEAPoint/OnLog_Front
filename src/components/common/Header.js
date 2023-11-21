@@ -10,8 +10,6 @@ import { profileAction } from '../../store/actions/profile';
 const Header = () => {
     const accessToken = window.localStorage.getItem("accessToken");
     //
-    // const selector = useSelector(state => state.profile);
-    // console.log("selector:", selector);
     const dispatch = useDispatch();
     const user = useSelector((state) => state.profile.user);
     //
@@ -23,7 +21,8 @@ const Header = () => {
     // }); 
 
     useEffect(() => {
-        Get_Profile()
+        const userId = window.localStorage.getItem("userId");
+        Get_Profile(userId)
         .then((data) => {
             console.log("header:",data);
             // setUser({
@@ -60,13 +59,15 @@ const Header = () => {
                     navigate('/login');
                     break;
                 case "myPage" :
-                    navigate(`/mypage/${userId}`);
+                    navigate(`/mypage`);
                     break;
                 default:
                     break;
             }
     }
-
+    // useEffect(() => {
+    //     console.log(user)
+    // },[user])
     return (
         <Wrap>
             <LogoBtn name="logo" onClick={handleClick}>
@@ -86,7 +87,7 @@ const Header = () => {
 
                     {/* <UserProfile/> */}
                     <MyPageBtn name='myPage' onClick={handleClick}>
-                        <ProfileImg $blogProfileImg={user.blogProfileImg}></ProfileImg>
+                        <ProfileImg $blogProfileImg={user.profileImg}></ProfileImg>
                         <TitleWrap to={'/mypage'}>
                             <Title>{user.blogName}</Title>
                             <Name>@{user.nickName}</Name>
@@ -138,7 +139,8 @@ const ProfileImg = styled.div`
     width: 2.5rem;
     height: 2.5rem;
     border-radius: 2.5rem;
-    background: url(${props => props.$blogProfileImg}) lightgray 50% / cover no-repeat;
+    /* background: url(${props => props.$blogProfileImg}) lightgray 50% / cover no-repeat; */
+    background: ${props => `url(${props.$blogProfileImg}) lightgray 50% / cover no-repeat`};
     margin-right: 0.94rem;
 `;
 const Alarm = styled(XSBold13)`

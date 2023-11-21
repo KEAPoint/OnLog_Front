@@ -37,7 +37,8 @@ function App() {
 
           {/* 마이페이지 */}
           {/* <Route path="/mypage/post" element={<SignUp/>}/> */}
-          <Route path="/post/:postId" element={<PostviewPage/>}/>
+          <Route path="/postview/:postId" element={<PostviewPage/>}/>
+          <Route path="/mypage" element={<MyPage/>}/>
           <Route path="/mypage/:userId" element={<MyPage/>}/>
 
 

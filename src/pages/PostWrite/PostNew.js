@@ -98,7 +98,8 @@ const PostNew = () => {
     const [categories, setCategories] = useState([]);
     useEffect(() => {
         const fetchCategory = async () => {
-          const data = await Get_Categori();
+            const userId = window.localStorage.getItem("userId");
+          const data = await Get_Categori(userId);
           
           if (data && data.data) { // data와 data.data가 모두 null이 아닌지 확인
             let sortedData = data.data.sort((a, b) => a.order - b.order);

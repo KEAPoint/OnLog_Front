@@ -13,7 +13,7 @@ const NewSubsPost = () => {
                 <Right><Num>{totalPost}</Num>건</Right>
             </Wrap>
             <PageWrap>
-                <Card category="lifestyle"/>
+                <Card/>
             </PageWrap>
         </div>
     );
@@ -24,8 +24,7 @@ export default NewSubsPost;
 const PageWrap = styled.div`
     margin: 0rem 6.25rem;
     /* box-sizing: border-box; */
-
-/* 
+    /* 
     @media ${({ theme }) => theme.windowSize.test} {
         background-color: pink;
     } */
@@ -45,20 +44,13 @@ const Left = styled(MRegular32)`
 
     color: var(--black, #000);
 `
-const Right = styled.div`
+const Right = styled(MRegular32)`
     display: flex;
     padding: 1.25rem 0rem;
-    align-items: flex-end;
+    align-items: center;
     gap: 0.375rem;
 
     color: var(--gray_bold, #4A4A4A);
-
-    /* M-regular-38 */
-    font-family: Pretendard;
-    font-size: 2rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 3.01875rem; /* 127.105% */
 `
 const Num = styled(LBold32)`
     color: var(--black, #000);

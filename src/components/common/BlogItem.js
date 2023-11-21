@@ -1,32 +1,59 @@
 import styled, {keyframes} from "styled-components";
-// import UserProfile from '../../components/common/UserProfile';
-// import { cardData } from "../../assets/datas/cardData";
-import { SBold17, XSRegular16 } from '../style/Styled';
-import { useState } from "react";
-import Profile from "../../assets/images/Profile.jpeg"
+import { XSRegular16 } from '../style/Styled';
+import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
+import { Get_SubProfile, Post_follow, Delete_Follow } from "../../apis/API_Subs";
+import { useNavigate } from "react-router-dom";
 
+const BlogItem = ({blogId, isSubs}) => {
 
-const BlogItem = () => {
-
-    const [isSubscribed, setSubscribed] = useState(false); // 구독 상태를 저장하는 state
+    const [isSubscribed, setSubscribed] = useState(isSubs); // 구독 상태를 저장하는 state
     const [isHovered, setHovered] = useState(false); // Hover 상태를 저장하는 state
     const [isLoading, setLoading] = useState(true); // 데이터 로딩 상태를 저장하는 state (skeleton)
 
-    // skeleton
-    // useEffect(() => {
-    //     // 외부 데이터 로딩 시뮬레이션
-    //     setTimeout(() => {
-    //         setLoading(false);
-    //     }, 2000);
-    // }, []);
     setTimeout(() => {
         setLoading(false);
     }, 2000);
 
+    const [profile, setProfile] = useState({}); 
 
-    const handleSubscribe = (e) => {
-        setSubscribed(!isSubscribed); // 현재의 반대 값으로 설정
+    useEffect(() => {
+        Get_SubProfile(blogId) // 구독중인 블로그의 상세 정보 get
+        .then((data) => {
+            setProfile({
+                blogName: data.data.blogName,
+                blogNickname: data.data.blogNickname,
+                blogProfileImg: data.data.blogProfileImg,
+                blogIntro: data.data.blogIntro,
+            })
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    },[blogId]);
+    
+    const handleSubscribe = async (e) => {
+        // 구독중인 상태에서 버튼 누른거라면, 구독취소 요청
+        if(isSubscribed){
+            const response = await Delete_Follow(blogId);
+            if (response.success) {
+                console.log("구독 취소 완료");
+                setSubscribed(false);
+            } else {
+                console.error("구독취소 실패", response.message);
+            }
+        }
+        // 구독 아닌 상태에서 버튼 누른거라면, 구독요청
+        else{
+            const response = await Post_follow(blogId);
+
+            if (response.success) {
+                console.log("구독 완료!!!! 성공!");
+                setSubscribed(true);
+            } else {
+                console.error("구독하는거 실패", response.message);
+            }
+        }
 
         Swal.fire({
             title: isSubscribed ? "구독 취소" : "구독 완료",
@@ -35,6 +62,11 @@ const BlogItem = () => {
         });
     }
 
+    const navigate = useNavigate();
+    const handleProfileBtn = (e) => {
+        console.log('button 클릭');
+        navigate(`/mypage/${blogId}`);
+    }
     return(
         <Wrap>
             {isLoading ? (
@@ -58,19 +90,15 @@ const BlogItem = () => {
                 // loading중 아니라면 제대로 보여주기
                 <>
             <LeftWrap>
-                {/* <Profile> 
-                    <UserProfile info={cardData}/>
-                </Profile> */}
-                {/* UserProfile 공간 */}
-                <Menu>
-                    <ProfileImg></ProfileImg>
+                <Menu onClick={handleProfileBtn}>
+                    <ProfileImg $imgUrl={profile.blogProfileImg}/>
                     <TitleWrap>
-                        <Title>Hani Tech World</Title>
-                        <Name>@hanitech</Name>
+                        <Title>{profile.blogName}</Title>
+                        <Name>@{profile.blogNickname}</Name>
                     </TitleWrap>
                 </Menu>
 
-                <BlogInfo> 안냐쎄욤. 하니에욤 </BlogInfo>
+                <BlogInfo> {profile.blogIntro}</BlogInfo>
             </LeftWrap>
             <SubscribeWrap 
                 onClick={handleSubscribe} 
@@ -106,17 +134,16 @@ const LeftWrap = styled.div`
     // flex: 1;
 
 `
-// const Profile = styled.div`
-//     display: flex;
-//     flex-direction: column;
-//     align-items: flex-start;
-//     gap: 1.875rem;
-//     display: flex;
-//     padding: 2rem 0rem 0rem 18.8125rem;
-//     gap: 0.625rem;
-//     align-self: stretch;
-// `
-const Menu = styled(SBold17)`
+const Menu = styled.button`
+    /* S-bold-17(RE) */
+    font-family: Pretendard;
+    font-size: 1.0625rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    border: none;
+    background: transparent;
+    cursor: pointer;
     display: flex;
     align-items: center;
 `;
@@ -124,7 +151,7 @@ const ProfileImg = styled.div`
     width: 3.375rem;
     height: 3.375rem;
     border-radius: 2.5rem;
-    background: url(${Profile}) lightgray 50% / cover no-repeat;
+    background: url(${props => props.imgUrl}) lightgray 50% / cover no-repeat;
     margin-right: 0.94rem;
 `;
 const TitleWrap = styled.div`
@@ -160,12 +187,6 @@ const SubscribeWrap = styled.button`
     border : 4px solid black;
 
     text-align: justify;
-    // /* XS-semibold-20 */
-    // font-family: Pretendard;
-    // font-size: 1.25rem;
-    // font-style: normal;
-    // font-weight: 600;
-    // line-height: normal;
     
     /* XS-semibold-16(RE) */
     font-family: Pretendard;

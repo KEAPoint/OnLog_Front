@@ -1,44 +1,77 @@
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { LBold32, SBold192, SBold25, SRegular208, SRegular30 } from '../../components/style/Styled';
 import { Get_Profile } from "../../apis/API_MyPage";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { profileAction } from "../../store/actions/profile";
+import SubscribeCheck from "./SubscribeCheck";
 
 const MypageTop = () => {
+
+    // url에서 userId 가져오기 -> 이걸 api에 params로 넣어주기!
+    let params = useParams().userId;
+    if (params === undefined) {
+        params = window.localStorage.getItem("userId");
+    }
+
+    // console.log(params);
+    // 수정 및 생성 권한 있는지 확인
+    const userAuth = useSelector(state => state.profile.userAuth);
+    
+    useEffect(() => {
+        // userAuth 값이 변경되었을 때 실행되는 로직
+        console.log("userAuth 변경:", userAuth);
+    }, [userAuth]);
+
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const [profile, setProfile] = useState({}); 
 
     useEffect(() => {
-        Get_Profile()
-        .then((data) => {
-            console.log(data.data)
-            setProfile({
-                // ...profile,
-                blogId: data.data.blogName,
-                blogName: data.data.blogName,
-                blogNickname: data.data.blogNickname,
-                blogProfileImg: data.data.blogProfileImg,
-                likeCount: data.data.likeCount,
-                postCount: data.data.postCount,
-                subscriberCount: data.data.subscriberCount,
-                blogIntro: data.data.blogIntro,
-
+        dispatch(
+            profileAction({
+                userId: params
             })
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-    },[]);
+        )
+    
+        Get_Profile(params)
+            .then((data) => {
+                if (data.success === false) {
+                    throw new Error(data.message); // 에러 발생
+                }
+
+                setProfile({       
+                    blogId: params,
+                    blogName: data.data.blogName,
+                    blogNickname: data.data.blogNickname,
+                    blogProfileImg: data.data.blogProfileImg,
+                    likeCount: data.data.likeCount,
+                    postCount: data.data.postCount,
+                    subscriberCount: data.data.subscriberCount,
+                    blogIntro: data.data.blogIntro,
+                });
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, [params, dispatch]);
+    
     
 
-    const handlePostButtonClick = (e) => {
+    const handleClick = (e) => {
         e.preventDefault();
-        navigate('/mypage/postwrite');
-    };
-    const handleEditButtonClick = (e) => {
-        e.preventDefault();
-        navigate('/mypage/edit');
-
+        
+        switch(e.currentTarget.name) {
+            case "post" :
+                navigate('/mypage/postwrite');
+                break;
+            case "edit" :
+                navigate('/mypage/edit');
+                break;
+            default:
+                break;
+        }
     };
 
     return (
@@ -74,10 +107,18 @@ const MypageTop = () => {
                     {profile.blogIntro}
                 </ProfileInfo>
             </Wrap2>
-            <Wrap2>
-                <Button onClick={handlePostButtonClick}>글 작성</Button>
-                <Button onClick={handleEditButtonClick}>프로필 수정</Button>
-            </Wrap2>
+            
+            {userAuth ? (
+                <Wrap2>
+                    <Button name = 'post' onClick={handleClick}>글 작성</Button>
+                    <Button name = 'edit' onClick={handleClick}>프로필 수정</Button>
+                </Wrap2>
+            ) : (
+                <Wrap2>
+                    <SubscribeCheck params={params}/>
+                </Wrap2>
+            )}
+
         </PageWrap>
     );
 };
