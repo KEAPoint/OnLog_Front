@@ -12,7 +12,7 @@ const CardItemHover = ({item}) => {
         // e.preventDefault();
         console.log('hover postId: ',item.postId);
 
-        navigate(`/post/${item.postId}`);
+        navigate(`/postview/${item.postId}`);
     };
     
     return (
