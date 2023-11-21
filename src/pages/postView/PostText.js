@@ -97,6 +97,7 @@ const PostText = ({post}) => {
                     if (response && response.success) {
                         console.log('Post deleted successfully');
                         Swal.fire('게시글이 삭제되었습니다','다른 포스트들도 구경해보세요!', 'success');
+                        navigate(`/main`);
                     } else {
                         console.error(response ? response.message : 'No response from server');
                     }
