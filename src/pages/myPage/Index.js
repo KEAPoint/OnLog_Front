@@ -16,6 +16,10 @@ const MyPage = () => {
     const dispatch = useDispatch();
     
     useEffect(() => {
+        window.scrollTo({top:0, behavior:"smooth"});
+    }, []);
+    
+    useEffect(() => {
         if (params === undefined || params === window.localStorage.getItem("userId")) {
             console.log("권한 주기@@@@@")
             dispatch(
