@@ -40,11 +40,11 @@ const NoticeItem = (props) => {
     const handleSubscribe = (e) => {
         setSubscribed(!isSubscribed); // 현재의 반대 값으로 설정
 
-        Swal.fire({
-            title: isSubscribed ? "구독 취소" : "구독 완료",
-            html: isSubscribed ? "구독이 취소되었습니다!" : "구독이 완료되었습니다!",
-            // icon: 'success'
-        });
+        // Swal.fire({
+        //     title: isSubscribed ? "구독 취소" : "구독 완료",
+        //     html: isSubscribed ? "구독이 취소되었습니다!" : "구독이 완료되었습니다!",
+        //     // icon: 'success'
+        // });
     }
 
     return(

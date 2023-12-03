@@ -57,10 +57,10 @@ const CreateAI = () => {
             console.log("글 작성 완료!");
             navigate(`/postview/${response.data.postId}`);
             console.log(response);
+            alert('글 작성');
         } else {
             console.error("글 작성 실패! :", response.message);
         }
-        alert('글 작성');
     }
 
     return(
@@ -218,33 +218,7 @@ const SummaryWrap = styled(SRegular20)`
 const SummaryTitle = styled(SBold192)`
     color: var(--gray_light, #939393);
 `
-// const SummaryContent = styled(TextareaAutosize)`
-//     width: 100%;
-//     display: flex;
-//     padding: 1rem 1rem 1rem 1rem;
-//     align-items: center;
-//     gap: 0.625rem;
-//     border: 1px solid black;
-//     background-color: transparent;
-//     outline: none;
-//     resize: none;
-
-//     color: var(--white, #FFF);
-//     /* S-regular_20(RE) */
-//     font-family: Pretendard;
-//     font-size: 1.25rem;
-//     font-style: normal;
-//     font-weight: 400;
-//     line-height: 2.3rem; /* 184% */
-//     letter-spacing: 0.0125rem;
-//     white-space: pre-wrap; // 줄바꿈 허용
-
-//     &:hover{
-//         border : 1px solid white;
-//         transition: 0.3s;
-//     }
-// `
-const SummaryContent = styled(SRegular20)`
+const SummaryContent = styled(TextareaAutosize)`
     width: 100%;
     display: flex;
     padding: 1rem 1rem 1rem 1rem;
@@ -256,20 +230,46 @@ const SummaryContent = styled(SRegular20)`
     resize: none;
 
     color: var(--white, #FFF);
-    // /* S-regular_20(RE) */
-    // font-family: Pretendard;
-    // font-size: 1.25rem;
-    // font-style: normal;
-    // font-weight: 400;
-    // line-height: 2.3rem; /* 184% */
-    // letter-spacing: 0.0125rem;
-    // white-space: pre-wrap; // 줄바꿈 허용
+    /* S-regular_20(RE) */
+    font-family: Pretendard;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 2.3rem; /* 184% */
+    letter-spacing: 0.0125rem;
+    white-space: pre-wrap; // 줄바꿈 허용
 
     &:hover{
         border : 1px solid white;
         transition: 0.3s;
     }
 `
+// const SummaryContent = styled(SRegular20)`
+//     width: 100%;
+//     display: flex;
+//     padding: 1rem 1rem 1rem 1rem;
+//     align-items: center;
+//     gap: 0.625rem;
+//     border: 1px solid black;
+//     background-color: transparent;
+//     outline: none;
+//     resize: none;
+
+//     color: var(--white, #FFF);
+//     // /* S-regular_20(RE) */
+//     // font-family: Pretendard;
+//     // font-size: 1.25rem;
+//     // font-style: normal;
+//     // font-weight: 400;
+//     // line-height: 2.3rem; /* 184% */
+//     // letter-spacing: 0.0125rem;
+//     // white-space: pre-wrap; // 줄바꿈 허용
+
+//     &:hover{
+//         border : 1px solid white;
+//         transition: 0.3s;
+//     }
+// `
 const Summary = styled(SRegular20)`
     width: 100%;
     color: white;

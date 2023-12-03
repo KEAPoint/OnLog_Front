@@ -78,34 +78,49 @@ const PostText = ({post}) => {
     }
     // 댓글 삭제하기 버튼 핸들러
     const deleteHandler = async (postId) => {
-        Swal.fire({
-            title: '정말로 게시글을 삭제하시겠습니까?',
-            text: '삭제된 게시글은 복구가 불가능합니다.',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: '삭제',
-            cancelButtonText: '취소',
-            reverseButtons: true,
-        }).then(async result => {
-            if (result.isConfirmed) {
-                try {
-                    const response = await Delete_SinglePost(postId);
-                    console.log('Response: ', response);
-                    console.log('Response success: ', response && response.success);
+        // Swal.fire({
+        //     title: '정말로 게시글을 삭제하시겠습니까?',
+        //     text: '삭제된 게시글은 복구가 불가능합니다.',
+        //     showCancelButton: true,
+        //     confirmButtonColor: '#3085d6',
+        //     cancelButtonColor: '#d33',
+        //     confirmButtonText: '삭제',
+        //     cancelButtonText: '취소',
+        //     reverseButtons: true,
+        // }).then(async result => {
+        //     if (result.isConfirmed) {
+        //         try {
+        //             const response = await Delete_SinglePost(postId);
+        //             console.log('Response: ', response);
+        //             console.log('Response success: ', response && response.success);
             
-                    if (response && response.success) {
-                        console.log('Post deleted successfully');
-                        Swal.fire('게시글이 삭제되었습니다','다른 포스트들도 구경해보세요!', 'success');
-                        navigate(`/main`);
-                    } else {
-                        console.error(response ? response.message : 'No response from server');
-                    }
-                } catch (error) {
-                    console.error('delete post catch error: ', error);
-                }
+        //             if (response && response.success) {
+        //                 console.log('Post deleted successfully');
+        //                 // Swal.fire('게시글이 삭제되었습니다','다른 포스트들도 구경해보세요!', 'success');
+        //                 navigate(`/main`);
+        //             } else {
+        //                 console.error(response ? response.message : 'No response from server');
+        //             }
+        //         } catch (error) {
+        //             console.error('delete post catch error: ', error);
+        //         }
+        //     }
+        // });
+        try {
+            const response = await Delete_SinglePost(postId);
+            console.log('Response: ', response);
+            console.log('Response success: ', response && response.success);
+    
+            if (response && response.success) {
+                console.log('Post deleted successfully');
+                // Swal.fire('게시글이 삭제되었습니다','다른 포스트들도 구경해보세요!', 'success');
+                navigate(`/main`);
+            } else {
+                console.error(response ? response.message : 'No response from server');
             }
-        });
+        } catch (error) {
+            console.error('delete post catch error: ', error);
+        }
     };
 
     return(
