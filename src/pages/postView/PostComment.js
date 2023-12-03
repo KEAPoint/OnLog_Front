@@ -18,11 +18,11 @@ const  PostComment = ({post}) => {
 export default PostComment;
 
 const CommentWrap = styled.div`
+    width: 100%
     display: flex;
     // padding: 0rem 11.875rem;
     flex-direction: column;
     align-items: flex-start;
     gap: 0.625rem;
     align-self: stretch;
-    
 `
