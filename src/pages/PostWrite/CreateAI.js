@@ -92,7 +92,8 @@ const CreateAI = () => {
 
                     <SummaryWrap>
                         <SummaryTitle> 세 줄 요약 </SummaryTitle>
-                        <SummaryContent type='text' value={props.summary} style={{ overflow: 'hidden' }} placeholder="요약" onChange={SummaryEditHandler}/>
+                        {/* <SummaryContent type='text' value={props.summary} style={{ overflow: 'hidden' }} placeholder="요약" onChange={SummaryEditHandler}/> */}
+                        <Summary dangerouslySetInnerHTML={{__html: props.summary}}/>
                     </SummaryWrap>
                 </AiWrap>
 
@@ -217,7 +218,33 @@ const SummaryWrap = styled(SRegular20)`
 const SummaryTitle = styled(SBold192)`
     color: var(--gray_light, #939393);
 `
-const SummaryContent = styled(TextareaAutosize)`
+// const SummaryContent = styled(TextareaAutosize)`
+//     width: 100%;
+//     display: flex;
+//     padding: 1rem 1rem 1rem 1rem;
+//     align-items: center;
+//     gap: 0.625rem;
+//     border: 1px solid black;
+//     background-color: transparent;
+//     outline: none;
+//     resize: none;
+
+//     color: var(--white, #FFF);
+//     /* S-regular_20(RE) */
+//     font-family: Pretendard;
+//     font-size: 1.25rem;
+//     font-style: normal;
+//     font-weight: 400;
+//     line-height: 2.3rem; /* 184% */
+//     letter-spacing: 0.0125rem;
+//     white-space: pre-wrap; // 줄바꿈 허용
+
+//     &:hover{
+//         border : 1px solid white;
+//         transition: 0.3s;
+//     }
+// `
+const SummaryContent = styled(SRegular20)`
     width: 100%;
     display: flex;
     padding: 1rem 1rem 1rem 1rem;
@@ -229,19 +256,26 @@ const SummaryContent = styled(TextareaAutosize)`
     resize: none;
 
     color: var(--white, #FFF);
-    /* S-regular_20(RE) */
-    font-family: Pretendard;
-    font-size: 1.25rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 2.3rem; /* 184% */
-    letter-spacing: 0.0125rem;
-    white-space: pre-wrap; // 줄바꿈 허용
+    // /* S-regular_20(RE) */
+    // font-family: Pretendard;
+    // font-size: 1.25rem;
+    // font-style: normal;
+    // font-weight: 400;
+    // line-height: 2.3rem; /* 184% */
+    // letter-spacing: 0.0125rem;
+    // white-space: pre-wrap; // 줄바꿈 허용
 
     &:hover{
         border : 1px solid white;
         transition: 0.3s;
     }
+`
+const Summary = styled(SRegular20)`
+    width: 100%;
+    color: white;
+    text-align: justify;
+
+    line-height: 2.3rem;
 `
 const BtnWrap = styled.div`
     padding-Left:5rem;
