@@ -22,9 +22,16 @@ const CreateAI = () => {
     const [props, setProps] = useState({
         ...location.state.data
       });
-    const defaultImageUrl = "https://i.namu.wiki/i/awkzTuu2p6WdaGIUbeHWGj0yzxUOd_wniEADxzMH8qvhWH4TDkpkkiUAJpefC-8J79giMVyjN5y1uRYQVoQm2g.webp";  // 이미지 url이 유효한 값이 아닌 string일 때 기본 이미지 URL 설정
-    const thumbImageUrl = isValidUrl(props.thumbnailLink[0]) ? props.thumbnailLink[0] : defaultImageUrl;
+    const [thumbnailLoaded, setThumbnailLoaded] = useState(false);
+    const [thumbImageUrl, setThumbImageUrl] = useState(props.thumbnailLink[0])
+    useEffect(() => {
+        if (props.thumbnailLink.length > 0) {
+            setThumbnailLoaded(true);
+            console.log('썸네일들 : ',props.thumbnailLink);
+        }
+    }, [props.thumbnailLink]);
 
+    
     useEffect(() => {
         console.log("props 테스트:", props);
     },[props])
@@ -40,6 +47,22 @@ const CreateAI = () => {
             title: e.currentTarget.value
         })
     }
+
+    // AI 사진 slider
+    const [slideIndex, setSlideIndex] = useState(0);
+
+    const moveToPrevSlide = () => {
+        setSlideIndex((prev) => (prev === 0 ? props.thumbnailLink.length - 1 : prev - 1));
+        setThumbImageUrl(props.thumbnailLink[slideIndex]);
+        console.log('썸네일 : ', thumbImageUrl);
+      };
+    
+      const moveToNextSlide = () => {
+        setSlideIndex((prev) => (prev === props.thumbnailLink.length - 1 ? 0 : prev + 1));
+        setThumbImageUrl(props.thumbnailLink[slideIndex]);
+        console.log('썸네일 : ', thumbImageUrl);
+      };
+      
 
     // 요약글 수정
     const SummaryEditHandler = (e) => {
@@ -77,19 +100,18 @@ const CreateAI = () => {
                         <UseMyImage> 내 이미지 가져오기</UseMyImage>
                     </ThumbTitle>
 
-                    {/* 이미지 보여주는 칸 & 좌우 화살표 */}
-                    <ThumbSelectWrap>
-                        {/* 왼쪽 화살표 */}
-                        <ArrowBtn>
-                            <Arrow/>
-                        </ArrowBtn>
-                        <Images $thumbImg={thumbImageUrl}/>
-                        {/* 오른쪽 화살표 */}
-                        <ArrowBtn $flip>
-                            <Arrow/>
-                        </ArrowBtn>
+                    {/* 썸네일 추천 이미지 보여주는 슬라이드 & 좌우버튼 */}
+                    {thumbnailLoaded && (
+                        <ThumbSelectWrap>
+                        <ArrowBtn direction="prev" onClick={moveToPrevSlide}> <Arrow/> </ArrowBtn>
+                        {props.thumbnailLink.map((character, index) => (
+                            <Slide key={index} className={index === slideIndex ? "active" : null} >
+                            <Images $thumbImg={character}/>
+                            </Slide>
+                        ))}
+                        <ArrowBtn $flip direction="next" onClick={moveToNextSlide}> <Arrow/> </ArrowBtn>
                     </ThumbSelectWrap>
-
+                    )}
                     <SummaryWrap>
                         <SummaryTitle> 세 줄 요약 </SummaryTitle>
                         {/* <SummaryContent type='text' value={props.summary} style={{ overflow: 'hidden' }} placeholder="요약" onChange={SummaryEditHandler}/> */}
@@ -186,13 +208,16 @@ const UseMyImage = styled.button`
     }
 `
 const ThumbSelectWrap = styled.div`
+    height: 50rem;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 5.5625rem;
     align-self: stretch;
+    position: relative
 `
 const ArrowBtn = styled.button`
+    position: absolute;
     background-color: transparent;
     border:none;
     outline:none;
@@ -200,6 +225,12 @@ const ArrowBtn = styled.button`
     svg {
         transform: ${props => props.$flip ? 'scaleX(-1)' : 'none'}; // 오른쪽 화살표는 좌우반전!
     }
+
+    // Prev 버튼인 경우 left: 0, Next 버튼인 경우 right: 0
+    left: ${({ direction }) => direction === "prev" && "0px"};
+    right: ${({ direction }) => direction === "next" && "0px"};
+    z-index: 1;
+
 `
 const Images = styled.div`
     width: 37.5rem;
@@ -244,32 +275,6 @@ const SummaryContent = styled(TextareaAutosize)`
         transition: 0.3s;
     }
 `
-// const SummaryContent = styled(SRegular20)`
-//     width: 100%;
-//     display: flex;
-//     padding: 1rem 1rem 1rem 1rem;
-//     align-items: center;
-//     gap: 0.625rem;
-//     border: 1px solid black;
-//     background-color: transparent;
-//     outline: none;
-//     resize: none;
-
-//     color: var(--white, #FFF);
-//     // /* S-regular_20(RE) */
-//     // font-family: Pretendard;
-//     // font-size: 1.25rem;
-//     // font-style: normal;
-//     // font-weight: 400;
-//     // line-height: 2.3rem; /* 184% */
-//     // letter-spacing: 0.0125rem;
-//     // white-space: pre-wrap; // 줄바꿈 허용
-
-//     &:hover{
-//         border : 1px solid white;
-//         transition: 0.3s;
-//     }
-// `
 const Summary = styled(SRegular20)`
     width: 100%;
     color: white;
@@ -309,3 +314,18 @@ const NextBtn = styled.button`
         box-shadow: inset 0 0 0 5px black;
     }
 `
+const Slide = styled.div`
+  position: absolute;
+
+// Slide 내부 가운데 정렬
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 20px;
+
+  opacity: 0;
+  &.active {
+    opacity: 1;
+  }
+  transition: opacity 0.3s ease-in-out;
+`;
