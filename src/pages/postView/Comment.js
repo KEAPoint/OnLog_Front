@@ -157,7 +157,7 @@ const Comment = ({post}) => {
 
                 if (response && response.success) { // 응답이 있고, 응답의 success 가 true 일 때
                     console.log('댓글 수정 완료. Id : ',commentId, "내용: ",newContent);
-                    Swal.fire('댓글이 수정되었습니다', 'success');
+                    // Swal.fire('댓글이 수정되었습니다', 'success');
                     // 댓글 리스트 업데이트
                     setComments(comments.map(comment => {
                         if(comment.commentId === commentId) {
@@ -182,35 +182,51 @@ const Comment = ({post}) => {
 
     // 댓글 삭제하기 버튼 핸들러
     const deleteHandler = async (commentId) => {
-        Swal.fire({
-            title: '정말로 댓글을 삭제하시겠습니까?',
-            text: '삭제된 댓글은 복구가 불가능합니다.',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: '삭제',
-            cancelButtonText: '취소',
-            reverseButtons: true,
-        }).then(async result => {
-            if (result.isConfirmed) {
-                try {
-                    const response = await Delete_Comment(commentId); // Delete_Comment API 호출
+        // Swal.fire({
+        //     title: '정말로 댓글을 삭제하시겠습니까?',
+        //     text: '삭제된 댓글은 복구가 불가능합니다.',
+        //     showCancelButton: true,
+        //     confirmButtonColor: '#3085d6',
+        //     cancelButtonColor: '#d33',
+        //     confirmButtonText: '삭제',
+        //     cancelButtonText: '취소',
+        //     reverseButtons: true,
+        // }).then(async result => {
+        //     if (result.isConfirmed) {
+        //         try {
+        //             const response = await Delete_Comment(commentId); // Delete_Comment API 호출
 
-                    if (response && response.success) { // 응답이 있고, 응답의 success 가 true 일 때
-                        console.log('댓글 삭제');
-                        Swal.fire('댓글이 삭제되었습니다', 'success');
-                        // 삭제 후 삭제된 댓글 리스트 다시 보여주기
-                        const updatedComments = comments.filter(comment => comment.commentId !== commentId);
-                        setComments(updatedComments);
+        //             if (response && response.success) { // 응답이 있고, 응답의 success 가 true 일 때
+        //                 console.log('댓글 삭제');
+        //                 Swal.fire('댓글이 삭제되었습니다', 'success');
+        //                 // 삭제 후 삭제된 댓글 리스트 다시 보여주기
+        //                 const updatedComments = comments.filter(comment => comment.commentId !== commentId);
+        //                 setComments(updatedComments);
 
-                    } else {
-                        console.error(response ? response.error : 'No response from server'); // 실패 처리
-                    }
-                } catch (error) {
-                    console.error('delete comment catch error: ', error); // 오류 처리
-                }
+        //             } else {
+        //                 console.error(response ? response.error : 'No response from server'); // 실패 처리
+        //             }
+        //         } catch (error) {
+        //             console.error('delete comment catch error: ', error); // 오류 처리
+        //         }
+        //     }
+        // });
+        try {
+            const response = await Delete_Comment(commentId); // Delete_Comment API 호출
+
+            if (response && response.success) { // 응답이 있고, 응답의 success 가 true 일 때
+                console.log('댓글 삭제');
+                // Swal.fire('댓글이 삭제되었습니다', 'success');
+                // 삭제 후 삭제된 댓글 리스트 다시 보여주기
+                const updatedComments = comments.filter(comment => comment.commentId !== commentId);
+                setComments(updatedComments);
+
+            } else {
+                console.error(response ? response.error : 'No response from server'); // 실패 처리
             }
-        });
+        } catch (error) {
+            console.error('delete comment catch error: ', error); // 오류 처리
+        }
     };
 
     const navigate = useNavigate();

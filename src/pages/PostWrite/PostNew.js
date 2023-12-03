@@ -16,7 +16,7 @@ const PostNew = () => {
     const [tagItem, setTagItem] = useState('');
     const [tagList, setTagList] = useState([]);
     const [topic, setTopic] = useState("");
-    const [category, setCategory] = useState("");
+    const [category, setCategory] = useState("0");
     const [isPublic, setIsPublic] = useState(true);
     const [summary, setSummary] = useState("");
     const [thumbnailLink, setThumbnailLink] = useState();
