@@ -7,14 +7,6 @@ import {ReactComponent as Arrow} from '../../assets/images/Icons/Next.svg';
 import TextareaAutosize from 'react-textarea-autosize'; // npm install react-textarea-autosize
 import { Post_Post } from "../../apis/API_MyPage";
 
-function isValidUrl(string) {
-    try {
-      new URL(string);
-      return true;
-    } catch (_) {
-      return false;  
-    }
-  }
 
 const CreateAI = () => {
     const location = useLocation();
@@ -51,16 +43,20 @@ const CreateAI = () => {
     // AI 사진 slider
     const [slideIndex, setSlideIndex] = useState(0);
 
-    const moveToPrevSlide = () => {
-        setSlideIndex((prev) => (prev === 0 ? props.thumbnailLink.length - 1 : prev - 1));
+    useEffect(() => {
         setThumbImageUrl(props.thumbnailLink[slideIndex]);
         console.log('썸네일 : ', thumbImageUrl);
+        setProps({
+            ...props,
+            thumbImageUrl: props.thumbnailLink[slideIndex]
+        })
+    }, [slideIndex]);
+    const moveToPrevSlide = () => {
+        setSlideIndex((prev) => (prev === 0 ? props.thumbnailLink.length - 1 : prev - 1));
       };
     
       const moveToNextSlide = () => {
         setSlideIndex((prev) => (prev === props.thumbnailLink.length - 1 ? 0 : prev + 1));
-        setThumbImageUrl(props.thumbnailLink[slideIndex]);
-        console.log('썸네일 : ', thumbImageUrl);
       };
       
 

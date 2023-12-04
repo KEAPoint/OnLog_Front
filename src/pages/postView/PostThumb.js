@@ -152,12 +152,12 @@ const Wrap = styled.div`
 const ThumbImgDiv = styled.div`
     width: 20rem;
     height: 20rem;
-    // border-radius: 1.875rem;
-    background: url(${props => props.$thumbImg}), var(${props=>props.color}) 50% / cover no-repeat;
-    // background: url(${props => props.$thumbImg}), var(${props=>props.color}) 50% / cover no-repeat;
-    /* style_shadow */
-    // box-shadow: 6px 7px 7px 0px rgba(0, 0, 0, 0.50);
+    background: url(${props => props.$thumbImg}), var(${props=>props.color});
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
 `
+
 
 const Summary = styled(SBold17)`
     width: 30rem;
