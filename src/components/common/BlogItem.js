@@ -1,7 +1,7 @@
 import styled, {keyframes} from "styled-components";
 import { XSRegular16 } from '../style/Styled';
 import { useState, useEffect } from "react";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 import { Get_SubProfile, Post_follow, Delete_Follow } from "../../apis/API_Subs";
 import { useNavigate } from "react-router-dom";
 

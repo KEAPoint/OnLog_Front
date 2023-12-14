@@ -1,6 +1,6 @@
 import Header from '../../components/common/HeaderLogoOnly';
 import styled from 'styled-components';
-import { SBold25, SRegular20, SRegular30, SBold192 } from '../../components/style/Styled';
+import { SRegular20, SBold192 } from '../../components/style/Styled';
 import Swal from 'sweetalert2';
 import TextareaAutosize from 'react-textarea-autosize'; // npm install react-textarea-autosize
 import "./Login.css";
@@ -11,6 +11,7 @@ import { useState, useEffect } from 'react';
 import { Get_Profile } from '../../apis/API_MyPage';
 
 const SignUp = () => {
+
     const {user} = useSelector((state) => state.profile); 
     const navigate = useNavigate();
     // console.log("user.blogId : ",user.blogId);
@@ -36,7 +37,7 @@ const SignUp = () => {
             })
         }
 
-    }, [user]);
+    }, [user,userData]);
 
     const handleChange = (e) => {
         setUserData({...userData, [e.target.name]: e.target.value});
@@ -195,16 +196,16 @@ export const Parent = styled.div`
   justify-content: flex-start;
   gap: var(--gap-4xs);
 `;
-const FieldName = styled(SBold25)`
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding-top: 30px;
-    gap: 0.5625rem;
-    align-self: stretch;
-    color: var(--gray_bold, #4A4A4A);
+// const FieldName = styled(SBold25)`
+//     display: flex;
+//     flex-direction: column;
+//     align-items: flex-start;
+//     padding-top: 30px;
+//     gap: 0.5625rem;
+//     align-self: stretch;
+//     color: var(--gray_bold, #4A4A4A);
 
-`
+// `
 const StyledButton = styled.button`
     width: 15.375rem;
     height: 3.375rem;
@@ -349,23 +350,23 @@ const InfoEdit = styled(TextareaAutosize)`
     }
 `
 
-const SubmitButton = styled(SBold192).attrs({as:'button'})`
-    border:4px solid black;
-    display: flex;
-    padding: 0.75rem 4.0625rem;
-    align-items: center;
-    gap: 0.9375rem;
-    background-color: black;
-    color: var(--white, #FFF);
-    text-align: justify;
+// const SubmitButton = styled(SBold192).attrs({as:'button'})`
+//     border:4px solid black;
+//     display: flex;
+//     padding: 0.75rem 4.0625rem;
+//     align-items: center;
+//     gap: 0.9375rem;
+//     background-color: black;
+//     color: var(--white, #FFF);
+//     text-align: justify;
 
-    cursor: pointer;
+//     cursor: pointer;
 
-    &:hover{
-        background-color: white;
-        color: black;
-    }
-    &:active{
-        transform: scale(0.95);
-    }
-`
+//     &:hover{
+//         background-color: white;
+//         color: black;
+//     }
+//     &:active{
+//         transform: scale(0.95);
+//     }
+// `

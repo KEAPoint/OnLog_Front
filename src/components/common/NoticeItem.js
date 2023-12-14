@@ -2,10 +2,11 @@ import styled, {keyframes} from "styled-components";
 import { SBold192, SRegular192,XSSemibold16, XSRegular16 } from '../style/Styled';
 import { useState } from "react";
 import Profile from "../../assets/images/Profile.jpeg"
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 
 
 const NoticeItem = (props) => {
+
 
     // const [noticeType, setNoticeType] = useState(props.data); // 알림 구분 - 구독여부, 좋아요, 댓글여부
     const {noticeType, user, postTitle, isReply, comment} = props;

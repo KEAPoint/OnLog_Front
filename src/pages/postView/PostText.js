@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { LSemibold32, SRegular20 } from "../../components/style/Styled";
 import { Post_PostLike, Delete_PostLike } from "../../apis/API_Like";
@@ -11,6 +11,7 @@ const PostText = ({post}) => {
     const userId = window.localStorage.getItem("userId");
     const writerId = post?.writer?.blogId; // 작성자 아이디
     const [isAdmin, setIsAdmin] = useState(false);
+
 
     const navigate = useNavigate();
 
