@@ -70,7 +70,7 @@ const Icon = styled.div`
 `
 const Text = styled.div`
     color: rgba(0, 0, 0, 0.85);
-    font-family: Roboto;
+    font-family: Pretendard;
     font-size: 1.625rem;
     font-style: normal;
     font-weight: 700;

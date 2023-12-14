@@ -1,36 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { XLSemibold80 } from '../../components/style/Styled';
 
 const LandItem = ({info}) =>  {
     const [isHovering, setIsHovering] = useState(0);
+    const handleMouseOver = useCallback(() => setIsHovering(1), []);
+    const handleMouseOut = useCallback(() => setIsHovering(0), []);
+    const contents = useMemo(() => info.contents.split('\n').map((line, i) => (
+        <React.Fragment key={i}>
+            {line}
+            <br />
+        </React.Fragment>
+    )), [info.contents]);
+    const isField = useMemo(() => info.name.includes("field"), [info.name]);
+
     return (
         <div
-            onMouseOver={() => setIsHovering(1)}
-            onMouseOut={() => setIsHovering(0)}
+            onMouseOver={handleMouseOver}
+            onMouseOut={handleMouseOut}
         >
             {
-                info.name.includes("field") ? (
-                    // (info.name==="login")?(
-                    //         <LoginItem/>
-                    // ):(
+                isField ? (
                     <Field>
-                        {/* {info.contents} */}
-                        {info.contents.split('\n').map((line, i) => (
-                            <React.Fragment key={i}>
-                                {line}
-                                <br />
-                            </React.Fragment>
-                        ))}
+                        {contents}
                         <Logo $img={info.img}/>
                     </Field>
-                    // )
                 ):(
-                    // <FieldL to={`/main/${info.name}`}>
                     <FieldL to={{
                         pathname: `/main/${info.name}`,
-                        // state: {clickCategory: info.name}
                     }}>
                         <FieldImg $img={info.img} $hover={isHovering}>
                             {isHovering===1 && (
@@ -53,8 +51,6 @@ const FieldL = styled(Link)`
     text-decoration: none;
     width: 29.0625rem;
     height: 45.1875rem;
-    /* width: 25rem; */
-    /* height: 45rem; */
 `;
 const Field = styled.div`
     width: 29.0625rem;
@@ -66,7 +62,7 @@ const Field = styled.div`
     justify-content: center;
     padding: 3rem;
     box-sizing: border-box;
-    //
+    
     color: #000;
     font-family: Inter;
     font-size: 2.2rem;

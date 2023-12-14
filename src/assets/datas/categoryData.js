@@ -5,7 +5,6 @@ import News from '../../assets/images/catogories/News.png';
 import Sports from '../../assets/images/catogories/Sports.png';
 import Tech from '../../assets/images/catogories/Tech.png';
 import Travel from '../../assets/images/catogories/Travel.png';
-// import Logo from '../images/Logo.svg';
 import Logo2 from '../images/Logo2.svg';
 
 // landingpage
@@ -22,12 +21,6 @@ export const landingData = [
         contents: "",
         img: "",
     },
-    // {
-    //     id:1,
-    //     name: "field1",
-    //     contents: "\n \n \n \n \n \n \n이곳에서 찾아가는\n 하루하루가\n 더욱 의미있길 바랍니다.",
-    //     img: "",
-    // },
     {
         id:2,
         name: "travel",

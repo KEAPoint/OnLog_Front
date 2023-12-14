@@ -6,8 +6,8 @@ export const GlobalStyle = createGlobalStyle`
     :root{
         /* Fonts */
         /* --font-pretendard: Pretendard;
-        --font-audiowide: Audiowide;
-        --font-roboto: Roboto;   */
+        --font-Pretendard: Pretendard;
+        --font-Pretendard: Pretendard;   */
 
         /* Colors */
         --white: #fff;

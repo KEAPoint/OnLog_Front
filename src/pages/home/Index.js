@@ -136,7 +136,7 @@ const Title = styled.div`
     align-items: center;
 
     color: var(--black, #000);
-    font-family: Audiowide;
+    font-family: Pretendard;
     font-size: 3.3125rem;
     font-style: normal;
     font-weight: 400;

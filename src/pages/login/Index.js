@@ -47,7 +47,7 @@ const Text = styled.div`
 &::after {
     content: " ...Onlog";
     color: var(--black, #000);
-    font-family: Audiowide;
+    font-family: Pretendard;
     font-size: 3.4375rem;
     font-style: normal;
     font-weight: 400;

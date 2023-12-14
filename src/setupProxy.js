@@ -7,7 +7,7 @@ module.exports = function(app) {
             target: 'http://54.88.152.249:8080',
             changeOrigin: true,
         })
-    );
+    ); 
     app.use(
         ['/post', '/posts', '/blog'],
         createProxyMiddleware({
