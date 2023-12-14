@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 // import { cardFutAction } from '../../store/actions/card';
 
 const Card = () => {
+    
     const [cardData, setCardData] = useState([]);
     const filterList = useSelector(state => state.card.filterList);
     console.log("filterList", filterList);

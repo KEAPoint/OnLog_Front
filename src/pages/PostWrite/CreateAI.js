@@ -4,7 +4,7 @@ import { SBold192 , SBold28, SRegular20} from "../../components/style/Styled";
 import { useState, useEffect } from "react";
 import Header from "../../components/common/Header";
 import {ReactComponent as Arrow} from '../../assets/images/Icons/Next.svg';
-import TextareaAutosize from 'react-textarea-autosize'; // npm install react-textarea-autosize
+// import TextareaAutosize from 'react-textarea-autosize'; // npm install react-textarea-autosize
 import { Post_Post } from "../../apis/API_MyPage";
 
 
@@ -47,10 +47,10 @@ const CreateAI = () => {
         setThumbImageUrl(props.thumbnailLink[slideIndex]);
         console.log('썸네일 : ', thumbImageUrl);
         setProps({
-            ...props,
+            // ...props,
             thumbImageUrl: props.thumbnailLink[slideIndex]
         })
-    }, [slideIndex]);
+    }, [slideIndex, props.thumbnailLink, thumbImageUrl]);
     const moveToPrevSlide = () => {
         setSlideIndex((prev) => (prev === 0 ? props.thumbnailLink.length - 1 : prev - 1));
       };
@@ -60,12 +60,12 @@ const CreateAI = () => {
       };
       
 
-    // 요약글 수정
-    const SummaryEditHandler = (e) => {
-        setProps({
-            ...props,
-            summary: e.currentTarget.value
-        })    }
+    // // 요약글 수정
+    // const SummaryEditHandler = (e) => {
+    //     setProps({
+    //         ...props,
+    //         summary: e.currentTarget.value
+    //     })    }
 
     // 글 작성 버튼 클릭
     const SubmitHandler = async () => {
@@ -245,7 +245,7 @@ const SummaryWrap = styled(SRegular20)`
 const SummaryTitle = styled(SBold192)`
     color: var(--gray_light, #939393);
 `
-const SummaryContent = styled(TextareaAutosize)`
+/* const SummaryContent = styled(TextareaAutosize)`
     width: 100%;
     display: flex;
     padding: 1rem 1rem 1rem 1rem;
@@ -257,12 +257,11 @@ const SummaryContent = styled(TextareaAutosize)`
     resize: none;
 
     color: var(--white, #FFF);
-    /* S-regular_20(RE) */
     font-family: Pretendard;
     font-size: 1.25rem;
     font-style: normal;
     font-weight: 400;
-    line-height: 2.3rem; /* 184% */
+    line-height: 2.3rem; 
     letter-spacing: 0.0125rem;
     white-space: pre-wrap; // 줄바꿈 허용
 
@@ -270,7 +269,7 @@ const SummaryContent = styled(TextareaAutosize)`
         border : 1px solid white;
         transition: 0.3s;
     }
-`
+` */
 const Summary = styled(SRegular20)`
     width: 100%;
     color: white;

@@ -11,7 +11,7 @@ module.exports = function(app) {
     app.use(
         ['/post', '/posts', '/blog'],
         createProxyMiddleware({
-            target: 'http://172.16.213.23:8080',
+            target: 'http://3.35.166.179:8080',
             changeOrigin: true,
         })
     );
