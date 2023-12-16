@@ -1,71 +1,125 @@
-# Getting Started with Create React App
+# OnLog_OnLog_Front
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### 프로젝트 개요
+Onlog 블로그 프로젝트는 사용자 중심의 디자인과 기능을 제공하는 블로그 서비스를 개발하는 프로젝트입니다. 사용자의 편의성을 극대화하고 소통의 효율성을 높이는 것을 목표로, 사용자 친화적인 인터페이스, AI 기반의 텍스트 요약 및 이미지 생성으로 썸네일 제작 기능, Elastic Search를 통한 검색 엔진 구현 등을 통해 이 목표를 실현하였습니다.
 
-## Available Scripts
+### 프로젝트 개발 환경
 
-In the project directory, you can run:
+> OS: macOS   
+IDE: Pycharm  
+Frontend : React
+Backend : Spring boot
+검색 엔진 : Elastic Search
+사용된 AI 기술 : CLOVA, Karlo
 
-### `npm start`
+### 프로젝트 구조
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```text
+├── components
+    │   ├── common
+    │   │   ├── BackImage.js
+    │   │   ├── BlogItem.js
+    │   │   ├── Footer.js
+    │   │   ├── Header.js
+    │   │   ├── HeaderLogoOnly.js
+    │   │   ├── HeaderNormal.js
+    │   │   ├── InfiniteScroll.js
+    │   │   ├── MediaQuery.js
+    │   │   ├── NoticeItem.js
+    │   │   ├── ScrollTop.js
+    │   │   ├── UserProfile.js
+    │   │   └── theme.js
+    │   └── style
+    │       ├── AniStyled.js
+    │       ├── GlobalStyled.js
+    │       ├── Styled.js
+    │       └── font.css
+    ├── index.js
+    ├── pages
+    │   ├── PostWrite
+    │   │   ├── CreateAI.js
+    │   │   ├── Index.js
+    │   │   └── PostNew.js
+    │   ├── home
+    │   │   ├── Card.js
+    │   │   ├── CardItem.js
+    │   │   ├── CardItemHover.js
+    │   │   ├── Index.js
+    │   │   └── SkeletonItem.js
+    │   ├── landing
+    │   │   ├── Index.js
+    │   │   └── LandItem.js
+    │   ├── login
+    │   │   ├── Index.js
+    │   │   ├── KakaoLogin.js
+    │   │   ├── KakaoMiddle.js
+    │   │   ├── Login.css
+    │   │   ├── OAuth.js
+    │   │   └── SignUp.js
+    │   ├── myPage
+    │   │   ├── AddCategoryItem.js
+    │   │   ├── CategoryItem.js
+    │   │   ├── Index.js
+    │   │   ├── MyPagePost.js
+    │   │   ├── MypageTop.js
+    │   │   ├── SideBar.js
+    │   │   └── SubscribeCheck.js
+    │   ├── notification
+    │   │   └── Index.js
+    │   ├── postView
+    │   │   ├── Comment.js
+    │   │   ├── CommentWrite.js
+    │   │   ├── Index.js
+    │   │   ├── PostComment.js
+    │   │   ├── PostHeader.js
+    │   │   ├── PostText.js
+    │   │   ├── PostThumb.js
+    │   │   └── ReplyComment.js
+    │   ├── profileEdit
+    │   │   └── Index.js
+    │   ├── search
+    │   │   ├── BlogSearch.js
+    │   │   ├── Index.js
+    │   │   ├── PostSearch.js
+    │   │   └── SearchBox.js
+    │   └── subscribe
+    │       ├── Index.js
+    │       ├── NewSubsPost.js
+    │       └── SubsBlog.js
+    ├── setupProxy.js
+    ├── setupTest.js
+    └── store
+        ├── actions
+        │   ├── card.js
+        │   ├── category.js
+        │   ├── color.js
+        │   ├── login.js
+        │   └── profile.js
+        └── reducers
+            ├── Index.js
+            ├── card.js
+            ├── category.js
+            ├── color.js
+            ├── login.js
+            └── profile.js
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 프로젝트 개발/실행
 
-### `npm test`
+1. 레포지토리 클론
+```commandline
+git clone https://github.com/yourusername/onlog.git
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. 필요한 패키지 설치
+```commandline
+npm install
+```
 
-### `npm run build`
+3. 프로젝트 실행
+```commandline
+npm start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+참고) main 브랜치로 진행해 주세요.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# OnLog_Front
