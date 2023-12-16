@@ -6,8 +6,8 @@ Onlog 블로그 프로젝트는 사용자 중심의 디자인과 기능을 제�
 ### 프로젝트 개발 환경
 
 > OS: macOS   
-IDE: Pycharm  
-Frontend : React
+IDE: Visual Studio 
+> Frontend : React
 Backend : Spring boot
 검색 엔진 : Elastic Search
 사용된 AI 기술 : CLOVA, Karlo
