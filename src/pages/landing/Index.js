@@ -81,6 +81,7 @@ const SignInBtn = styled(SBold25).attrs({ as: 'button' })`
     }
 `;
 const Wrap = styled.div`
+    background-color: yellow;
     /* padding: 7.125rem 6.25rem 0rem 6.25rem; */
     display: grid;
 
